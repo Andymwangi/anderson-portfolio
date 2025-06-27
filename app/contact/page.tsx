@@ -59,7 +59,7 @@ export default function Contact() {
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-background text-foreground p-6 relative">
+      <div className="min-h-screen cyber-vibrant-gradient p-6 relative">
         <div className="container mx-auto max-w-6xl relative z-10">
 
 
