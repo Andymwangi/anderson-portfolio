@@ -1,7 +1,6 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { FolderOpen } from "lucide-react"
 import Image from "next/image"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -70,16 +69,11 @@ export default function Projects() {
             animate="visible"
             className="text-center mb-16"
           >
-            <motion.div
-              className="inline-block mb-6"
-            >
-              <FolderOpen className="h-20 w-20 text-orange-500 mx-auto glow-orange" />
-            </motion.div>
             <h1 className="text-5xl md:text-7xl font-bold mb-6 rainbow-gradient bg-clip-text text-transparent">
               My Project Portfolio
             </h1>
             <motion.p
-
+              className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
               variants={getVariant("fadeIn", 1)}
             >
               A showcase of my skills in action
@@ -103,8 +97,8 @@ export default function Projects() {
                   }
                   className={`rounded-full transition-all duration-300 ${
                     (filters.category === category) || (category === "All" && !filters.category)
-                      ? "border-2 border-green-400 shadow-lg shadow-green-400/30 dark:border-green-500 dark:shadow-green-500/30"
-                      : "border-2 border-transparent hover:border-green-400/50 hover:shadow-md hover:shadow-green-400/20 dark:hover:border-green-500/50 dark:hover:shadow-green-500/20"
+                      ? "border-2 border-warm-gold shadow-lg shadow-warm-gold/30 bg-warm-gold text-white dark:border-warm-gold dark:shadow-warm-gold/30 dark:bg-warm-gold dark:text-charcoal"
+                      : "border-2 border-transparent hover:border-warm-gold/50 hover:shadow-md hover:shadow-warm-gold/20 text-foreground hover:text-warm-gold dark:hover:border-warm-gold/50 dark:hover:shadow-warm-gold/20 dark:hover:text-warm-gold"
                   }`}
                   onClick={() => setFilter('category', category === "All" ? null : category)}
                 >
@@ -127,79 +121,60 @@ export default function Projects() {
                 className="cursor-pointer h-full group"
                 onClick={() => openModal(project)}
               >
-                <Card className="h-full bg-cream/90 backdrop-blur-sm border-border/50 border-2 border-warm-copper/20 hover:border-warm-copper/60 transition-all duration-300 flex flex-col overflow-hidden relative shadow-lg shadow-warm-copper/10 hover:shadow-warm-copper/30">
+                <Card className="h-full bg-cream/90 dark:bg-card/90 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-500 glow-warm-gold glow-hover animated-border flex flex-col overflow-hidden shadow-lg">
                   <CardHeader className="relative p-0 h-48 overflow-hidden">
                     <Image 
                       src={project.img} 
                       alt={project.title} 
                       fill 
-                      className="object-cover transition-transform duration-500 group-hover:scale-105" 
+                      className="object-cover transition-transform duration-500 group-hover:scale-110" 
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     
-                    {/* Translucent/Glossy Deep Forest Overlay */}
+                    {/* Hover reveal overlay */}
                     <motion.div 
-                      className="absolute inset-0 bg-gradient-to-br from-deep-forest/50 via-deep-forest/30 to-deep-forest/50 backdrop-blur-[2px] group-hover:opacity-0 transition-all duration-500"
-                      style={{
-                        background: 'linear-gradient(135deg, rgba(26, 42, 36, 0.6) 0%, rgba(26, 42, 36, 0.3) 50%, rgba(26, 42, 36, 0.6) 100%)',
-                        backdropFilter: 'blur(2px) saturate(1.2)',
-                        WebkitBackdropFilter: 'blur(2px) saturate(1.2)',
-                      }}
-                    />
+                      className="absolute inset-0 bg-gradient-to-br from-warm-gold/80 via-warm-gold/60 to-warm-gold/80 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-center items-center text-center p-4"
+                      initial={false}
+                    >
+                      <Badge variant="secondary" className="mb-2 bg-orange-500/20 text-orange-500 border-orange-500/30">{project.category}</Badge>
+                      <CardTitle className="text-white text-xl mb-4">{project.title}</CardTitle>
+                      <div className="flex flex-wrap justify-center gap-2">
+                        {project.iconLists.slice(0, 4).map((iconName, index) => {
+                          const IconComponent = iconComponents[iconName as keyof typeof iconComponents];
+                          if (!IconComponent) return null;
+                          return (
+                            <div key={index} className="p-2 bg-white/20 rounded-full backdrop-blur-sm">
+                              <IconComponent className="h-4 w-4 text-white" />
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </motion.div>
                     
-                    {/* Glossy shine effect */}
-                    <motion.div 
-                      className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent group-hover:opacity-0 transition-opacity duration-500"
-                      style={{
-                        background: 'linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 30%, transparent 70%)',
-                      }}
-                    />
-                    
-                    <div className="absolute bottom-0 left-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      <Badge variant="secondary" className="mb-2">{project.category}</Badge>
+                    {/* Original content that fades out on hover */}
+                    <div className="absolute bottom-0 left-0 p-4 group-hover:opacity-0 transition-opacity duration-500">
+                      <Badge variant="secondary" className="mb-2 bg-warm-gold/20 text-warm-gold border-warm-gold/30">{project.category}</Badge>
                       <CardTitle className="text-white text-xl">{project.title}</CardTitle>
                     </div>
                   </CardHeader>
-                  <CardContent className="flex flex-col flex-grow p-4 relative">
-                    {/* Content overlay for translucent effect */}
-                    <motion.div 
-                      className="absolute inset-0 bg-gradient-to-br from-deep-forest/25 via-deep-forest/15 to-deep-forest/25 backdrop-blur-[1px] group-hover:opacity-0 transition-all duration-500 rounded-b-lg"
-                      style={{
-                        backdropFilter: 'blur(1px) saturate(1.1)',
-                        WebkitBackdropFilter: 'blur(1px) saturate(1.1)',
-                      }}
-                    />
-                    
-                    <div className="relative z-10 opacity-30 group-hover:opacity-100 transition-opacity duration-500 flex flex-col h-full">
-                      <p className="text-gray-700 mb-4 flex-grow font-medium">
+                  <CardContent className="flex flex-col flex-grow p-6">
+                    <div className="flex flex-col h-full">
+                      <p className="text-gray-700 dark:text-gray-300 mb-4 flex-grow font-medium">
                         {project.des}
                       </p>
-                      <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-deep-forest/20">
+                      <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-border/50">
                         {project.iconLists.slice(0, 7).map((iconName, index) => {
                           const IconComponent = iconComponents[iconName as keyof typeof iconComponents];
                           if (!IconComponent) return null;
                           return (
-                            <div key={index} className="w-8 h-8 bg-deep-forest/10 rounded-full flex items-center justify-center" title={iconName.replace(/^(Si|Fa)/, '')}>
-                              <IconComponent className="h-5 w-5 text-deep-forest" />
+                            <div key={index} className="p-2 bg-background/50 dark:bg-background/30 rounded-full hover:bg-warm-gold/20 transition-colors">
+                              <IconComponent className="h-4 w-4 text-warm-gold" />
                             </div>
                           );
                         })}
                       </div>
                     </div>
                   </CardContent>
-                  
-                  {/* Warm Gold Glowing border effect */}
-                  <motion.div
-                    className="absolute inset-0 rounded-lg border-2 border-warm-copper opacity-20 group-hover:opacity-60 pointer-events-none"
-                    animate={{
-                      boxShadow: [
-                        "0 0 10px rgba(184, 134, 11, 0.3), 0 0 20px rgba(184, 134, 11, 0.2)",
-                        "0 0 15px rgba(184, 134, 11, 0.4), 0 0 30px rgba(184, 134, 11, 0.3)",
-                        "0 0 10px rgba(184, 134, 11, 0.3), 0 0 20px rgba(184, 134, 11, 0.2)"
-                      ]
-                    }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  />
                 </Card>
               </motion.div>
             ))}

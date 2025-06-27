@@ -65,15 +65,15 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.8, opacity: 0, y: 50 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="bg-charcoal/95 dark:bg-charcoal/95 backdrop-blur-md rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-deep-forest/20 dark:border-warm-copper/20"
+            className="bg-cream/95 dark:bg-charcoal/95 backdrop-blur-md rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-warm-gold/20 dark:border-warm-copper/20"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="relative p-8 bg-gradient-to-br from-deep-forest to-deep-forest/70 dark:from-warm-copper dark:to-warm-copper/70 rounded-t-2xl">
+            <div className="relative p-8 bg-gradient-to-br from-warm-gold to-warm-gold/70 dark:from-warm-copper dark:to-warm-copper/70 rounded-t-2xl">
               <Button
                 variant="ghost"
                 size="icon"
-                className="absolute top-4 right-4 text-cream hover:bg-cream/20"
+                className="absolute top-4 right-4 text-white hover:bg-white/20"
                 onClick={onClose}
               >
                 <X className="h-6 w-6" />
@@ -89,52 +89,54 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                   />
                 </div>
 
-                <div className="text-cream">
+                <div className="text-white">
                   <div className="flex items-center gap-2 mb-2">
-                    <Badge className="bg-cream/20 text-cream border-cream/30">
+                    <Badge className="bg-white/20 text-white border-white/30">
                       {project.category}
                     </Badge>
-                    <Badge className="bg-cream/20 text-cream border-cream/30">
+                    <Badge className="bg-white/20 text-white border-white/30">
                       Client: {project.client}
                     </Badge>
                   </div>
                   <h2 className="text-3xl font-bold mb-2">{project.title}</h2>
-                  <p className="text-cream/80 text-lg">{project.des}</p>
+                  <p className="text-white/80 text-lg">{project.des}</p>
                 </div>
               </div>
             </div>
 
             {/* Content */}
-            <div className="p-8 space-y-8 text-cream dark:text-cream">
+            <div className="p-8 space-y-8 text-gray-700 dark:text-cream">
               {/* Description */}
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-                <h3 className="text-xl font-semibold mb-4 text-deep-forest dark:text-warm-copper">Project Overview</h3>
-                <p className="text-slate-grey dark:text-cream/80 leading-relaxed">{project.fullDescription}</p>
+                <h3 className="text-xl font-semibold mb-4 text-warm-gold dark:text-warm-copper">Project Overview</h3>
+                <p className="text-gray-600 dark:text-cream/80 leading-relaxed">{project.fullDescription}</p>
               </motion.div>
 
               {/* Challenge & Solution */}
-              <div className="grid md:grid-cols-2 gap-8">
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
-                  <h3 className="text-xl font-semibold mb-4 flex items-center gap-2 text-deep-forest dark:text-warm-copper">
-                    <Lightbulb className="h-5 w-5 text-deep-forest dark:text-warm-copper" />
-                    <span>The Challenge</span>
-                  </h3>
-                  <p className="text-slate-grey dark:text-cream/80 leading-relaxed">{project.challenge}</p>
-                </motion.div>
-                
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
-                  <h3 className="text-xl font-semibold mb-4 flex items-center gap-2 text-deep-forest dark:text-warm-copper">
-                    <Zap className="h-5 w-5 text-deep-forest dark:text-warm-copper" />
-                    <span>The Solution</span>
-                  </h3>
-                  <p className="text-slate-grey dark:text-cream/80 leading-relaxed">{project.solution}</p>
-                </motion.div>
-              </div>
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
+                <h3 className="text-xl font-semibold mb-4 text-warm-gold dark:text-warm-copper">Challenge & Solution</h3>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="p-4 bg-orange-50 dark:bg-warm-copper/10 rounded-lg border border-orange-200 dark:border-warm-copper/20">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Lightbulb className="h-5 w-5 text-orange-600 dark:text-warm-copper" />
+                      <h4 className="font-semibold text-orange-800 dark:text-warm-copper">Challenge</h4>
+                    </div>
+                    <p className="text-gray-600 dark:text-cream/80">{project.challenge}</p>
+                  </div>
+                  <div className="p-4 bg-green-50 dark:bg-sage/10 rounded-lg border border-green-200 dark:border-sage/20">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Zap className="h-5 w-5 text-green-600 dark:text-sage" />
+                      <h4 className="font-semibold text-green-800 dark:text-sage">Solution</h4>
+                    </div>
+                    <p className="text-gray-600 dark:text-cream/80">{project.solution}</p>
+                  </div>
+                </div>
+              </motion.div>
 
               {/* Impact */}
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
-                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2 text-deep-forest dark:text-warm-copper">
-                  <TrendingUp className="h-5 w-5 text-deep-forest dark:text-warm-copper" />
+                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2 text-warm-gold dark:text-warm-copper">
+                  <TrendingUp className="h-5 w-5 text-warm-gold dark:text-warm-copper" />
                   <span>Impact & Results</span>
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -144,10 +146,10 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.6 + i * 0.1 }}
-                      className="flex items-start gap-3 p-4 bg-deep-forest/10 dark:bg-warm-copper/10 rounded-lg border border-deep-forest/20 dark:border-warm-copper/20"
+                      className="flex items-start gap-3 p-4 bg-warm-gold/10 dark:bg-warm-copper/10 rounded-lg border border-warm-gold/20 dark:border-warm-copper/20"
                     >
-                      <div className="w-2 h-2 bg-deep-forest dark:bg-warm-copper rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-slate-grey dark:text-cream/80">{impact}</span>
+                      <div className="w-2 h-2 bg-warm-gold dark:bg-warm-copper rounded-full mt-2 flex-shrink-0"></div>
+                      <span className="text-gray-600 dark:text-cream/80">{impact}</span>
                     </motion.div>
                   ))}
                 </div>
@@ -158,17 +160,17 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                 initial={{ opacity: 0, y: 20 }} 
                 animate={{ opacity: 1, y: 0 }} 
                 transition={{ delay: 0.7 }}
-                className="p-6 bg-deep-forest/10 dark:bg-warm-copper/10 rounded-xl border border-deep-forest/20 dark:border-warm-copper/20"
+                className="p-6 bg-warm-gold/10 dark:bg-warm-copper/10 rounded-xl border border-warm-gold/20 dark:border-warm-copper/20"
               >
                 <div className="flex flex-col md:flex-row gap-6 items-start">
-                  <div className="text-deep-forest dark:text-warm-copper">
+                  <div className="text-warm-gold dark:text-warm-copper">
                     <FaQuoteLeft size={30} />
                   </div>
                   <div>
-                    <p className="italic text-slate-grey dark:text-cream/80 mb-4">"{project.testimonial.quote}"</p>
+                    <p className="italic text-gray-600 dark:text-cream/80 mb-4">"{project.testimonial.quote}"</p>
                     <div>
-                      <p className="font-semibold text-deep-forest dark:text-warm-copper">{project.testimonial.name}</p>
-                      <p className="text-sm text-slate-grey dark:text-cream/60">{project.testimonial.title}</p>
+                      <p className="font-semibold text-warm-gold dark:text-warm-copper">{project.testimonial.name}</p>
+                      <p className="text-sm text-gray-500 dark:text-cream/60">{project.testimonial.title}</p>
                     </div>
                   </div>
                 </div>
@@ -176,7 +178,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
 
               {/* Technologies */}
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }}>
-                <h3 className="text-xl font-semibold mb-4 text-deep-forest dark:text-warm-copper">Technologies Used</h3>
+                <h3 className="text-xl font-semibold mb-4 text-warm-gold dark:text-warm-copper">Technologies Used</h3>
                 <div className="flex flex-wrap gap-3">
                   {project.iconLists.map((iconName, i) => {
                     const IconComponent = iconComponents[iconName as keyof typeof iconComponents];
@@ -188,10 +190,10 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.9 + i * 0.05 }}
                         whileHover={{ scale: 1.1, rotate: 5 }}
-                        className="w-10 h-10 flex items-center justify-center bg-deep-forest/10 dark:bg-warm-copper/10 rounded-full p-1 border border-deep-forest/20 dark:border-warm-copper/20"
+                        className="w-10 h-10 flex items-center justify-center bg-warm-gold/10 dark:bg-warm-copper/10 rounded-full p-1 border border-warm-gold/20 dark:border-warm-copper/20"
                         title={iconName.replace(/^(Si|Fa)/, '')}
                       >
-                        <IconComponent className="h-6 w-6 text-deep-forest dark:text-warm-copper" />
+                        <IconComponent className="h-6 w-6 text-warm-gold dark:text-warm-copper" />
                       </motion.div>
                     );
                   })}
@@ -206,7 +208,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                 className="flex flex-wrap gap-4 pt-4"
               >
                 <a href={project.link} target="_blank" rel="noopener noreferrer">
-                  <Button className="bg-deep-forest hover:bg-deep-forest/80 text-cream">
+                  <Button className="bg-warm-gold hover:bg-warm-gold/80 text-white">
                     <FaExternalLinkAlt className="h-4 w-4 mr-2" />
                     View Live Site
                   </Button>
@@ -216,7 +218,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                   <a href={project.githubLink} target="_blank" rel="noopener noreferrer">
                     <Button
                       variant="outline"
-                      className="border-deep-forest text-deep-forest hover:bg-deep-forest hover:text-cream dark:border-warm-copper dark:text-warm-copper dark:hover:bg-warm-copper dark:hover:text-charcoal"
+                      className="border-warm-gold text-warm-gold hover:bg-warm-gold hover:text-white dark:border-warm-copper dark:text-warm-copper dark:hover:bg-warm-copper dark:hover:text-charcoal"
                     >
                       <FaGithub className="h-4 w-4 mr-2" />
                       View Code
@@ -227,7 +229,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                 <Link href="/contact">
                   <Button
                     variant="outline"
-                    className="border-deep-forest/50 text-deep-forest hover:bg-deep-forest/10 dark:border-warm-copper/50 dark:text-warm-copper dark:hover:bg-warm-copper/10"
+                    className="border-warm-gold/50 text-warm-gold hover:bg-warm-gold/10 dark:border-warm-copper/50 dark:text-warm-copper dark:hover:bg-warm-copper/10"
                   >
                     <ChevronRight className="h-4 w-4 mr-2" />
                     Contact Me

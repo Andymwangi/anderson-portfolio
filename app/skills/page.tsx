@@ -245,15 +245,15 @@ export default function Skills() {
                         transition={{ delay: 1 + index * 0.1, duration: 0.5 }}
                         className="flex flex-col items-center text-center p-3 rounded-lg bg-background/30 dark:bg-background/20"
                       >
-                        <IconComponent className="h-8 w-8 mb-3 text-deep-forest dark:text-sage-400" />
+                        <IconComponent className="h-8 w-8 mb-3 text-warm-gold dark:text-warm-gold" />
                         <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">{skill.name}</h3>
                         <div className="w-full">
                           <div className="flex justify-center items-center mb-2">
-                            <span className="text-xs font-bold text-deep-forest dark:text-sage-400">{skill.level}%</span>
+                            <span className="text-xs font-bold text-warm-gold dark:text-warm-gold">{skill.level}%</span>
                           </div>
                           <div className="w-full bg-gray-300/50 dark:bg-gray-600/50 rounded-full h-2">
                             <div
-                              className="bg-deep-forest/70 dark:bg-sage-400/70 h-2 rounded-full"
+                              className="bg-gradient-to-r from-warm-gold to-cream h-2 rounded-full shadow-sm"
                               style={{ width: `${skill.level}%` }}
                             />
                           </div>

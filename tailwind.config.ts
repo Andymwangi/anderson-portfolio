@@ -80,10 +80,20 @@ const config: Config = {
           light: '#C98B4F',
           dark: '#9E5F26',
         },
+        'warm-gold': {
+          DEFAULT: '#B8860B', // Matches the glow-warm-gold HSL value
+          light: '#DAA520',
+          dark: '#9A7209',
+        },
         'cream': {
           DEFAULT: '#F5F5DC',
           light: '#FFFFF0',
           dark: '#E8E8C8',
+        },
+        'sage': {
+          DEFAULT: '#87A96B',
+          light: '#9BB77D',
+          dark: '#6B8A4F',
         },
         'charcoal': {
           DEFAULT: '#36454F',
