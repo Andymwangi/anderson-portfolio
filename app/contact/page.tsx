@@ -59,7 +59,7 @@ export default function Contact() {
 
   return (
     <PageTransition>
-      <div className="min-h-screen cyber-vibrant-gradient p-6 relative">
+      <div className="min-h-screen bg-background text-foreground p-6 relative">
         <div className="container mx-auto max-w-6xl relative z-10">
 
 
@@ -69,20 +69,12 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <div className="inline-block mb-6">
-              <Mail className="h-20 w-20 text-warm-gold mx-auto glow-gold" />
-            </div>
             <h1 className="text-5xl md:text-7xl font-bold mb-6 rainbow-gradient bg-clip-text text-transparent">
               Get In Touch
             </h1>
-            <motion.p 
-              className="text-2xl text-gray-300 typewriter"
-              initial={{ width: 0 }}
-              animate={{ width: "100%" }}
-              transition={{ delay: 1, duration: 2 }}
-            >
+            <p className="text-xl text-gray-600 dark:text-gray-300">
               Let's collaborate on your next project
-            </motion.p>
+            </p>
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-12">
@@ -103,24 +95,24 @@ export default function Contact() {
                       icon: Mail,
                       label: "Email",
                       value: "anderson.mitamboo@gmail.com",
-                      color: "text-warm-gold",
-                      glow: "glow-gold",
+                      color: "text-orange-500",
+                      glow: "glow-orange",
                       href: "mailto:anderson.mitamboo@gmail.com"
                     },
                     {
                       icon: Phone,
                       label: "Phone",
                       value: "+254-700-071-699",
-                      color: "text-warm-gold",
-                      glow: "glow-gold",
+                      color: "text-orange-500",
+                      glow: "glow-orange",
                       href: "tel:+254700071699"
                     },
                     {
                       icon: MapPin,
                       label: "Location",
                       value: "Nairobi, Kenya",
-                      color: "text-warm-gold",
-                      glow: "glow-gold",
+                      color: "text-orange-500",
+                      glow: "glow-orange",
                       href: "https://www.google.com/maps/search/?api=1&query=Nairobi+Kenya"
                     }
                   ].map((contact, index) => (
@@ -146,7 +138,7 @@ export default function Contact() {
                         </motion.div>
                         <div>
                           <p className="text-sm text-muted-foreground">{contact.label}</p>
-                          <p className="font-medium text-gray-300 group-hover:text-warm-gold transition-colors">{contact.value}</p>
+                          <p className="font-medium text-orange-500 dark:text-orange-400 group-hover:text-warm-gold transition-colors">{contact.value}</p>
                         </div>
                       </motion.div>
                     </a>
@@ -179,7 +171,9 @@ export default function Contact() {
                         }}
                         className={`text-gray-400 transition-colors duration-300 ${social.color}`}
                       >
-                        <social.icon className="h-8 w-8" />
+                        <div className="p-3 bg-card/50 rounded-full glow-warm-gold">
+                          <social.icon className="h-8 w-8" />
+                        </div>
                       </motion.a>
                     ))}
                   </div>
@@ -194,16 +188,16 @@ export default function Contact() {
                 <CardContent>
                   <div className="space-y-3">
                     <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 bg-green-500 rounded-full pulse-glow"></div>
-                      <span className="text-gray-300">Available for freelance projects</span>
+                      <div className="w-3 h-3 bg-orange-500 rounded-full pulse-glow"></div>
+                      <span className="text-gray-600 dark:text-gray-300">Available for freelance projects</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="w-3 h-3 bg-orange-500 rounded-full pulse-glow"></div>
-                      <span className="text-gray-300">Open to full-time opportunities</span>
+                      <span className="text-gray-600 dark:text-gray-300">Open to full-time opportunities</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 bg-sage-500 rounded-full pulse-glow"></div>
-                      <span className="text-gray-300">Consulting & collaboration welcome</span>
+                      <div className="w-3 h-3 bg-orange-500 rounded-full pulse-glow"></div>
+                      <span className="text-gray-600 dark:text-gray-300">Consulting & collaboration welcome</span>
                     </div>
                   </div>
                 </CardContent>
@@ -228,7 +222,7 @@ export default function Contact() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.7, duration: 0.5 }}
                       >
-                        <label htmlFor="name" className="block text-sm font-medium mb-2 text-gray-300">
+                        <label htmlFor="name" className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300">
                           Name
                         </label>
                         <Input
@@ -245,7 +239,7 @@ export default function Contact() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.8, duration: 0.5 }}
                       >
-                        <label htmlFor="email" className="block text-sm font-medium mb-2 text-gray-300">
+                        <label htmlFor="email" className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300">
                           Email
                         </label>
                         <Input
@@ -265,7 +259,7 @@ export default function Contact() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.9, duration: 0.5 }}
                     >
-                      <label htmlFor="subject" className="block text-sm font-medium mb-2 text-gray-300">
+                      <label htmlFor="subject" className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300">
                         Subject
                       </label>
                       <Input
@@ -283,7 +277,7 @@ export default function Contact() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 1, duration: 0.5 }}
                     >
-                      <label htmlFor="message" className="block text-sm font-medium mb-2 text-gray-300">
+                      <label htmlFor="message" className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300">
                         Message
                       </label>
                       <Textarea
@@ -304,7 +298,7 @@ export default function Contact() {
                     >
                       <Button
                         type="submit"
-                        className="w-full bg-warm-gold hover:bg-warm-gold/90 text-orange-500 glow-warm-gold glow-hover"
+                        className="w-full bg-warm-gold hover:bg-warm-gold/90 text-black dark:text-white glow-warm-gold glow-hover"
                         size="lg"
                         disabled={isSubmitting}
                       >
@@ -319,7 +313,7 @@ export default function Contact() {
                           </span>
                         ) : (
                           <span className="flex items-center justify-center">
-                            <Send className="h-4 w-4 mr-2 text-orange-500" />
+                            <Send className="h-4 w-4 mr-2 text-black dark:text-white" />
                             Send Message
                           </span>
                         )}
@@ -347,20 +341,20 @@ export default function Contact() {
             <Card className="bg-card/50 backdrop-blur-sm border-border/50 glow-warm-gold glow-hover">
               <CardContent className="p-8">
                 <h3 className="text-xl font-semibold mb-4 text-black dark:text-white">Quick Response Guarantee</h3>
-                <p className="text-gray-300 mb-4">
+                <p className="text-gray-600 dark:text-gray-300 mb-4">
                   I typically respond to all inquiries within 24 hours. For urgent matters, feel free to call directly.
                 </p>
                 <div className="grid grid-cols-3 gap-4 text-center">
                   <div>
-                    <div className="text-2xl font-bold text-sage-500 mb-1">&lt; 24h</div>
+                    <div className="text-2xl font-bold text-warm-gold dark:text-warm-copper mb-1">&lt; 24h</div>
                     <div className="text-sm text-muted-foreground">Response Time</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-orange-500 mb-1">100%</div>
+                    <div className="text-2xl font-bold text-warm-gold dark:text-warm-copper mb-1">100%</div>
                     <div className="text-sm text-muted-foreground">Response Rate</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-pink-500 mb-1">24/7</div>
+                    <div className="text-2xl font-bold text-warm-gold dark:text-warm-copper mb-1">24/7</div>
                     <div className="text-sm text-muted-foreground">Availability</div>
                   </div>
                 </div>
