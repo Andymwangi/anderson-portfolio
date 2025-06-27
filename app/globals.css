@@ -1,26 +1,357 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Deep Forest & Copper Theme - Light Mode */
+    --background: 60 33% 96%; /* Light cream background */
+    --foreground: 210 16% 26%; /* Charcoal text */
+    --card: 0 0% 100%;
+    --card-foreground: 210 16% 26%; /* Charcoal text */
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 16% 26%; /* Charcoal text */
+    --primary: 96 57% 20%; /* Deep forest green */
+    --primary-foreground: 60 33% 96%; /* Cream */
+    --secondary: 29 57% 46%; /* Warm copper */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 16% 80%; /* Light slate grey */
+    --muted-foreground: 210 16% 46%; /* Darker slate grey */
+    --accent: 29 57% 46%; /* Warm copper */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 96 10% 80%;
+    --input: 96 10% 80%;
+    --ring: 29 57% 46%; /* Warm copper */
+    --radius: 0.75rem;
+
+    /* Custom Glow Colors */
+    --glow-sage: 96 57% 20%; /* Deep forest green */
+    --glow-orange: 29 57% 46%; /* Warm copper */
+    --glow-pink: 340 82% 60%;
+    --glow-warm-gold: 25 57% 46%;
+
+    /* Custom Gradient Colors for Animations */
+    --sage-green: 96 57% 20%;
+  }
+
+  .dark {
+    /* Deep Forest & Copper Theme - Dark Mode */
+    --background: 210 16% 16%; /* Dark charcoal background */
+    --foreground: 60 33% 91%; /* Light cream text */
+    --card: 210 16% 20%; /* Slightly lighter charcoal */
+    --card-foreground: 60 33% 91%; /* Light cream text */
+    --popover: 210 16% 20%;
+    --popover-foreground: 60 33% 91%;
+    --primary: 96 57% 25%; /* Deep forest green - slightly brighter for dark mode */
+    --primary-foreground: 60 33% 91%;
+    --secondary: 29 57% 46%; /* Warm copper */
+    --secondary-foreground: 60 33% 91%;
+    --muted: 210 16% 30%; /* Slate grey */
+    --muted-foreground: 210 10% 70%;
+    --accent: 29 57% 46%; /* Warm copper */
+    --accent-foreground: 60 33% 91%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 60 33% 91%;
+    --border: 210 16% 30%;
+    --input: 210 16% 30%;
+    --ring: 29 57% 46%; /* Warm copper */
+
+    /* Custom Glow Colors */
+    --glow-sage: 96 57% 25%; /* Brighter deep forest green for dark mode */
+    --glow-orange: 29 57% 46%; /* Warm copper */
+    --glow-pink: 340 82% 70%;
+    --glow-warm-gold: 25 57% 56%;
+
+    /* Custom Gradient Colors for Animations */
+    --sage-green: 96 57% 25%;
+    
+    /* Sidebar colors */
+    --sidebar-background: 96 57% 15%; /* Darker forest green */
+    --sidebar-foreground: 60 33% 91%; /* Light cream text */
+    --sidebar-primary: 29 57% 46%; /* Warm copper */
+    --sidebar-primary-foreground: 60 33% 91%;
+    --sidebar-accent: 210 16% 30%; /* Slate grey */
+    --sidebar-accent-foreground: 60 33% 91%;
+    --sidebar-border: 96 57% 20%;
+    --sidebar-ring: 29 57% 46%; /* Warm copper */
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Vibrant Gradient Backgrounds */
+.sage-gradient {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--sage-green-dark)) 0%,
+    hsl(var(--sage-green)) 50%,
+    hsl(var(--sage-green-light)) 100%
+  );
+}
+
+.orange-gradient {
+  background: linear-gradient(135deg, hsl(var(--vibrant-orange-dark)) 0%, hsl(var(--vibrant-orange)) 100%);
+}
+
+.pink-gradient {
+  background: linear-gradient(135deg, hsl(var(--soft-pink)) 0%, hsl(var(--soft-pink-light)) 100%);
+}
+
+.cyber-vibrant-gradient {
+  background: linear-gradient(
+    135deg,
+    #0f0f23 0%,
+    hsl(var(--sage-green-dark)) 25%,
+    #1a1a2e 50%,
+    hsl(var(--vibrant-orange-dark)) 75%,
+    #16213e 100%
+  );
+}
+
+.rainbow-gradient {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--sage-green)) 0%,
+    hsl(var(--vibrant-orange)) 50%,
+    hsl(var(--soft-pink)) 100%
+  );
+}
+
+/* Glowing Effects */
+.glow-sage {
+  box-shadow: 0 0 15px hsl(var(--glow-sage) / 0.2), 0 0 30px hsl(var(--glow-sage) / 0.1);
+}
+
+.glow-orange {
+  box-shadow: 0 0 15px hsl(var(--glow-orange) / 0.2), 0 0 30px hsl(var(--glow-orange) / 0.1);
+}
+
+.glow-pink {
+  box-shadow: 0 0 15px hsl(var(--glow-pink) / 0.2), 0 0 30px hsl(var(--glow-pink) / 0.1);
+}
+
+.glow-warm-gold {
+  box-shadow: 0 0 15px hsl(var(--glow-warm-gold) / 0.2), 0 0 30px hsl(var(--glow-warm-gold) / 0.1);
+}
+
+.glow-hover:hover {
+  transition: all 0.3s ease;
+}
+
+.glow-hover:hover.glow-sage {
+  box-shadow: 0 0 25px hsl(var(--glow-sage) / 0.3), 0 0 50px hsl(var(--glow-sage) / 0.2);
+}
+
+.glow-hover:hover.glow-orange {
+  box-shadow: 0 0 25px hsl(var(--glow-orange) / 0.3), 0 0 50px hsl(var(--glow-orange) / 0.2);
+}
+
+.glow-hover:hover.glow-pink {
+  box-shadow: 0 0 25px hsl(var(--glow-pink) / 0.3), 0 0 50px hsl(var(--glow-pink) / 0.2);
+}
+
+.glow-hover:hover.glow-warm-gold {
+  box-shadow: 0 0 25px hsl(var(--glow-warm-gold) / 0.3), 0 0 50px hsl(var(--glow-warm-gold) / 0.2);
+}
+
+/* Animated Borders */
+/* Animated Borders */
+/* This class creates an animated gradient border. It works by having an animated background on the parent
+and a ::before pseudo-element with the card's background color inset on top, revealing the parent's animated background. */
+/* The 'animated-border' class is now deprecated and has been neutralized to prevent caching issues. */
+.animated-border {
+  /* This class no longer applies any styles. */
+}
+
+.animated-border::before {
+  /* The pseudo-element that created the gradient has been removed. */
+  content: none;
+}
+
+@keyframes borderAnimation {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Floating Animations */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes floatReverse {
+  0%,
+  100% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px hsl(var(--sage-green) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(var(--sage-green) / 0.6), 0 0 60px hsl(var(--sage-green) / 0.4);
+  }
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+.float-reverse {
+  animation: floatReverse 4s ease-in-out infinite;
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Rocket Animation */
+@keyframes rocket-launch {
+  0% {
+    transform: translateY(100px) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-20px) rotate(-10deg);
+  }
+  100% {
+    transform: translateY(-200px) rotate(0deg);
+    opacity: 0;
+  }
+}
+
+@keyframes rocket-trail {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleY(0.5);
+  }
+}
+
+.rocket-animation {
+  animation: rocket-launch 3s ease-in-out infinite;
+}
+
+.rocket-trail {
+  animation: rocket-trail 3s ease-in-out infinite;
+}
+
+/* Text Animations */
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.typewriter {
+  overflow: hidden;
+  border-right: 2px solid hsl(var(--sage-green));
+  white-space: nowrap;
+  animation: typewriter 3s steps(40, end), blink 0.75s step-end infinite;
+}
+
+/* Card Hover Effects */
+.card-hover {
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.card-hover:hover {
+  transform: translateY(-10px) rotateX(5deg);
+}
+
+/* Neon Text Effect */
+.neon-text {
+  color: hsl(var(--sage-green));
+  text-shadow: 0 0 5px hsl(var(--sage-green)), 0 0 10px hsl(var(--sage-green)), 0 0 15px hsl(var(--sage-green)), 0 0
+    20px hsl(var(--sage-green));
+}
+
+.neon-orange {
+  color: hsl(var(--vibrant-orange));
+  text-shadow: 0 0 5px hsl(var(--vibrant-orange)), 0 0 10px hsl(var(--vibrant-orange)), 0 0 15px
+    hsl(var(--vibrant-orange));
+}
+
+.neon-pink {
+  color: hsl(var(--soft-pink));
+  text-shadow: 0 0 5px hsl(var(--soft-pink)), 0 0 10px hsl(var(--soft-pink)), 0 0 15px hsl(var(--soft-pink));
+}
+
+/* Particle Background */
+.particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: hsl(var(--sage-green));
+  border-radius: 50%;
+  animation: particle-float 20s linear infinite;
+}
+
+@keyframes particle-float {
+  0% {
+    transform: translateY(100vh) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(100px);
+    opacity: 0;
+  }
 }

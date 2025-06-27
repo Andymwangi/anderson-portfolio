@@ -1,103 +1,181 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { motion } from "framer-motion";
+import { ShieldCheck, Server, Code, Linkedin, Github, Twitter, Mail } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { PageTransition } from "@/components/page-transition";
+import Link from 'next/link';
+import FloatingNavbar from "@/components/floating-navbar";
+import DynamicGreeting from "@/components/dynamic-greeting";
+import ProfessionalIntro from "@/components/professional-intro";
+import ProjectSection from "@/components/project-section";
+import RotatingKeywords from "@/components/rotating-keywords";
+import { SOCIAL_LINKS } from "@/lib/constants";
+
+const services = [
+  {
+    icon: ShieldCheck,
+    title: "Cybersecurity Solutions",
+    description: "Advanced threat protection, vulnerability assessments, and secure architecture design to safeguard your digital assets.",
+  },
+  {
+    icon: Server,
+    title: "Cloud Engineering",
+    description: "Scalable, resilient, and cost-effective cloud infrastructures on AWS, Azure, and GCP, tailored to your business needs.",
+  },
+  {
+    icon: Code,
+    title: "Full-Stack Development",
+    description: "From concept to deployment, I build seamless, high-performance web applications with modern technologies.",
+  },
+];
+
+
+
+export default function HomePage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <PageTransition>
+      <div className="min-h-screen bg-background text-foreground">
+        {/* Floating Navbar - only on homepage */}
+        <FloatingNavbar />
+        
+        {/* Hero Section with Dynamic Greeting */}
+        <div className="relative min-h-[80vh] flex flex-col justify-center overflow-hidden px-6 py-16">
+          <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-b from-transparent to-background"
+          ></motion.div>
+          <div className="container mx-auto max-w-6xl relative z-10">
+            <DynamicGreeting name="Anderson Mwangi" role="Full Stack Developer" />
+            
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="text-xl text-slate-grey dark:text-cream/70 max-w-2xl mb-10"
+            >
+              Specializing in <RotatingKeywords /> solutions that prioritize security, scalability, and performance.
+            </motion.p>
+            
+            {/* Professional Introduction with Image */}
+            <ProfessionalIntro />
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+        {/* Services Section */}
+        <div className="py-16 px-6 bg-cream/5 dark:bg-charcoal/20">
+          <div className="container mx-auto max-w-6xl">
+            <motion.h2 
+              className="text-4xl font-bold text-center mb-12 text-deep-forest dark:text-warm-copper"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              What I Offer
+            </motion.h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              {services.map((service, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.2 }}
+                >
+                  <Card className="h-full bg-white/90 dark:bg-charcoal/50 backdrop-blur-sm border-warm-copper/20 shadow-lg hover:border-warm-copper hover:shadow-warm-copper/10 transition-all duration-300 group">
+                    <CardContent className="p-8 text-center">
+                      <div className="mb-6">
+                        <div className="inline-block p-4 bg-deep-forest/10 dark:bg-warm-copper/10 rounded-full group-hover:bg-deep-forest/20 dark:group-hover:bg-warm-copper/20 transition-colors duration-300">
+                          <service.icon className="h-10 w-10 text-deep-forest dark:text-warm-copper" />
+                        </div>
+                      </div>
+                      <h3 className="text-2xl font-bold text-deep-forest dark:text-cream mb-3">{service.title}</h3>
+                      <p className="text-slate-grey dark:text-cream/70">{service.description}</p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Featured Projects Section */}
+        <div className="py-16 px-6">
+          <div className="container mx-auto max-w-6xl">
+            <ProjectSection limit={3} showFilters={false} />
+            <div className="text-center mt-12">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <Link href="/projects">
+                  <Button size="lg" className="bg-deep-forest text-cream hover:bg-deep-forest/90 dark:bg-warm-copper dark:text-charcoal dark:hover:bg-warm-copper/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                    View All Projects
+                  </Button>
+                </Link>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer/Connect Section */}
+        <div className="py-16 bg-cream/5 dark:bg-charcoal/30 mt-16">
+          <div className="container mx-auto max-w-4xl text-center">
+            <motion.h3 
+              className="text-3xl font-bold mb-4 text-deep-forest dark:text-warm-copper"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              Let's Connect
+            </motion.h3>
+            <motion.p 
+              className="text-slate-grey dark:text-cream/70 mb-8 max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              Have a project in mind or just want to connect? I'm always open to discussing new opportunities and collaborations.
+            </motion.p>
+            <motion.div
+              className="flex justify-center gap-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              {SOCIAL_LINKS.map((link, index) => (
+                <motion.a
+                  key={index}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1, y: -5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className="p-3 bg-white/10 dark:bg-charcoal/50 rounded-full text-deep-forest dark:text-warm-copper hover:bg-deep-forest hover:text-cream dark:hover:bg-warm-copper dark:hover:text-charcoal transition-colors duration-300 shadow-lg"
+                >
+                  <link.icon className="h-6 w-6" />
+                </motion.a>
+              ))}
+            </motion.div>
+            <motion.div 
+              className="mt-12 pt-8 border-t border-deep-forest/10 dark:border-warm-copper/10 text-sm text-slate-grey dark:text-cream/50"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              © {new Date().getFullYear()} Anderson Mitambo Mwangi. All rights reserved.
+            </motion.div>
+          </div>
+        </div>
+      </div>
+    </PageTransition>
   );
 }
