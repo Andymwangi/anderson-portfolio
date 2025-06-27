@@ -11,8 +11,8 @@ export const projects: Project[] = [
     img: "/hotelbook.png", // Placeholder image
     iconLists: ["SiLaravel", "SiPhp", "SiTailwindcss", "SiJavascript", "SiDocker"],
     technologies: ["Laravel", "PHP", "Tailwind CSS", "TypeScript"],
-    link: "#", // Placeholder link
-    githubLink: "#", // Placeholder link
+    link: "https://hotelbook-kenya.vercel.app/", // Placeholder link
+    githubLink: "https://github.com/Andymwangi/hotel_system", // Placeholder link
     category: "Full Stack App",
     client: "Hospitality Sector",
     clientLogo: "/client-placeholder.png",
