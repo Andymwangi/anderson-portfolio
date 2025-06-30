@@ -4,6 +4,8 @@ import { Inter, Poppins } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "./globals.css";
 import Sidebar from "@/components/sidebar";
+import FloatingNavbar from "@/components/floating-navbar";
+import { MobileNav } from "@/components/mobile-nav";
 import { ThemeProvider } from "@/components/theme-provider";
 import { PageWrapper } from "@/components/page-wrapper";
 import { AppLoaderManager } from "@/components/app-loader-manager";
@@ -30,8 +32,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <AppLoaderManager>
             <div className="flex">
-              <Sidebar />
-              <PageWrapper>{children}</PageWrapper>
+              <div className="hidden md:flex">
+                <Sidebar />
+              </div>
+              <PageWrapper>
+                <FloatingNavbar />
+                <MobileNav />
+                {children}
+              </PageWrapper>
             </div>
           </AppLoaderManager>
         </ThemeProvider>
