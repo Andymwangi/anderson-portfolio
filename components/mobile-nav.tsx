@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useMobileMenu } from "@/hooks/use-mobile-menu";
+import { ThemeToggle } from "@/components/theme-toggle";
 import {
   Home,
   Briefcase,
@@ -63,6 +64,9 @@ export function MobileNav() {
                   {route.label}
                 </Link>
               ))}
+              <div className="mt-4 pt-4 border-t border-warm-copper/20">
+                <ThemeToggle />
+              </div>
             </div>
           </motion.div>
         </motion.div>
