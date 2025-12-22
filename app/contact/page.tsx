@@ -69,10 +69,10 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 rainbow-gradient bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 rainbow-gradient bg-clip-text text-transparent font-bricolage">
               Get In Touch
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300">
+            <p className="text-xl text-gray-600 dark:text-gray-300 font-bricolage">
               Let's collaborate on your next project
             </p>
           </motion.div>
@@ -87,7 +87,7 @@ export default function Contact() {
             >
               <Card className="bg-card/50 backdrop-blur-sm border-border/50 glow-warm-gold glow-hover animated-border">
                 <CardHeader>
-                  <CardTitle className="text-2xl font-bold text-black dark:text-white">Contact Information</CardTitle>
+                  <CardTitle className="text-2xl font-bold text-black dark:text-white font-bricolage">Contact Information</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   {[
@@ -149,7 +149,7 @@ export default function Contact() {
               {/* Social Links */}
               <Card className="bg-card/50 backdrop-blur-sm border-border/50 glow-warm-gold glow-hover animated-border">
                 <CardHeader>
-                  <CardTitle className="text-2xl font-bold text-black dark:text-white">Connect With Me</CardTitle>
+                  <CardTitle className="text-2xl font-bold text-black dark:text-white font-bricolage">Connect With Me</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="flex justify-center space-x-6">
@@ -183,7 +183,7 @@ export default function Contact() {
               {/* Availability */}
               <Card className="bg-card/50 backdrop-blur-sm border-border/50 glow-warm-gold glow-hover animated-border">
                 <CardHeader>
-                  <CardTitle className="text-2xl font-bold text-black dark:text-white">Availability</CardTitle>
+                  <CardTitle className="text-2xl font-bold text-black dark:text-white font-bricolage">Availability</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
@@ -212,7 +212,7 @@ export default function Contact() {
             >
               <Card className="bg-card/50 backdrop-blur-sm border-border/50 glow-warm-gold glow-hover animated-border">
                 <CardHeader>
-                  <CardTitle className="text-2xl font-bold text-black dark:text-white">Send a Message</CardTitle>
+                  <CardTitle className="text-2xl font-bold text-black dark:text-white font-bricolage">Send a Message</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleSubmit} className="space-y-6">
@@ -340,21 +340,21 @@ export default function Contact() {
           >
             <Card className="bg-card/50 backdrop-blur-sm border-border/50 glow-warm-gold glow-hover">
               <CardContent className="p-8">
-                <h3 className="text-xl font-semibold mb-4 text-black dark:text-white">Quick Response Guarantee</h3>
+                <h3 className="text-xl font-semibold mb-4 text-black dark:text-white font-bricolage">Quick Response Guarantee</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">
                   I typically respond to all inquiries within 24 hours. For urgent matters, feel free to call directly.
                 </p>
                 <div className="grid grid-cols-3 gap-4 text-center">
                   <div>
-                    <div className="text-2xl font-bold text-warm-gold dark:text-warm-copper mb-1">&lt; 24h</div>
+                    <div className="text-2xl font-bold text-warm-gold dark:text-orange mb-1 font-bricolage">&lt; 24h</div>
                     <div className="text-sm text-muted-foreground">Response Time</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-warm-gold dark:text-warm-copper mb-1">100%</div>
+                    <div className="text-2xl font-bold text-warm-gold dark:text-orange mb-1 font-bricolage">100%</div>
                     <div className="text-sm text-muted-foreground">Response Rate</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-warm-gold dark:text-warm-copper mb-1">24/7</div>
+                    <div className="text-2xl font-bold text-warm-gold dark:text-orange mb-1 font-bricolage">24/7</div>
                     <div className="text-sm text-muted-foreground">Availability</div>
                   </div>
                 </div>

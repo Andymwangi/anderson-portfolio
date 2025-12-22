@@ -100,7 +100,7 @@ const ApproachCard = ({ icon: Icon, title, description, steps, colorClass, delay
                         <StepIcon className={`h-5 w-5 text-${colorClass}`} />
                       </div>
                       <div className="flex-1">
-                        <h4 className="font-semibold text-deep-forest dark:text-cream">{step.title}</h4>
+                        <h4 className="font-semibold text-deep-forest dark:text-cream font-bricolage">{step.title}</h4>
                         <p className="text-sm text-slate-grey/80 dark:text-cream/60 mt-1">
                           {step.description}
                         </p>
@@ -220,7 +220,7 @@ export default function ApproachSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="text-3xl md:text-4xl font-bold text-center mb-4 text-deep-forest dark:text-warm-copper"
+        className="text-3xl md:text-4xl font-bold text-center mb-4 text-deep-forest dark:text-warm-copper font-bricolage"
       >
         My Approach
       </motion.h2>

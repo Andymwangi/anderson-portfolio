@@ -25,6 +25,12 @@ const config: Config = {
       },
     },
     extend: {
+      fontFamily: {
+        bricolage: ["var(--font-bricolage)", "cursive"],
+        inter: ["var(--font-inter)", "sans-serif"],
+        poppins: ["var(--font-poppins)", "sans-serif"],
+        mono: ["var(--font-jetbrains)", "monospace"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -69,7 +75,25 @@ const config: Config = {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Custom portfolio colors - Deep Forest & Copper theme
+        // Modern Portfolio Colors - Orange & Slate theme
+        'orange': {
+          DEFAULT: '#FF8C42',
+          dark: '#E67A32',
+          light: '#FFA566',
+        },
+        'slate': {
+          50: '#F8FAFC',
+          100: '#F1F5F9',
+          200: '#E2E8F0',
+          300: '#CBD5E1',
+          400: '#94A3B8',
+          500: '#64748B',
+          600: '#475569',
+          700: '#334155',
+          800: '#1E293B',
+          900: '#0F172A',
+        },
+        // Keep legacy colors for backward compatibility
         'deep-forest': {
           DEFAULT: '#2D5016',
           light: '#3A6A1F',
@@ -80,30 +104,15 @@ const config: Config = {
           light: '#C98B4F',
           dark: '#9E5F26',
         },
-        'warm-gold': {
-          DEFAULT: '#B8860B', // Matches the glow-warm-gold HSL value
-          light: '#DAA520',
-          dark: '#9A7209',
-        },
         'cream': {
           DEFAULT: '#F5F5DC',
           light: '#FFFFF0',
           dark: '#E8E8C8',
         },
-        'sage': {
-          DEFAULT: '#87A96B',
-          light: '#9BB77D',
-          dark: '#6B8A4F',
-        },
         'charcoal': {
           DEFAULT: '#36454F',
           light: '#475E6D',
           dark: '#252F36',
-        },
-        'slate-grey': {
-          DEFAULT: '#708090',
-          light: '#8999A6',
-          dark: '#5A6673',
         },
       },
       borderRadius: {

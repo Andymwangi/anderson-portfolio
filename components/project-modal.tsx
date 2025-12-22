@@ -98,7 +98,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                       Client: {project.client}
                     </Badge>
                   </div>
-                  <h2 className="text-3xl font-bold mb-2">{project.title}</h2>
+                  <h2 className="text-3xl font-bold mb-2 font-bricolage">{project.title}</h2>
                   <p className="text-white/80 text-lg">{project.des}</p>
                 </div>
               </div>
@@ -108,25 +108,25 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
             <div className="p-8 space-y-8 text-gray-700 dark:text-cream">
               {/* Description */}
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-                <h3 className="text-xl font-semibold mb-4 text-warm-gold dark:text-warm-copper">Project Overview</h3>
+                <h3 className="text-xl font-semibold mb-4 text-warm-gold dark:text-warm-copper font-bricolage">Project Overview</h3>
                 <p className="text-gray-600 dark:text-cream/80 leading-relaxed">{project.fullDescription}</p>
               </motion.div>
 
               {/* Challenge & Solution */}
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
-                <h3 className="text-xl font-semibold mb-4 text-warm-gold dark:text-warm-copper">Challenge & Solution</h3>
+                <h3 className="text-xl font-semibold mb-4 text-warm-gold dark:text-warm-copper font-bricolage">Challenge & Solution</h3>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="p-4 bg-orange-50 dark:bg-warm-copper/10 rounded-lg border border-orange-200 dark:border-warm-copper/20">
                     <div className="flex items-center gap-2 mb-3">
                       <Lightbulb className="h-5 w-5 text-orange-600 dark:text-warm-copper" />
-                      <h4 className="font-semibold text-orange-800 dark:text-warm-copper">Challenge</h4>
+                      <h4 className="font-semibold text-orange-800 dark:text-warm-copper font-bricolage">Challenge</h4>
                     </div>
                     <p className="text-gray-600 dark:text-cream/80">{project.challenge}</p>
                   </div>
                   <div className="p-4 bg-green-50 dark:bg-sage/10 rounded-lg border border-green-200 dark:border-sage/20">
                     <div className="flex items-center gap-2 mb-3">
                       <Zap className="h-5 w-5 text-green-600 dark:text-sage" />
-                      <h4 className="font-semibold text-green-800 dark:text-sage">Solution</h4>
+                      <h4 className="font-semibold text-green-800 dark:text-sage font-bricolage">Solution</h4>
                     </div>
                     <p className="text-gray-600 dark:text-cream/80">{project.solution}</p>
                   </div>
@@ -135,7 +135,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
 
               {/* Impact */}
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
-                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2 text-warm-gold dark:text-warm-copper">
+                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2 text-warm-gold dark:text-warm-copper font-bricolage">
                   <TrendingUp className="h-5 w-5 text-warm-gold dark:text-warm-copper" />
                   <span>Impact & Results</span>
                 </h3>
@@ -178,7 +178,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
 
               {/* Technologies */}
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }}>
-                <h3 className="text-xl font-semibold mb-4 text-warm-gold dark:text-warm-copper">Technologies Used</h3>
+                <h3 className="text-xl font-semibold mb-4 text-warm-gold dark:text-warm-copper font-bricolage">Technologies Used</h3>
                 <div className="flex flex-wrap gap-3">
                   {project.iconLists.map((iconName, i) => {
                     const IconComponent = iconComponents[iconName as keyof typeof iconComponents];

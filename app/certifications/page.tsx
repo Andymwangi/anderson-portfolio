@@ -113,10 +113,10 @@ export default function Certifications() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h1 className="text-6xl font-bold mb-6 rainbow-gradient bg-clip-text text-transparent">
+            <h1 className="text-6xl font-bold mb-6 rainbow-gradient bg-clip-text text-transparent font-bricolage">
               Education & Certifications
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto font-bricolage">
               My academic journey and professional certifications that shape my expertise
             </p>
           </motion.div>
@@ -142,7 +142,7 @@ export default function Certifications() {
                       <GraduationCap className="h-6 w-6 text-sage-500 dark:text-sage-400" />
                     </motion.div>
                   </div>
-                  <CardTitle className="text-2xl mb-2 text-gray-700 dark:text-gray-200">{edu.degree}</CardTitle>
+                  <CardTitle className="text-2xl mb-2 text-gray-700 dark:text-gray-200 font-bricolage">{edu.degree}</CardTitle>
                   <p className="text-gray-600 dark:text-gray-400">{edu.institution}</p>
                 </CardHeader>
                 <CardContent className="p-6 pt-0 grid md:grid-cols-2 gap-6">
@@ -157,7 +157,7 @@ export default function Certifications() {
                   <div>
                     <p className="text-gray-700 dark:text-gray-300 mb-4">{edu.description}</p>
                     <div>
-                      <h4 className="font-semibold mb-3 flex items-center text-gray-700 dark:text-gray-200">
+                      <h4 className="font-semibold mb-3 flex items-center text-gray-700 dark:text-gray-200 font-bricolage">
                         <BookOpen className="h-4 w-4 mr-2" />
                         Key Highlights
                       </h4>
@@ -174,7 +174,7 @@ export default function Certifications() {
           </motion.div>
 
           {/* Certifications Grid */}
-          <h2 className="text-4xl font-bold text-center mb-12 rainbow-gradient bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold text-center mb-12 rainbow-gradient bg-clip-text text-transparent font-bricolage">
             My Certifications
           </h2>
           <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
@@ -211,7 +211,7 @@ export default function Certifications() {
                         }`} />
                       </motion.div>
                     </div>
-                    <CardTitle className="text-xl mb-2 text-gray-700 dark:text-gray-200">{cert.title}</CardTitle>
+                    <CardTitle className="text-xl mb-2 text-gray-700 dark:text-gray-200 font-bricolage">{cert.title}</CardTitle>
                     <p className="text-gray-600 dark:text-gray-400">{cert.issuer}</p>
                   </CardHeader>
                   <CardContent className="p-6 pt-0 flex-grow flex flex-col">
@@ -219,7 +219,7 @@ export default function Certifications() {
 
                     {/* Skills */}
                     <div className="mb-6">
-                      <h4 className="font-semibold mb-3 text-gray-700 dark:text-gray-200">Skills Acquired</h4>
+                      <h4 className="font-semibold mb-3 text-gray-700 dark:text-gray-200 font-bricolage">Skills Acquired</h4>
                       <div className="flex flex-wrap gap-2">
                         {cert.skills?.map((skill, i) => (
                           <motion.div
@@ -278,7 +278,7 @@ export default function Certifications() {
           >
             <Card className="bg-cream/90 dark:bg-card/90 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-300 glow-pink glow-hover">
               <CardHeader>
-                <CardTitle className="text-center text-2xl font-bold text-gray-700 dark:text-gray-200">Portfolio Summary</CardTitle>
+                <CardTitle className="text-center text-2xl font-bold text-gray-700 dark:text-gray-200 font-bricolage">Portfolio Summary</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">

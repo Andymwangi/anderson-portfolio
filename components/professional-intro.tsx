@@ -1,12 +1,29 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Download, ArrowRight } from "lucide-react";
+import { useState, useEffect } from "react";
+
+const profileImages = [
+  "/profileimage.jpg",
+  "/profileimage2.jpg",
+  "/profileimage3.jpg"
+];
 
 export default function ProfessionalIntro() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % profileImages.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
       {/* Professional Summary */}
@@ -15,33 +32,33 @@ export default function ProfessionalIntro() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <h3 className="text-2xl font-bold mb-4 text-deep-forest dark:text-warm-copper">
+        <h3 className="text-2xl font-bold mb-4 text-orange font-bricolage">
           Professional Summary
         </h3>
-        <p className="text-slate-grey dark:text-cream/80 mb-4">
-          I am a passionate Full Stack Developer with specialized expertise in Cybersecurity and Cloud Engineering. 
+        <p className="text-slate-600 dark:text-slate-300 mb-4 font-inter leading-relaxed">
+          I am a passionate Full Stack Developer with specialized expertise in Cybersecurity and Cloud Engineering.
           With over 3 years of experience, I've helped organizations build secure, scalable, and efficient digital solutions.
         </p>
-        <p className="text-slate-grey dark:text-cream/80 mb-6">
-          My approach combines technical excellence with a deep understanding of business needs, 
-          ensuring that every solution not only meets but exceeds client expectations. I'm dedicated to 
+        <p className="text-slate-500 dark:text-slate-400 mb-6 font-inter leading-relaxed">
+          My approach combines technical excellence with a deep understanding of business needs,
+          ensuring that every solution not only meets but exceeds client expectations. I'm dedicated to
           creating robust systems that stand the test of time and evolving security challenges.
         </p>
         <div className="flex flex-wrap gap-4">
-          <Button asChild className="bg-deep-forest hover:bg-deep-forest/90 text-cream">
+          <Button asChild className="bg-orange hover:bg-orange-dark text-white px-6 py-3 rounded-xl shadow-lg shadow-orange/30 hover:shadow-xl hover:shadow-orange/40 transition-all duration-300 font-poppins">
             <Link href="/contact">
               Get in Touch <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
           <a href="/Anderson Mwangi Junior Full stack  Resume (1).pdf" download>
-            <Button variant="outline" className="border-warm-copper text-warm-copper hover:bg-warm-copper/10 hover:text-gray-700 dark:hover:text-warm-copper">
+            <Button variant="outline" className="border-2 border-slate-600 hover:border-orange text-slate-300 hover:text-white px-6 py-3 rounded-xl transition-all duration-300 font-poppins">
               <Download className="mr-2 h-4 w-4" /> Download CV
             </Button>
           </a>
         </div>
       </motion.div>
 
-      {/* Creative Image with Sketched Outline */}
+      {/* Profile Image Carousel */}
       <motion.div
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
@@ -49,23 +66,47 @@ export default function ProfessionalIntro() {
         className="relative"
       >
         <div className="relative w-full aspect-square max-w-md mx-auto">
-          <div className="absolute inset-4 bg-gradient-to-br from-deep-forest to-warm-copper rounded-lg overflow-hidden">
-            <Image
-              src="/profileimage.png"
-              alt="Anderson Mwangi"
-              layout="fill"
-              objectFit="cover"
-              className="rounded-lg"
-            />
+          <div className="absolute inset-0 bg-gradient-to-br from-orange to-orange-light rounded-2xl overflow-hidden shadow-2xl shadow-orange/20">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentImageIndex}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className="relative w-full h-full"
+              >
+                <Image
+                  src={profileImages[currentImageIndex]}
+                  alt="Anderson Mwangi"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-2xl"
+                />
+              </motion.div>
+            </AnimatePresence>
           </div>
-          
-          {/* Sketched Outline Effect */}
-          <div className="absolute inset-0 border-2 border-dashed border-warm-copper rounded-lg transform rotate-3"></div>
-          <div className="absolute inset-0 border-2 border-dotted border-deep-forest rounded-lg transform -rotate-2"></div>
-          
-          {/* Decorative Elements */}
-          <div className="absolute -top-4 -right-4 w-12 h-12 border-t-2 border-r-2 border-warm-copper"></div>
-          <div className="absolute -bottom-4 -left-4 w-12 h-12 border-b-2 border-l-2 border-deep-forest"></div>
+
+          {/* Slider Indicators */}
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
+            {profileImages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentImageIndex(index)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentImageIndex
+                  ? "bg-orange w-8"
+                  : "bg-white/50 hover:bg-white/80"
+                  }`}
+                aria-label={`Go to image ${index + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Decorative Border */}
+          <div className="absolute inset-0 border-4 border-orange/30 rounded-2xl transform rotate-3 pointer-events-none"></div>
+
+          {/* Glow Effect */}
+          <div className="absolute -inset-4 bg-gradient-to-br from-orange/20 to-transparent rounded-3xl blur-2xl -z-10"></div>
         </div>
       </motion.div>
     </div>

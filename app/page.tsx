@@ -12,6 +12,8 @@ import ProfessionalIntro from "@/components/professional-intro";
 import ProjectSection from "@/components/project-section";
 import RotatingKeywords from "@/components/rotating-keywords";
 import { SOCIAL_LINKS } from "@/lib/constants";
+import Footer from "@/components/footer";
+import TypewriterEffect from "@/components/typewriter-effect";
 
 const services = [
   {
@@ -39,25 +41,22 @@ export default function HomePage() {
       <div className="min-h-screen bg-background text-foreground">
         {/* Floating Navbar - only on homepage */}
         <FloatingNavbar />
-        
+
         {/* Hero Section with Dynamic Greeting */}
-        <div className="relative min-h-[80vh] flex flex-col justify-center overflow-hidden px-6 py-16">
-          <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-b from-transparent to-background"
-          ></motion.div>
+        <div className="relative min-h-screen flex flex-col justify-center overflow-hidden px-6 py-16 -mt-20 pt-32">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background"></div>
           <div className="container mx-auto max-w-6xl relative z-10">
             <DynamicGreeting name="Anderson Mwangi" role="Full Stack Developer" />
-            
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-xl text-slate-grey dark:text-cream/70 max-w-2xl mb-10"
+              className="text-xl text-slate-700 dark:text-slate-300 max-w-2xl mb-10 font-inter"
             >
               Specializing in <RotatingKeywords /> solutions that prioritize security, scalability, and performance.
             </motion.p>
-            
+
             {/* Professional Introduction with Image */}
             <ProfessionalIntro />
           </div>
@@ -66,8 +65,8 @@ export default function HomePage() {
         {/* Services Section */}
         <div className="py-16 px-6 bg-cream/5 dark:bg-charcoal/20">
           <div className="container mx-auto max-w-6xl">
-            <motion.h2 
-              className="text-4xl font-bold text-center mb-12 text-deep-forest dark:text-warm-copper"
+            <motion.h2
+              className="text-4xl font-bold text-center mb-12 text-orange font-bricolage"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -84,15 +83,15 @@ export default function HomePage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.2 }}
                 >
-                  <Card className="h-full bg-white/90 dark:bg-charcoal/50 backdrop-blur-sm border-warm-copper/20 shadow-lg hover:border-warm-copper hover:shadow-warm-copper/10 transition-all duration-300 group">
+                  <Card className="h-full bg-white dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 shadow-xl hover:border-orange/50 hover:shadow-2xl hover:shadow-orange/10 transition-all duration-300 group">
                     <CardContent className="p-8 text-center">
                       <div className="mb-6">
-                        <div className="inline-block p-4 bg-deep-forest/10 dark:bg-warm-copper/10 rounded-full group-hover:bg-deep-forest/20 dark:group-hover:bg-warm-copper/20 transition-colors duration-300">
-                          <service.icon className="h-10 w-10 text-deep-forest dark:text-warm-copper" />
+                        <div className="inline-block p-4 bg-orange/10 rounded-full group-hover:bg-orange/20 transition-colors duration-300">
+                          <service.icon className="h-10 w-10 text-orange" />
                         </div>
                       </div>
-                      <h3 className="text-2xl font-bold text-deep-forest dark:text-cream mb-3">{service.title}</h3>
-                      <p className="text-slate-grey dark:text-cream/70">{service.description}</p>
+                      <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3 font-bricolage">{service.title}</h3>
+                      <p className="text-slate-600 dark:text-slate-300 font-inter">{service.description}</p>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -113,7 +112,7 @@ export default function HomePage() {
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
                 <Link href="/projects">
-                  <Button size="lg" className="bg-deep-forest text-cream hover:bg-deep-forest/90 dark:bg-warm-copper dark:text-charcoal dark:hover:bg-warm-copper/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                  <Button size="lg" className="bg-orange text-white hover:bg-orange-dark transition-all duration-300 shadow-lg shadow-orange/30 hover:shadow-xl hover:shadow-orange/40 transform hover:-translate-y-1 font-poppins px-8 py-3 rounded-xl">
                     View All Projects
                   </Button>
                 </Link>
@@ -122,59 +121,8 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Footer/Connect Section */}
-        <div className="py-16 bg-cream/5 dark:bg-charcoal/30 mt-16">
-          <div className="container mx-auto max-w-4xl text-center">
-            <motion.h3 
-              className="text-3xl font-bold mb-4 text-deep-forest dark:text-warm-copper"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              Let's Connect
-            </motion.h3>
-            <motion.p 
-              className="text-slate-grey dark:text-cream/70 mb-8 max-w-2xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              Have a project in mind or just want to connect? I'm always open to discussing new opportunities and collaborations.
-            </motion.p>
-            <motion.div
-              className="flex justify-center gap-6"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              {SOCIAL_LINKS.map((link, index) => (
-                <motion.a
-                  key={index}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1, y: -5 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                  className="p-3 bg-white/10 dark:bg-charcoal/50 rounded-full text-deep-forest dark:text-warm-copper hover:bg-deep-forest hover:text-cream dark:hover:bg-warm-copper dark:hover:text-charcoal transition-colors duration-300 shadow-lg"
-                >
-                  <link.icon className="h-6 w-6" />
-                </motion.a>
-              ))}
-            </motion.div>
-            <motion.div 
-              className="mt-12 pt-8 border-t border-deep-forest/10 dark:border-warm-copper/10 text-sm text-slate-grey dark:text-cream/50"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-            >
-              © {new Date().getFullYear()} Anderson Mitambo Mwangi. All rights reserved.
-            </motion.div>
-          </div>
-        </div>
+        {/* Footer with Newsletter */}
+        <Footer />
       </div>
     </PageTransition>
   );

@@ -67,7 +67,7 @@ const DayInTheLife = () => {
         transition={{ duration: 0.8 }}
         className="text-center mb-16"
       >
-        <h2 className="text-4xl md:text-5xl font-bold mb-4 text-deep-forest dark:text-warm-copper">
+        <h2 className="text-4xl md:text-5xl font-bold mb-4 text-deep-forest dark:text-warm-copper font-bricolage">
           A Day in the Life
         </h2>
         <p className="text-lg text-slate-grey dark:text-cream/80 max-w-3xl mx-auto">

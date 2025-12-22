@@ -69,11 +69,11 @@ export default function Projects() {
             animate="visible"
             className="text-center mb-16"
           >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 rainbow-gradient bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 rainbow-gradient bg-clip-text text-transparent font-bricolage">
               My Project Portfolio
             </h1>
             <motion.p
-              className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
+              className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto font-bricolage"
               variants={getVariant("fadeIn", 1)}
             >
               A showcase of my skills in action
@@ -137,7 +137,7 @@ export default function Projects() {
                       initial={false}
                     >
                       <Badge variant="secondary" className="mb-2 bg-orange-500/20 text-orange-500 border-orange-500/30">{project.category}</Badge>
-                      <CardTitle className="text-white text-xl mb-4">{project.title}</CardTitle>
+                      <CardTitle className="text-white text-xl mb-4 font-bricolage">{project.title}</CardTitle>
                       <div className="flex flex-wrap justify-center gap-2">
                         {project.iconLists.slice(0, 4).map((iconName, index) => {
                           const IconComponent = iconComponents[iconName as keyof typeof iconComponents];
@@ -154,7 +154,7 @@ export default function Projects() {
                     {/* Original content that fades out on hover */}
                     <div className="absolute bottom-0 left-0 p-4 group-hover:opacity-0 transition-opacity duration-500">
                       <Badge variant="secondary" className="mb-2 bg-warm-gold/20 text-warm-gold border-warm-gold/30">{project.category}</Badge>
-                      <CardTitle className="text-white text-xl">{project.title}</CardTitle>
+                      <CardTitle className="text-white text-xl font-bricolage">{project.title}</CardTitle>
                     </div>
                   </CardHeader>
                   <CardContent className="flex flex-col flex-grow p-6">
@@ -188,7 +188,7 @@ export default function Projects() {
           >
             <Card className="bg-card/50 backdrop-blur-sm border-border/50 glow-pink glow-hover">
               <CardHeader>
-                <CardTitle className="text-center text-charcoal dark:text-cream text-2xl">Project Portfolio Summary</CardTitle>
+                <CardTitle className="text-center text-charcoal dark:text-cream text-2xl font-bricolage">Project Portfolio Summary</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">

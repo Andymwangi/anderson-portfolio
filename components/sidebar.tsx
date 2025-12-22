@@ -11,7 +11,6 @@ import {
   User,
   Mail,
   Award,
-  GraduationCap,
   Code,
   PanelLeftClose,
   PanelRightClose,
@@ -25,7 +24,7 @@ const routes = [
   { href: "/projects", label: "Projects", icon: Briefcase },
   { href: "/skills", label: "Skills", icon: Code },
   { href: "/experience", label: "Experience", icon: Briefcase },
-  { href: "/certifications", label: "Education & Certifications", icon: Award },
+  { href: "/certifications", label: "Certifications", icon: Award },
   { href: "/contact", label: "Contact", icon: Mail },
 ];
 
@@ -40,35 +39,36 @@ const Sidebar = () => {
     <aside
       className={cn(
         "fixed left-0 top-0 z-50 flex h-full flex-col transition-all duration-300 ease-in-out",
-        "bg-gradient-to-b from-cream/5 to-cream/10 dark:from-charcoal/90 dark:to-charcoal/95 backdrop-blur-sm",
-        "shadow-lg shadow-deep-forest/5 dark:shadow-warm-copper/5",
-        showFullSidebar ? "w-72" : "w-24",
-        "rounded-r-3xl overflow-hidden"
+        "bg-white/95 dark:bg-slate-900/50 backdrop-blur-lg border-r border-slate-200 dark:border-slate-800/50",
+        "shadow-lg shadow-black/5 dark:shadow-black/10",
+        showFullSidebar ? "w-56" : "w-16",
       )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="flex h-24 items-center justify-center border-b border-warm-copper/10 dark:border-warm-copper/20">
-        <Link 
-          href="/" 
-          className={cn(
-            "flex items-center gap-3 px-4 py-2 rounded-xl",
-            "bg-gradient-to-r from-deep-forest/10 to-warm-copper/10 dark:from-deep-forest/20 dark:to-warm-copper/20",
-            "transition-all duration-300"
-          )}
+      {/* Logo/Brand */}
+      <div className="flex h-16 items-center justify-center border-b border-slate-200 dark:border-slate-800/50">
+        <Link
+          href="/"
+          className="flex items-center gap-2 px-2"
         >
-          <div className="w-10 h-10 rounded-full bg-deep-forest dark:bg-warm-copper flex items-center justify-center text-cream font-bold text-xl">
-            AM
+          <div className="w-8 h-8 rounded-lg overflow-hidden shadow-lg shadow-orange/20">
+            <img
+              src="/logo.png"
+              alt="Anderson Mwangi Logo"
+              className="w-full h-full object-cover"
+            />
           </div>
           {showFullSidebar && (
-            <span className="text-xl font-bold text-deep-forest dark:text-warm-copper">
+            <span className="text-sm font-semibold text-slate-900 dark:text-slate-100 font-poppins">
               Portfolio
             </span>
           )}
         </Link>
       </div>
-      
-      <nav className="flex-1 space-y-3 px-6 py-8">
+
+      {/* Navigation */}
+      <nav className="flex-1 space-y-1 px-2 py-4">
         {routes.map((route) => {
           const isActive = pathname === route.href;
           return (
@@ -76,44 +76,48 @@ const Sidebar = () => {
               key={route.href}
               href={route.href}
               className={cn(
-                "flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-300",
+                "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 group relative",
                 isActive
-                  ? "bg-deep-forest text-cream dark:bg-warm-copper dark:text-charcoal shadow-md"
-                  : "text-slate-grey dark:text-cream/70 hover:bg-deep-forest/10 dark:hover:bg-warm-copper/10",
+                  ? "bg-orange text-white shadow-md shadow-orange/20"
+                  : "text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 hover:text-orange",
                 !showFullSidebar && "justify-center px-2"
               )}
             >
-              <route.icon className={cn(
-                "h-5 w-5", 
-                isActive ? "text-cream dark:text-charcoal" : "text-deep-forest dark:text-warm-copper"
-              )} />
+              <route.icon className="h-4 w-4 flex-shrink-0" />
               {showFullSidebar && (
-                <span className={cn(
-                  "font-medium",
-                  isActive ? "" : "text-slate-grey dark:text-cream/70"
-                )}>
+                <span className="text-xs font-medium font-inter">
                   {route.label}
                 </span>
+              )}
+
+              {/* Tooltip for collapsed state */}
+              {!showFullSidebar && (
+                <div className="absolute left-full ml-2 px-2 py-1 bg-slate-900 dark:bg-slate-800 text-slate-100 text-xs rounded opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap z-50">
+                  {route.label}
+                </div>
               )}
             </Link>
           );
         })}
       </nav>
-      
-      <div className="mb-6 mx-6 p-4 rounded-xl bg-cream/5 dark:bg-charcoal/50 flex items-center justify-center gap-3 border border-warm-copper/10">
-        <Button 
-          variant="ghost" 
-          size="icon" 
-          className="flex-1 rounded-lg hover:bg-deep-forest/10 dark:hover:bg-warm-copper/10" 
-          onClick={toggle}
-        >
-          {isOpen ? (
-            <PanelLeftClose className="h-5 w-5 text-deep-forest dark:text-warm-copper" />
-          ) : (
-            <PanelRightClose className="h-5 w-5 text-deep-forest dark:text-warm-copper" />
-          )}
-        </Button>
-        <ThemeToggle />
+
+      {/* Bottom Controls */}
+      <div className="p-2 space-y-2 border-t border-slate-200 dark:border-slate-800/50">
+        <div className="flex items-center justify-center gap-2">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-8 w-8 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/50 hover:text-orange text-slate-600 dark:text-slate-400 transition-colors"
+            onClick={toggle}
+          >
+            {isOpen ? (
+              <PanelLeftClose className="h-3.5 w-3.5" />
+            ) : (
+              <PanelRightClose className="h-3.5 w-3.5" />
+            )}
+          </Button>
+          <ThemeToggle />
+        </div>
       </div>
     </aside>
   );

@@ -7,12 +7,13 @@ import { PageTransition } from "@/components/page-transition";
 import GlowingCard from "@/components/glowing-card";
 import ApproachSection from "@/components/approach-section";
 import dynamic from 'next/dynamic';
+import TypewriterEffect from '@/components/typewriter-effect';
 
 const World = dynamic(() => import('@/components/globe'), {
   ssr: false,
-  loading: () => <div style={{width: 300, height: 300, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><p>Loading Globe...</p></div>
+  loading: () => <div style={{ width: 300, height: 300, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><p>Loading Globe...</p></div>
 });
-import DayInTheLife from "@/components/day-in-the-life"; 
+import DayInTheLife from "@/components/day-in-the-life";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
@@ -27,60 +28,72 @@ type TimelineEvent = {
 
 const timelineEvents: TimelineEvent[] = [
   {
+    icon: Code,
+    date: "May 2025 - Present",
+    title: "Software Engineer - Coseke Kenya Limited",
+    description: `• Architected SRC Legal Management System serving 200+ legal officers managing 5,000+ civil and employment cases for Kenya's Salaries and Remuneration Commission, reducing case processing time by 70%
+• Integrated Contract Lifecycle Management module processing 300+ annual contracts with 60% reduction in review time and ensuring 100% compliance with Kenyan procurement regulations
+• Developed TotalEnergies CLMS managing petroleum contracts valued at KES 500M+ with 45% workload reduction through automated expiration alerts and renewal workflows
+• Led backend optimization initiatives improving API response times by 50% and reducing server load by 35% through Redis caching and database indexing
+• Contributed to ICT Authority's EDRMS implementation improving document retrieval efficiency by 55% for government digitization efforts
+• Established security protocols including JWT authentication and role-based access controls, preventing 500+ potential security threats while maintaining GDPR compliance`,
+    side: "right",
+    glowColor: "rgba(45, 80, 22, 0.5)" // deep-forest glow
+  },
+  {
+    icon: Briefcase,
+    date: "Jan 2024 - Present",
+    title: "Freelance Full-Stack Developer",
+    description: `• Delivered 15+ custom web and mobile applications for startups and SMEs, generating average revenue increases of KES 300,000+ per client
+• Built USIU E-Counselling Platform serving 3,000+ students with 80% reduction in scheduling conflicts and 500+ monthly counseling sessions
+• Developed blockchain-based E-Voting System enabling 1,500+ students to vote securely with 40% increased participation and 100% audit trail accuracy
+• Improved average website load speeds by 40% and user experience scores by 35% across all projects through performance optimization
+• Achieved 85% client satisfaction rate and 60% client retention through quality delivery and ongoing support`,
+    side: "left",
+    glowColor: "rgba(184, 115, 51, 0.5)" // warm-copper glow
+  },
+  {
+    icon: Layers,
+    date: "Jan 2024 - Sep 2024",
+    title: "IT Intern - Office of the Registrar of Political Parties (ORPP)",
+    description: `• Spearheaded digitization initiative for 10,000+ political party records, reducing document search time by 60% through optimized database indexing and advanced search algorithms
+• Developed automated Python scripts for data validation and migration, processing 50,000+ records and reducing manual data entry workload by 30% while improving data accuracy by 25%
+• Collaborated with cross-functional government teams to enhance Digital File Management System (DFMS), improving document accessibility by 45% and reducing processing times by 35%`,
+    side: "left",
+    glowColor: "rgba(54, 69, 79, 0.5)" // charcoal glow
+  },
+  {
+    icon: Shield,
+    date: "Sep 2023 - Jan 2024",
+    title: "IT Intern - Kenya Law",
+    description: `• Optimized case law databases serving 500+ legal professionals, implementing advanced search functionality and indexing strategies that reduced average search time by 40% and improved result relevance by 30%
+• Developed automated document archiving solutions processing 8,000+ legal documents, ensuring compliance with data retention policies and reducing manual filing time by 50%
+• Conducted comprehensive system testing identifying and resolving 75+ critical issues, improving software stability by 40% and enhancing overall system performance`,
+    side: "right",
+    glowColor: "rgba(245, 245, 220, 0.3)" // cream glow
+  },
+  {
     icon: GraduationCap,
     date: "2021 - 2025",
     title: "BSc Information Technology - JKUAT",
-    description: "Building a solid foundation in computer science fundamentals at Jomo Kenyatta University of Agriculture and Technology. Mastering core concepts in algorithms, data structures, software engineering, and network architecture. Specializing in secure system design and database optimization with hands-on projects in Python, JavaScript, and modern web frameworks.",
+    description: `• Graduated with Second Class Honors (Upper Division) from Jomo Kenyatta University of Agriculture and Technology
+• Built solid foundation in computer science fundamentals including algorithms, data structures, software engineering, database management, network architecture, and cloud computing
+• Developed hands-on projects in Python, JavaScript, React, and Node.js demonstrating practical application of theoretical knowledge
+• Specialized in secure system design and database optimization with focus on enterprise-grade solutions`,
     side: "left",
     glowColor: "rgba(45, 80, 22, 0.5)" // deep-forest glow
   },
   {
     icon: Shield,
-    date: "2023 - 2025",
-    title: "Cybersecurity Specialist Certification",
-    description: "Earned prestigious Junior Cybersecurity Certificate and Cisco CyberOps Certificate, mastering network defense, threat detection, and incident response. Developed expertise in vulnerability assessment, penetration testing, and security protocol implementation. Gained hands-on experience with security frameworks, encryption methods, and compliance standards essential for enterprise security.",
+    date: "2024",
+    title: "Professional Certifications",
+    description: `• Earned Junior Cybersecurity Certificate from Cisco Networking Academy, mastering network defense, threat detection, and incident response
+• Completed Endpoint Security Certificate from Cisco, specializing in endpoint protection and security protocols
+• Currently pursuing CyberOps Associate Certification (Cisco) and ALX Backend Development Course
+• Achieved Python for Data Science Certificate and IBM Data Engineering Certificate, demonstrating commitment to continuous learning in data engineering and analytics
+• Expanding expertise in cybersecurity, cloud computing, and full-stack development through ongoing professional development`,
     side: "right",
     glowColor: "rgba(184, 115, 51, 0.5)" // warm-copper glow
-  },
-  {
-    icon: Briefcase,
-    date: "Sep 2023 - Jan 2024",
-    title: "IT Intern - Kenya Law",
-    description: "Transformed legal information systems by optimizing database performance, achieving 40% reduction in query response times. Developed secure document management solutions ensuring regulatory compliance and enhanced system stability. Implemented comprehensive search functionality that revolutionized how legal professionals access critical information.",
-    side: "left",
-    glowColor: "rgba(54, 69, 79, 0.5)" // charcoal glow
-  },
-  {
-    icon: Code,
-    date: "Jan 2024 - Sep 2024",
-    title: "Full-Stack Developer - RegisVault",
-    description: "Architected and developed RegisVault, a cutting-edge digital file management system at ORPP, processing over 100,000+ sensitive political documents. Built secure React.js interfaces with TypeScript, implemented OCR capabilities, and created automated data validation scripts that reduced manual processing by 30%. Delivered a system that decreased document retrieval from days to seconds.",
-    side: "right",
-    glowColor: "rgba(245, 245, 220, 0.3)" // cream glow
-  },
-  {
-    icon: Layers,
-    date: "Oct 2024 - Jan 2025",
-    title: "DevOps Engineer - Bakari Ventures",
-    description: "Led enterprise application development using modern DevOps practices, achieving 70% reduction in manual workloads across 3 major projects. Implemented Redis caching solutions, optimized Node.js APIs for 50% faster response times, and established CI/CD pipelines with Docker containerization. Mastered infrastructure automation and scalable system architecture.",
-    side: "left",
-    glowColor: "rgba(45, 80, 22, 0.5)" // deep-forest glow
-  },
-  {
-    icon: Code,
-    date: "Jan 2025 - Present",
-    title: "Backend Developer - Coseke",
-    description: "Leading backend architecture and full-stack development for cutting-edge mobile applications in active production. Architecting scalable API infrastructures, implementing real-time data synchronization, and ensuring seamless frontend-backend integration. Driving digital innovation through robust microservices architecture and advanced database optimization for high-performance app ecosystems.",
-    side: "right",
-    glowColor: "rgba(184, 115, 51, 0.5)" // warm-copper glow
-  },
-  {
-    icon: Target,
-    date: "Jan 2025 - Present",
-    title: "Freelance Full-Stack Developer",
-    description: "Simultaneously operating as an independent developer, delivering secure, high-performance web applications for 15+ clients with measurable business impact. Generating average revenue increases of KES 300,000+ per client through custom React.js, Vue.js, and Next.js solutions. Balancing corporate innovation with entrepreneurial projects, specializing in e-commerce platforms and enterprise-grade security implementations.",
-    side: "left",
-    glowColor: "rgba(45, 80, 22, 0.5)" // deep-forest glow
   },
 ];
 
@@ -98,18 +111,18 @@ export default function AboutPage() {
             className="flex flex-col md:flex-row items-center justify-between mb-16 gap-8"
           >
             <div className="md:w-1/2 text-left">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-deep-forest dark:text-warm-copper">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-orange font-bricolage">
                 About My Journey
               </h1>
-              <p className="text-xl text-slate-grey dark:text-cream/80 mb-6">
-                From curiosity to expertise in digital security and development.
+              <p className="text-xl text-slate-600 dark:text-slate-300 mb-6 font-inter">
+                From curiosity to expertise in <TypewriterEffect words={['Digital Security', 'Full-Stack Development', 'Cloud Engineering', 'DevOps']} className="text-orange font-poppins font-semibold" />
               </p>
-              <p className="text-slate-grey dark:text-cream/70">
+              <p className="text-slate-600 dark:text-slate-400 font-inter leading-relaxed">
                 As a full-stack developer with expertise in cybersecurity and DevOps, I bring a unique blend of skills to every project. My approach combines technical excellence with a deep understanding of security principles and efficient deployment practices.
               </p>
               <div className="mt-6 flex items-center gap-2">
-                <div className="h-1 w-20 bg-deep-forest dark:bg-warm-copper rounded-full"></div>
-                <p className="text-deep-forest dark:text-warm-copper font-medium">Available worldwide</p>
+                <div className="h-1 w-20 bg-orange rounded-full"></div>
+                <p className="text-orange font-medium font-poppins">Available worldwide</p>
               </div>
             </div>
 
@@ -152,7 +165,7 @@ export default function AboutPage() {
           {/* Timeline Section with Image and Dual-Sided Layout */}
           <div id="timeline-section" className="flex flex-col lg:flex-row gap-10 mb-24">
             {/* Image Section */}
-            <motion.div 
+            <motion.div
               className="lg:w-1/3 flex flex-col gap-6"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -162,7 +175,7 @@ export default function AboutPage() {
               {/* Profile Image */}
               <div className="relative h-80 w-full overflow-hidden rounded-2xl shadow-lg">
                 <Image
-                  src="/profileimage.png"
+                  src="/profileimage.jpg"
                   alt="Anderson Mwangi"
                   layout="fill"
                   objectFit="cover"
@@ -170,25 +183,25 @@ export default function AboutPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-tr from-deep-forest/80 to-warm-copper/50 dark:from-warm-copper/80 dark:to-deep-forest/50 mix-blend-multiply z-10"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent z-20">
-                  <h3 className="text-cream font-bold text-xl">Anderson Mwangi</h3>
+                  <h3 className="text-cream font-bold text-xl font-bricolage">Anderson Mwangi</h3>
                   <p className="text-cream/80 text-sm">Full-Stack Developer & Security Specialist</p>
                 </div>
               </div>
-              
+
               {/* Skills Showcase */}
               <div className="bg-cream/5 dark:bg-charcoal/30 backdrop-blur-sm p-6 rounded-2xl border border-deep-forest/10 dark:border-warm-copper/10 shadow-lg">
-                <h3 className="text-deep-forest dark:text-warm-copper font-bold text-xl mb-4">Core Competencies</h3>
-                
+                <h3 className="text-orange font-bold text-xl mb-4 font-bricolage">Core Competencies</h3>
+
                 <div className="space-y-4">
                   {/* Skill Bars */}
                   <div>
                     <div className="flex justify-between mb-1">
-                      <span className="text-sm text-slate-grey dark:text-cream/70">Full-Stack Development</span>
-                      <span className="text-xs text-deep-forest dark:text-warm-copper font-medium">95%</span>
+                      <span className="text-sm text-slate-600 dark:text-slate-400 font-inter">Full-Stack Development</span>
+                      <span className="text-xs text-orange font-medium font-poppins">95%</span>
                     </div>
                     <div className="h-2 bg-cream/10 dark:bg-charcoal/50 rounded-full overflow-hidden">
-                      <motion.div 
-                        className="h-full bg-gradient-to-r from-deep-forest to-deep-forest/70 dark:from-warm-copper dark:to-warm-copper/70" 
+                      <motion.div
+                        className="h-full bg-gradient-to-r from-orange to-orange-light"
                         initial={{ width: 0 }}
                         whileInView={{ width: '95%' }}
                         viewport={{ once: true }}
@@ -196,15 +209,15 @@ export default function AboutPage() {
                       />
                     </div>
                   </div>
-                  
+
                   <div>
                     <div className="flex justify-between mb-1">
                       <span className="text-sm text-slate-grey dark:text-cream/70">Cybersecurity</span>
                       <span className="text-xs text-deep-forest dark:text-warm-copper font-medium">90%</span>
                     </div>
                     <div className="h-2 bg-cream/10 dark:bg-charcoal/50 rounded-full overflow-hidden">
-                      <motion.div 
-                        className="h-full bg-gradient-to-r from-deep-forest to-deep-forest/70 dark:from-warm-copper dark:to-warm-copper/70" 
+                      <motion.div
+                        className="h-full bg-gradient-to-r from-deep-forest to-deep-forest/70 dark:from-warm-copper dark:to-warm-copper/70"
                         initial={{ width: 0 }}
                         whileInView={{ width: '90%' }}
                         viewport={{ once: true }}
@@ -218,8 +231,8 @@ export default function AboutPage() {
                       <span className="text-xs text-deep-forest dark:text-warm-copper font-medium">85%</span>
                     </div>
                     <div className="h-2 bg-cream/10 dark:bg-charcoal/50 rounded-full overflow-hidden">
-                      <motion.div 
-                        className="h-full bg-gradient-to-r from-deep-forest to-deep-forest/70 dark:from-warm-copper dark:to-warm-copper/70" 
+                      <motion.div
+                        className="h-full bg-gradient-to-r from-deep-forest to-deep-forest/70 dark:from-warm-copper dark:to-warm-copper/70"
                         initial={{ width: 0 }}
                         whileInView={{ width: '90%' }}
                         viewport={{ once: true }}
@@ -230,7 +243,7 @@ export default function AboutPage() {
                 </div>
               </div>
             </motion.div>
-            
+
             {/* Timeline Section */}
             <div className="lg:w-2/3 relative">
               {/* Creative Timeline Layout */}
@@ -248,10 +261,10 @@ export default function AboutPage() {
                     {index < timelineEvents.length - 1 && (
                       <div className="absolute top-full left-8 w-0.5 h-8 bg-gradient-to-b from-deep-forest/40 to-warm-copper/40 dark:from-warm-copper/40 dark:to-deep-forest/40 z-0"></div>
                     )}
-                    
+
                     {/* Timeline Card - Full Width */}
                     <div className="relative z-10">
-                      <GlowingCard 
+                      <GlowingCard
                         glowColor={event.glowColor}
                         side={event.side}
                         className="w-full"
@@ -266,15 +279,30 @@ export default function AboutPage() {
                               <p className="text-xs text-slate-grey dark:text-cream/60 font-medium whitespace-nowrap">{event.date}</p>
                             </div>
                           </div>
-                          
+
                           {/* Content Section - Takes Full Available Width */}
                           <div className="flex-1 min-w-0">
                             <div className="flex items-start justify-between gap-4">
                               <div className="flex-1">
-                                <h3 className="text-2xl font-bold text-deep-forest dark:text-warm-copper mb-3">{event.title}</h3>
-                                <p className="text-slate-grey dark:text-cream/70 leading-relaxed">{event.description}</p>
+                                <h3 className="text-2xl font-bold text-orange mb-3 font-bricolage">{event.title}</h3>
+                                <div className="text-slate-600 dark:text-slate-400 leading-relaxed font-inter space-y-2">
+                                  {event.description.split('\n').map((line, idx) => (
+                                    line.trim() && (
+                                      <p key={idx} className="flex items-start gap-2">
+                                        {line.startsWith('•') ? (
+                                          <>
+                                            <span className="text-deep-forest dark:text-warm-copper mt-1 flex-shrink-0">•</span>
+                                            <span className="flex-1">{line.substring(1).trim()}</span>
+                                          </>
+                                        ) : (
+                                          <span>{line}</span>
+                                        )}
+                                      </p>
+                                    )
+                                  ))}
+                                </div>
                               </div>
-                              
+
                               {/* Timeline Position Indicator */}
                               <div className="flex-shrink-0 flex flex-col items-center">
                                 <div className={`w-3 h-3 rounded-full ${index % 2 === 0 ? 'bg-deep-forest dark:bg-warm-copper' : 'bg-warm-copper dark:bg-deep-forest'}`}></div>
@@ -338,10 +366,10 @@ export default function AboutPage() {
             <div className="inline-block p-4 rounded-full bg-deep-forest/10 dark:bg-warm-copper/10 mb-6">
               <Target className="h-10 w-10 text-deep-forest dark:text-warm-copper" />
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-deep-forest dark:text-warm-copper">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-orange font-bricolage">
               My Mission
             </h2>
-            <p className="text-lg text-slate-grey dark:text-cream/80 max-w-3xl mx-auto">
+            <p className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto font-inter">
               To bridge the gap between cutting-edge technology and robust security, creating solutions that are
               <span className="text-deep-forest dark:text-warm-copper font-medium"> secure by design</span>,
               <span className="text-deep-forest dark:text-warm-copper font-medium"> scalable by nature</span>, and
@@ -353,7 +381,7 @@ export default function AboutPage() {
 
           {/* Approach Section with Expanded Content */}
           <ApproachSection />
-          
+
           {/* A Day in the Life Section */}
           <DayInTheLife />
         </div>

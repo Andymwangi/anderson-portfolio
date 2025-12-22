@@ -11,8 +11,8 @@ export interface Project {
   img: string;
   iconLists: string[];
   technologies: string[];
-  link: string;
-  githubLink?: string;
+  link: string | null;
+  githubLink?: string | null;
   category: string;
   client: string;
   clientLogo: string;

@@ -7,6 +7,7 @@ import { FaReact, FaVuejs, FaHtml5, FaCss3Alt, FaNodeJs, FaPython, FaDocker, FaG
 import { SiNextdotjs, SiTypescript, SiTailwindcss, SiExpress, SiFastapi, SiDjango, SiFlask, SiPostgresql, SiMongodb, SiRedis, SiKubernetes, SiTerraform } from "react-icons/si"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { PageTransition } from "@/components/page-transition"
+import TypewriterEffect from '@/components/typewriter-effect';
 
 // Type definitions for skills
 interface Skill {
@@ -155,11 +156,11 @@ export default function Skills() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h1 className="text-6xl font-bold mb-6 rainbow-gradient bg-clip-text text-transparent">
+            <h1 className="text-6xl font-bold mb-6 rainbow-gradient bg-clip-text text-transparent font-bricolage">
               My Skills
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              A comprehensive overview of my technical expertise and professional capabilities
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto font-inter">
+              Expertise in <TypewriterEffect words={['Frontend Development', 'Backend Engineering', 'Cybersecurity', 'Cloud & DevOps', 'Database Management']} className="text-orange font-poppins font-semibold" />
             </p>
           </motion.div>
 
@@ -229,7 +230,7 @@ export default function Skills() {
           >
             <Card className="bg-cream/90 dark:bg-card/90 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-300 glow-sage glow-hover">
               <CardHeader>
-                <CardTitle className="text-3xl font-bold text-center text-gray-700 dark:text-gray-200">
+                <CardTitle className="text-3xl font-bold text-center text-gray-700 dark:text-gray-200 font-bricolage">
                   Soft Skills
                 </CardTitle>
               </CardHeader>
@@ -246,10 +247,10 @@ export default function Skills() {
                         className="flex flex-col items-center text-center p-3 rounded-lg bg-background/30 dark:bg-background/20"
                       >
                         <IconComponent className="h-8 w-8 mb-3 text-warm-gold dark:text-warm-gold" />
-                        <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">{skill.name}</h3>
+                        <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3 font-bricolage">{skill.name}</h3>
                         <div className="w-full">
                           <div className="flex justify-center items-center mb-2">
-                            <span className="text-xs font-bold text-warm-gold dark:text-warm-gold">{skill.level}%</span>
+                            <span className="text-xs font-bold text-warm-gold dark:text-warm-gold font-bricolage">{skill.level}%</span>
                           </div>
                           <div className="w-full bg-gray-300/50 dark:bg-gray-600/50 rounded-full h-2">
                             <div
@@ -274,7 +275,7 @@ export default function Skills() {
           >
             <Card className="bg-cream/90 dark:bg-card/90 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-300 glow-orange glow-hover">
               <CardHeader>
-                <CardTitle className="text-2xl font-bold text-center text-gray-700 dark:text-gray-200 mb-6">
+                <CardTitle className="text-2xl font-bold text-center text-gray-700 dark:text-gray-200 mb-6 font-bricolage">
                   Skills Overview
                 </CardTitle>
               </CardHeader>

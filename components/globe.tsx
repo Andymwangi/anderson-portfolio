@@ -7,9 +7,11 @@ export default function World() {
   const globeEl = useRef<GlobeMethods | undefined>(undefined);
   const containerRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  const [globeReady, setGlobeReady] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+
     const observer = new ResizeObserver(([entry]) => {
       if (entry) {
         const { width, height } = entry.contentRect;
@@ -29,7 +31,7 @@ export default function World() {
   }, []);
 
   useEffect(() => {
-    if (globeEl.current && globeReady) {
+    if (globeEl.current && mounted) {
       const globe = globeEl.current;
       const controls = globe.controls();
       controls.autoRotate = true;
@@ -38,7 +40,7 @@ export default function World() {
 
       globe.pointOfView({ lat: -1.2921, lng: 36.8219, altitude: 2.5 });
     }
-  }, [globeReady]);
+  }, [mounted]);
 
   const markers = [
     {
@@ -46,27 +48,28 @@ export default function World() {
       lat: -1.2921,
       lng: 36.8219,
       size: 3,
-      color: 'rgba(255, 100, 100, 0.7)',
+      color: 'rgba(255, 140, 66, 0.7)', // Updated to orange
     },
   ];
 
   return (
     <div ref={containerRef} style={{ width: '100%', height: '100%' }}>
-      <Globe
-        ref={globeEl}
-        onGlobeReady={() => setGlobeReady(true)}
-        globeImageUrl="//unpkg.com/three-globe/example/img/earth-dark.jpg"
-        backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
-        pointsData={markers}
-        pointAltitude={0.02}
-        pointRadius="size"
-        pointColor="color"
-        backgroundColor="rgba(0,0,0,0)"
-        atmosphereColor="rgba(184, 115, 51, 0.2)"
-        atmosphereAltitude={0.35}
-        width={dimensions.width}
-        height={dimensions.height}
-      />
+      {mounted && (
+        <Globe
+          ref={globeEl}
+          globeImageUrl="//unpkg.com/three-globe/example/img/earth-dark.jpg"
+          backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
+          pointsData={markers}
+          pointAltitude={0.02}
+          pointRadius="size"
+          pointColor="color"
+          backgroundColor="rgba(0,0,0,0)"
+          atmosphereColor="rgba(255, 140, 66, 0.2)"
+          atmosphereAltitude={0.35}
+          width={dimensions.width || 600}
+          height={dimensions.height || 600}
+        />
+      )}
     </div>
   );
 }
