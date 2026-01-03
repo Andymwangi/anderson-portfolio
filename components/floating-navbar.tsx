@@ -70,7 +70,7 @@ export function FloatingNavbar() {
       >
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-xl overflow-hidden shadow-lg shadow-orange/20 group-hover:shadow-orange/40 transition-shadow">
+          <div className="w-10 h-10 rounded-xl overflow-hidden shadow-lg shadow-brown/20 group-hover:shadow-brown/40 transition-shadow">
             <img
               src="/logo.png"
               alt="Anderson Mwangi Logo"
@@ -84,7 +84,7 @@ export function FloatingNavbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden md:flex items-center gap-1 flex-1 justify-end mr-8">
           {routes.map((route) => (
             <Link
               key={route.href}
@@ -92,15 +92,15 @@ export function FloatingNavbar() {
               className={cn(
                 "px-4 py-2 font-medium transition-all duration-200 font-bricolage relative group",
                 pathname === route.href
-                  ? "text-orange"
-                  : "text-slate-700 dark:text-slate-300 hover:text-orange"
+                  ? "text-brown"
+                  : "text-slate-700 dark:text-slate-300 hover:text-brown"
               )}
             >
               {route.label}
               {/* Bottom line indicator */}
               <span
                 className={cn(
-                  "absolute bottom-0 left-0 h-0.5 bg-orange transition-all duration-300",
+                  "absolute bottom-0 left-0 h-0.5 bg-brown transition-all duration-300",
                   pathname === route.href
                     ? "w-full"
                     : "w-0 group-hover:w-full"
@@ -118,7 +118,7 @@ export function FloatingNavbar() {
         {/* CTA Button - Desktop */}
         <div className="hidden md:block">
           <Link href="/contact">
-            <button className="px-6 py-2.5 bg-orange hover:bg-orange-dark text-white rounded-lg font-medium transition-all duration-300 shadow-lg shadow-orange/30 hover:shadow-xl hover:shadow-orange/40 font-bricolage text-sm">
+            <button className="px-6 py-2.5 bg-brown hover:bg-brown-dark text-white rounded-lg font-medium transition-all duration-300 shadow-lg shadow-brown/30 hover:shadow-xl hover:shadow-brown/40 font-bricolage text-sm">
               Get in Touch
             </button>
           </Link>
@@ -126,7 +126,7 @@ export function FloatingNavbar() {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-slate-700 dark:text-slate-300 hover:text-orange transition-colors"
+          className="md:hidden text-slate-700 dark:text-slate-300 hover:text-brown transition-colors"
           onClick={toggleMenu}
         >
           {isMenuOpen ? (

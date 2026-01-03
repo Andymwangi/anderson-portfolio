@@ -1,0 +1,106 @@
+/* Pac-Man Effect Styles - Border Method with Fixed Eye */
+
+@keyframes pacman-chomp {
+    0%, 100% {
+        border-top-width: 20px;
+        border-bottom-width: 20px;
+    }
+    50% {
+        border-top-width: 2px;
+        border-bottom-width: 2px;
+    }
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+}
+
+.pacman-container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+}
+
+.pacman-text {
+    display: inline-flex;
+    gap: 0.1em;
+    font-weight: bold;
+    position: relative;
+}
+
+.pacman-char {
+    display: inline-block;
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.pacman-char.eaten {
+    animation: fade-out 0.3s ease-out forwards;
+}
+
+.pacman {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 20px solid #FFDD00;
+    border-right-color: transparent;
+    border-radius: 20px;
+    transition: left 0.15s linear;
+    z-index: 10;
+    animation: pacman-chomp 0.4s ease-in-out infinite;
+}
+
+/* Fixed Eye Position - Uses pseudo-element */
+.pacman::after {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: #000;
+    border-radius: 50%;
+    top: -15px;
+    left: -8px;
+    z-index: 11;
+    /* Prevent eye from moving with border animation */
+    transform: translate(0, 0);
+}
+
+/* Optional: Add shadow for depth */
+.pacman::before {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    bottom: -22px;
+    left: -1.5px;
+    filter: blur(2px);
+}
+
+/* Remove .pacman-body if not needed */
+.pacman-body {
+    /* Not needed with border method */
+}
+
+/* Remove separate .pacman-eye class if using ::after pseudo-element */
+.pacman-eye {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: #000;
+    border-radius: 50%;
+    top: -15px;
+    left: -8px;
+    z-index: 11;
+    /* Fix for separate eye element */
+    pointer-events: none;
+}

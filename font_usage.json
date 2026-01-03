@@ -1,0 +1,82 @@
+{
+    "font_usage": {
+        "caveat": "Your name in hero, section accent text, special callouts, quotes",
+        "inter": "Body paragraphs, descriptions, general content",
+        "poppins": "Section headings, card titles, button text",
+        "jetbrains_mono": "Code snippets, technical references"
+    },
+    "font_weights": {
+        "caveat": [
+            400,
+            500,
+            600,
+            700
+        ],
+        "inter": [
+            300,
+            400,
+            500,
+            600,
+            700,
+            800
+        ],
+        "poppins": [
+            400,
+            500,
+            600,
+            700,
+            800
+        ]
+    },
+    "implementation_examples": {
+        "hero_name": {
+            "font": "font-caveat",
+            "size": "text-6xl md:text-8xl",
+            "weight": "font-bold",
+            "example": "Hi, I'm Anderson Mwangi"
+        },
+        "section_headings": {
+            "font": "font-poppins",
+            "size": "text-3xl md:text-4xl",
+            "weight": "font-bold"
+        },
+        "body_text": {
+            "font": "font-inter",
+            "size": "text-base md:text-lg",
+            "weight": "font-normal"
+        },
+        "accent_text": {
+            "font": "font-caveat",
+            "size": "text-2xl md:text-3xl",
+            "weight": "font-semibold",
+            "use_cases": [
+                "Greeting text (Good Afternoon!)",
+                "Pull quotes",
+                "Special callouts",
+                "Footer tagline"
+            ]
+        }
+    },
+    "tailwind_config": {
+        "extend": {
+            "fontFamily": {
+                "caveat": [
+                    "'Caveat'",
+                    "cursive"
+                ],
+                "inter": [
+                    "'Inter'",
+                    "sans-serif"
+                ],
+                "poppins": [
+                    "'Poppins'",
+                    "sans-serif"
+                ],
+                "mono": [
+                    "'JetBrains Mono'",
+                    "monospace"
+                ]
+            }
+        }
+    }
+}

@@ -75,11 +75,18 @@ const config: Config = {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Modern Portfolio Colors - Orange & Slate theme
+        // Modern Portfolio Colors - Brown & Slate theme
+        'brown': {
+          DEFAULT: '#A67C52',
+          dark: '#8B6F47',
+          light: '#C4A57B',
+          accent: '#D4AF7A',
+        },
+        // Keep orange for backward compatibility
         'orange': {
-          DEFAULT: '#FF8C42',
-          dark: '#E67A32',
-          light: '#FFA566',
+          DEFAULT: '#A67C52',
+          dark: '#8B6F47',
+          light: '#C4A57B',
         },
         'slate': {
           50: '#F8FAFC',

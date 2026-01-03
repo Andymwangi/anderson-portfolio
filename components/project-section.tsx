@@ -32,7 +32,7 @@ export default function ProjectSection({ limit, showFilters = true }: { limit?: 
   };
 
   return (
-    <section className="py-16">
+    <section>
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -41,7 +41,7 @@ export default function ProjectSection({ limit, showFilters = true }: { limit?: 
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-deep-forest dark:text-warm-copper font-bricolage">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-brown font-bricolage">
             Featured Projects
           </h2>
           <p className="text-slate-grey dark:text-cream/70 max-w-2xl mx-auto">

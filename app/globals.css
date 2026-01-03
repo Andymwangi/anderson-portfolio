@@ -13,24 +13,24 @@
     --popover-foreground: 210 16% 26%; /* Charcoal text */
     --primary: 96 57% 20%; /* Deep forest green */
     --primary-foreground: 60 33% 96%; /* Cream */
-    --secondary: 29 57% 46%; /* Warm copper */
+    --secondary: 28 35% 55%; /* Modern brown */
     --secondary-foreground: 0 0% 100%;
     --muted: 210 16% 80%; /* Light slate grey */
     --muted-foreground: 210 16% 46%; /* Darker slate grey */
-    --accent: 29 57% 46%; /* Warm copper */
+    --accent: 28 35% 55%; /* Modern brown */
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 20% 98%;
     --border: 96 10% 80%;
     --input: 96 10% 80%;
-    --ring: 29 57% 46%; /* Warm copper */
+    --ring: 28 35% 55%; /* Modern brown */
     --radius: 0.75rem;
 
     /* Custom Glow Colors */
     --glow-sage: 96 57% 20%; /* Deep forest green */
-    --glow-orange: 29 57% 46%; /* Warm copper */
+    --glow-brown: 28 35% 55%; /* Modern brown */
     --glow-pink: 340 82% 60%;
-    --glow-warm-gold: 25 57% 46%;
+    --glow-warm-gold: 28 40% 65%;
 
     /* Custom Gradient Colors for Animations */
     --sage-green: 96 57% 20%;
@@ -46,23 +46,23 @@
     --popover-foreground: 60 33% 91%;
     --primary: 96 57% 25%; /* Deep forest green - slightly brighter for dark mode */
     --primary-foreground: 60 33% 91%;
-    --secondary: 29 57% 46%; /* Warm copper */
+    --secondary: 28 35% 55%; /* Modern brown */
     --secondary-foreground: 60 33% 91%;
     --muted: 210 16% 30%; /* Slate grey */
     --muted-foreground: 210 10% 70%;
-    --accent: 29 57% 46%; /* Warm copper */
+    --accent: 28 35% 55%; /* Modern brown */
     --accent-foreground: 60 33% 91%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 60 33% 91%;
     --border: 210 16% 30%;
     --input: 210 16% 30%;
-    --ring: 29 57% 46%; /* Warm copper */
+    --ring: 28 35% 55%; /* Modern brown */
 
     /* Custom Glow Colors */
     --glow-sage: 96 57% 25%; /* Brighter deep forest green for dark mode */
-    --glow-orange: 29 57% 46%; /* Warm copper */
+    --glow-brown: 28 35% 60%; /* Modern brown for dark mode */
     --glow-pink: 340 82% 70%;
-    --glow-warm-gold: 25 57% 56%;
+    --glow-warm-gold: 28 40% 70%;
 
     /* Custom Gradient Colors for Animations */
     --sage-green: 96 57% 25%;
@@ -70,12 +70,12 @@
     /* Sidebar colors */
     --sidebar-background: 96 57% 15%; /* Darker forest green */
     --sidebar-foreground: 60 33% 91%; /* Light cream text */
-    --sidebar-primary: 29 57% 46%; /* Warm copper */
+    --sidebar-primary: 28 35% 55%; /* Modern brown */
     --sidebar-primary-foreground: 60 33% 91%;
     --sidebar-accent: 210 16% 30%; /* Slate grey */
     --sidebar-accent-foreground: 60 33% 91%;
     --sidebar-border: 96 57% 20%;
-    --sidebar-ring: 29 57% 46%; /* Warm copper */
+    --sidebar-ring: 28 35% 55%; /* Modern brown */
   }
 }
 
@@ -354,4 +354,47 @@ and a ::before pseudo-element with the card's background color inset on top, rev
     transform: translateY(-100vh) translateX(100px);
     opacity: 0;
   }
+}
+
+@keyframes bubble-wobble {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+}
+
+.animate-bubble {
+  animation: bubble-wobble 8s ease-in-out infinite;
+}
+
+/* Subtle organic animations for enhanced UI */
+@keyframes bubble-wobble-subtle {
+  0%, 100% {
+    border-radius: 55% 45% 50% 50% / 50% 50% 45% 55%;
+  }
+  50% {
+    border-radius: 45% 55% 50% 50% / 50% 50% 55% 45%;
+  }
+}
+
+@keyframes organic-glow-subtle {
+  0%, 100% {
+    filter: drop-shadow(0 0 15px rgba(184, 115, 51, 0.2));
+  }
+  50% {
+    filter: drop-shadow(0 0 25px rgba(184, 115, 51, 0.35));
+  }
+}
+
+/* Gentle hover lift for organic elements */
+@keyframes gentle-lift {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
+}
+
+.animate-bubble-subtle {
+  animation: bubble-wobble-subtle 15s ease-in-out infinite;
+}
+
+.animate-organic-glow {
+  animation: organic-glow-subtle 4s ease-in-out infinite;
 }

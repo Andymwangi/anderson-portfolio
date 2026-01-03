@@ -9,6 +9,7 @@ import { PageTransition } from "@/components/page-transition"
 import { ProjectModal } from "@/components/project-modal"
 import { FloatingParticles } from "@/components/floating-particles"
 import { useProjects, useMotionVariants } from "@/hooks"
+import WaveSeparator from "@/components/wave-separator"
 
 import { FaReact } from 'react-icons/fa';
 import {
@@ -61,28 +62,42 @@ export default function Projects() {
 
   return (
     <PageTransition>
-      <div className="min-h-screen cyber-vibrant-gradient p-6 relative">
-        <div className="container mx-auto max-w-7xl relative z-10">
-          <motion.div
-            variants={getVariant("fadeInDown")}
-            initial="hidden"
-            animate="visible"
-            className="text-center mb-16"
-          >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 rainbow-gradient bg-clip-text text-transparent font-bricolage">
-              My Project Portfolio
-            </h1>
-            <motion.p
-              className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto font-bricolage"
-              variants={getVariant("fadeIn", 1)}
+      <div className="min-h-screen relative overflow-hidden">
+        {/* Top section with gradient */}
+        <div className="cyber-vibrant-gradient pb-32 relative">
+          <div className="container mx-auto max-w-7xl px-6 pt-6 relative z-10">
+            <motion.div
+              variants={getVariant("fadeInDown")}
+              initial="hidden"
+              animate="visible"
+              className="text-center mb-16"
             >
-              A showcase of my skills in action
-            </motion.p>
-          </motion.div>
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 rainbow-gradient bg-clip-text text-transparent font-bricolage">
+                My Project Portfolio
+              </h1>
+              <motion.p
+                className="text-xl text-brown-dark dark:text-brown-accent max-w-3xl mx-auto font-bricolage"
+                variants={getVariant("fadeIn", 1)}
+              >
+                A showcase of my skills in action
+              </motion.p>
+            </motion.div>
+          </div>
 
-          {/* Category Filter */}
-          <motion.div 
-            className="flex flex-wrap justify-center gap-3 mb-10"
+          {/* Wave at bottom of hero */}
+          <div className="absolute bottom-0 left-0 w-full overflow-hidden translate-y-1" style={{ height: '150px' }}>
+            <svg className="w-full h-full" viewBox="0 0 1440 150" preserveAspectRatio="none">
+              <path d="M0,-20 C150,80 300,-10 450,70 C600,-5 750,75 900,0 C1050,80 1200,10 1350,90 C1400,100 1440,100 1440,100 L1440,150 L0,150 Z" fill="#DCC9A8" />
+            </svg>
+          </div>
+        </div>
+
+        {/* Projects section with subtle background */}
+        <div className="relative" style={{ backgroundColor: '#DCC9A8' }}>
+          <div className="container mx-auto max-w-7xl px-6 py-12 relative z-10">
+            {/* Category Filter */}
+            <motion.div
+              className="flex flex-wrap justify-center gap-3 mb-10"
             variants={createStaggerContainer(0.05)}
             initial="hidden"
             animate="visible"
@@ -91,8 +106,8 @@ export default function Projects() {
               <motion.div key={category} variants={getVariant("fadeInUp")}>
                 <Button
                   variant={
-                    (filters.category === category) || (category === "All" && !filters.category) 
-                    ? "default" 
+                    (filters.category === category) || (category === "All" && !filters.category)
+                    ? "default"
                     : "outline"
                   }
                   className={`rounded-full transition-all duration-300 ${
@@ -121,18 +136,18 @@ export default function Projects() {
                 className="cursor-pointer h-full group"
                 onClick={() => openModal(project)}
               >
-                <Card className="h-full bg-cream/90 dark:bg-card/90 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-500 glow-warm-gold glow-hover animated-border flex flex-col overflow-hidden shadow-lg">
+                <Card className="h-full bg-cream dark:bg-slate-900 backdrop-blur-sm border-border/50 hover:border-brown/50 transition-all duration-500 glow-warm-gold glow-hover animated-border flex flex-col overflow-hidden shadow-lg">
                   <CardHeader className="relative p-0 h-48 overflow-hidden">
-                    <Image 
-                      src={project.img} 
-                      alt={project.title} 
-                      fill 
-                      className="object-cover transition-transform duration-500 group-hover:scale-110" 
+                    <Image
+                      src={project.img}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    
+
                     {/* Hover reveal overlay */}
-                    <motion.div 
+                    <motion.div
                       className="absolute inset-0 bg-gradient-to-br from-warm-gold/80 via-warm-gold/60 to-warm-gold/80 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-center items-center text-center p-4"
                       initial={false}
                     >
@@ -150,7 +165,7 @@ export default function Projects() {
                         })}
                       </div>
                     </motion.div>
-                    
+
                     {/* Original content that fades out on hover */}
                     <div className="absolute bottom-0 left-0 p-4 group-hover:opacity-0 transition-opacity duration-500">
                       <Badge variant="secondary" className="mb-2 bg-warm-gold/20 text-warm-gold border-warm-gold/30">{project.category}</Badge>
@@ -159,7 +174,7 @@ export default function Projects() {
                   </CardHeader>
                   <CardContent className="flex flex-col flex-grow p-6">
                     <div className="flex flex-col h-full">
-                      <p className="text-gray-700 dark:text-gray-300 mb-4 flex-grow font-medium">
+                      <p className="text-brown-dark dark:text-slate-200 mb-4 flex-grow font-medium">
                         {project.des}
                       </p>
                       <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-border/50">
@@ -179,40 +194,53 @@ export default function Projects() {
               </motion.div>
             ))}
           </motion.div>
+          </div>
 
-          <motion.div
-            variants={getVariant("fadeInUp", 1)}
-            initial="hidden"
-            animate="visible"
-            className="mt-16"
-          >
-            <Card className="bg-card/50 backdrop-blur-sm border-border/50 glow-pink glow-hover">
-              <CardHeader>
-                <CardTitle className="text-center text-charcoal dark:text-cream text-2xl font-bricolage">Project Portfolio Summary</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                  {PORTFOLIO_SUMMARY.map((stat: { number: string; label: string; color: string; glow: string }, index: number) => (
-                    <motion.div
-                      key={stat.label}
-                      whileHover={{ scale: 1.1, rotateY: 10 }}
-                      variants={getVariant("fadeInUp", index * 0.2)}
-                      className={`p-6 bg-card/30 backdrop-blur-sm rounded-2xl border border-border/50 ${stat.glow} glow-hover`}
-                    >
+          {/* Wave at bottom of projects section */}
+          <div className="absolute bottom-0 left-0 w-full overflow-hidden translate-y-1" style={{ height: '150px' }}>
+            <svg className="w-full h-full" viewBox="0 0 1440 150" preserveAspectRatio="none">
+              <path d="M0,40 C160,95 320,5 480,50 C640,95 800,5 960,50 C1120,95 1280,5 1440,50 L1440,150 L0,150 Z" fill="#F5E6D3" />
+            </svg>
+          </div>
+        </div>
+
+        {/* Summary section with subtle background */}
+        <div className="relative pb-16 pt-12" style={{ backgroundColor: '#F5E6D3' }}>
+          <div className="container mx-auto max-w-7xl px-6 relative z-10">
+            <motion.div
+              variants={getVariant("fadeInUp", 1)}
+              initial="hidden"
+              animate="visible"
+              className="pt-8"
+            >
+              <Card className="bg-cream/90 dark:bg-slate-900 backdrop-blur-sm border-border/50 glow-pink glow-hover">
+                <CardHeader>
+                  <CardTitle className="text-center text-brown-dark dark:text-cream text-2xl font-bricolage">Project Portfolio Summary</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    {PORTFOLIO_SUMMARY.map((stat: { number: string; label: string; color: string; glow: string }, index: number) => (
                       <motion.div
-                        className={`text-3xl font-bold mb-2 ${stat.color}`}
-                        animate={{ scale: [1, 1.1, 1] }}
-                        transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
+                        key={stat.label}
+                        whileHover={{ scale: 1.1, rotateY: 10 }}
+                        variants={getVariant("fadeInUp", index * 0.2)}
+                        className={`p-6 bg-card/30 backdrop-blur-sm rounded-2xl border border-border/50 ${stat.glow} glow-hover`}
                       >
-                        {stat.number}
+                        <motion.div
+                          className={`text-3xl font-bold mb-2 ${stat.color}`}
+                          animate={{ scale: [1, 1.1, 1] }}
+                          transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
+                        >
+                          {stat.number}
+                        </motion.div>
+                        <p className="text-sm text-muted-foreground">{stat.label}</p>
                       </motion.div>
-                      <p className="text-sm text-muted-foreground">{stat.label}</p>
-                    </motion.div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
         </div>
       </div>
 
