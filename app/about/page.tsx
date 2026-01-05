@@ -206,7 +206,7 @@ const inspirations = [
   {
     name: "Linus Torvalds",
     role: "Founder, Linux & Git",
-    icon: "solar:terminal-bold",
+    icon: "solar:code-square-bold",
     lesson: "The power of open-source and version control architecture.",
     detail: "His focus on efficiency and the creation of Git changed the world of software engineering forever."
   },
@@ -235,7 +235,7 @@ const cinematicLore = [
   },
   {
     title: "Mr. Robot",
-    icon: "solar:terminal-bold",
+    icon: "solar:code-circle-bold",
     quote: "Control is an illusion.",
     theme: "Cybersecurity & Reality"
   },
