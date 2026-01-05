@@ -1,0 +1,5 @@
+  { 
+    name: "Critical Thinking", 
+    description: "Strategic decision-making based on data and analysis",
+    icon: "lightbulb-bolt"
+  },

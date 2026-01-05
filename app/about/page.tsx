@@ -236,9 +236,15 @@ export default function AboutPage() {
                 <p className="text-gray-800 dark:text-gray-400 text-base leading-relaxed font-sans mb-8">
                   As a full-stack developer with expertise in cybersecurity and DevOps, I bring a unique blend of skills to every project. My approach combines technical excellence with a deep understanding of security principles and efficient deployment practices.
                 </p>
-                <div className="flex items-center gap-3">
-                  <div className="h-[2px] w-16 bg-gradient-to-r from-accent to-transparent"></div>
-                  <span className="text-accent font-mono text-sm uppercase tracking-wider">Available Worldwide</span>
+                <div className="flex flex-col items-start gap-3">
+                  <div className="flex items-center gap-3">
+                    <div className="h-[2px] w-16 bg-gradient-to-r from-accent to-transparent"></div>
+                    <span className="text-accent font-mono text-sm uppercase tracking-wider">Available Worldwide</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-800 dark:text-gray-400 font-mono text-sm ml-[76px]">
+                    <iconify-icon icon="solar:map-point-bold" width="16"></iconify-icon>
+                    <span>Based in Nairobi, Kenya</span>
+                  </div>
                 </div>
               </motion.div>
 
