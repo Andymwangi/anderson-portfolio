@@ -1,16 +1,11 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import Image from "next/image"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { PageTransition } from "@/components/page-transition"
-import { ProjectModal } from "@/components/project-modal"
-import { FloatingParticles } from "@/components/floating-particles"
-import { useProjects, useMotionVariants } from "@/hooks"
-import WaveSeparator from "@/components/wave-separator"
-
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { PageTransition } from "@/components/page-transition";
+import { ProjectModal } from "@/components/project-modal";
+import { useProjects } from "@/hooks";
+import Footer from "@/components/footer";
 import { FaReact } from 'react-icons/fa';
 import {
   SiNextdotjs,
@@ -26,7 +21,7 @@ import {
   SiJavascript,
   SiDocker,
 } from 'react-icons/si';
-import { PORTFOLIO_SUMMARY } from "@/lib/constants"
+import { PORTFOLIO_SUMMARY } from "@/lib/constants";
 
 const iconComponents: { [key: string]: React.ElementType } = {
   FaReact,
@@ -54,197 +49,170 @@ export default function Projects() {
     categories,
     filters,
     setFilter,
-  } = useProjects()
-
-  const { getVariant, createStaggerContainer } = useMotionVariants()
+  } = useProjects();
 
   const displayCategories = ["All", ...categories];
 
   return (
     <PageTransition>
-      <div className="min-h-screen relative overflow-hidden">
-        {/* Top section with gradient */}
-        <div className="cyber-vibrant-gradient pb-32 relative">
-          <div className="container mx-auto max-w-7xl px-6 pt-6 relative z-10">
+      <div className="min-h-screen bg-background text-foreground">
+        {/* GLOBAL BACKDROP */}
+        <div className="fixed inset-0 bg-[#050403] -z-50"></div>
+
+        {/* HERO SECTION */}
+        <section className="relative min-h-[70vh] w-full flex items-center justify-center py-32 px-6">
+          {/* Radial Pulse Animation */}
+          <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none">
+            <div className="absolute w-[400px] h-[400px] rounded-full border border-accent/15 animate-ping" style={{ animationDuration: '4s' }}></div>
+            <div className="absolute w-[600px] h-[600px] rounded-full border border-accent/10 animate-ping" style={{ animationDuration: '5s', animationDelay: '0.5s' }}></div>
+          </div>
+
+          <div className="max-w-7xl mx-auto w-full relative z-20 text-center">
             <motion.div
-              variants={getVariant("fadeInDown")}
-              initial="hidden"
-              animate="visible"
-              className="text-center mb-16"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
             >
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 rainbow-gradient bg-clip-text text-transparent font-bricolage">
-                My Project Portfolio
+              <div className="inline-flex items-center gap-3 border border-accent/20 bg-accent/5 px-4 py-1.5 rounded-full mb-8 backdrop-blur-sm">
+                <span className="w-1.5 h-1.5 bg-accent rounded-full animate-pulse"></span>
+                <span className="font-mono text-[10px] text-accent tracking-widest uppercase">Portfolio</span>
+              </div>
+              <h1 className="font-serif italic text-5xl md:text-7xl text-black dark:text-white mb-6 leading-tight">
+                Selected <span className="text-accent not-italic font-bold">Works</span>
               </h1>
-              <motion.p
-                className="text-xl text-brown-dark dark:text-brown-accent max-w-3xl mx-auto font-bricolage"
-                variants={getVariant("fadeIn", 1)}
-              >
-                A showcase of my skills in action
-              </motion.p>
+              <p className="text-gray-800 dark:text-gray-400 text-lg max-w-2xl mx-auto font-sans">
+                A showcase of my best projects and technical implementations
+              </p>
             </motion.div>
           </div>
+        </section>
 
-          {/* Wave at bottom of hero */}
-          <div className="absolute bottom-0 left-0 w-full overflow-hidden translate-y-1" style={{ height: '150px' }}>
-            <svg className="w-full h-full" viewBox="0 0 1440 150" preserveAspectRatio="none">
-              <path d="M0,-20 C150,80 300,-10 450,70 C600,-5 750,75 900,0 C1050,80 1200,10 1350,90 C1400,100 1440,100 1440,100 L1440,150 L0,150 Z" fill="#DCC9A8" />
-            </svg>
-          </div>
-        </div>
-
-        {/* Projects section with subtle background */}
-        <div className="relative" style={{ backgroundColor: '#DCC9A8' }}>
-          <div className="container mx-auto max-w-7xl px-6 py-12 relative z-10">
-            {/* Category Filter */}
-            <motion.div
-              className="flex flex-wrap justify-center gap-3 mb-10"
-            variants={createStaggerContainer(0.05)}
-            initial="hidden"
-            animate="visible"
-          >
-            {displayCategories.map((category) => (
-              <motion.div key={category} variants={getVariant("fadeInUp")}>
-                <Button
-                  variant={
-                    (filters.category === category) || (category === "All" && !filters.category)
-                    ? "default"
-                    : "outline"
-                  }
-                  className={`rounded-full transition-all duration-300 ${
-                    (filters.category === category) || (category === "All" && !filters.category)
-                      ? "border-2 border-warm-gold shadow-lg shadow-warm-gold/30 bg-warm-gold text-white dark:border-warm-gold dark:shadow-warm-gold/30 dark:bg-warm-gold dark:text-charcoal"
-                      : "border-2 border-transparent hover:border-warm-gold/50 hover:shadow-md hover:shadow-warm-gold/20 text-foreground hover:text-warm-gold dark:hover:border-warm-gold/50 dark:hover:shadow-warm-gold/20 dark:hover:text-warm-gold"
-                  }`}
+        {/* FILTERS SECTION */}
+        <section className="py-12 px-6 border-y border-accent/10 bg-[#0a0806]">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex flex-wrap justify-center gap-3">
+              {displayCategories.map((category) => (
+                <motion.button
+                  key={category}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3 }}
                   onClick={() => setFilter('category', category === "All" ? null : category)}
+                  className={`px-6 py-2 font-mono text-xs tracking-widest uppercase transition-all btn-magnetic ${
+                    (filters.category === category) || (category === "All" && !filters.category)
+                      ? "bg-accent text-black border-accent"
+                      : "border border-white/20 text-white hover:bg-white/10"
+                  }`}
                 >
                   {category}
-                </Button>
-              </motion.div>
-            ))}
-          </motion.div>
+                </motion.button>
+              ))}
+            </div>
+          </div>
+        </section>
 
-          <motion.div
-            variants={createStaggerContainer(0.1)}
-            initial="hidden"
-            animate="visible"
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            {filteredProjects.map((project) => (
-              <motion.div
-                key={project.id}
-                variants={getVariant("fadeInUp")}
-                className="cursor-pointer h-full group"
-                onClick={() => openModal(project)}
-              >
-                <Card className="h-full bg-cream dark:bg-slate-900 backdrop-blur-sm border-border/50 hover:border-brown/50 transition-all duration-500 glow-warm-gold glow-hover animated-border flex flex-col overflow-hidden shadow-lg">
-                  <CardHeader className="relative p-0 h-48 overflow-hidden">
-                    <Image
-                      src={project.img}
-                      alt={project.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+        {/* PROJECTS BENTO GRID */}
+        <section className="py-32 px-6">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-auto gap-6">
+              {filteredProjects.map((project, index) => {
+                // Determine grid spanning for bento layout
+                const isFeatured = index === 0 || index === 3 || index === 6;
+                const gridClass = isFeatured
+                  ? "md:col-span-2 md:row-span-2"
+                  : "md:col-span-2";
 
-                    {/* Hover reveal overlay */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-warm-gold/80 via-warm-gold/60 to-warm-gold/80 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-center items-center text-center p-4"
-                      initial={false}
-                    >
-                      <Badge variant="secondary" className="mb-2 bg-orange-500/20 text-orange-500 border-orange-500/30">{project.category}</Badge>
-                      <CardTitle className="text-white text-xl mb-4 font-bricolage">{project.title}</CardTitle>
-                      <div className="flex flex-wrap justify-center gap-2">
-                        {project.iconLists.slice(0, 4).map((iconName, index) => {
-                          const IconComponent = iconComponents[iconName as keyof typeof iconComponents];
-                          if (!IconComponent) return null;
-                          return (
-                            <div key={index} className="p-2 bg-white/20 rounded-full backdrop-blur-sm">
-                              <IconComponent className="h-4 w-4 text-white" />
-                            </div>
-                          );
-                        })}
+                return (
+                  <motion.div
+                    key={project.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className={`glass-panel spotlight-card rounded-2xl overflow-hidden relative group cursor-pointer ${gridClass}`}
+                    onClick={() => openModal(project)}
+                  >
+                    <div className="scan-line"></div>
+
+                    {/* Project Image */}
+                    <div className={`relative w-full ${isFeatured ? "h-full min-h-[400px]" : "h-64"}`}>
+                      <Image
+                        src={project.img}
+                        alt={project.title}
+                        fill
+                        className="object-cover opacity-60 mix-blend-overlay group-hover:scale-105 transition-transform duration-700 grayscale hover:grayscale-0"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#050403] via-transparent to-transparent"></div>
+
+                      {/* Category Badge */}
+                      <div className="absolute top-6 right-6 border border-accent/20 bg-black/50 px-3 py-1 rounded text-[10px] font-mono text-accent backdrop-blur-sm">
+                        {project.category}
                       </div>
-                    </motion.div>
 
-                    {/* Original content that fades out on hover */}
-                    <div className="absolute bottom-0 left-0 p-4 group-hover:opacity-0 transition-opacity duration-500">
-                      <Badge variant="secondary" className="mb-2 bg-warm-gold/20 text-warm-gold border-warm-gold/30">{project.category}</Badge>
-                      <CardTitle className="text-white text-xl font-bricolage">{project.title}</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="flex flex-col flex-grow p-6">
-                    <div className="flex flex-col h-full">
-                      <p className="text-brown-dark dark:text-slate-200 mb-4 flex-grow font-medium">
-                        {project.des}
-                      </p>
-                      <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-border/50">
-                        {project.iconLists.slice(0, 7).map((iconName, index) => {
-                          const IconComponent = iconComponents[iconName as keyof typeof iconComponents];
-                          if (!IconComponent) return null;
-                          return (
-                            <div key={index} className="p-2 bg-background/50 dark:bg-background/30 rounded-full hover:bg-warm-gold/20 transition-colors">
-                              <IconComponent className="h-4 w-4 text-warm-gold" />
-                            </div>
-                          );
-                        })}
+                      {/* Content Overlay */}
+                      <div className="absolute bottom-0 left-0 p-8 z-10 w-full">
+                        <h3 className="font-serif font-medium italic text-2xl text-black dark:text-white mb-2">{project.title}</h3>
+                        <p className="text-gray-900 dark:text-gray-300 text-sm max-w-md font-sans mb-4">{project.des}</p>
+
+                        {/* Tech Stack Icons */}
+                        <div className="flex flex-wrap gap-2">
+                          {project.iconLists.slice(0, 5).map((iconName, idx) => {
+                            const IconComponent = iconComponents[iconName as keyof typeof iconComponents];
+                            if (!IconComponent) return null;
+                            return (
+                              <div key={idx} className="p-2 bg-white/10 rounded border border-white/10 backdrop-blur-sm hover:bg-accent/20 transition-colors">
+                                <IconComponent className="h-4 w-4 text-white" />
+                              </div>
+                            );
+                          })}
+                        </div>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
+        </section>
 
-          {/* Wave at bottom of projects section */}
-          <div className="absolute bottom-0 left-0 w-full overflow-hidden translate-y-1" style={{ height: '150px' }}>
-            <svg className="w-full h-full" viewBox="0 0 1440 150" preserveAspectRatio="none">
-              <path d="M0,40 C160,95 320,5 480,50 C640,95 800,5 960,50 C1120,95 1280,5 1440,50 L1440,150 L0,150 Z" fill="#F5E6D3" />
-            </svg>
-          </div>
-        </div>
+        {/* PORTFOLIO SUMMARY */}
+        <section className="py-32 px-6 bg-[#0a0806] border-y border-accent/10">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <span className="text-accent font-mono text-xs tracking-widest block mb-4">/// STATISTICS</span>
+              <h2 className="font-serif italic text-4xl text-black dark:text-white mb-4">Portfolio Overview</h2>
+            </div>
 
-        {/* Summary section with subtle background */}
-        <div className="relative pb-16 pt-12" style={{ backgroundColor: '#F5E6D3' }}>
-          <div className="container mx-auto max-w-7xl px-6 relative z-10">
-            <motion.div
-              variants={getVariant("fadeInUp", 1)}
-              initial="hidden"
-              animate="visible"
-              className="pt-8"
-            >
-              <Card className="bg-cream/90 dark:bg-slate-900 backdrop-blur-sm border-border/50 glow-pink glow-hover">
-                <CardHeader>
-                  <CardTitle className="text-center text-brown-dark dark:text-cream text-2xl font-bricolage">Project Portfolio Summary</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                    {PORTFOLIO_SUMMARY.map((stat: { number: string; label: string; color: string; glow: string }, index: number) => (
-                      <motion.div
-                        key={stat.label}
-                        whileHover={{ scale: 1.1, rotateY: 10 }}
-                        variants={getVariant("fadeInUp", index * 0.2)}
-                        className={`p-6 bg-card/30 backdrop-blur-sm rounded-2xl border border-border/50 ${stat.glow} glow-hover`}
-                      >
-                        <motion.div
-                          className={`text-3xl font-bold mb-2 ${stat.color}`}
-                          animate={{ scale: [1, 1.1, 1] }}
-                          transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
-                        >
-                          {stat.number}
-                        </motion.div>
-                        <p className="text-sm text-muted-foreground">{stat.label}</p>
-                      </motion.div>
-                    ))}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {PORTFOLIO_SUMMARY.map((stat: { number: string; label: string }, index: number) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="glass-panel spotlight-card rounded-2xl p-8 text-center group hover:bg-white/5 transition-colors"
+                >
+                  <div className="relative">
+                    <div className="text-4xl md:text-5xl font-bold text-accent mb-2 font-serif italic transition-transform group-hover:scale-110">
+                      {stat.number}
+                    </div>
+                    <div className="text-gray-400 text-sm font-mono uppercase tracking-wider">
+                      {stat.label}
+                    </div>
+                    <span className="absolute -top-2 -right-2 w-2 h-2 bg-accent rounded-full animate-pulse"></span>
                   </div>
-                </CardContent>
-              </Card>
-            </motion.div>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
+        </section>
+
+        {/* FOOTER */}
+        <Footer />
       </div>
 
       <ProjectModal project={selectedProject} isOpen={isModalOpen} onClose={closeModal} />
     </PageTransition>
-  )
+  );
 }

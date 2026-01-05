@@ -4,397 +4,289 @@
 
 @layer base {
   :root {
-    /* Deep Forest & Copper Theme - Light Mode */
-    --background: 60 33% 96%; /* Light cream background */
-    --foreground: 210 16% 26%; /* Charcoal text */
+    /* Landing Page Brown/Sand Theme - Light Mode */
+    --background: 35 20% 97%; /* Very light warm background */
+    --foreground: 30 10% 15%; /* Dark brown text */
     --card: 0 0% 100%;
-    --card-foreground: 210 16% 26%; /* Charcoal text */
+    --card-foreground: 30 10% 15%;
     --popover: 0 0% 100%;
-    --popover-foreground: 210 16% 26%; /* Charcoal text */
-    --primary: 96 57% 20%; /* Deep forest green */
-    --primary-foreground: 60 33% 96%; /* Cream */
-    --secondary: 28 35% 55%; /* Modern brown */
+    --popover-foreground: 30 10% 15%;
+    --primary: 37 36% 66%; /* #D4B483 - Light Brown/Sand */
+    --primary-foreground: 30 10% 15%;
+    --secondary: 35 21% 56%; /* #8C7A63 - Warm Brown */
     --secondary-foreground: 0 0% 100%;
-    --muted: 210 16% 80%; /* Light slate grey */
-    --muted-foreground: 210 16% 46%; /* Darker slate grey */
-    --accent: 28 35% 55%; /* Modern brown */
-    --accent-foreground: 0 0% 100%;
+    --muted: 35 15% 85%;
+    --muted-foreground: 35 10% 40%;
+    --accent: 37 36% 66%; /* #D4B483 */
+    --accent-foreground: 30 10% 15%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 20% 98%;
-    --border: 96 10% 80%;
-    --input: 96 10% 80%;
-    --ring: 28 35% 55%; /* Modern brown */
+    --border: 37 36% 80%;
+    --input: 37 36% 80%;
+    --ring: 37 36% 66%;
     --radius: 0.75rem;
 
-    /* Custom Glow Colors */
-    --glow-sage: 96 57% 20%; /* Deep forest green */
-    --glow-brown: 28 35% 55%; /* Modern brown */
-    --glow-pink: 340 82% 60%;
-    --glow-warm-gold: 28 40% 65%;
-
-    /* Custom Gradient Colors for Animations */
-    --sage-green: 96 57% 20%;
+    /* Surface colors from landing page */
+    --surface: 0 0% 3%; /* #080808 */
+    --warm-dark: 30 25% 2%; /* #050403 */
   }
 
   .dark {
-    /* Deep Forest & Copper Theme - Dark Mode */
-    --background: 210 16% 16%; /* Dark charcoal background */
-    --foreground: 60 33% 91%; /* Light cream text */
-    --card: 210 16% 20%; /* Slightly lighter charcoal */
-    --card-foreground: 60 33% 91%; /* Light cream text */
-    --popover: 210 16% 20%;
-    --popover-foreground: 60 33% 91%;
-    --primary: 96 57% 25%; /* Deep forest green - slightly brighter for dark mode */
-    --primary-foreground: 60 33% 91%;
-    --secondary: 28 35% 55%; /* Modern brown */
-    --secondary-foreground: 60 33% 91%;
-    --muted: 210 16% 30%; /* Slate grey */
-    --muted-foreground: 210 10% 70%;
-    --accent: 28 35% 55%; /* Modern brown */
-    --accent-foreground: 60 33% 91%;
+    /* Landing Page Brown/Sand Theme - Dark Mode */
+    --background: 30 25% 2%; /* #050403 - Warm Dark */
+    --foreground: 40 30% 88%; /* #e6e0d4 - Light cream text */
+    --card: 30 23% 6%; /* Slightly lighter than background */
+    --card-foreground: 40 30% 88%;
+    --popover: 30 23% 6%;
+    --popover-foreground: 40 30% 88%;
+    --primary: 37 36% 66%; /* #D4B483 */
+    --primary-foreground: 30 10% 15%;
+    --secondary: 35 21% 56%; /* #8C7A63 */
+    --secondary-foreground: 40 30% 88%;
+    --muted: 30 15% 20%;
+    --muted-foreground: 35 15% 60%;
+    --accent: 37 36% 66%; /* #D4B483 */
+    --accent-foreground: 30 10% 15%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 60 33% 91%;
-    --border: 210 16% 30%;
-    --input: 210 16% 30%;
-    --ring: 28 35% 55%; /* Modern brown */
+    --destructive-foreground: 40 30% 88%;
+    --border: 37 20% 15%;
+    --input: 37 20% 15%;
+    --ring: 37 36% 66%;
 
-    /* Custom Glow Colors */
-    --glow-sage: 96 57% 25%; /* Brighter deep forest green for dark mode */
-    --glow-brown: 28 35% 60%; /* Modern brown for dark mode */
-    --glow-pink: 340 82% 70%;
-    --glow-warm-gold: 28 40% 70%;
-
-    /* Custom Gradient Colors for Animations */
-    --sage-green: 96 57% 25%;
-    
-    /* Sidebar colors */
-    --sidebar-background: 96 57% 15%; /* Darker forest green */
-    --sidebar-foreground: 60 33% 91%; /* Light cream text */
-    --sidebar-primary: 28 35% 55%; /* Modern brown */
-    --sidebar-primary-foreground: 60 33% 91%;
-    --sidebar-accent: 210 16% 30%; /* Slate grey */
-    --sidebar-accent-foreground: 60 33% 91%;
-    --sidebar-border: 96 57% 20%;
-    --sidebar-ring: 28 35% 55%; /* Modern brown */
+    /* Surface colors */
+    --surface: 0 0% 3%; /* #080808 */
+    --warm-dark: 30 25% 2%; /* #050403 */
   }
 }
 
 @layer base {
+  html {
+    @apply scroll-smooth;
+    background-color: #050403;
+    /* Performance optimizations */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply antialiased;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    color: #e6e0d4;
+    overflow-x: hidden;
+    cursor: auto;
+    /* Performance optimizations */
+    will-change: scroll-position;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
   }
 }
 
-/* Vibrant Gradient Backgrounds */
-.sage-gradient {
-  background: linear-gradient(
-    135deg,
-    hsl(var(--sage-green-dark)) 0%,
-    hsl(var(--sage-green)) 50%,
-    hsl(var(--sage-green-light)) 100%
+/* --- GLASS PANEL (from landing page) --- */
+.glass-panel {
+  background: rgba(15, 12, 10, 0.7);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 180, 131, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* --- SPOTLIGHT EFFECT (from landing page) --- */
+.spotlight-card {
+  position: relative;
+}
+
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    800px circle at var(--mouse-x) var(--mouse-y),
+    rgba(212, 180, 131, 0.06),
+    transparent 40%
   );
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
 }
 
-.orange-gradient {
-  background: linear-gradient(135deg, hsl(var(--vibrant-orange-dark)) 0%, hsl(var(--vibrant-orange)) 100%);
+.spotlight-card:hover::before {
+  opacity: 1;
 }
 
-.pink-gradient {
-  background: linear-gradient(135deg, hsl(var(--soft-pink)) 0%, hsl(var(--soft-pink-light)) 100%);
-}
-
-.cyber-vibrant-gradient {
-  background: linear-gradient(
-    135deg,
-    #0f0f23 0%,
-    hsl(var(--sage-green-dark)) 25%,
-    #1a1a2e 50%,
-    hsl(var(--vibrant-orange-dark)) 75%,
-    #16213e 100%
+.spotlight-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y),
+    rgba(212, 180, 131, 0.4),
+    transparent 40%
   );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
 }
 
-.rainbow-gradient {
-  background: linear-gradient(
-    135deg,
-    hsl(var(--sage-green)) 0%,
-    hsl(var(--vibrant-orange)) 50%,
-    hsl(var(--soft-pink)) 100%
-  );
+.spotlight-card:hover::after {
+  opacity: 1;
 }
 
-/* Glowing Effects */
-.glow-sage {
-  box-shadow: 0 0 15px hsl(var(--glow-sage) / 0.2), 0 0 30px hsl(var(--glow-sage) / 0.1);
+/* --- MARQUEE (from landing page) --- */
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
-.glow-orange {
-  box-shadow: 0 0 15px hsl(var(--glow-orange) / 0.2), 0 0 30px hsl(var(--glow-orange) / 0.1);
+/* --- SCAN LINE (from landing page) --- */
+.scan-line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(to bottom, transparent, rgba(212, 180, 131, 0.2), transparent);
+  opacity: 0.5;
+  animation: scan 3s linear infinite;
+  z-index: 10;
+  pointer-events: none;
 }
 
-.glow-pink {
-  box-shadow: 0 0 15px hsl(var(--glow-pink) / 0.2), 0 0 30px hsl(var(--glow-pink) / 0.1);
+/* --- NOISE OVERLAY (from landing page) --- */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-.glow-warm-gold {
-  box-shadow: 0 0 15px hsl(var(--glow-warm-gold) / 0.2), 0 0 30px hsl(var(--glow-warm-gold) / 0.1);
+/* --- MAGNETIC BUTTON (from landing page) --- */
+.btn-magnetic {
+  display: inline-block;
+  will-change: transform;
 }
 
-.glow-hover:hover {
-  transition: all 0.3s ease;
+/* --- DOT GRID (from landing page) --- */
+.dot-grid {
+  background-image: radial-gradient(rgba(212, 180, 131, 0.15) 1px, transparent 1px);
+  background-size: 20px 20px;
 }
 
-.glow-hover:hover.glow-sage {
-  box-shadow: 0 0 25px hsl(var(--glow-sage) / 0.3), 0 0 50px hsl(var(--glow-sage) / 0.2);
+/* --- SKEW TARGET (from landing page) --- */
+.skew-target {
+  will-change: transform;
 }
 
-.glow-hover:hover.glow-orange {
-  box-shadow: 0 0 25px hsl(var(--glow-orange) / 0.3), 0 0 50px hsl(var(--glow-orange) / 0.2);
+/* --- AURA FILTER (from landing page) --- */
+.aura-filter {
+  filter: sepia(0.8) hue-rotate(330deg) saturate(0.6) brightness(0.8);
 }
 
-.glow-hover:hover.glow-pink {
-  box-shadow: 0 0 25px hsl(var(--glow-pink) / 0.3), 0 0 50px hsl(var(--glow-pink) / 0.2);
-}
-
-.glow-hover:hover.glow-warm-gold {
-  box-shadow: 0 0 25px hsl(var(--glow-warm-gold) / 0.3), 0 0 50px hsl(var(--glow-warm-gold) / 0.2);
-}
-
-/* Animated Borders */
-/* Animated Borders */
-/* This class creates an animated gradient border. It works by having an animated background on the parent
-and a ::before pseudo-element with the card's background color inset on top, revealing the parent's animated background. */
-/* The 'animated-border' class is now deprecated and has been neutralized to prevent caching issues. */
-.animated-border {
-  /* This class no longer applies any styles. */
-}
-
-.animated-border::before {
-  /* The pseudo-element that created the gradient has been removed. */
-  content: none;
-}
-
-@keyframes borderAnimation {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-/* Floating Animations */
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-@keyframes floatReverse {
-  0%,
-  100% {
-    transform: translateY(-10px);
-  }
-  50% {
-    transform: translateY(10px);
-  }
-}
-
-@keyframes pulse-glow {
-  0%,
-  100% {
-    box-shadow: 0 0 20px hsl(var(--sage-green) / 0.3);
-  }
-  50% {
-    box-shadow: 0 0 40px hsl(var(--sage-green) / 0.6), 0 0 60px hsl(var(--sage-green) / 0.4);
-  }
-}
-
-.float-animation {
-  animation: float 6s ease-in-out infinite;
-}
-
-.float-reverse {
-  animation: floatReverse 4s ease-in-out infinite;
-}
-
-.pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
-}
-
-/* Rocket Animation */
-@keyframes rocket-launch {
-  0% {
-    transform: translateY(100px) rotate(0deg);
-    opacity: 0;
-  }
-  20% {
-    opacity: 1;
-  }
-  50% {
-    transform: translateY(-20px) rotate(-10deg);
-  }
-  100% {
-    transform: translateY(-200px) rotate(0deg);
-    opacity: 0;
-  }
-}
-
-@keyframes rocket-trail {
-  0% {
-    opacity: 0;
-    transform: scaleY(0);
-  }
-  50% {
-    opacity: 1;
-    transform: scaleY(1);
-  }
-  100% {
-    opacity: 0;
-    transform: scaleY(0.5);
-  }
-}
-
-.rocket-animation {
-  animation: rocket-launch 3s ease-in-out infinite;
-}
-
-.rocket-trail {
-  animation: rocket-trail 3s ease-in-out infinite;
-}
-
-/* Text Animations */
-@keyframes typewriter {
+/* --- ANIMATIONS (from landing page) --- */
+@keyframes spin-slow {
   from {
-    width: 0;
+    transform: rotate(0deg);
   }
   to {
-    width: 100%;
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes reverse-spin {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+@keyframes scan {
+  0% {
+    top: -20%;
+  }
+  100% {
+    top: 120%;
   }
 }
 
 @keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
   50% {
-    border-color: transparent;
+    opacity: 0.3;
   }
 }
 
-.typewriter {
-  overflow: hidden;
-  border-right: 2px solid hsl(var(--sage-green));
-  white-space: nowrap;
-  animation: typewriter 3s steps(40, end), blink 0.75s step-end infinite;
+@keyframes pulse-fast {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
-/* Card Hover Effects */
+/* Animation utility classes */
+.animate-spin-slow {
+  animation: spin-slow 15s linear infinite;
+}
+
+.animate-reverse-spin {
+  animation: reverse-spin 20s linear infinite;
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-scan {
+  animation: scan 4s linear infinite;
+}
+
+.animate-blink {
+  animation: blink 2s ease-in-out infinite;
+}
+
+.animate-pulse-fast {
+  animation: pulse-fast 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Card hover effect */
 .card-hover {
   transition: all 0.3s ease;
   transform-style: preserve-3d;
 }
 
 .card-hover:hover {
-  transform: translateY(-10px) rotateX(5deg);
-}
-
-/* Neon Text Effect */
-.neon-text {
-  color: hsl(var(--sage-green));
-  text-shadow: 0 0 5px hsl(var(--sage-green)), 0 0 10px hsl(var(--sage-green)), 0 0 15px hsl(var(--sage-green)), 0 0
-    20px hsl(var(--sage-green));
-}
-
-.neon-orange {
-  color: hsl(var(--vibrant-orange));
-  text-shadow: 0 0 5px hsl(var(--vibrant-orange)), 0 0 10px hsl(var(--vibrant-orange)), 0 0 15px
-    hsl(var(--vibrant-orange));
-}
-
-.neon-pink {
-  color: hsl(var(--soft-pink));
-  text-shadow: 0 0 5px hsl(var(--soft-pink)), 0 0 10px hsl(var(--soft-pink)), 0 0 15px hsl(var(--soft-pink));
-}
-
-/* Particle Background */
-.particles {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: -1;
-}
-
-.particle {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: hsl(var(--sage-green));
-  border-radius: 50%;
-  animation: particle-float 20s linear infinite;
-}
-
-@keyframes particle-float {
-  0% {
-    transform: translateY(100vh) translateX(0);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100vh) translateX(100px);
-    opacity: 0;
-  }
-}
-
-@keyframes bubble-wobble {
-  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-  50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
-}
-
-.animate-bubble {
-  animation: bubble-wobble 8s ease-in-out infinite;
-}
-
-/* Subtle organic animations for enhanced UI */
-@keyframes bubble-wobble-subtle {
-  0%, 100% {
-    border-radius: 55% 45% 50% 50% / 50% 50% 45% 55%;
-  }
-  50% {
-    border-radius: 45% 55% 50% 50% / 50% 50% 55% 45%;
-  }
-}
-
-@keyframes organic-glow-subtle {
-  0%, 100% {
-    filter: drop-shadow(0 0 15px rgba(184, 115, 51, 0.2));
-  }
-  50% {
-    filter: drop-shadow(0 0 25px rgba(184, 115, 51, 0.35));
-  }
-}
-
-/* Gentle hover lift for organic elements */
-@keyframes gentle-lift {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
-  100% { transform: translateY(0); }
-}
-
-.animate-bubble-subtle {
-  animation: bubble-wobble-subtle 15s ease-in-out infinite;
-}
-
-.animate-organic-glow {
-  animation: organic-glow-subtle 4s ease-in-out infinite;
+  transform: translateY(-10px);
 }

@@ -1,313 +1,321 @@
-"use client"
+"use client";
 
-import React from "react"
-import { motion } from "framer-motion"
-import { Code, Shield, Cloud, Database, Wrench, Users, Puzzle, Handshake, MessageSquare, Crown, GitCommit, BrainCircuit } from "lucide-react"
-import { FaReact, FaVuejs, FaHtml5, FaCss3Alt, FaNodeJs, FaPython, FaDocker, FaGitAlt, FaAws } from "react-icons/fa"
-import { SiNextdotjs, SiTypescript, SiTailwindcss, SiExpress, SiFastapi, SiDjango, SiFlask, SiPostgresql, SiMongodb, SiRedis, SiKubernetes, SiTerraform } from "react-icons/si"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { PageTransition } from "@/components/page-transition"
-import TypewriterEffect from '@/components/typewriter-effect';
+import { motion } from "framer-motion";
+import { PageTransition } from "@/components/page-transition";
+import Footer from "@/components/footer";
+import { useState, useEffect } from "react";
+import Script from "next/script";
+import { 
+  FaReact, 
+  FaVuejs, 
+  FaNodeJs, 
+  FaPython, 
+  FaDocker, 
+  FaAws, 
+  FaGitAlt,
+  FaRust
+} from "react-icons/fa";
+import { 
+  SiNextdotjs, 
+  SiTypescript, 
+  SiTailwindcss, 
+  SiExpress, 
+  SiFastapi, 
+  SiDjango, 
+  SiPostgresql, 
+  SiMongodb, 
+  SiMysql, 
+  SiRedis, 
+  SiKubernetes, 
+  SiTerraform,
+  SiNestjs,
+  SiGo,
+  SiPrisma,
+  SiElasticsearch
+} from "react-icons/si";
+import { TbBrandGolang } from "react-icons/tb";
 
-// Type definitions for skills
 interface Skill {
   name: string;
-  level: number;
-  color: string;
-  icon: string;
+  icon: React.ElementType;
+  color: string; // Brand color for the icon
 }
 
 interface SkillCategory {
   title: string;
-  icon: React.ElementType;
-  color: string;
-  gradient: string;
-  glow: string;
+  icon: string; // Solar icon name
   skills: Skill[];
+  gridSpan: string; // Tailwind grid span classes
 }
 
-interface SoftSkill {
+interface PersonalAttribute {
   name: string;
-  level: number;
-  icon: React.ElementType;
+  description: string;
+  icon: string; // Solar icon name
 }
-
-const iconComponents: { [key: string]: React.ElementType } = {
-  FaReact, FaVuejs, FaHtml5, FaCss3Alt, FaNodeJs, FaPython, FaDocker, FaGitAlt, FaAws,
-  SiNextdotjs, SiTypescript, SiTailwindcss, SiExpress, SiFastapi, SiDjango, SiFlask, SiPostgresql, SiMongodb, SiRedis, SiKubernetes, SiTerraform,
-  Database, Code, Wrench, Users
-};
 
 const skillCategories: SkillCategory[] = [
   {
     title: "Frontend Development",
-    icon: Code,
-    color: "text-gray-600",
-    gradient: "sage-gradient",
-    glow: "glow-sage",
+    icon: "code-circle",
+    gridSpan: "md:col-span-2 md:row-span-2", // Large card
     skills: [
-      { name: "React.js", level: 95, color: "bg-gray-500/70", icon: "FaReact" },
-      { name: "Next.js", level: 90, color: "bg-gray-400/70", icon: "SiNextdotjs" },
-      { name: "Vue.js", level: 85, color: "bg-gray-600/70", icon: "FaVuejs" },
-      { name: "TypeScript", level: 88, color: "bg-gray-500/70", icon: "SiTypescript" },
-      { name: "JavaScript", level: 95, color: "bg-gray-400/70", icon: "FaNodeJs" },
-      { name: "HTML5/CSS3", level: 95, color: "bg-gray-400/70", icon: "FaHtml5" },
-      { name: "Tailwind CSS", level: 92, color: "bg-gray-600/70", icon: "SiTailwindcss" },
+      { name: "React.js", icon: FaReact, color: "#61DAFB" },
+      { name: "Next.js", icon: SiNextdotjs, color: "#000000" },
+      { name: "Vue.js", icon: FaVuejs, color: "#4FC08D" },
+      { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
+      { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
     ],
   },
   {
     title: "Backend Development",
-    icon: Database,
-    color: "text-orange-500",
-    gradient: "orange-gradient",
-    glow: "glow-orange",
+    icon: "server-square",
+    gridSpan: "md:col-span-2 md:row-span-2", // Large card
     skills: [
-      { name: "Node.js", level: 90, color: "bg-orange-400/70", icon: "FaNodeJs" },
-      { name: "Express.js", level: 88, color: "bg-orange-300/70", icon: "SiExpress" },
-      { name: "Python", level: 85, color: "bg-orange-500/70", icon: "FaPython" },
-      { name: "FastAPI", level: 80, color: "bg-orange-400/70", icon: "SiFastapi" },
-      { name: "Django", level: 75, color: "bg-orange-300/70", icon: "SiDjango" },
-      { name: "Flask", level: 82, color: "bg-orange-500/70", icon: "SiFlask" },
-      { name: "JavaScript", level: 92, color: "bg-orange-300/70", icon: "FaNodeJs" },
-      { name: "PHP", level: 78, color: "bg-orange-400/70", icon: "Code" },
+      { name: "Node.js", icon: FaNodeJs, color: "#339933" },
+      { name: "Express.js", icon: SiExpress, color: "#000000" },
+      { name: "NestJS", icon: SiNestjs, color: "#E0234E" },
+      { name: "Python", icon: FaPython, color: "#3776AB" },
+      { name: "FastAPI", icon: SiFastapi, color: "#009688" },
+      { name: "Django", icon: SiDjango, color: "#092E20" },
+      { name: "Golang", icon: TbBrandGolang, color: "#00ADD8" },
+      { name: "Rust", icon: FaRust, color: "#CE422B" },
+    ],
+  },
+  {
+    title: "Database & ORM",
+    icon: "database",
+    gridSpan: "md:col-span-2", // Medium card
+    skills: [
+      { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
+      { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
+      { name: "MySQL", icon: SiMysql, color: "#4479A1" },
+      { name: "Redis", icon: SiRedis, color: "#DC382D" },
+      { name: "Prisma", icon: SiPrisma, color: "#2D3748" },
+      { name: "Elasticsearch", icon: SiElasticsearch, color: "#005571" },
     ],
   },
   {
     title: "Cybersecurity",
-    icon: Shield,
-    color: "text-deep-forest",
-    gradient: "pink-gradient",
-    glow: "glow-pink",
+    icon: "shield-check",
+    gridSpan: "md:col-span-1", // Small card
     skills: [
-      { name: "Security Protocols", level: 92, color: "bg-deep-forest/70", icon: "Shield" },
-      { name: "Threat Analysis", level: 88, color: "bg-deep-forest/60", icon: "Shield" },
-      { name: "Data Encryption", level: 85, color: "bg-deep-forest/80", icon: "Shield" },
-      { name: "Network Security", level: 90, color: "bg-deep-forest/70", icon: "Shield" },
-      { name: "Penetration Testing", level: 80, color: "bg-deep-forest/60", icon: "Shield" },
-      { name: "Security Auditing", level: 87, color: "bg-deep-forest/80", icon: "Shield" },
+      { name: "Security Protocols", icon: FaAws, color: "#D4B483" },
+      { name: "Threat Analysis", icon: FaAws, color: "#D4B483" },
+      { name: "Data Encryption", icon: FaAws, color: "#D4B483" },
+      { name: "Network Security", icon: FaAws, color: "#D4B483" },
+      { name: "Penetration Testing", icon: FaAws, color: "#D4B483" },
     ],
   },
   {
     title: "Cloud & DevOps",
-    icon: Cloud,
-    color: "text-sage-500",
-    gradient: "sage-gradient",
-    glow: "glow-sage",
+    icon: "cloud",
+    gridSpan: "md:col-span-1", // Small card
     skills: [
-      { name: "AWS", level: 85, color: "bg-sage-400/70", icon: "FaAws" },
-      { name: "Docker", level: 90, color: "bg-sage-300/70", icon: "FaDocker" },
-      { name: "CI/CD Pipelines", level: 82, color: "bg-sage-500/70", icon: "FaGitAlt" },
-      { name: "Kubernetes", level: 75, color: "bg-sage-400/70", icon: "SiKubernetes" },
-      { name: "Terraform", level: 70, color: "bg-sage-300/70", icon: "SiTerraform" },
-      { name: "Monitoring", level: 88, color: "bg-sage-500/70", icon: "FaGitAlt" },
+      { name: "AWS", icon: FaAws, color: "#FF9900" },
+      { name: "Docker", icon: FaDocker, color: "#2496ED" },
+      { name: "Kubernetes", icon: SiKubernetes, color: "#326CE5" },
+      { name: "Terraform", icon: SiTerraform, color: "#7B42BC" },
+      { name: "Git", icon: FaGitAlt, color: "#F05032" },
     ],
   },
-  {
-    title: "Database & Caching",
-    icon: Database,
-    color: "text-orange-500",
-    gradient: "orange-gradient",
-    glow: "glow-orange",
-    skills: [
-      { name: "PostgreSQL", level: 92, color: "bg-orange-400/70", icon: "SiPostgresql" },
-      { name: "MongoDB", level: 88, color: "bg-orange-300/70", icon: "SiMongodb" },
-      { name: "MySQL", level: 90, color: "bg-orange-500/70", icon: "Database" },
-      { name: "Redis", level: 85, color: "bg-orange-400/70", icon: "SiRedis" },
-      { name: "Database Design", level: 90, color: "bg-orange-300/70", icon: "Database" },
-      { name: "Query Optimization", level: 87, color: "bg-orange-500/70", icon: "Database" },
-    ],
-  },
-  {
-    title: "Tools & Methodologies",
-    icon: Wrench,
-    color: "text-deep-forest",
-    gradient: "pink-gradient",
-    glow: "glow-pink",
-    skills: [
-      { name: "Git & Version Control", level: 95, color: "bg-deep-forest/70", icon: "FaGitAlt" },
-      { name: "Agile/Scrum", level: 88, color: "bg-deep-forest/60", icon: "Users" },
-      { name: "Testing & QA", level: 85, color: "bg-deep-forest/80", icon: "Wrench" },
-      { name: "API Development", level: 92, color: "bg-deep-forest/70", icon: "Code" },
-      { name: "Code Review", level: 90, color: "bg-deep-forest/60", icon: "Code" },
-      { name: "Documentation", level: 92, color: "bg-deep-forest/60", icon: "Database" },
-      { name: "Debugging", level: 94, color: "bg-deep-forest/80", icon: "Wrench" },
-    ],
-  },
-]
+];
 
-const softSkills: SoftSkill[] = [
-  { name: "Problem Solving", level: 95, icon: Puzzle },
-  { name: "Team Collaboration", level: 90, icon: Handshake },
-  { name: "Communication", level: 88, icon: MessageSquare },
-  { name: "Leadership", level: 85, icon: Crown },
-  { name: "Adaptability", level: 92, icon: GitCommit },
-  { name: "Critical Thinking", level: 90, icon: BrainCircuit },
-]
+const personalAttributes: PersonalAttribute[] = [
+  { 
+    name: "Problem Solving", 
+    description: "Analytical approach to complex challenges with creative solutions",
+    icon: "lightbulb-bolt"
+  },
+  { 
+    name: "Team Collaboration", 
+    description: "Effective communication and cooperation in diverse teams",
+    icon: "users-group-rounded"
+  },
+  { 
+    name: "Communication", 
+    description: "Clear articulation of technical concepts to all stakeholders",
+    icon: "chat-round-line"
+  },
+  { 
+    name: "Leadership", 
+    description: "Guiding teams towards successful project delivery",
+    icon: "crown"
+  },
+  { 
+    name: "Adaptability", 
+    description: "Quick learning and flexibility in dynamic environments",
+    icon: "refresh-circle"
+  },
+  { 
+    name: "Critical Thinking", 
+    description: "Strategic decision-making based on data and analysis",
+    icon: "brain"
+  },
+];
 
-export default function Skills() {
+export default function SkillsPage() {
+  const [unicornLoaded, setUnicornLoaded] = useState(false);
+
+  useEffect(() => {
+    // Initialize Unicorn Studio after script loads
+    if (typeof window !== 'undefined' && (window as any).UnicornStudio && !unicornLoaded) {
+      (window as any).UnicornStudio.init();
+      setUnicornLoaded(true);
+    }
+  }, [unicornLoaded]);
+
   return (
     <PageTransition>
-      <div className="min-h-screen cyber-vibrant-gradient p-6 relative">
-        <div className="container mx-auto max-w-7xl relative z-10">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h1 className="text-6xl font-bold mb-6 rainbow-gradient bg-clip-text text-transparent font-bricolage">
-              My Skills
-            </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto font-inter">
-              Expertise in <TypewriterEffect words={['Frontend Development', 'Backend Engineering', 'Cybersecurity', 'Cloud & DevOps', 'Database Management']} className="text-orange font-poppins font-semibold" />
-            </p>
-          </motion.div>
+      <div className="min-h-screen bg-background text-foreground">
+        {/* GLOBAL BACKDROP */}
+        <div className="fixed inset-0 bg-[#050403] -z-50"></div>
 
-          {/* Technical Skills Grid */}
-          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
-            {skillCategories.map((category, categoryIndex) => (
-              <motion.div
-                key={category.title}
-                initial={{ opacity: 0, y: 50, rotateX: -30 }}
-                animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                transition={{ delay: categoryIndex * 0.1, duration: 0.8 }}
-                whileHover={{ scale: 1.02, rotateY: 2 }}
-                className="group"
-              >
-                <Card
-                  className={`bg-cream/90 dark:bg-card/90 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-500 ${category.glow} glow-hover animated-border h-full flex flex-col`}
-                >
-                  <CardHeader className="p-6 pb-4">
-                    <div className="flex items-center gap-4">
-                      <motion.div whileHover={{ rotate: 360, scale: 1.2 }} transition={{ duration: 0.6 }}>
-                        <category.icon className={`h-8 w-8 ${category.color}`} />
-                      </motion.div>
-                      <CardTitle className={`text-xl text-gray-700 dark:text-gray-200`}>{category.title}</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="p-6 pt-0 flex-1">
-                    <div className="space-y-4">
-                      {category.skills.map((skill, skillIndex) => {
-                        const IconComponent = iconComponents[skill.icon as keyof typeof iconComponents];
-                        return (
-                          <motion.div
-                            key={skill.name}
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: categoryIndex * 0.1 + skillIndex * 0.05, duration: 0.5 }}
-                            className="space-y-2"
-                          >
-                            <div className="flex justify-between items-center">
-                              <div className="flex items-center gap-2">
-                                {IconComponent && <IconComponent className={`h-5 w-5 ${category.color}`} />}
-                                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{skill.name}</span>
-                              </div>
-                              <span className={`text-sm font-bold ${category.color}`}>{skill.level}%</span>
-                            </div>
-                            <div className="w-full bg-gray-300/50 dark:bg-gray-600/50 rounded-full h-2 overflow-hidden">
-                              <div
-                                className={`h-2 rounded-full ${skill.color}`}
-                                style={{ width: `${skill.level}%` }}
-                              />
-                            </div>
-                          </motion.div>
-                        )
-                      })}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+        {/* 3D BACKGROUND (Unicorn Studio) */}
+        <div 
+          className="fixed top-0 w-full h-screen -z-10 aura-filter" 
+          style={{ 
+            maskImage: 'linear-gradient(to bottom, transparent, black 0%, black 80%, transparent)',
+            WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 0%, black 80%, transparent)',
+            filter: 'sepia(0.8) hue-rotate(330deg) saturate(0.6) brightness(0.8)'
+          }}
+        >
+          <div className="absolute w-full h-full left-0 top-0 -z-10">
+            <div data-us-project="NMlvqnkICwYYJ6lYb064" className="absolute w-full h-full left-0 top-0 -z-10"></div>
           </div>
+        </div>
 
-          {/* Soft Skills */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.6 }}
-            className="mb-16"
-          >
-            <Card className="bg-cream/90 dark:bg-card/90 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-300 glow-sage glow-hover">
-              <CardHeader>
-                <CardTitle className="text-3xl font-bold text-center text-gray-700 dark:text-gray-200 font-bricolage">
-                  Soft Skills
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-6">
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-                  {softSkills.map((skill, index) => {
-                    const IconComponent = skill.icon;
-                    return (
+        {/* Unicorn Studio Script */}
+        <Script
+          id="unicorn-studio"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              !function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js",i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head || document.body).appendChild(i)}}();
+            `
+          }}
+        />
+
+        {/* Iconify Script for Solar Icons */}
+        <Script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js" strategy="afterInteractive" />
+
+        {/* HERO SECTION */}
+        <section className="relative min-h-[70vh] w-full flex items-center justify-center py-32 px-6">
+          <div className="max-w-7xl mx-auto w-full relative z-20 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="inline-flex items-center gap-3 border border-accent/20 bg-accent/5 px-4 py-1.5 rounded-full mb-8 backdrop-blur-sm">
+                <span className="w-1.5 h-1.5 bg-accent rounded-full animate-pulse"></span>
+                <span className="font-mono text-[10px] text-accent tracking-widest uppercase">Technical Stack</span>
+              </div>
+              <h1 className="font-serif italic text-5xl md:text-7xl text-black dark:text-white mb-6 leading-tight">
+                My <span className="text-accent not-italic font-bold">Expertise</span>
+              </h1>
+              <p className="text-gray-800 dark:text-gray-400 text-lg max-w-2xl mx-auto font-sans">
+                A comprehensive overview of my technical skills and capabilities
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* TECHNICAL SKILLS SECTION - BENTO GRID */}
+        <section className="py-32 px-6">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <span className="text-accent font-mono text-xs tracking-widest block mb-4">/// TECHNICAL SKILLS</span>
+              <h2 className="font-serif italic text-4xl text-black dark:text-white mb-4">Core Competencies</h2>
+            </div>
+
+            {/* Bento Grid with varying sizes */}
+            <div className="grid grid-cols-1 md:grid-cols-4 auto-rows-auto gap-6">
+              {skillCategories.map((category, categoryIndex) => (
+                <motion.div
+                  key={category.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
+                  className={`glass-panel spotlight-card rounded-2xl p-8 relative group hover:bg-white/5 transition-colors ${category.gridSpan}`}
+                >
+                  <div className="scan-line"></div>
+                  
+                  {/* Header */}
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="p-3 bg-accent/10 rounded-full relative">
+                      <iconify-icon icon={`solar:${category.icon}-bold`} width="24" className="text-accent"></iconify-icon>
+                      <span className="absolute -top-1 -right-1 w-2 h-2 bg-accent rounded-full animate-pulse"></span>
+                    </div>
+                    <h3 className="font-serif italic text-xl text-black dark:text-white">{category.title}</h3>
+                  </div>
+
+                  {/* Skills Grid */}
+                  <div className="grid grid-cols-2 gap-3">
+                    {category.skills.map((skill, skillIndex) => (
                       <motion.div
                         key={skill.name}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 1 + index * 0.1, duration: 0.5 }}
-                        className="flex flex-col items-center text-center p-3 rounded-lg bg-background/30 dark:bg-background/20"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: skillIndex * 0.05, duration: 0.3 }}
+                        className="flex flex-col items-center gap-2 p-4 bg-white/5 border border-white/10 rounded-lg hover:bg-accent/10 hover:border-accent/30 transition-all group/skill"
                       >
-                        <IconComponent className="h-8 w-8 mb-3 text-warm-gold dark:text-warm-gold" />
-                        <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3 font-bricolage">{skill.name}</h3>
-                        <div className="w-full">
-                          <div className="flex justify-center items-center mb-2">
-                            <span className="text-xs font-bold text-warm-gold dark:text-warm-gold font-bricolage">{skill.level}%</span>
-                          </div>
-                          <div className="w-full bg-gray-300/50 dark:bg-gray-600/50 rounded-full h-2">
-                            <div
-                              className="bg-gradient-to-r from-warm-gold to-cream h-2 rounded-full shadow-sm"
-                              style={{ width: `${skill.level}%` }}
-                            />
-                          </div>
-                        </div>
+                        <skill.icon 
+                          className="group-hover/skill:scale-110 transition-transform" 
+                          size={32}
+                          style={{ color: skill.color }}
+                        />
+                        <span className="text-xs text-gray-900 dark:text-gray-300 font-sans text-center leading-tight">{skill.name}</span>
                       </motion.div>
-                    )
-                  })}
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-          {/* Skills Summary */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 0.6 }}
-          >
-            <Card className="bg-cream/90 dark:bg-card/90 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-300 glow-orange glow-hover">
-              <CardHeader>
-                <CardTitle className="text-2xl font-bold text-center text-gray-700 dark:text-gray-200 mb-6 font-bricolage">
-                  Skills Overview
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-6">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                  {[
-                    { number: "20+", label: "Technologies", color: "text-sage-500", glow: "glow-sage" },
-                    { number: "5+", label: "Frameworks", color: "text-orange-500", glow: "glow-orange" },
-                    { number: "3+", label: "Cloud Platforms", color: "text-deep-forest dark:text-sage-400", glow: "glow-pink" },
-                    { number: "90%+", label: "Average Proficiency", color: "text-sage-500", glow: "glow-sage" },
-                  ].map((stat, index) => (
-                    <motion.div
-                      key={stat.label}
-                      whileHover={{ scale: 1.1, rotateY: 10 }}
-                      className={`p-6 bg-card/30 dark:bg-card/20 backdrop-blur-sm rounded-2xl border border-border/50 ${stat.glow} glow-hover`}
-                    >
-                      <motion.div
-                        className={`text-3xl font-bold mb-2 ${stat.color}`}
-                        animate={{ scale: [1, 1.1, 1] }}
-                        transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, delay: index * 0.2 }}
-                      >
-                        {stat.number}
-                      </motion.div>
-                      <p className="text-sm text-muted-foreground">{stat.label}</p>
-                    </motion.div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        </div>
+        {/* PERSONAL ATTRIBUTES SECTION */}
+        <section className="py-32 px-6 bg-[#0a0806] border-y border-accent/10">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <span className="text-accent font-mono text-xs tracking-widest block mb-4">/// SOFT SKILLS</span>
+              <h2 className="font-serif italic text-4xl text-black dark:text-white mb-4">Professional Attributes</h2>
+              <p className="text-gray-800 dark:text-gray-400 max-w-2xl mx-auto font-sans">
+                Beyond code - the interpersonal skills that drive successful collaboration
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {personalAttributes.map((attribute, index) => (
+                <motion.div
+                  key={attribute.name}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="glass-panel spotlight-card rounded-2xl p-8 relative group hover:bg-white/5 transition-colors"
+                >
+                  <div className="scan-line"></div>
+                  <div className="flex flex-col items-center text-center">
+                    <div className="p-4 bg-accent/10 rounded-full mb-4 relative group-hover:bg-accent/20 transition-colors">
+                      <iconify-icon icon={`solar:${attribute.icon}-bold`} width="32" className="text-accent"></iconify-icon>
+                      <span className="absolute -top-1 -right-1 w-2 h-2 bg-accent rounded-full animate-pulse"></span>
+                    </div>
+                    <h3 className="font-serif italic text-lg text-black dark:text-white mb-3">{attribute.name}</h3>
+                    <p className="text-sm text-gray-800 dark:text-gray-400 font-sans leading-relaxed">{attribute.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FOOTER */}
+        <Footer />
       </div>
     </PageTransition>
-  )
+  );
 }
