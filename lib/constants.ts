@@ -86,7 +86,7 @@ export const SPECIALIZATIONS = [
   {
     icon: Code,
     title: "Full Stack Development",
-    description: "Building modern web applications with React, Next.js, Node.js, and other cutting-edge technologies.",
+    description: "Building modern web applications with React, Next.js, Node.js, NestJS, and other cutting-edge technologies.",
     color: "glow-pink",
     textColor: "text-pink-500",
     gradient: "bg-gradient-to-br from-pink-500/20 to-pink-700/20",

@@ -7,6 +7,8 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
 
+import { useMobileMenu } from "@/hooks/use-mobile-menu";
+
 const routes = [
   { href: "/", label: "HOME" },
   { href: "/about", label: "ABOUT" },
@@ -20,6 +22,7 @@ export function FloatingNavbar() {
   const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const { toggle, isOpen } = useMobileMenu();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -99,11 +102,26 @@ export function FloatingNavbar() {
             <div className="hidden md:block">
               <ThemeToggle />
             </div>
-            <Link href="/contact">
-              <button className="border border-white/20 px-6 py-2 text-xs font-bold uppercase tracking-wider text-white hover:bg-accent hover:border-accent hover:text-black transition-all hover-trigger btn-magnetic">
-                Let's Talk
+            
+            <div className="flex items-center gap-2">
+              <Link href="/contact" className="hidden sm:block">
+                <button className="border border-white/20 px-6 py-2 text-xs font-bold uppercase tracking-wider text-white hover:bg-accent hover:border-accent hover:text-black transition-all hover-trigger btn-magnetic">
+                  Let's Talk
+                </button>
+              </Link>
+
+              {/* Mobile Menu Toggle */}
+              <button
+                onClick={toggle}
+                className="p-2 text-white hover:text-accent transition-colors md:hidden"
+                aria-label="Toggle menu"
+              >
+                <iconify-icon 
+                  icon={isOpen ? "solar:close-circle-bold" : "solar:hamburger-menu-bold"} 
+                  width="28"
+                ></iconify-icon>
               </button>
-            </Link>
+            </div>
           </div>
         </div>
       </motion.nav>

@@ -233,7 +233,7 @@ export default function HomePage() {
                   icon: "solar:code-circle-bold",
                   title: "Full-Stack Development",
                   description: "End-to-end web application development with modern technologies.",
-                  items: ["React & Next.js", "Node.js & Express", "Database Design"]
+                  items: ["React & Next.js", "Node.js & NestJS", "Database Design"]
                 },
                 {
                   icon: "solar:database-bold",
