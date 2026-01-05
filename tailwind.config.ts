@@ -26,9 +26,8 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-        bricolage: ["var(--font-bricolage)", "cursive"],
-        inter: ["var(--font-inter)", "sans-serif"],
-        poppins: ["var(--font-poppins)", "sans-serif"],
+        sans: ["var(--font-inter)", "sans-serif"],
+        serif: ["var(--font-playfair)", "serif"],
         mono: ["var(--font-jetbrains)", "monospace"],
       },
       colors: {
@@ -75,19 +74,22 @@ const config: Config = {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Modern Portfolio Colors - Brown & Slate theme
+        // Landing Page Brown/Sand theme
         'brown': {
-          DEFAULT: '#A67C52',
-          dark: '#8B6F47',
-          light: '#C4A57B',
-          accent: '#D4AF7A',
+          DEFAULT: '#D4B483', // Light Brown / Sand (accent)
+          dark: '#8C7A63',    // Warm Brown (secondary)
+          light: '#E6D4B8',
         },
-        // Keep orange for backward compatibility
+        // Keep orange for backward compatibility (mapped to brown)
         'orange': {
-          DEFAULT: '#A67C52',
-          dark: '#8B6F47',
-          light: '#C4A57B',
+          DEFAULT: '#D4B483',
+          dark: '#8C7A63',
+          light: '#E6D4B8',
         },
+        // Landing page specific colors
+        'accent': '#D4B483',
+        'surface': '#080808',
+        'warm-dark': '#050403',
         'slate': {
           50: '#F8FAFC',
           100: '#F1F5F9',
