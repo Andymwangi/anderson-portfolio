@@ -1,29 +1,31 @@
-import type React from "react";
 import type { Metadata } from "next";
 import { Inter, Playfair_Display, JetBrains_Mono } from "next/font/google";
-import { cn } from "@/lib/utils";
-import Script from "next/script";
 import "./globals.css";
-import Sidebar from "@/components/sidebar";
-import FloatingNavbar from "@/components/floating-navbar";
-import { MobileNav } from "@/components/mobile-nav";
 import { ThemeProvider } from "@/components/theme-provider";
-import { PageWrapper } from "@/components/page-wrapper";
 import { AppLoaderManager } from "@/components/app-loader-manager";
-import { InteractiveEffects } from "@/components/interactive-effects";
+import { PageWrapper } from "@/components/page-wrapper";
+import { FloatingNavbar } from "@/components/floating-navbar";
+import { MobileNav } from "@/components/mobile-nav";
 import { SmoothScroll } from "@/components/smooth-scroll";
+import { InteractiveEffects } from "@/components/interactive-effects";
+import Script from "next/script";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const playfair = Playfair_Display({
-  weight: ["400", "600", "700"],
+const inter = Inter({
   subsets: ["latin"],
-  style: ["normal", "italic"],
-  variable: "--font-playfair"
+  variable: "--font-inter",
+  display: "swap",
 });
-const jetbrainsMono = JetBrains_Mono({
-  weight: ["400", "500", "600", "700"],
+
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  variable: "--font-jetbrains"
+  variable: "--font-playfair",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -37,28 +39,43 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${playfair.variable} ${jetbrainsMono.variable}`}>
-      <body className={cn("min-h-screen bg-background font-sans antialiased selection:bg-accent selection:text-black", inter.className)}>
-        {/* Unicorn Studio 3D Background */}
+      <body className="min-h-screen bg-background font-sans antialiased selection:bg-accent selection:text-black">
+        {/* Unicorn Studio 3D Background - Fixed and persistent */}
         <div 
-          className="fixed top-0 left-0 w-full h-screen -z-10" 
+          className="fixed inset-0 w-full h-full pointer-events-none" 
           style={{ 
+            zIndex: 0,
             maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 85%, transparent)',
             WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 85%, transparent)',
             filter: 'sepia(0.8) hue-rotate(330deg) saturate(0.6) brightness(0.9)',
             opacity: 0.6
           }}
         >
-          <div className="absolute w-full h-full left-0 top-0">
-            <div data-us-project="NMlvqnkICwYYJ6lYb064" className="absolute w-full h-full left-0 top-0"></div>
-          </div>
+          <div 
+            data-us-project="NMlvqnkICwYYJ6lYb064" 
+            className="w-full h-full"
+          ></div>
         </div>
 
+        {/* Unicorn Studio Script - Load once */}
         <Script
           id="unicorn-studio"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-              !function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js",i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head || document.body).appendChild(i)}}();
+              (function() {
+                if (window.UnicornStudio && window.UnicornStudio.isInitialized) return;
+                if (!window.UnicornStudio) window.UnicornStudio = { isInitialized: false };
+                var script = document.createElement('script');
+                script.src = 'https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js';
+                script.onload = function() {
+                  if (!window.UnicornStudio.isInitialized) {
+                    UnicornStudio.init();
+                    window.UnicornStudio.isInitialized = true;
+                  }
+                };
+                document.head.appendChild(script);
+              })();
             `
           }}
         />
