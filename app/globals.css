@@ -61,7 +61,6 @@
 
 @layer base {
   html {
-    @apply scroll-smooth;
     background-color: #050403;
     /* Performance optimizations */
     -webkit-font-smoothing: antialiased;
