@@ -88,7 +88,7 @@ export default function Projects() {
         </section>
 
         {/* FILTERS SECTION */}
-        <section className="py-12 px-6 border-y border-accent/10 bg-[#0a0806]">
+        <section className="py-12 px-6 border-y border-gray-200 dark:border-accent/10 bg-[#0a0806]">
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-wrap justify-center gap-3">
               {displayCategories.map((category) => (
@@ -176,7 +176,7 @@ export default function Projects() {
         </section>
 
         {/* PORTFOLIO SUMMARY */}
-        <section className="py-32 px-6 bg-[#0a0806] border-y border-accent/10">
+        <section className="py-32 px-6 bg-[#0a0806] border-y border-gray-200 dark:border-accent/10">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <span className="text-accent font-mono text-xs tracking-widest block mb-4">/// STATISTICS</span>

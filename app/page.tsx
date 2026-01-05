@@ -103,7 +103,7 @@ export default function HomePage() {
         </section>
 
         {/* MARQUEE (Tech Stack) */}
-        <div className="border-y border-accent/10 bg-[#0a0806] py-6 relative z-20 overflow-hidden marquee-mask w-full">
+        <div className="border-y border-gray-200 dark:border-accent/10 bg-[#0a0806] py-6 relative z-20 overflow-hidden marquee-mask w-full">
           <div className="flex whitespace-nowrap animate-marquee w-[max-content]">
             {[...Array(2)].map((_, setIndex) => (
               <div key={setIndex} className="flex gap-16 px-10 items-center">
@@ -218,7 +218,7 @@ export default function HomePage() {
         </section>
 
         {/* SERVICES SECTION */}
-        <section className="py-32 px-6 bg-[#0a0806] relative z-20 border-y border-accent/10">
+        <section className="py-32 px-6 bg-[#0a0806] relative z-20 border-y border-gray-200 dark:border-accent/10">
           <div className="max-w-7xl mx-auto">
             <h2 className="font-serif italic font-medium text-4xl text-white text-center mb-16">What I Offer</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

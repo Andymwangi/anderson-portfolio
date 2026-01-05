@@ -259,7 +259,7 @@ export default function AboutPage() {
         </section>
 
         {/* TIMELINE SECTION */}
-        <section className="py-32 px-6 bg-gray-50 dark:bg-[#0a0806] border-y border-accent/10">
+        <section className="py-32 px-6 bg-gray-50 dark:bg-[#0a0806] border-y border-gray-200 dark:border-accent/10">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-20">
               <span className="text-accent font-mono text-xs tracking-widest block mb-4">/// EXPERIENCE</span>

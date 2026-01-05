@@ -117,7 +117,7 @@ export default function ContactPage() {
         </section>
 
         {/* CONTACT SECTION */}
-        <section className="py-32 px-6 bg-[#0a0806] border-y border-accent/10">
+        <section className="py-32 px-6 bg-gray-50 dark:bg-[#0a0806] border-y border-gray-200 dark:border-accent/10">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
               {/* Contact Info - Left Column */}
@@ -248,7 +248,7 @@ export default function ContactPage() {
                         type="text"
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors font-sans"
+                        className="w-full bg-white dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-lg px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-accent transition-colors font-sans"
                         required
                       />
                     </div>
@@ -262,7 +262,7 @@ export default function ContactPage() {
                         type="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full bg-white/5 dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-lg px-4 py-3 text-black dark:text-white focus:outline-none focus:border-accent transition-colors font-sans"
+                        className="w-full bg-white dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-lg px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-accent transition-colors font-sans"
                         required
                       />
                     </div>
@@ -278,7 +278,7 @@ export default function ContactPage() {
                       type="text"
                       value={formData.subject}
                       onChange={handleChange}
-                      className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors font-sans"
+                      className="w-full bg-white dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-lg px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-accent transition-colors font-sans"
                       required
                     />
                   </div>
@@ -293,7 +293,7 @@ export default function ContactPage() {
                       value={formData.message}
                       onChange={handleChange}
                       rows={6}
-                      className="w-full bg-white/5 dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-lg px-4 py-3 text-black dark:text-white focus:outline-none focus:border-accent transition-colors resize-none font-sans"
+                      className="w-full bg-white dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-lg px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-accent transition-colors resize-none font-sans"
                       required
                     />
                   </div>

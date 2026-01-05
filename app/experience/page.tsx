@@ -124,7 +124,7 @@ export default function ExperiencePage() {
         <div className="fixed inset-0 bg-[#050403] dark:bg-[#050403] -z-50"></div>
 
         {/* HERO SECTION */}
-        <section className="relative min-h-[70vh] w-full flex items-center justify-center py-32 px-6">
+        <section className="relative min-h-[70vh] w-full flex items-center justify-center py-32 px-6 border-b border-gray-200 dark:border-accent/10">
           <div className="max-w-7xl mx-auto w-full relative z-20 text-center">
             <motion.div
               initial={{ opacity: 0, y: -20 }}
@@ -146,7 +146,7 @@ export default function ExperiencePage() {
         </section>
 
         {/* TIMELINE SECTION - Tree Layout */}
-        <section className="py-32 px-6 bg-gray-50 dark:bg-[#0a0806] border-y border-accent/10">
+        <section className="py-32 px-6 bg-gray-50 dark:bg-[#0a0806] border-y border-gray-200 dark:border-accent/10">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-20">
               <span className="text-accent font-mono text-xs tracking-widest block mb-4">/// TIMELINE</span>

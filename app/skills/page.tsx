@@ -150,7 +150,7 @@ const personalAttributes: PersonalAttribute[] = [
   { 
     name: "Critical Thinking", 
     description: "Strategic decision-making based on data and analysis",
-    icon: "brain"
+    icon: "lightbulb-bolt"
   },
 ];
 
@@ -200,7 +200,7 @@ export default function SkillsPage() {
         <Script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js" strategy="afterInteractive" />
 
         {/* HERO SECTION */}
-        <section className="relative min-h-[70vh] w-full flex items-center justify-center py-32 px-6">
+        <section className="relative min-h-[70vh] w-full flex items-center justify-center py-32 px-6 border-b border-gray-200 dark:border-accent/10">
           <div className="max-w-7xl mx-auto w-full relative z-20 text-center">
             <motion.div
               initial={{ opacity: 0, y: -20 }}
@@ -278,7 +278,7 @@ export default function SkillsPage() {
         </section>
 
         {/* PERSONAL ATTRIBUTES SECTION */}
-        <section className="py-32 px-6 bg-[#0a0806] border-y border-accent/10">
+        <section className="py-32 px-6 bg-gray-50 dark:bg-[#0a0806] border-y border-gray-200 dark:border-accent/10">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <span className="text-accent font-mono text-xs tracking-widest block mb-4">/// SOFT SKILLS</span>
@@ -319,3 +319,4 @@ export default function SkillsPage() {
     </PageTransition>
   );
 }
+
