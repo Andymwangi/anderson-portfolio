@@ -61,19 +61,33 @@ export function FloatingNavbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex gap-8 text-xs font-mono tracking-widest text-gray-400">
-            {routes.map((route) => (
-              <Link
-                key={route.href}
-                href={route.href}
-                className={cn(
-                  "hover:text-accent transition-colors hover-trigger",
-                  pathname === route.href && "text-accent"
-                )}
-              >
-                / {route.label}
-              </Link>
-            ))}
+          <div className="hidden md:flex gap-8 text-xs font-mono tracking-widest text-gray-400 relative">
+            {routes.map((route) => {
+              const isActive = pathname === route.href;
+              return (
+                <Link
+                  key={route.href}
+                  href={route.href}
+                  className={cn(
+                    "hover:text-accent transition-colors hover-trigger relative py-2",
+                    isActive && "text-accent"
+                  )}
+                >
+                  / {route.label}
+                  {isActive && (
+                    <motion.div
+                      className="absolute bottom-0 left-0 right-0 h-[2px] bg-accent"
+                      layoutId="navbar-indicator"
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30
+                      }}
+                    />
+                  )}
+                </Link>
+              );
+            })}
           </div>
 
           {/* Right Side */}

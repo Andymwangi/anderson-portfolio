@@ -230,18 +230,18 @@ export default function AboutPage() {
                 <h1 className="font-serif italic text-5xl md:text-7xl text-black dark:text-white mb-6 leading-tight">
                   My <span className="text-accent not-italic font-bold">Journey</span>
                 </h1>
-                <p className="text-gray-900 dark:text-gray-300 text-lg mb-6 leading-relaxed font-sans">
+                <p className="text-gray-900 dark:text-gray-300 text-lg mb-6 leading-relaxed font-serif italic">
                   From curiosity to expertise in digital security, full-stack development, cloud engineering, and DevOps.
                 </p>
-                <p className="text-gray-800 dark:text-gray-400 text-base leading-relaxed font-sans mb-8">
+                <p className="text-gray-800 dark:text-gray-400 text-base leading-relaxed font-serif italic mb-8">
                   As a full-stack developer with expertise in cybersecurity and DevOps, I bring a unique blend of skills to every project. My approach combines technical excellence with a deep understanding of security principles and efficient deployment practices.
                 </p>
                 <div className="flex flex-col items-start gap-3">
                   <div className="flex items-center gap-3">
                     <div className="h-[2px] w-16 bg-gradient-to-r from-accent to-transparent"></div>
-                    <span className="text-accent font-mono text-sm uppercase tracking-wider">Available Worldwide</span>
+                    <span className="text-accent font-serif italic text-sm uppercase tracking-wider">Available Worldwide</span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-800 dark:text-gray-400 font-mono text-sm ml-[76px]">
+                  <div className="flex items-center gap-2 text-gray-800 dark:text-gray-400 font-serif italic text-sm ml-[76px]">
                     <iconify-icon icon="solar:map-point-bold" width="16"></iconify-icon>
                     <span>Based in Nairobi, Kenya</span>
                   </div>
@@ -498,7 +498,7 @@ export default function AboutPage() {
                 <Target className="h-12 w-12 text-accent" />
               </div>
               <h2 className="font-serif italic text-4xl text-black dark:text-white mb-6">My Mission</h2>
-              <p className="text-gray-900 dark:text-gray-300 text-lg leading-relaxed font-sans max-w-2xl mx-auto">
+              <p className="text-gray-900 dark:text-gray-300 text-lg leading-relaxed font-serif italic max-w-2xl mx-auto">
                 To bridge the gap between cutting-edge technology and robust security, creating solutions that are
                 <span className="text-accent font-semibold"> secure by design</span>,
                 <span className="text-accent font-semibold"> scalable by nature</span>, and

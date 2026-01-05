@@ -2,10 +2,13 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Send } from "lucide-react";
+import { motion } from "framer-motion";
 import { SOCIAL_LINKS } from "@/lib/constants";
 
 export default function Footer() {
+  const pathname = usePathname();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -58,6 +61,15 @@ export default function Footer() {
     }
   };
 
+  const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/projects", label: "Projects" },
+    { href: "/skills", label: "Stack" },
+    { href: "/experience", label: "Experience" },
+    { href: "/contact", label: "Contact" },
+  ];
+
   return (
     <footer className="bg-[#020202] pt-32 pb-10 px-6 border-t border-accent/10 relative overflow-hidden">
       {/* Large Background Text */}
@@ -108,15 +120,16 @@ export default function Footer() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-accent text-black px-8 py-3 rounded font-bold text-sm hover:bg-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wider"
+                className="bg-accent text-black px-6 py-3 rounded font-bold text-sm uppercase tracking-wider hover:bg-accent/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
               >
+                <Send className="w-4 h-4" />
                 {isSubmitting ? 'SENDING...' : 'SEND MESSAGE'}
               </button>
               {submitStatus === 'success' && (
-                <p className="text-green-500 text-sm font-mono">✓ Message sent successfully!</p>
+                <span className="text-green-500 text-sm font-sans">Message sent successfully!</span>
               )}
               {submitStatus === 'error' && (
-                <p className="text-red-500 text-sm font-mono">✗ Failed to send. Please try again.</p>
+                <span className="text-red-500 text-sm font-sans">Failed to send. Please try again.</span>
               )}
             </div>
           </form>
@@ -127,7 +140,7 @@ export default function Footer() {
           <div className="flex gap-12 text-sm text-gray-500 font-mono tracking-wider uppercase">
             <div className="flex flex-col gap-3">
               <span className="text-white">Socials</span>
-              {SOCIAL_LINKS.slice(0, 3).map((social) => (
+              {SOCIAL_LINKS.map((social) => (
                 <a
                   key={social.label}
                   href={social.href}
@@ -139,17 +152,31 @@ export default function Footer() {
                 </a>
               ))}
             </div>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 relative">
               <span className="text-white">Navigate</span>
-              <Link href="/about" className="hover:text-accent transition-colors">
-                About
-              </Link>
-              <Link href="/projects" className="hover:text-accent transition-colors">
-                Projects
-              </Link>
-              <Link href="/contact" className="hover:text-accent transition-colors">
-                Contact
-              </Link>
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="hover:text-accent transition-colors relative"
+                  >
+                    {link.label}
+                    {isActive && (
+                      <motion.div
+                        className="absolute -left-3 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-accent rounded-full"
+                        layoutId="footer-indicator"
+                        transition={{
+                          type: "spring",
+                          stiffness: 380,
+                          damping: 30
+                        }}
+                      />
+                    )}
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -158,7 +185,6 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="max-w-[1400px] mx-auto mt-20 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400 font-mono uppercase">
         <span>© {new Date().getFullYear()} ANDERSON MWANGI. ALL RIGHTS RESERVED.</span>
-        <span className="mt-2 md:mt-0 text-gray-500">DESIGNED WITH PASSION</span>
       </div>
     </footer>
   );
