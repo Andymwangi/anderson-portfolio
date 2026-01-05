@@ -25,7 +25,7 @@ export function SpaceRocketLoader() {
           animate={{ opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}
         >
-          <p className="text-lg font-medium">Launching into orbit...</p>
+          <p className="text-lg font-medium text-black dark:text-white">Launching into orbit...</p>
         </motion.div>
       </div>
     </div>
