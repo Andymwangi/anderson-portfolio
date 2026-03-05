@@ -3,22 +3,22 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronRight, Lightbulb, Zap, TrendingUp } from "lucide-react";
-import { FaReact, FaGithub, FaExternalLinkAlt, FaQuoteLeft } from "react-icons/fa";
-import {
-  SiNextdotjs,
-  SiTailwindcss,
-  SiTypescript,
-  SiFramer,
-  SiAppwrite,
-  SiPrisma,
-  SiPostgresql,
-  SiPhp,
-  SiLaravel,
-  SiShadcnui,
-  SiJavascript,
-  SiDocker,
-} from "react-icons/si";
+// Map project iconLists keys to Iconify (simple-icons) icon names
+const ICON_LIST_TO_ICONIFY: Record<string, string> = {
+  FaReact: "simple-icons:react",
+  SiNextdotjs: "simple-icons:nextdotjs",
+  SiTailwindcss: "simple-icons:tailwindcss",
+  SiTypescript: "simple-icons:typescript",
+  SiFramer: "simple-icons:framer",
+  SiAppwrite: "simple-icons:appwrite",
+  SiPrisma: "simple-icons:prisma",
+  SiPostgresql: "simple-icons:postgresql",
+  SiPhp: "simple-icons:php",
+  SiLaravel: "simple-icons:laravel",
+  SiShadcnui: "simple-icons:shadcnui",
+  SiJavascript: "simple-icons:javascript",
+  SiDocker: "simple-icons:docker",
+};
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Project } from "@/lib/project-types";
@@ -30,22 +30,6 @@ interface ProjectModalProps {
   isOpen: boolean
   onClose: () => void
 }
-
-const iconComponents: { [key: string]: React.ElementType } = {
-  FaReact,
-  SiNextdotjs,
-  SiTailwindcss,
-  SiTypescript,
-  SiFramer,
-  SiAppwrite,
-  SiPrisma,
-  SiPostgresql,
-  SiPhp,
-  SiLaravel,
-  SiShadcnui,
-  SiJavascript,
-  SiDocker,
-};
 
 export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
   if (!project) return null
@@ -65,22 +49,22 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.8, opacity: 0, y: 50 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="bg-cream/95 dark:bg-charcoal/95 backdrop-blur-md rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-warm-gold/20 dark:border-warm-copper/20"
+            className="bg-background max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-white/10"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Header */}
-            <div className="relative p-8 bg-gradient-to-br from-warm-gold to-warm-gold/70 dark:from-warm-copper dark:to-warm-copper/70 rounded-t-2xl">
+            {/* Header - theme-aware text so title is visible in light and dark */}
+            <div className="relative p-8 border-b border-border bg-background">
               <Button
                 variant="ghost"
                 size="icon"
-                className="absolute top-4 right-4 text-white hover:bg-white/20"
+                className="absolute top-4 right-4 text-foreground hover:bg-muted"
                 onClick={onClose}
               >
-                <X className="h-6 w-6" />
+                <iconify-icon icon="solar:close-circle-bold" width="24" height="24" />
               </Button>
 
               <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
-                <div className="relative w-full md:w-48 h-32 rounded-lg overflow-hidden">
+                <div className="relative w-full md:w-48 h-32 rounded-lg overflow-hidden shrink-0">
                   <Image 
                     src={project.img} 
                     alt={project.title}
@@ -89,17 +73,17 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                   />
                 </div>
 
-                <div className="text-white">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Badge className="bg-white/20 text-white border-white/30">
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2 mb-2 flex-wrap">
+                    <Badge variant="secondary" className="text-foreground border-border">
                       {project.category}
                     </Badge>
-                    <Badge className="bg-white/20 text-white border-white/30">
+                    <Badge variant="secondary" className="text-foreground border-border">
                       Client: {project.client}
                     </Badge>
                   </div>
-                  <h2 className="text-3xl font-bold mb-2 font-bricolage">{project.title}</h2>
-                  <p className="text-white/80 text-lg">{project.des}</p>
+                  <h2 className="text-3xl font-bold mb-2 font-bricolage text-foreground">{project.title}</h2>
+                  <p className="text-muted-foreground text-lg">{project.des}</p>
                 </div>
               </div>
             </div>
@@ -118,15 +102,15 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="p-4 bg-orange-50 dark:bg-warm-copper/10 rounded-lg border border-orange-200 dark:border-warm-copper/20">
                     <div className="flex items-center gap-2 mb-3">
-                      <Lightbulb className="h-5 w-5 text-orange-600 dark:text-warm-copper" />
+                      <iconify-icon icon="solar:lightbulb-bold" width="20" height="20" className="text-orange-600 dark:text-warm-copper" />
                       <h4 className="font-semibold text-orange-800 dark:text-warm-copper font-bricolage">Challenge</h4>
                     </div>
                     <p className="text-gray-600 dark:text-cream/80">{project.challenge}</p>
                   </div>
-                  <div className="p-4 bg-green-50 dark:bg-sage/10 rounded-lg border border-green-200 dark:border-sage/20">
+                  <div className="p-4 bg-accent/10 rounded-lg border border-accent/20">
                     <div className="flex items-center gap-2 mb-3">
-                      <Zap className="h-5 w-5 text-green-600 dark:text-sage" />
-                      <h4 className="font-semibold text-green-800 dark:text-sage font-bricolage">Solution</h4>
+                      <iconify-icon icon="solar:lightning-bold" width="20" height="20" className="text-accent" />
+                      <h4 className="font-semibold text-accent font-bricolage">Solution</h4>
                     </div>
                     <p className="text-gray-600 dark:text-cream/80">{project.solution}</p>
                   </div>
@@ -136,7 +120,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
               {/* Impact */}
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
                 <h3 className="text-xl font-semibold mb-4 flex items-center gap-2 text-warm-gold dark:text-warm-copper font-bricolage">
-                  <TrendingUp className="h-5 w-5 text-warm-gold dark:text-warm-copper" />
+                  <iconify-icon icon="solar:graph-up-bold" width="20" height="20" className="text-warm-gold dark:text-warm-copper" />
                   <span>Impact & Results</span>
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -164,7 +148,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
               >
                 <div className="flex flex-col md:flex-row gap-6 items-start">
                   <div className="text-warm-gold dark:text-warm-copper">
-                    <FaQuoteLeft size={30} />
+                    <iconify-icon icon="solar:quote-down-bold" width="30" height="30" />
                   </div>
                   <div>
                     <p className="italic text-gray-600 dark:text-cream/80 mb-4">"{project.testimonial.quote}"</p>
@@ -181,8 +165,8 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                 <h3 className="text-xl font-semibold mb-4 text-warm-gold dark:text-warm-copper font-bricolage">Technologies Used</h3>
                 <div className="flex flex-wrap gap-3">
                   {project.iconLists.map((iconName, i) => {
-                    const IconComponent = iconComponents[iconName as keyof typeof iconComponents];
-                    if (!IconComponent) return null;
+                    const iconId = ICON_LIST_TO_ICONIFY[iconName];
+                    if (!iconId) return null;
                     return (
                       <motion.div
                         key={`tech-${i}`}
@@ -193,7 +177,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                         className="w-10 h-10 flex items-center justify-center bg-warm-gold/10 dark:bg-warm-copper/10 rounded-full p-1 border border-warm-gold/20 dark:border-warm-copper/20"
                         title={iconName.replace(/^(Si|Fa)/, '')}
                       >
-                        <IconComponent className="h-6 w-6 text-warm-gold dark:text-warm-copper" />
+                        <iconify-icon icon={iconId} width="24" height="24" className="text-warm-gold dark:text-warm-copper" />
                       </motion.div>
                     );
                   })}
@@ -209,7 +193,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
               >
                 <a href={project.link} target="_blank" rel="noopener noreferrer">
                   <Button className="bg-warm-gold hover:bg-warm-gold/80 text-white">
-                    <FaExternalLinkAlt className="h-4 w-4 mr-2" />
+                    <iconify-icon icon="solar:link-square-bold" width="16" height="16" className="mr-2 inline" />
                     View Live Site
                   </Button>
                 </a>
@@ -220,7 +204,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                       variant="outline"
                       className="border-warm-gold text-warm-gold hover:bg-warm-gold hover:text-white dark:border-warm-copper dark:text-warm-copper dark:hover:bg-warm-copper dark:hover:text-charcoal"
                     >
-                      <FaGithub className="h-4 w-4 mr-2" />
+                      <iconify-icon icon="mdi:github" width="16" height="16" className="mr-2 inline" />
                       View Code
                     </Button>
                   </a>
@@ -231,7 +215,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                     variant="outline"
                     className="border-warm-gold/50 text-warm-gold hover:bg-warm-gold/10 dark:border-warm-copper/50 dark:text-warm-copper dark:hover:bg-warm-copper/10"
                   >
-                    <ChevronRight className="h-4 w-4 mr-2" />
+                    <iconify-icon icon="solar:arrow-right-bold" width="16" height="16" className="mr-2 inline" />
                     Contact Me
                   </Button>
                 </Link>

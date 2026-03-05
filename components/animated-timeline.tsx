@@ -1,7 +1,6 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Calendar, MapPin, TrendingUp } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 
@@ -68,11 +67,11 @@ export function AnimatedTimeline({ items }: AnimatedTimelineProps) {
                     </div>
                     <div className="flex items-center gap-4 text-sm text-slate-600 dark:text-slate-400 font-inter">
                       <div className="flex items-center gap-1">
-                        <MapPin className="h-4 w-4 text-orange" />
+                        <iconify-icon icon="solar:map-point-bold" width="16" height="16" className="text-orange" />
                         <span>{item.location}</span>
                       </div>
                       <div className="flex items-center gap-1">
-                        <Calendar className="h-4 w-4 text-orange" />
+                        <iconify-icon icon="solar:calendar-bold" width="16" height="16" className="text-orange" />
                         <span>{item.period}</span>
                       </div>
                     </div>
@@ -82,7 +81,7 @@ export function AnimatedTimeline({ items }: AnimatedTimelineProps) {
               <CardContent className="p-6 pt-0">
                 <div className="mb-4">
                   <h4 className="font-semibold mb-3 flex items-center gap-2 text-slate-900 dark:text-white font-bricolage">
-                    <TrendingUp className="h-4 w-4 text-orange" />
+                    <iconify-icon icon="solar:graph-up-bold" width="16" height="16" className="text-orange" />
                     Key Achievements
                   </h4>
                   <ul className="space-y-2">

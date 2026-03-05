@@ -2,13 +2,12 @@
 
 import Image from 'next/image';
 import { motion, Variants } from "framer-motion";
-import { Coffee, Server, Shield, Search, Code, Cloud, Moon, Laptop } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const daySegments = [
   {
-    icon1: Coffee,
-    icon2: Server,
+    icon1: "solar:cup-bold",
+    icon2: "solar:server-bold",
     title: "Morning: The Architect",
     time: "9:00 AM - 12:00 PM",
     description: "Fueling up, the day begins at Coseke. I'm architecting backend microservices, designing secure APIs, and ensuring database schemas are robust and scalable. It's a world of Docker, Kubernetes, and clean code.",
@@ -16,8 +15,8 @@ const daySegments = [
     cardClassName: "h-full glow-sage backdrop-blur-sm border border-border/50 glow-hover overflow-hidden",
   },
   {
-    icon1: Shield,
-    icon2: Search,
+    icon1: "solar:shield-check-bold",
+    icon2: "solar:magnifier-bold",
     title: "Midday: The Analyst",
     time: "12:00 PM - 1:00 PM",
     description: "Switching hats to a cybersecurity analyst. I scan threat intelligence feeds, review firewall logs, and hunt for vulnerabilities. It's a constant cat-and-mouse game, and I love the challenge.",
@@ -25,8 +24,8 @@ const daySegments = [
     cardClassName: "h-full glow-orange backdrop-blur-sm border border-border/50 glow-hover overflow-hidden",
   },
   {
-    icon1: Code,
-    icon2: Cloud,
+    icon1: "solar:code-bold",
+    icon2: "solar:cloud-bold",
     title: "Afternoon: The Builder",
     time: "1:00 PM - 5:00 PM",
     description: "Back to development. I'm writing Python and Go, deploying services to AWS, and configuring CI/CD pipelines. It's about turning complex requirements into elegant, functional software.",
@@ -34,8 +33,8 @@ const daySegments = [
     cardClassName: "h-full glow-pink backdrop-blur-sm border border-border/50 glow-hover overflow-hidden",
   },
   {
-    icon1: Moon,
-    icon2: Laptop,
+    icon1: "solar:moon-bold",
+    icon2: "solar:laptop-bold",
     title: "Evening: The Freelance Maverick",
     time: "7:00 PM onwards",
     description: "The corporate day is done, but the passion isn't. I dive into freelance projects, helping startups build their MVPs or securing their applications. This is where I experiment and push creative boundaries.",
@@ -95,8 +94,8 @@ const DayInTheLife = () => {
                 <div className="flex justify-between items-center">
                   <CardTitle className="text-slate-900 dark:text-slate-100">{segment.title}</CardTitle>
                   <div className="flex gap-2">
-                    <segment.icon1 className="h-6 w-6 text-muted-foreground" />
-                    <segment.icon2 className="h-6 w-6 text-muted-foreground" />
+                    <iconify-icon icon={segment.icon1} width="24" height="24" className="text-muted-foreground" />
+                    <iconify-icon icon={segment.icon2} width="24" height="24" className="text-muted-foreground" />
                   </div>
                 </div>
                 <p className="text-sm text-muted-foreground pt-1">{segment.time}</p>

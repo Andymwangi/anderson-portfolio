@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Send } from "lucide-react";
 import { motion } from "framer-motion";
 import { SOCIAL_LINKS } from "@/lib/constants";
 
@@ -71,15 +70,8 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-[#020202] pt-32 pb-10 px-6 border-t border-accent/10 relative overflow-hidden">
-      {/* Large Background Text */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none select-none pointer-events-none opacity-5 flex justify-center">
-        <span className="text-[16vw] font-serif italic font-black text-white whitespace-nowrap">
-          ANDERSON
-        </span>
-      </div>
-
-      <div className="max-w-[1400px] mx-auto relative z-10 grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
+    <footer className="bg-[#020202] pt-24 pb-10 px-6 border-t border-accent/10 relative overflow-hidden">
+      <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
         {/* Contact Form Section */}
         <div className="md:col-span-2">
           <h3 className="text-2xl font-serif italic text-white mb-2">Start a Project?</h3>
@@ -122,11 +114,11 @@ export default function Footer() {
                 disabled={isSubmitting}
                 className="bg-accent text-black px-6 py-3 rounded font-bold text-sm uppercase tracking-wider hover:bg-accent/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
               >
-                <Send className="w-4 h-4" />
+                <iconify-icon icon="solar:plain-2-bold" width="16" height="16" />
                 {isSubmitting ? 'SENDING...' : 'SEND MESSAGE'}
               </button>
               {submitStatus === 'success' && (
-                <span className="text-green-500 text-sm font-sans">Message sent successfully!</span>
+                <span className="text-accent text-sm font-sans">Message sent successfully!</span>
               )}
               {submitStatus === 'error' && (
                 <span className="text-red-500 text-sm font-sans">Failed to send. Please try again.</span>
@@ -146,8 +138,9 @@ export default function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-accent transition-colors"
+                  className="hover:text-accent transition-colors flex items-center gap-2"
                 >
+                  <iconify-icon icon={social.icon} width="16" height="16" />
                   {social.label}
                 </a>
               ))}

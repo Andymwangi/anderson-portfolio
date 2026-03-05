@@ -1,5 +1,3 @@
-import type { LucideIcon } from "lucide-react"
-
 export interface Project {
   title: string
   organization: string
@@ -10,6 +8,6 @@ export interface Project {
   metrics: Record<string, string | undefined>
   status: string
   category: string
-  icon: LucideIcon
+  icon: string
   gradient: string
 }

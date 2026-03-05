@@ -5,27 +5,17 @@ import { cn } from "@/lib/utils";
 import { useSidebar } from "@/hooks/use-sidebar";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import {
-  Home,
-  Briefcase,
-  User,
-  Mail,
-  Award,
-  Code,
-  PanelLeftClose,
-  PanelRightClose,
-} from "lucide-react";
 import { Button } from "./ui/button";
 import { ThemeToggle } from "./theme-toggle";
 
 const routes = [
-  { href: "/", label: "Home", icon: Home },
-  { href: "/about", label: "About", icon: User },
-  { href: "/projects", label: "Projects", icon: Briefcase },
-  { href: "/skills", label: "Skills", icon: Code },
-  { href: "/experience", label: "Experience", icon: Briefcase },
-  { href: "/certifications", label: "Certifications", icon: Award },
-  { href: "/contact", label: "Contact", icon: Mail },
+  { href: "/", label: "Home", icon: "solar:home-2-bold" },
+  { href: "/about", label: "About", icon: "solar:user-bold" },
+  { href: "/projects", label: "Projects", icon: "solar:briefcase-bold" },
+  { href: "/skills", label: "Skills", icon: "solar:code-bold" },
+  { href: "/experience", label: "Experience", icon: "solar:briefcase-bold" },
+  { href: "/certifications", label: "Certifications", icon: "solar:medal-ribbons-bold" },
+  { href: "/contact", label: "Contact", icon: "solar:letter-bold" },
 ];
 
 const Sidebar = () => {
@@ -83,7 +73,7 @@ const Sidebar = () => {
                 !showFullSidebar && "justify-center px-2"
               )}
             >
-              <route.icon className="h-4 w-4 flex-shrink-0" />
+              <iconify-icon icon={route.icon} width="16" height="16" className="flex-shrink-0" />
               {showFullSidebar && (
                 <span className="text-xs font-medium font-inter">
                   {route.label}
@@ -111,9 +101,9 @@ const Sidebar = () => {
             onClick={toggle}
           >
             {isOpen ? (
-              <PanelLeftClose className="h-3.5 w-3.5" />
+              <iconify-icon icon="solar:sidebar-minimalistic-bold" width="14" height="14" />
             ) : (
-              <PanelRightClose className="h-3.5 w-3.5" />
+              <iconify-icon icon="solar:sidebar-bold" width="14" height="14" />
             )}
           </Button>
           <ThemeToggle />

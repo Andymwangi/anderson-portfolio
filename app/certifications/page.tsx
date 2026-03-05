@@ -129,7 +129,7 @@ export default function Certifications() {
             className="mb-16"
           >
             {education.map((edu, index) => (
-              <Card key={index} className={`bg-cream/90 dark:bg-card/90 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-500 ${edu.glow} glow-hover animated-border`}>
+              <Card key={index} className="rounded-none shadow-none border-b border-white/10 bg-transparent">
                 <CardHeader className="p-6 pb-4">
                   <div className="flex items-center justify-between mb-4">
                     <Badge variant="secondary" className="bg-sage-500/20 dark:bg-sage-400/20 text-sage-600 dark:text-sage-400 border-sage-500/30 dark:border-sage-400/30">
@@ -196,7 +196,7 @@ export default function Certifications() {
                         variant="secondary"
                         className={`${
                           cert.status === "Completed" 
-                            ? "bg-green-500/20 dark:bg-green-400/20 text-green-700 dark:text-green-400 border-green-500/30 dark:border-green-400/30" 
+                            ? "bg-accent/20 text-accent border-accent/30" 
                             : "bg-yellow-500/20 dark:bg-yellow-400/20 text-yellow-700 dark:text-yellow-400 border-yellow-500/30 dark:border-yellow-400/30"
                         }`}
                       >
@@ -276,7 +276,7 @@ export default function Certifications() {
             transition={{ delay: 1, duration: 0.6 }}
             className="mt-16"
           >
-            <Card className="bg-cream/90 dark:bg-card/90 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-300 glow-pink glow-hover">
+            <Card className="rounded-none shadow-none border-b border-white/10 bg-transparent">
               <CardHeader>
                 <CardTitle className="text-center text-2xl font-bold text-gray-700 dark:text-gray-200 font-bricolage">Portfolio Summary</CardTitle>
               </CardHeader>
@@ -291,7 +291,7 @@ export default function Certifications() {
                     <motion.div
                       key={`${stat.label}-${index}`}
                       whileHover={{ scale: 1.1, rotateY: 10 }}
-                      className={`p-6 bg-card/30 dark:bg-card/20 backdrop-blur-sm rounded-2xl border border-border/50 ${stat.glow} glow-hover`}
+                      className={`p-6 border-b border-white/10 ${stat.glow} glow-hover`}
                     >
                       <motion.div
                         className={`text-3xl font-bold mb-2 ${stat.color}`}

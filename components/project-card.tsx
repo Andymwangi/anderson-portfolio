@@ -4,42 +4,27 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Project } from "@/lib/project-types";
-import { FaReact, FaGithub, FaExternalLinkAlt } from "react-icons/fa";
-import {
-  SiNextdotjs,
-  SiTailwindcss,
-  SiTypescript,
-  SiFramer,
-  SiAppwrite,
-  SiPrisma,
-  SiPostgresql,
-  SiPhp,
-  SiLaravel,
-  SiShadcnui,
-  SiJavascript,
-  SiDocker,
-} from "react-icons/si";
+// Map project iconLists keys to Iconify (simple-icons) icon names
+const ICON_LIST_TO_ICONIFY: Record<string, string> = {
+  FaReact: "simple-icons:react",
+  SiNextdotjs: "simple-icons:nextdotjs",
+  SiTailwindcss: "simple-icons:tailwindcss",
+  SiTypescript: "simple-icons:typescript",
+  SiFramer: "simple-icons:framer",
+  SiAppwrite: "simple-icons:appwrite",
+  SiPrisma: "simple-icons:prisma",
+  SiPostgresql: "simple-icons:postgresql",
+  SiPhp: "simple-icons:php",
+  SiLaravel: "simple-icons:laravel",
+  SiShadcnui: "simple-icons:shadcnui",
+  SiJavascript: "simple-icons:javascript",
+  SiDocker: "simple-icons:docker",
+};
 
 interface ProjectCardProps {
   project: Project;
   onOpenModal: (project: Project) => void;
 }
-
-const iconComponents: { [key: string]: React.ElementType } = {
-  FaReact,
-  SiNextdotjs,
-  SiTailwindcss,
-  SiTypescript,
-  SiFramer,
-  SiAppwrite,
-  SiPrisma,
-  SiPostgresql,
-  SiPhp,
-  SiLaravel,
-  SiShadcnui,
-  SiJavascript,
-  SiDocker,
-};
 
 const ProjectCard = ({ project, onOpenModal }: ProjectCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -64,25 +49,40 @@ const ProjectCard = ({ project, onOpenModal }: ProjectCardProps) => {
           className="object-cover transition-transform duration-500 group-hover:scale-110"
         />
 
+        {/* Always-visible title bar: solid dark strip so title is readable on any image */}
+        <div
+          className="absolute bottom-0 left-0 right-0 pt-16 pb-5 px-5 bg-gradient-to-t from-black via-black/95 to-transparent"
+          aria-hidden
+        >
+          <h3
+            className="text-lg font-bold text-white line-clamp-2 font-bricolage"
+            style={{
+              textShadow: "0 0 12px rgba(0,0,0,1), 0 1px 4px rgba(0,0,0,1), 0 2px 8px rgba(0,0,0,0.9)",
+            }}
+          >
+            {project.title}
+          </h3>
+        </div>
+
         {/* Overlay on hover */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-t from-slate-900/95 via-slate-900/80 to-slate-900/60 flex flex-col justify-end p-5"
+          className="absolute inset-0 bg-gradient-to-t from-slate-900/98 via-slate-900/90 to-slate-900/70 flex flex-col justify-end p-5"
           initial={{ opacity: 0 }}
           animate={{ opacity: isHovered ? 1 : 0 }}
           transition={{ duration: 0.3 }}
         >
-          <h3 className="text-xl font-bold text-white mb-2 line-clamp-2 font-bricolage">{project.title}</h3>
-          <p className="text-slate-300 text-sm mb-4 line-clamp-3 font-inter">{project.des}</p>
+          <h3 className="text-xl font-bold text-white mb-2 line-clamp-2 font-bricolage drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">{project.title}</h3>
+          <p className="text-slate-200 text-sm mb-4 line-clamp-3 font-inter drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">{project.des}</p>
 
           <div className="flex justify-between items-center">
             {/* Tech Icons */}
             <div className="flex space-x-2">
               {project.iconLists.slice(0, 3).map((iconName, index) => {
-                const IconComponent = iconComponents[iconName as keyof typeof iconComponents];
-                if (!IconComponent) return null;
+                const iconId = ICON_LIST_TO_ICONIFY[iconName];
+                if (!iconId) return null;
                 return (
                   <div key={index} className="w-6 h-6 bg-orange/20 rounded-full flex items-center justify-center" title={iconName.replace(/^(Si|Fa)/, '')}>
-                    <IconComponent className="h-4 w-4 text-orange" />
+                    <iconify-icon icon={iconId} width="16" height="16" className="text-orange" />
                   </div>
                 );
               })}
@@ -103,7 +103,7 @@ const ProjectCard = ({ project, onOpenModal }: ProjectCardProps) => {
                   onClick={(e) => e.stopPropagation()}
                   className="text-white hover:text-orange transition-colors"
                 >
-                  <FaGithub size={18} />
+                  <iconify-icon icon="mdi:github" width="18" height="18" />
                 </a>
               )}
               {project.link && (
@@ -114,7 +114,7 @@ const ProjectCard = ({ project, onOpenModal }: ProjectCardProps) => {
                   onClick={(e) => e.stopPropagation()}
                   className="text-white hover:text-orange transition-colors"
                 >
-                  <FaExternalLinkAlt size={16} />
+                  <iconify-icon icon="solar:link-square-bold" width="16" height="16" />
                 </a>
               )}
             </div>

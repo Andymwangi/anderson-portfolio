@@ -23,7 +23,7 @@ export default function RotatingKeywords() {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 20 }}
         transition={{ duration: 0.5 }}
-        className="text-emerald-600 dark:text-brown-accent font-semibold"
+        className="text-accent font-semibold"
       >
         {HERO_KEYWORDS[index]}
       </motion.span>

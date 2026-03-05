@@ -1,98 +1,171 @@
+/* Fonts are loaded via next/font in layout.tsx          */
+/* See the layout.tsx snippet provided separately.       */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    /* Landing Page Brown/Sand Theme - Light Mode */
-    --background: 35 20% 97%; /* Very light warm background */
-    --foreground: 30 10% 15%; /* Dark brown text */
-    --card: 0 0% 100%;
-    --card-foreground: 30 10% 15%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 30 10% 15%;
-    --primary: 37 36% 66%; /* #D4B483 - Light Brown/Sand */
-    --primary-foreground: 30 10% 15%;
-    --secondary: 35 21% 56%; /* #8C7A63 - Warm Brown */
-    --secondary-foreground: 0 0% 100%;
-    --muted: 35 15% 85%;
-    --muted-foreground: 35 10% 40%;
-    --accent: 37 36% 66%; /* #D4B483 */
-    --accent-foreground: 30 10% 15%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 37 36% 80%;
-    --input: 37 36% 80%;
-    --ring: 37 36% 66%;
-    --radius: 0.75rem;
+    /* ── Parchment & Ink · Light Mode ── */
+    --background:          35 30% 96%;   /* #F7F4EF warm parchment */
+    --background-subtle:   32 27% 92%;   /* #F0EBE3 alternating sections */
+    --foreground:          22 14% 9%;    /* #1C1410 near-black warm */
 
-    /* Surface colors from landing page */
-    --surface: 0 0% 3%; /* #080808 */
-    --warm-dark: 30 25% 2%; /* #050403 */
+    --card:                33 23% 87%;   /* #EDE7DC surface */
+    --card-foreground:     22 14% 9%;
+
+    --popover:             33 23% 87%;
+    --popover-foreground:  22 14% 9%;
+
+    --primary:             33 22% 40%;   /* #7C6A52 antique bronze */
+    --primary-foreground:  35 30% 96%;
+
+    --secondary:           30 15% 30%;   /* #5A4E43 warm mid-brown */
+    --secondary-foreground:35 30% 96%;
+
+    --muted:               32 18% 83%;   /* #E4DDD1 muted surface */
+    --muted-foreground:    30 8% 56%;    /* #9A8E82 warm grey */
+
+    --accent:              36 43% 63%;   /* #C9A87A golden sand */
+    --accent-foreground:   22 14% 9%;
+
+    --destructive:         0 84% 60%;
+    --destructive-foreground: 35 30% 96%;
+
+    --border:              34 21% 78%;   /* #D4C9B8 warm border */
+    --input:               34 21% 78%;
+    --ring:                33 22% 40%;
+    --radius:              0px;          /* editorial — no rounding */
+
+    /* Raw hex tokens for non-Tailwind use */
+    --bg:              #F7F4EF;
+    --bg-subtle:       #F0EBE3;
+    --surface:         #EDE7DC;
+    --surface-2:       #E4DDD1;
+    --border-raw:      #D4C9B8;
+    --border-faint:    #E8E0D4;
+    --text-primary:    #1C1410;
+    --text-secondary:  #5A4E43;
+    --text-muted:      #9A8E82;
+    --accent-raw:      #7C6A52;
+    --accent-bright:   #C9A87A;
+    --accent-pop:      #3D3328;
+    --highlight:       #B8956A;
   }
 
   .dark {
-    /* Landing Page Brown/Sand Theme - Dark Mode */
-    --background: 30 25% 2%; /* #050403 - Warm Dark */
-    --foreground: 40 30% 88%; /* #e6e0d4 - Light cream text */
-    --card: 30 23% 6%; /* Slightly lighter than background */
-    --card-foreground: 40 30% 88%;
-    --popover: 30 23% 6%;
-    --popover-foreground: 40 30% 88%;
-    --primary: 37 36% 66%; /* #D4B483 */
-    --primary-foreground: 30 10% 15%;
-    --secondary: 35 21% 56%; /* #8C7A63 */
-    --secondary-foreground: 40 30% 88%;
-    --muted: 30 15% 20%;
-    --muted-foreground: 35 15% 60%;
-    --accent: 37 36% 66%; /* #D4B483 */
-    --accent-foreground: 30 10% 15%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 40 30% 88%;
-    --border: 37 20% 15%;
-    --input: 37 20% 15%;
-    --ring: 37 36% 66%;
+    /* ── Parchment & Ink · Dark Mode ── */
+    --background:          22 17% 6%;    /* #0F0D0A deep warm black */
+    --background-subtle:   22 16% 8%;    /* #161310 lifted */
+    --foreground:          36 30% 88%;   /* #EDE5D8 warm cream */
 
-    /* Surface colors */
-    --surface: 0 0% 3%; /* #080808 */
-    --warm-dark: 30 25% 2%; /* #050403 */
+    --card:                24 15% 10%;   /* #1E1A15 card surface */
+    --card-foreground:     36 30% 88%;
+
+    --popover:             24 15% 10%;
+    --popover-foreground:  36 30% 88%;
+
+    --primary:             36 43% 63%;   /* #C9A87A golden sand */
+    --primary-foreground:  22 17% 6%;
+
+    --secondary:           30 14% 60%;   /* #A89880 warm tan */
+    --secondary-foreground:22 17% 6%;
+
+    --muted:               24 14% 15%;   /* #26211A */
+    --muted-foreground:    24 8% 36%;    /* #665850 */
+
+    --accent:              36 43% 63%;   /* #C9A87A */
+    --accent-foreground:   22 17% 6%;
+
+    --destructive:         0 63% 31%;
+    --destructive-foreground: 36 30% 88%;
+
+    --border:              24 20% 17%;   /* #332B21 warm dark border */
+    --input:               24 20% 17%;
+    --ring:                36 43% 63%;
+
+    /* Raw hex tokens */
+    --bg:              #0F0D0A;
+    --bg-subtle:       #161310;
+    --surface:         #1E1A15;
+    --surface-2:       #26211A;
+    --border-raw:      #332B21;
+    --border-faint:    #251F18;
+    --text-primary:    #EDE5D8;
+    --text-secondary:  #A89880;
+    --text-muted:      #665850;
+    --accent-raw:      #C9A87A;
+    --accent-bright:   #E8C898;
+    --accent-pop:      #F0E0C0;
+    --highlight:       #B8956A;
   }
 }
 
 @layer base {
   html {
-    background-color: #050403;
-    /* Performance optimizations */
+    background-color: #F7F4EF;
+    scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  html.dark {
+    background-color: #0F0D0A;
   }
 
   body {
     @apply antialiased;
     margin: 0;
     padding: 0;
-    background-color: transparent;
-    color: #e6e0d4;
+    background-color: var(--bg);
+    color: var(--text-primary);
     overflow-x: hidden;
-    cursor: auto;
-    /* Performance optimizations */
-    will-change: scroll-position;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000px;
+    /* var(--font-instrument) injected by next/font in layout.tsx */
+    font-family: var(--font-instrument, 'Instrument Sans', ui-sans-serif, sans-serif);
+    font-weight: 300;
+  }
+
+  /* Display / editorial headings → Cormorant Garamond italic */
+  h1, h2, h3 {
+    /* var(--font-cormorant) injected by next/font in layout.tsx */
+    font-family: var(--font-cormorant, 'Cormorant Garamond', ui-serif, serif);
+    font-style: italic;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+  }
+
+  h4, h5, h6 {
+    font-family: var(--font-instrument, 'Instrument Sans', ui-sans-serif, sans-serif);
+    font-style: normal;
+    font-weight: 500;
   }
 }
 
-/* --- GLASS PANEL (from landing page) --- */
+/* ─── EDITORIAL DIVIDER ──────────────────────────────── */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border-raw);
+}
+
+/* ─── GLASS / SURFACE PANEL ─────────────────────────── */
 .glass-panel {
-  background: rgba(15, 12, 10, 0.7);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(212, 180, 131, 0.1);
+  background: rgba(30, 26, 21, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(201, 168, 122, 0.12);
   position: relative;
   overflow: hidden;
 }
 
-/* --- SPOTLIGHT EFFECT (from landing page) --- */
+.light .glass-panel,
+:root:not(.dark) .glass-panel {
+  background: rgba(237, 231, 220, 0.8);
+  border: 1px solid rgba(124, 106, 82, 0.15);
+}
+
+/* ─── SPOTLIGHT CARD ────────────────────────────────── */
 .spotlight-card {
   position: relative;
 }
@@ -100,14 +173,11 @@
 .spotlight-card::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   border-radius: inherit;
   background: radial-gradient(
     800px circle at var(--mouse-x) var(--mouse-y),
-    rgba(212, 180, 131, 0.06),
+    rgba(201, 168, 122, 0.07),
     transparent 40%
   );
   z-index: 2;
@@ -116,22 +186,17 @@
   pointer-events: none;
 }
 
-.spotlight-card:hover::before {
-  opacity: 1;
-}
+.spotlight-card:hover::before { opacity: 1; }
 
 .spotlight-card::after {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   border-radius: inherit;
   padding: 1px;
   background: radial-gradient(
     600px circle at var(--mouse-x) var(--mouse-y),
-    rgba(212, 180, 131, 0.4),
+    rgba(201, 168, 122, 0.35),
     transparent 40%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -143,149 +208,217 @@
   pointer-events: none;
 }
 
-.spotlight-card:hover::after {
-  opacity: 1;
-}
+.spotlight-card:hover::after { opacity: 1; }
 
-/* --- MARQUEE (from landing page) --- */
+/* ─── MARQUEE ────────────────────────────────────────── */
 .marquee-mask {
-  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
 }
 
-/* --- SCAN LINE (from landing page) --- */
+/* ─── SCAN LINE ─────────────────────────────────────── */
 .scan-line {
   position: absolute;
   left: 0;
   width: 100%;
-  height: 50px;
-  background: linear-gradient(to bottom, transparent, rgba(212, 180, 131, 0.2), transparent);
-  opacity: 0.5;
-  animation: scan 3s linear infinite;
+  height: 40px;
+  background: linear-gradient(to bottom, transparent, rgba(201, 168, 122, 0.15), transparent);
+  opacity: 0.4;
+  animation: scan 4s linear infinite;
   z-index: 10;
   pointer-events: none;
 }
 
-/* --- NOISE OVERLAY (from landing page) --- */
+/* ─── NOISE OVERLAY ─────────────────────────────────── */
 .noise-overlay {
   position: fixed;
   inset: 0;
   z-index: 9000;
   pointer-events: none;
-  opacity: 0.03;
+  opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-/* --- MAGNETIC BUTTON (from landing page) --- */
+/* ─── MAGNETIC BUTTON ────────────────────────────────── */
 .btn-magnetic {
   display: inline-block;
   will-change: transform;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* --- DOT GRID (from landing page) --- */
+/* ─── DOT GRID ───────────────────────────────────────── */
 .dot-grid {
-  background-image: radial-gradient(rgba(212, 180, 131, 0.15) 1px, transparent 1px);
-  background-size: 20px 20px;
+  background-image: radial-gradient(rgba(201, 168, 122, 0.12) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
-/* --- SKEW TARGET (from landing page) --- */
-.skew-target {
-  will-change: transform;
+/* ─── SECTION LABEL (mono caps) ─────────────────────── */
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
 }
 
-/* --- AURA FILTER (from landing page) --- */
+.section-label::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: var(--accent-raw);
+  opacity: 0.6;
+}
+
+/* ─── EDITORIAL CARD ─────────────────────────────────── */
+.editorial-card {
+  border-bottom: 1px solid var(--border-raw);
+  padding: 40px 0;
+  transition: all 0.3s ease;
+}
+
+.editorial-card:first-child { border-top: 1px solid var(--border-raw); }
+
+/* ─── PHOTO ALBUM (Sean-style editorial) ─────────────── */
+.photo-album-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 3px;
+}
+
+.photo-album-grid .photo-main {
+  grid-row: span 2;
+}
+
+.photo-frame {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+}
+
+.photo-frame:hover img { transform: scale(1.04); }
+
+.photo-meta {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(15, 13, 10, 0.7) 0%, transparent 100%);
+}
+
+.photo-meta-number {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: rgba(237, 229, 216, 0.4);
+  letter-spacing: 0.1em;
+}
+
+.photo-meta-caption {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  color: rgba(237, 229, 216, 0.75);
+  letter-spacing: 0.06em;
+}
+
+.photo-meta-date {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px;
+  color: rgba(237, 229, 216, 0.35);
+  margin-top: 3px;
+  letter-spacing: 0.12em;
+}
+
+/* ─── SKEW TARGET ────────────────────────────────────── */
+.skew-target { will-change: transform; }
+
+/* ─── AURA FILTER ────────────────────────────────────── */
 .aura-filter {
-  filter: sepia(0.8) hue-rotate(330deg) saturate(0.6) brightness(0.8);
+  filter: sepia(0.6) hue-rotate(10deg) saturate(0.5) brightness(0.85);
 }
 
-/* --- ANIMATIONS (from landing page) --- */
+/* ─── ANIMATIONS ─────────────────────────────────────── */
 @keyframes spin-slow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
 @keyframes reverse-spin {
-  from {
-    transform: rotate(360deg);
-  }
-  to {
-    transform: rotate(0deg);
-  }
+  from { transform: rotate(360deg); }
+  to   { transform: rotate(0deg); }
 }
 
 @keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-33.333%);
-  }
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
 }
 
 @keyframes scan {
-  0% {
-    top: -20%;
-  }
-  100% {
-    top: 120%;
-  }
+  0%   { top: -20%; }
+  100% { top: 120%; }
 }
 
 @keyframes blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.3;
-  }
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
 }
 
 @keyframes pulse-fast {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
 }
 
-/* Animation utility classes */
-.animate-spin-slow {
-  animation: spin-slow 15s linear infinite;
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
 }
 
-.animate-reverse-spin {
-  animation: reverse-spin 20s linear infinite;
-}
+/* Utility animation classes */
+.animate-spin-slow    { animation: spin-slow 15s linear infinite; }
+.animate-reverse-spin { animation: reverse-spin 20s linear infinite; }
+.animate-marquee      { animation: marquee 32s linear infinite; }
+.animate-scan         { animation: scan 4s linear infinite; }
+.animate-blink        { animation: blink 2s ease-in-out infinite; }
+.animate-pulse-fast   { animation: pulse-fast 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+.animate-float        { animation: float 4s ease-in-out infinite; }
 
-.animate-marquee {
-  animation: marquee 30s linear infinite;
-}
-
-.animate-scan {
-  animation: scan 4s linear infinite;
-}
-
-.animate-blink {
-  animation: blink 2s ease-in-out infinite;
-}
-
-.animate-pulse-fast {
-  animation: pulse-fast 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-/* Card hover effect */
+/* ─── CARD HOVER ─────────────────────────────────────── */
 .card-hover {
-  transition: all 0.3s ease;
-  transform-style: preserve-3d;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.card-hover:hover {
-  transform: translateY(-10px);
+.card-hover:hover { transform: translateY(-6px); }
+
+/* ─── ACCENT LINE ────────────────────────────────────── */
+.accent-line {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--accent-raw);
+}
+
+/* Dark: parchment bg sections */
+.dark .section-alt {
+  background: var(--bg-subtle);
 }

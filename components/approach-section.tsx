@@ -2,23 +2,22 @@
 
 import { motion, Variants } from "framer-motion";
 import { useState } from "react";
-import { Code, Shield, Server, Database, Cpu, GitBranch, Lock, ShieldCheck, Key, FileWarning, Layers, Container, Globe, BarChart } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface ApproachCardProps {
-  icon: React.ElementType;
+  icon: string;
   title: string;
   description: string;
   steps: {
     title: string;
     description: string;
-    icon: React.ElementType;
+    icon: string;
   }[];
   colorClass: string;
   delay: number;
 }
 
-const ApproachCard = ({ icon: Icon, title, description, steps, colorClass, delay }: ApproachCardProps) => {
+const ApproachCard = ({ icon, title, description, steps, colorClass, delay }: ApproachCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const glowAnimation = {
@@ -66,7 +65,7 @@ const ApproachCard = ({ icon: Icon, title, description, steps, colorClass, delay
           <CardHeader className={`bg-${colorClass}/10 dark:bg-${colorClass}/5 z-10`}>
             <div className="flex items-center gap-4">
               <div className={`bg-${colorClass}/20 text-${colorClass} dark:bg-${colorClass}/10 p-3 rounded-full`}>
-                <Icon className="h-6 w-6" />
+                <iconify-icon icon={icon} width="24" height="24" />
               </div>
               <CardTitle className={`text-xl text-${colorClass}`}>{title}</CardTitle>
             </div>
@@ -88,16 +87,14 @@ const ApproachCard = ({ icon: Icon, title, description, steps, colorClass, delay
                 animate={isHovered ? "hover" : "initial"}
                 variants={{ hover: { transition: { staggerChildren: 0.1 } } }}
               >
-                {steps.map((step, index) => {
-                  const StepIcon = step.icon;
-                  return (
+                {steps.map((step, index) => (
                     <motion.div
                       key={index}
                       variants={stepVariants}
                       className="flex items-start gap-4 overflow-hidden"
                     >
                       <div className={`relative z-10 mt-1 bg-charcoal p-2 rounded-full border-2 border-${colorClass}/30`}>
-                        <StepIcon className={`h-5 w-5 text-${colorClass}`} />
+                        <iconify-icon icon={step.icon} width="20" height="20" className={`text-${colorClass}`} />
                       </div>
                       <div className="flex-1">
                         <h4 className="font-semibold text-deep-forest dark:text-cream font-bricolage">{step.title}</h4>
@@ -106,8 +103,7 @@ const ApproachCard = ({ icon: Icon, title, description, steps, colorClass, delay
                         </p>
                       </div>
                     </motion.div>
-                  );
-                })}
+                ))}
               </motion.div>
             </div>
           </CardContent>
@@ -120,94 +116,42 @@ const ApproachCard = ({ icon: Icon, title, description, steps, colorClass, delay
 export default function ApproachSection() {
   const approaches = [
     {
-      icon: Code,
+      icon: "solar:code-bold",
       title: "Full-Stack Development",
       description: "I build robust, scalable, and secure full-stack applications from front-end to back-end, ensuring a seamless user experience.",
       colorClass: "deep-forest",
       steps: [
-        {
-          title: "Frontend Development",
-          description: "I create responsive, interactive user interfaces with React and Next.js, focusing on performance and accessibility.",
-          icon: Cpu
-        },
-        {
-          title: "Backend API Design",
-          description: "I design and implement secure, efficient RESTful APIs and GraphQL endpoints using Node.js, Express, and NestJS.",
-          icon: Server
-        },
-        {
-          title: "Database Management",
-          description: "I work with both SQL (PostgreSQL) and NoSQL (MongoDB) databases, ensuring data integrity and performance.",
-          icon: Database
-        }
+        { title: "Frontend Development", description: "I create responsive, interactive user interfaces with React and Next.js, focusing on performance and accessibility.", icon: "solar:cpu-bold" },
+        { title: "Backend API Design", description: "I design and implement secure, efficient RESTful APIs and GraphQL endpoints using Node.js, Express, and NestJS.", icon: "solar:server-bold" },
+        { title: "Database Management", description: "I work with both SQL (PostgreSQL) and NoSQL (MongoDB) databases, ensuring data integrity and performance.", icon: "solar:database-bold" },
       ],
       delay: 0.1
     },
     {
-      icon: Shield,
+      icon: "solar:shield-check-bold",
       title: "Cybersecurity & Compliance",
       description: "I integrate security best practices throughout the development lifecycle to protect applications and user data.",
       colorClass: "warm-copper",
       steps: [
-        {
-          title: "Threat Modeling",
-          description: "I conduct STRIDE threat modeling sessions to identify potential vulnerabilities and attack vectors before development begins.",
-          icon: Shield
-        },
-        {
-          title: "Secure Authentication",
-          description: "I implement OAuth 2.0 with PKCE for secure authentication flows, along with JWT handling and proper session management.",
-          icon: Lock
-        },
-        {
-          title: "Data Protection",
-          description: "I ensure all sensitive data is encrypted at rest using AES-256 and in transit with TLS 1.3, with proper key management practices.",
-          icon: Key
-        },
-        {
-          title: "Security Testing",
-          description: "I perform regular penetration testing using tools like OWASP ZAP and Burp Suite to identify and remediate security vulnerabilities.",
-          icon: FileWarning
-        },
-        {
-          title: "Compliance Verification",
-          description: "I ensure all systems meet regulatory requirements like GDPR, HIPAA, or PCI DSS through comprehensive security controls and documentation.",
-          icon: ShieldCheck
-        }
+        { title: "Threat Modeling", description: "I conduct STRIDE threat modeling sessions to identify potential vulnerabilities and attack vectors before development begins.", icon: "solar:shield-check-bold" },
+        { title: "Secure Authentication", description: "I implement OAuth 2.0 with PKCE for secure authentication flows, along with JWT handling and proper session management.", icon: "solar:lock-bold" },
+        { title: "Data Protection", description: "I ensure all sensitive data is encrypted at rest using AES-256 and in transit with TLS 1.3, with proper key management practices.", icon: "solar:key-bold" },
+        { title: "Security Testing", description: "I perform regular penetration testing using tools like OWASP ZAP and Burp Suite to identify and remediate security vulnerabilities.", icon: "solar:danger-triangle-bold" },
+        { title: "Compliance Verification", description: "I ensure all systems meet regulatory requirements like GDPR, HIPAA, or PCI DSS through comprehensive security controls and documentation.", icon: "solar:shield-user-bold" },
       ],
       delay: 0.3
     },
     {
-      icon: Layers,
+      icon: "solar:layers-bold",
       title: "DevOps Engineering",
       description: "I implement automated workflows and infrastructure as code to ensure reliable, scalable, and efficient deployments.",
       colorClass: "slate-grey",
       steps: [
-        {
-          title: "Infrastructure as Code",
-          description: "I define cloud resources using Terraform or AWS CloudFormation to create reproducible, version-controlled infrastructure deployments.",
-          icon: Layers
-        },
-        {
-          title: "Containerization",
-          description: "I package applications in Docker containers with optimized multi-stage builds and implement orchestration with Kubernetes for scalability.",
-          icon: Container
-        },
-        {
-          title: "CI/CD Pipeline Setup",
-          description: "I create automated pipelines with GitHub Actions or Jenkins that include linting, testing, security scanning, and deployment stages.",
-          icon: GitBranch
-        },
-        {
-          title: "Monitoring & Alerting",
-          description: "I implement comprehensive monitoring with Prometheus and Grafana, with automated alerts for performance issues or system failures.",
-          icon: BarChart
-        },
-        {
-          title: "Disaster Recovery",
-          description: "I establish robust backup strategies and disaster recovery procedures with regular testing to ensure business continuity.",
-          icon: Globe
-        }
+        { title: "Infrastructure as Code", description: "I define cloud resources using Terraform or AWS CloudFormation to create reproducible, version-controlled infrastructure deployments.", icon: "solar:layers-bold" },
+        { title: "Containerization", description: "I package applications in Docker containers with optimized multi-stage builds and implement orchestration with Kubernetes for scalability.", icon: "solar:box-bold" },
+        { title: "CI/CD Pipeline Setup", description: "I create automated pipelines with GitHub Actions or Jenkins that include linting, testing, security scanning, and deployment stages.", icon: "solar:git-branch-bold" },
+        { title: "Monitoring & Alerting", description: "I implement comprehensive monitoring with Prometheus and Grafana, with automated alerts for performance issues or system failures.", icon: "solar:chart-2-bold" },
+        { title: "Disaster Recovery", description: "I establish robust backup strategies and disaster recovery procedures with regular testing to ensure business continuity.", icon: "solar:global-bold" },
       ],
       delay: 0.5
     }

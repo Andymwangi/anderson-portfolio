@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Download, ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const profileImages = [
@@ -44,12 +43,12 @@ export default function ProfessionalIntro() {
         <div className="flex flex-wrap gap-4">
           <Button asChild className="bg-brown hover:bg-brown-dark text-white px-6 py-3 rounded-xl shadow-lg shadow-brown/30 hover:shadow-xl hover:shadow-brown/40 transition-all duration-300 font-poppins">
             <Link href="/contact">
-              Get in Touch <ArrowRight className="ml-2 h-4 w-4" />
+              Get in Touch <iconify-icon icon="solar:arrow-right-bold" className="ml-2 inline" width="16" height="16" />
             </Link>
           </Button>
           <a href="/Anderson Mwangi Junior Full stack  Resume (1).pdf" download>
             <Button variant="outline" className="border-2 border-brown hover:border-brown-dark text-slate-700 dark:text-slate-300 hover:text-brown-dark px-6 py-3 rounded-xl transition-all duration-300 font-poppins">
-              <Download className="mr-2 h-4 w-4" /> Download CV
+              <iconify-icon icon="solar:download-bold" className="mr-2 inline" width="16" height="16" /> Download CV
             </Button>
           </a>
         </div>

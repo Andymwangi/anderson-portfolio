@@ -1,63 +1,79 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display, JetBrains_Mono } from "next/font/google";
+import { Cormorant_Garamond, Instrument_Sans, DM_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AppLoaderManager } from "@/components/app-loader-manager";
 import { PageWrapper } from "@/components/page-wrapper";
 import { FloatingNavbar } from "@/components/floating-navbar";
 import { MobileNav } from "@/components/mobile-nav";
-import { SmoothScroll } from "@/components/smooth-scroll";
 import { InteractiveEffects } from "@/components/interactive-effects";
 import Script from "next/script";
 
-const inter = Inter({
+/* ── Fonts ─────────────────────────────────────────────────────────────────
+   Valid weights per next/font type definitions in this project's Next version:
+     Cormorant_Garamond → "300" | "400" | "500" | "600" | "700"  (static)
+     Instrument_Sans    → "400" | "500" | "600" | "700"           (static in this version)
+     DM_Mono            → "300" | "400" | "500"                   (static in this version)
+── */
+
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["300", "400", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-cormorant",
   display: "swap",
 });
 
-const playfair = Playfair_Display({
+const instrument = Instrument_Sans({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  weight: ["400", "500"],
+  style: ["normal", "italic"],
+  variable: "--font-instrument",
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const dmMono = DM_Mono({
   subsets: ["latin"],
-  variable: "--font-jetbrains",
+  weight: ["300", "400", "500"],
+  style: ["normal"],
+  variable: "--font-dm-mono",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Anderson Mwangi - Cybersecurity & Cloud Engineer",
+  title: "Anderson Mwangi - Full Stack Developer & Cybersecurity Engineer",
   description:
-    "Portfolio of Anderson Mwangi, a freelance developer specializing in cybersecurity, cloud engineering, and full stack development.",
+    "Portfolio of Anderson Mwangi, a full-stack developer specialising in cybersecurity, cloud engineering, and enterprise systems. Based in Nairobi, Kenya.",
   keywords:
-    "anderson mwangi, cybersecurity, cloud engineering, full stack developer, next.js, typescript",
+    "anderson mwangi, cybersecurity, cloud engineering, full stack developer, next.js, typescript, nairobi",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${playfair.variable} ${jetbrainsMono.variable}`}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${cormorant.variable} ${instrument.variable} ${dmMono.variable}`}
+    >
       <body className="min-h-screen bg-background font-sans antialiased selection:bg-accent selection:text-black">
         {/* Unicorn Studio 3D Background - Fixed and persistent */}
-        <div 
-          className="fixed inset-0 w-full h-full pointer-events-none" 
-          style={{ 
+        <div
+          className="fixed inset-0 w-full h-full pointer-events-none"
+          style={{
             zIndex: 0,
-            maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 85%, transparent)',
-            WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 85%, transparent)',
-            filter: 'sepia(0.8) hue-rotate(330deg) saturate(0.6) brightness(0.9)',
-            opacity: 0.6
+            maskImage: "linear-gradient(to bottom, transparent, black 10%, black 85%, transparent)",
+            WebkitMaskImage: "linear-gradient(to bottom, transparent, black 10%, black 85%, transparent)",
+            filter: "sepia(0.8) hue-rotate(330deg) saturate(0.6) brightness(0.9)",
+            opacity: 0.6,
           }}
         >
-          <div 
-            data-us-project="NMlvqnkICwYYJ6lYb064" 
+          <div
+            data-us-project="NMlvqnkICwYYJ6lYb064"
             className="w-full h-full"
-          ></div>
+          />
         </div>
 
-        {/* Unicorn Studio Script - Load once */}
+        {/* Unicorn Studio Script */}
         <Script
           id="unicorn-studio"
           strategy="afterInteractive"
@@ -76,15 +92,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 };
                 document.head.appendChild(script);
               })();
-            `
+            `,
           }}
         />
-        
-        {/* Iconify Script for Solar Icons */}
-        <Script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js" strategy="afterInteractive" />
-        
+
+        {/* Iconify for Solar Icons */}
+        <Script
+          src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"
+          strategy="afterInteractive"
+        />
+
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          <SmoothScroll />
           <InteractiveEffects />
           <AppLoaderManager>
             <PageWrapper>

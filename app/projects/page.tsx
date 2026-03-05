@@ -6,37 +6,22 @@ import { PageTransition } from "@/components/page-transition";
 import { ProjectModal } from "@/components/project-modal";
 import { useProjects } from "@/hooks";
 import Footer from "@/components/footer";
-import { FaReact } from 'react-icons/fa';
-import {
-  SiNextdotjs,
-  SiTailwindcss,
-  SiTypescript,
-  SiFramer,
-  SiAppwrite,
-  SiPrisma,
-  SiPostgresql,
-  SiPhp,
-  SiLaravel,
-  SiShadcnui,
-  SiJavascript,
-  SiDocker,
-} from 'react-icons/si';
 import { PORTFOLIO_SUMMARY } from "@/lib/constants";
 
-const iconComponents: { [key: string]: React.ElementType } = {
-  FaReact,
-  SiNextdotjs,
-  SiTailwindcss,
-  SiTypescript,
-  SiFramer,
-  SiAppwrite,
-  SiPrisma,
-  SiPostgresql,
-  SiPhp,
-  SiLaravel,
-  SiShadcnui,
-  SiJavascript,
-  SiDocker,
+const ICON_LIST_TO_ICONIFY: Record<string, string> = {
+  FaReact:       "simple-icons:react",
+  SiNextdotjs:   "simple-icons:nextdotjs",
+  SiTailwindcss: "simple-icons:tailwindcss",
+  SiTypescript:  "simple-icons:typescript",
+  SiFramer:      "simple-icons:framer",
+  SiAppwrite:    "simple-icons:appwrite",
+  SiPrisma:      "simple-icons:prisma",
+  SiPostgresql:  "simple-icons:postgresql",
+  SiPhp:         "simple-icons:php",
+  SiLaravel:     "simple-icons:laravel",
+  SiShadcnui:    "simple-icons:shadcnui",
+  SiJavascript:  "simple-icons:javascript",
+  SiDocker:      "simple-icons:docker",
 };
 
 export default function Projects() {
@@ -55,72 +40,160 @@ export default function Projects() {
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-background text-foreground">
-        {/* GLOBAL BACKDROP */}
-        <div className="fixed inset-0 bg-[#050403] -z-50"></div>
+      {/* Noise overlay */}
+      <div className="noise-overlay" />
 
-        {/* HERO SECTION */}
-        <section className="relative min-h-[70vh] w-full flex items-center justify-center py-32 px-6">
-          {/* Radial Pulse Animation */}
+      <div className="min-h-screen" style={{ background: "var(--bg)", color: "var(--text-primary)" }}>
+
+        {/* Global backdrop */}
+        <div className="fixed inset-0 -z-50 dark:bg-[#0F0D0A] bg-[#F7F4EF]" />
+
+        {/* Dot grid */}
+        <div className="fixed inset-0 dot-grid opacity-40 pointer-events-none -z-10" />
+
+        {/* ═══════════════════════════════════════════════
+            HERO
+        ═══════════════════════════════════════════════ */}
+        <section
+          className="relative min-h-[70vh] w-full flex items-center justify-center py-32 px-6 overflow-hidden"
+          style={{ borderBottom: "1px solid var(--border-raw)" }}
+        >
+          {/* Radial glow rings */}
           <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none">
-            <div className="absolute w-[400px] h-[400px] rounded-full border border-accent/15 animate-ping" style={{ animationDuration: '4s' }}></div>
-            <div className="absolute w-[600px] h-[600px] rounded-full border border-accent/10 animate-ping" style={{ animationDuration: '5s', animationDelay: '0.5s' }}></div>
+            {[300, 500, 700].map((size, i) => (
+              <div
+                key={size}
+                className="absolute rounded-full border"
+                style={{
+                  width: size,
+                  height: size,
+                  borderColor: `rgba(201,168,122,${0.10 - i * 0.025})`,
+                  animation: `ping ${4 + i}s cubic-bezier(0,0,0.2,1) infinite`,
+                  animationDelay: `${i * 0.6}s`,
+                }}
+              />
+            ))}
           </div>
 
           <div className="max-w-7xl mx-auto w-full relative z-20 text-center">
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="inline-flex items-center gap-3 border border-accent/20 bg-accent/5 px-4 py-1.5 rounded-full mb-8 backdrop-blur-sm">
-                <span className="w-1.5 h-1.5 bg-accent rounded-full animate-pulse"></span>
-                <span className="font-mono text-[10px] text-accent tracking-widest uppercase">Portfolio</span>
-              </div>
-              <h1 className="font-serif italic text-5xl md:text-7xl text-black dark:text-white mb-6 leading-tight">
-                Selected <span className="text-accent not-italic font-bold">Works</span>
+              <h1
+                className="font-serif font-light italic mb-6 leading-[0.9]"
+                style={{ fontSize: "clamp(3.5rem, 10vw, 7.5rem)", color: "var(--text-primary)" }}
+              >
+                Selected{" "}
+                <span
+                  className="font-bold not-italic"
+                  style={{
+                    background: "linear-gradient(135deg, var(--accent-bright) 0%, var(--text-primary) 60%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  Works
+                </span>
               </h1>
-              <p className="text-gray-800 dark:text-gray-400 text-lg max-w-2xl mx-auto font-sans">
+
+              <p
+                className="font-sans font-light text-xl max-w-2xl mx-auto leading-relaxed"
+                style={{ color: "var(--text-secondary)" }}
+              >
                 A showcase of my best projects and technical implementations
               </p>
             </motion.div>
           </div>
         </section>
 
-        {/* FILTERS SECTION */}
-        <section className="py-12 px-6 border-y border-gray-200 dark:border-accent/10 bg-[#0a0806]">
+        {/* ═══════════════════════════════════════════════
+            FILTERS
+        ═══════════════════════════════════════════════ */}
+        <section
+          className="py-10 px-6"
+          style={{
+            background: "var(--bg-subtle)",
+            borderBottom: "1px solid var(--border-raw)",
+          }}
+        >
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-wrap justify-center gap-3">
-              {displayCategories.map((category) => (
-                <motion.button
-                  key={category}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3 }}
-                  onClick={() => setFilter('category', category === "All" ? null : category)}
-                  className={`px-6 py-2 font-mono text-xs tracking-widest uppercase transition-all btn-magnetic ${
-                    (filters.category === category) || (category === "All" && !filters.category)
-                      ? "bg-accent text-black border-accent"
-                      : "border border-white/20 text-white hover:bg-white/10"
-                  }`}
-                >
-                  {category}
-                </motion.button>
-              ))}
+              {displayCategories.map((category, i) => {
+                const isActive =
+                  filters.category === category ||
+                  (category === "All" && !filters.category);
+                return (
+                  <motion.button
+                    key={category}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: i * 0.05 }}
+                    onClick={() =>
+                      setFilter("category", category === "All" ? null : category)
+                    }
+                    className="btn-magnetic px-6 py-2.5 transition-all"
+                    style={
+                      isActive
+                        ? {
+                            background: "var(--accent-bright)",
+                            color: "var(--bg)",
+                            border: "1px solid transparent",
+                          }
+                        : {
+                            background: "transparent",
+                            color: "var(--text-secondary)",
+                            border: "1px solid var(--border-raw)",
+                          }
+                    }
+                  >
+                    {category}
+                  </motion.button>
+                );
+              })}
             </div>
           </div>
         </section>
 
-        {/* PROJECTS BENTO GRID */}
-        <section className="py-32 px-6">
+        {/* ═══════════════════════════════════════════════
+            PROJECTS BENTO GRID
+        ═══════════════════════════════════════════════ */}
+        <section className="py-28 px-6">
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-auto gap-6">
+
+            {/* Section label */}
+            <div className="flex items-end justify-between mb-16 pb-8" style={{ borderBottom: "1px solid var(--border-raw)" }}>
+              <div>
+                <div className="section-label">/// Featured Work</div>
+                <h2
+                  className="font-serif font-light italic"
+                  style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", color: "var(--text-primary)" }}
+                >
+                  Projects
+                </h2>
+              </div>
+              <span
+                className="font-mono text-[9px] tracking-widest uppercase hidden md:block"
+                style={{ color: "var(--text-muted)" }}
+              >
+                {filteredProjects.length} Works
+              </span>
+            </div>
+
+            {/* Grid */}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(4, 1fr)",
+                gap: "3px",
+              }}
+            >
               {filteredProjects.map((project, index) => {
-                // Determine grid spanning for bento layout
                 const isFeatured = index === 0 || index === 3 || index === 6;
-                const gridClass = isFeatured
-                  ? "md:col-span-2 md:row-span-2"
-                  : "md:col-span-2";
+                const colSpan = isFeatured ? 2 : 2;
+                const rowSpan = isFeatured ? 2 : 1;
 
                 return (
                   <motion.div
@@ -128,46 +201,114 @@ export default function Projects() {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className={`glass-panel spotlight-card rounded-2xl overflow-hidden relative group cursor-pointer ${gridClass}`}
+                    transition={{ duration: 0.6, delay: index * 0.08 }}
                     onClick={() => openModal(project)}
+                    className="photo-frame group cursor-pointer"
+                    style={{
+                      gridColumn: `span ${colSpan}`,
+                      gridRow: `span ${rowSpan}`,
+                      minHeight: isFeatured ? "500px" : "300px",
+                      position: "relative",
+                      overflow: "hidden",
+                    }}
                   >
-                    <div className="scan-line"></div>
+                    {/* Image */}
+                    <Image
+                      src={project.img}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                      style={{ filter: "grayscale(40%) brightness(0.7)" }}
+                    />
 
-                    {/* Project Image */}
-                    <div className={`relative w-full ${isFeatured ? "h-full min-h-[400px]" : "h-64"}`}>
-                      <Image
-                        src={project.img}
-                        alt={project.title}
-                        fill
-                        className="object-cover opacity-60 mix-blend-overlay group-hover:scale-105 transition-transform duration-700 grayscale hover:grayscale-0"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#050403] via-transparent to-transparent"></div>
+                    {/* Gradient overlay - strong at bottom for title visibility */}
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        background:
+                          "linear-gradient(to top, rgba(15,13,10,0.97) 0%, rgba(15,13,10,0.85) 35%, rgba(15,13,10,0.4) 60%, transparent 100%)",
+                      }}
+                    />
 
-                      {/* Category Badge */}
-                      <div className="absolute top-6 right-6 border border-accent/20 bg-black/50 px-3 py-1 rounded text-[10px] font-mono text-accent backdrop-blur-sm">
-                        {project.category}
-                      </div>
+                    {/* Top accent line on hover */}
+                    <div
+                      className="absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      style={{
+                        background:
+                          "linear-gradient(to right, var(--accent-bright), transparent)",
+                      }}
+                    />
 
-                      {/* Content Overlay */}
-                      <div className="absolute bottom-0 left-0 p-8 z-10 w-full">
-                        <h3 className="font-serif font-medium italic text-2xl text-black dark:text-white mb-2">{project.title}</h3>
-                        <p className="text-gray-900 dark:text-gray-300 text-sm max-w-md font-sans mb-4">{project.des}</p>
+                    {/* Category badge */}
+                    <div
+                      className="absolute top-5 right-5 font-mono text-[9px] tracking-widest uppercase px-3 py-1 backdrop-blur-sm"
+                      style={{
+                        border: "1px solid rgba(201,168,122,0.3)",
+                        background: "rgba(15,13,10,0.6)",
+                        color: "var(--accent-bright)",
+                      }}
+                    >
+                      {project.category}
+                    </div>
 
-                        {/* Tech Stack Icons */}
-                        <div className="flex flex-wrap gap-2">
-                          {project.iconLists.slice(0, 5).map((iconName, idx) => {
-                            const IconComponent = iconComponents[iconName as keyof typeof iconComponents];
-                            if (!IconComponent) return null;
-                            return (
-                              <div key={idx} className="p-2 bg-white/10 rounded border border-white/10 backdrop-blur-sm hover:bg-accent/20 transition-colors">
-                                <IconComponent className="h-4 w-4 text-white" />
-                              </div>
-                            );
-                          })}
-                        </div>
+                    {/* Photo number */}
+                    <div
+                      className="absolute top-5 left-5 font-mono text-[9px]"
+                      style={{ color: "rgba(237,229,216,0.3)", letterSpacing: "0.1em" }}
+                    >
+                      {String(index + 1).padStart(2, "0")}.
+                    </div>
+
+                    {/* Content overlay */}
+                    <div className="absolute bottom-0 left-0 right-0 p-8 z-10">
+                      <h3
+                        className="font-serif italic font-light mb-2"
+                        style={{
+                          fontSize: isFeatured ? "32px" : "22px",
+                          color: "rgba(237,229,216,1)",
+                          textShadow: "0 1px 2px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.4)",
+                        }}
+                      >
+                        {project.title}
+                      </h3>
+                      <p
+                        className="font-sans font-light text-sm mb-5 leading-relaxed max-w-md"
+                        style={{
+                          color: "rgba(237,229,216,0.85)",
+                          textShadow: "0 1px 2px rgba(0,0,0,0.4)",
+                        }}
+                      >
+                        {project.des}
+                      </p>
+
+                      {/* Tech stack */}
+                      <div className="flex flex-wrap gap-2">
+                        {project.iconLists.slice(0, 5).map((iconName, idx) => {
+                          const iconId = ICON_LIST_TO_ICONIFY[iconName];
+                          if (!iconId) return null;
+                          return (
+                            <div
+                              key={idx}
+                              className="p-2 backdrop-blur-sm transition-colors"
+                              style={{
+                                background: "rgba(201,168,122,0.1)",
+                                border: "1px solid rgba(201,168,122,0.2)",
+                              }}
+                            >
+                              <iconify-icon
+                                icon={iconId}
+                                width="14"
+                                height="14"
+                                style={{ color: "var(--accent-bright)" }}
+                              />
+                            </div>
+                          );
+                        })}
                       </div>
                     </div>
+
+                    {/* Scan line */}
+                    <div className="scan-line" />
                   </motion.div>
                 );
               })}
@@ -175,44 +316,88 @@ export default function Projects() {
           </div>
         </section>
 
-        {/* PORTFOLIO SUMMARY */}
-        <section className="py-32 px-6 bg-[#0a0806] border-y border-gray-200 dark:border-accent/10">
+        {/* ═══════════════════════════════════════════════
+            PORTFOLIO SUMMARY
+        ═══════════════════════════════════════════════ */}
+        <section
+          className="py-28 px-6"
+          style={{
+            background: "var(--bg-subtle)",
+            borderTop: "1px solid var(--border-raw)",
+            borderBottom: "1px solid var(--border-raw)",
+          }}
+        >
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <span className="text-accent font-mono text-xs tracking-widest block mb-4">/// STATISTICS</span>
-              <h2 className="font-serif italic text-4xl text-black dark:text-white mb-4">Portfolio Overview</h2>
+
+            {/* Header */}
+            <div className="mb-16">
+              <div className="section-label">/// Statistics</div>
+              <h2
+                className="font-serif font-light italic"
+                style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", color: "var(--text-primary)" }}
+              >
+                Portfolio Overview
+              </h2>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {PORTFOLIO_SUMMARY.map((stat: { number: string; label: string }, index: number) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="glass-panel spotlight-card rounded-2xl p-8 text-center group hover:bg-white/5 transition-colors"
-                >
-                  <div className="relative">
-                    <div className="text-4xl md:text-5xl font-bold text-accent mb-2 font-serif italic transition-transform group-hover:scale-110">
-                      {stat.number}
+            {/* Stats grid — editorial ruled */}
+            <div
+              style={{
+                borderTop: "1px solid var(--border-raw)",
+                borderLeft: "1px solid var(--border-raw)",
+                display: "grid",
+                gridTemplateColumns: "repeat(4, 1fr)",
+              }}
+            >
+              {PORTFOLIO_SUMMARY.map(
+                (stat: { number: string; label: string }, index: number) => (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className="py-12 px-8 text-center relative"
+                    style={{
+                      borderRight: "1px solid var(--border-raw)",
+                      borderBottom: "1px solid var(--border-raw)",
+                    }}
+                  >
+                    <div
+                      className="font-serif italic font-light mb-2"
+                      style={{
+                        fontSize: "clamp(2.5rem, 5vw, 4rem)",
+                        color: "var(--text-primary)",
+                        lineHeight: 1,
+                      }}
+                    >
+                      <span style={{ color: "var(--accent-bright)" }}>{stat.number}</span>
                     </div>
-                    <div className="text-gray-400 text-sm font-mono uppercase tracking-wider">
+                    <div
+                      className="font-mono uppercase tracking-widest"
+                      style={{ fontSize: "9px", color: "var(--text-muted)" }}
+                    >
                       {stat.label}
                     </div>
-                    <span className="absolute -top-2 -right-2 w-2 h-2 bg-accent rounded-full animate-pulse"></span>
-                  </div>
-                </motion.div>
-              ))}
+                    <span
+                      className="absolute top-4 right-4 w-1.5 h-1.5 rounded-full animate-pulse"
+                      style={{ background: "var(--accent-bright)" }}
+                    />
+                  </motion.div>
+                )
+              )}
             </div>
           </div>
         </section>
 
-        {/* FOOTER */}
         <Footer />
       </div>
 
-      <ProjectModal project={selectedProject} isOpen={isModalOpen} onClose={closeModal} />
+      <ProjectModal
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+      />
     </PageTransition>
   );
 }

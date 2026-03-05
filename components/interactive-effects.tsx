@@ -9,19 +9,6 @@ import gsap from "gsap";
  */
 export function InteractiveEffects() {
   useEffect(() => {
-    // 1. SPOTLIGHT INTERACTION
-    const handleMouseMove = (e: MouseEvent) => {
-      document.querySelectorAll('.spotlight-card').forEach(card => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        (card as HTMLElement).style.setProperty('--mouse-x', `${x}px`);
-        (card as HTMLElement).style.setProperty('--mouse-y', `${y}px`);
-      });
-    };
-
-    document.addEventListener('mousemove', handleMouseMove);
-
     // 2. MAGNETIC BUTTONS
     const buttons = document.querySelectorAll('.btn-magnetic');
     buttons.forEach((btn) => {

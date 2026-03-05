@@ -1,5 +1,4 @@
-import { Shield, Database, Zap, Code, Cloud, Cpu, BookOpen, Award, Briefcase, Mail, Github, Linkedin, MapPin, Phone, Twitter } from "lucide-react"
-import type { LucideIcon } from "lucide-react"
+// Iconify icon names (Iconify/Solar/MDI)
 
 // Site metadata
 export const SITE_METADATA = {
@@ -23,12 +22,12 @@ export const NAV_LINKS = [
   { label: "Contact", path: "/contact" },
 ]
 
-// Social links
+// Social links (icon = Iconify icon name)
 export const SOCIAL_LINKS = [
-  { icon: Github, href: "https://github.com/Andymwangi", label: "GitHub", color: "hover:text-sage-500" },
-  { icon: Linkedin, href: "https://linkedin.com/in/anderson-mwangi", label: "LinkedIn", color: "hover:text-orange-500" },
-  { icon: Mail, href: "mailto:anderson.mitamboo@gmail.com", label: "Mail", color: "hover:text-pink-500" },
-  { icon: Twitter, href: "https://x.com/andymwangii", label: "Twitter", color: "hover:text-blue-500" },
+  { icon: "mdi:github", href: "https://github.com/Andymwangi", label: "GitHub", color: "hover:text-sage-500" },
+  { icon: "mdi:linkedin", href: "https://linkedin.com/in/anderson-mwangi", label: "LinkedIn", color: "hover:text-orange-500" },
+  { icon: "solar:letter-bold", href: "mailto:anderson.mitamboo@gmail.com", label: "Mail", color: "hover:text-pink-500" },
+  { icon: "mdi:twitter", href: "https://x.com/andymwangii", label: "Twitter", color: "hover:text-blue-500" },
 ]
 
 // Rotating keywords for hero section
@@ -38,10 +37,10 @@ export const HERO_KEYWORDS = [
   "Full Stack Development",
 ];
 
-// Contact information
+// Contact information (icon = Iconify icon name)
 export const CONTACT_INFO = [
   {
-    icon: Mail,
+    icon: "solar:letter-bold",
     label: "Email",
     value: SITE_METADATA.email,
     color: "text-sage-500",
@@ -49,7 +48,7 @@ export const CONTACT_INFO = [
     href: `mailto:${SITE_METADATA.email}`,
   },
   {
-    icon: Phone,
+    icon: "solar:phone-bold",
     label: "Phone",
     value: SITE_METADATA.phone,
     color: "text-orange-500",
@@ -57,7 +56,7 @@ export const CONTACT_INFO = [
     href: `tel:${SITE_METADATA.phone}`,
   },
   {
-    icon: MapPin,
+    icon: "solar:map-point-bold",
     label: "Location",
     value: SITE_METADATA.location,
     color: "text-pink-500",
@@ -65,10 +64,10 @@ export const CONTACT_INFO = [
   },
 ]
 
-// Specializations
+// Specializations (icon = Iconify icon name)
 export const SPECIALIZATIONS = [
   {
-    icon: Shield,
+    icon: "solar:shield-check-bold",
     title: "Cybersecurity",
     description: "Implementing robust security measures to protect digital assets and sensitive information from threats.",
     color: "glow-sage",
@@ -76,7 +75,7 @@ export const SPECIALIZATIONS = [
     gradient: "bg-gradient-to-br from-sage-500/20 to-sage-700/20",
   },
   {
-    icon: Cloud,
+    icon: "solar:cloud-bold",
     title: "Cloud Engineering",
     description: "Designing and implementing scalable cloud infrastructure solutions on AWS, Azure, and Google Cloud.",
     color: "glow-orange",
@@ -84,7 +83,7 @@ export const SPECIALIZATIONS = [
     gradient: "bg-gradient-to-br from-orange-500/20 to-orange-700/20",
   },
   {
-    icon: Code,
+    icon: "solar:code-bold",
     title: "Full Stack Development",
     description: "Building modern web applications with React, Next.js, Node.js, NestJS, and other cutting-edge technologies.",
     color: "glow-pink",
