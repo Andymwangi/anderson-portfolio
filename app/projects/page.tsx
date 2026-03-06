@@ -6,6 +6,7 @@ import { PageTransition } from "@/components/page-transition";
 import { ProjectModal } from "@/components/project-modal";
 import { useProjects } from "@/hooks";
 import Footer from "@/components/footer";
+import { LiquidMetalButton } from "@/components/liquid-metal-button";
 import { PORTFOLIO_SUMMARY } from "@/lib/constants";
 
 const ICON_LIST_TO_ICONIFY: Record<string, string> = {
@@ -126,31 +127,22 @@ export default function Projects() {
                   filters.category === category ||
                   (category === "All" && !filters.category);
                 return (
-                  <motion.button
+                  <motion.div
                     key={category}
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: i * 0.05 }}
-                    onClick={() =>
-                      setFilter("category", category === "All" ? null : category)
-                    }
-                    className="btn-magnetic px-6 py-2.5 transition-all"
-                    style={
-                      isActive
-                        ? {
-                            background: "var(--accent-bright)",
-                            color: "var(--bg)",
-                            border: "1px solid transparent",
-                          }
-                        : {
-                            background: "transparent",
-                            color: "var(--text-secondary)",
-                            border: "1px solid var(--border-raw)",
-                          }
-                    }
                   >
-                    {category}
-                  </motion.button>
+                    <LiquidMetalButton
+                      variant={isActive ? "filled" : "outline"}
+                      className="px-6 py-2.5"
+                      onClick={() =>
+                        setFilter("category", category === "All" ? null : category)
+                      }
+                    >
+                      {category}
+                    </LiquidMetalButton>
+                  </motion.div>
                 );
               })}
             </div>

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { PageTransition } from "@/components/page-transition";
 import Footer from "@/components/footer";
+import { LiquidMetalButton } from "@/components/liquid-metal-button";
 import { SOCIAL_LINKS } from "@/lib/constants";
 
 export default function ContactPage() {
@@ -479,16 +480,11 @@ export default function ContactPage() {
                   </div>
 
                   {/* Submit */}
-                  <button
+                  <LiquidMetalButton
                     type="submit"
                     disabled={isSubmitting}
-                    className="btn-magnetic w-full py-5 font-bold flex items-center justify-center gap-3 transition-all"
-                    style={{
-                      background: isSubmitting ? "var(--surface-2)" : "var(--accent-bright)",
-                      color: "var(--bg)",
-                      border: "none",
-                      cursor: isSubmitting ? "not-allowed" : "pointer",
-                    }}
+                    variant="filled"
+                    className="w-full py-5 flex items-center justify-center gap-3"
                   >
                     {isSubmitting ? (
                       <>
@@ -496,7 +492,7 @@ export default function ContactPage() {
                           animate={{ rotate: 360 }}
                           transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
                           className="h-4 w-4 border-2 border-t-transparent rounded-full"
-                          style={{ borderColor: "var(--bg)" }}
+                          style={{ borderColor: "currentColor" }}
                         />
                         Sending…
                       </>
@@ -506,7 +502,7 @@ export default function ContactPage() {
                         Send Message
                       </>
                     )}
-                  </button>
+                  </LiquidMetalButton>
 
                   {submissionStatus === "success" && (
                     <motion.p

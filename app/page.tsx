@@ -5,6 +5,8 @@ import { PageTransition } from "@/components/page-transition";
 import Link from "next/link";
 import Image from "next/image";
 import Footer from "@/components/footer";
+import { LiquidMetalButton } from "@/components/liquid-metal-button";
+import { LogosCarousel } from "@/components/logos-carousel";
 
 const profileImages = [
   "/profileimage.jpg",
@@ -13,8 +15,10 @@ const profileImages = [
 ];
 
 const techStack = [
-  { name: "React.js",    icon: "simple-icons:react",       color: "#61DAFB" },
-  { name: "Node.js",     icon: "simple-icons:nodedotjs",   color: "#339933" },
+  { name: "React.js",       icon: "simple-icons:react",       color: "#61DAFB" },
+  { name: "React Native",  icon: "simple-icons:react",       color: "#61DAFB" },
+  { name: "Expo",          icon: "simple-icons:expo",        color: "#000020" },
+  { name: "Node.js",      icon: "simple-icons:nodedotjs",   color: "#339933" },
   { name: "TypeScript",  icon: "simple-icons:typescript",  color: "#3178C6" },
   { name: "Next.js",     icon: "simple-icons:nextdotjs",   color: "#C9A87A" },
   { name: "NestJS",      icon: "simple-icons:nestjs",      color: "#E0234E" },
@@ -130,8 +134,8 @@ export default function HomePage() {
               className="font-sans font-light text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed mb-12"
               style={{ color: "var(--text-secondary)" }}
             >
-              Building secure, scalable web applications with modern technologies.
-              Specialised in full-stack development, cybersecurity, and cloud engineering.
+              Building secure, scalable web and mobile applications with modern technologies.
+              Specialised in full-stack development, mobile development (React Native & Expo), cybersecurity, and cloud engineering.
             </motion.p>
 
             {/* CTAs */}
@@ -142,24 +146,14 @@ export default function HomePage() {
               className="flex flex-col sm:flex-row gap-4 justify-center items-center"
             >
               <Link href="/projects">
-                <button
-                  className="btn-magnetic px-9 py-4 font-bold"
-                  style={{ background: "var(--accent-bright)", color: "var(--bg)" }}
-                >
+                <LiquidMetalButton variant="filled" className="px-9 py-4">
                   View Projects
-                </button>
+                </LiquidMetalButton>
               </Link>
               <a href="/Anderson Mwangi Junior Full stack  Resume (1).pdf" download>
-                <button
-                  className="btn-magnetic px-9 py-4 border"
-                  style={{
-                    borderColor: "rgba(201,168,122,0.4)",
-                    color: "var(--accent-bright)",
-                    background: "transparent",
-                  }}
-                >
+                <LiquidMetalButton variant="outline" className="px-9 py-4">
                   Download CV
-                </button>
+                </LiquidMetalButton>
               </a>
             </motion.div>
           </div>
@@ -180,37 +174,31 @@ export default function HomePage() {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            MARQUEE — Tech Stack
+            LOGOS CAROUSEL — Tech Stack (4 per cycle)
         ═══════════════════════════════════════════════ */}
-        <div
-          className="border-y py-5 relative z-20 overflow-hidden marquee-mask w-full"
-          style={{ borderColor: "var(--border-raw)", background: "var(--bg-subtle)" }}
-        >
-          <div className="flex whitespace-nowrap animate-marquee w-[max-content]">
-            {[...Array(2)].map((_, si) => (
-              <div key={si} className="flex gap-14 px-10 items-center">
-                {techStack.map((tech, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center gap-3 transition-colors group"
-                    style={{ color: "var(--text-muted)" }}
-                  >
-                    <iconify-icon
-                      icon={tech.icon}
-                      width="18"
-                      style={{ color: tech.color, opacity: 0.7 }}
-                    />
-                    <span
-                      className="font-serif text-base italic"
-                      style={{ color: "var(--text-secondary)" }}
-                    >
-                      {tech.name}
-                    </span>
-                  </div>
-                ))}
+        <div className="border-y relative z-20 overflow-hidden w-full" style={{ borderColor: "var(--border-raw)" }}>
+          <LogosCarousel count={4} interval={3000} duration={500} stagger={0.12} className="border-0">
+            {techStack.map((tech, i) => (
+              <div
+                key={i}
+                className="flex items-center gap-3 transition-colors group shrink-0"
+                style={{ color: "var(--text-muted)" }}
+              >
+                <iconify-icon
+                  icon={tech.icon}
+                  width="20"
+                  height="20"
+                  style={{ color: tech.color, opacity: 0.85 }}
+                />
+                <span
+                  className="font-serif text-base italic whitespace-nowrap"
+                  style={{ color: "var(--text-secondary)" }}
+                >
+                  {tech.name}
+                </span>
               </div>
             ))}
-          </div>
+          </LogosCarousel>
         </div>
 
         {/* ═══════════════════════════════════════════════
@@ -395,26 +383,16 @@ export default function HomePage() {
                 </div>
 
                 {/* CTAs */}
-                <div className="flex gap-4 pt-2">
+                <div className="flex gap-1 pt-2">
                   <Link href="/contact" className="flex-1">
-                    <button
-                      className="w-full btn-magnetic py-3.5 font-bold"
-                      style={{ background: "var(--accent-bright)", color: "var(--bg)" }}
-                    >
+                    <LiquidMetalButton variant="filled" className="w-full py-3.5">
                       Get in Touch
-                    </button>
+                    </LiquidMetalButton>
                   </Link>
                   <Link href="/about" className="flex-1">
-                    <button
-                      className="w-full btn-magnetic py-3.5 border"
-                      style={{
-                        borderColor: "rgba(201,168,122,0.4)",
-                        color: "var(--accent-bright)",
-                        background: "transparent",
-                      }}
-                    >
+                    <LiquidMetalButton variant="outline" className="w-full py-3.5">
                       Learn More
-                    </button>
+                    </LiquidMetalButton>
                   </Link>
                 </div>
               </motion.div>
@@ -532,24 +510,14 @@ export default function HomePage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">
-                  <button
-                    className="btn-magnetic px-10 py-4 font-bold"
-                    style={{ background: "var(--accent-bright)", color: "var(--bg)" }}
-                  >
+                  <LiquidMetalButton variant="filled" className="px-10 py-4">
                     Start a Project
-                  </button>
+                  </LiquidMetalButton>
                 </Link>
                 <Link href="/projects">
-                  <button
-                    className="btn-magnetic px-10 py-4 border"
-                    style={{
-                      borderColor: "rgba(201,168,122,0.4)",
-                      color: "var(--accent-bright)",
-                      background: "transparent",
-                    }}
-                  >
+                  <LiquidMetalButton variant="outline" className="px-10 py-4">
                     View My Work
-                  </button>
+                  </LiquidMetalButton>
                 </Link>
               </div>
             </motion.div>
