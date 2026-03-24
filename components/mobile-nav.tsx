@@ -1,17 +1,16 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { useMobileMenu } from "@/hooks/use-mobile-menu";
 import { ThemeToggle } from "@/components/theme-toggle";
-
+import { useMobileMenu } from "@/hooks/use-mobile-menu";
 const routes = [
   { href: "/", label: "HOME", icon: "solar:home-2-bold" },
   { href: "/about", label: "ABOUT", icon: "solar:user-bold" },
   { href: "/projects", label: "WORK", icon: "solar:case-bold" },
-  { href: "/skills", label: "STACK", icon: "solar:code-bold" },
   { href: "/experience", label: "EXPERIENCE", icon: "solar:history-bold" },
   { href: "/contact", label: "CONTACT", icon: "solar:letter-bold" },
 ];
@@ -43,10 +42,21 @@ export function MobileNav() {
           >
             <div className="p-8 flex flex-col h-full">
               {/* Header */}
-              <div className="flex items-center justify-between mb-12">
-                <span className="font-serif italic font-bold text-xl text-white">
-                  Anderson<span className="text-accent not-italic">.Dev</span>
-                </span>
+              <div className="mb-12 flex items-center justify-between">
+                <Link
+                  href="/"
+                  className="relative flex items-center"
+                  aria-label="Home"
+                  onClick={() => setOpen(false)}
+                >
+                  <Image
+                    src="/logo.svg"
+                    alt=""
+                    width={140}
+                    height={64}
+                    className="h-8 w-auto"
+                  />
+                </Link>
                 <button 
                   onClick={() => setOpen(false)}
                   className="p-2 text-gray-400 hover:text-white transition-colors"
@@ -101,11 +111,11 @@ export function MobileNav() {
 
               {/* Footer */}
               <div className="mt-auto space-y-6">
-                <div className="flex items-center justify-between pt-6 border-t border-accent/10">
-                  <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">Theme</span>
+                <div className="flex items-center justify-between border-t border-accent/10 pt-6">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-gray-500">Theme</span>
                   <ThemeToggle />
                 </div>
-                
+
                 <Link href="/contact" onClick={() => setOpen(false)}>
                   <button className="w-full border border-accent/20 bg-accent/5 py-4 rounded-lg text-xs font-bold uppercase tracking-[0.2em] text-accent hover:bg-accent hover:text-black transition-all duration-300">
                     Let's Talk

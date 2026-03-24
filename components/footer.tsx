@@ -1,183 +1,152 @@
 "use client";
 
-import { useState } from "react";
+/// <reference path="../iconify-icon.d.ts" />
+import type { ReactNode } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
-import { SOCIAL_LINKS } from "@/lib/constants";
+import { SITE_METADATA, SOCIAL_LINKS } from "@/lib/constants";
+
+const topNav = [
+  { href: "/projects", label: "Work" },
+  { href: "/about", label: "About" },
+  { href: "/experience", label: "Experience" },
+  { href: "/certifications", label: "Certifications" },
+  { href: "/contact", label: "Contact" },
+];
+
+const legalLinks = [
+  { href: "#", label: "Privacy Policy" },
+  { href: "#", label: "Terms of Service" },
+  { href: "#", label: "Cookies" },
+];
+
+const pageLinks = [
+  { href: "/", label: "Home" },
+  { href: "/contact", label: "Contact" },
+  { href: "/projects", label: "Work" },
+  { href: "/about", label: "About" },
+  { href: "/experience", label: "Experience" },
+];
+
+function FooterColumn({
+  title,
+  children,
+}: {
+  title: string;
+  children: ReactNode;
+}) {
+  return (
+    <div className="flex flex-col gap-5">
+      <h3 className="font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-zinc-500">
+        {title}
+      </h3>
+      <ul className="flex flex-col gap-3.5">{children}</ul>
+    </div>
+  );
+}
 
 export default function Footer() {
-  const pathname = usePathname();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: ""
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!formData.email || !formData.message) return;
-    
-    setIsSubmitting(true);
-    setSubmitStatus(null);
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name || 'Visitor',
-          email: formData.email,
-          subject: 'New Project Inquiry from Footer',
-          message: formData.message,
-        }),
-      });
-
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        setSubmitStatus('error');
-      }
-    } catch (error) {
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-      // Clear status after 3 seconds
-      setTimeout(() => setSubmitStatus(null), 3000);
-    }
-  };
-
-  const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/projects", label: "Projects" },
-    { href: "/skills", label: "Stack" },
-    { href: "/experience", label: "Experience" },
-    { href: "/contact", label: "Contact" },
-  ];
-
   return (
-    <footer className="bg-[#020202] pt-24 pb-10 px-6 border-t border-accent/10 relative overflow-hidden">
-      <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
-        {/* Contact Form Section */}
-        <div className="md:col-span-2">
-          <h3 className="text-2xl font-serif italic text-white mb-2">Start a Project?</h3>
-          <p className="text-gray-400 text-sm mb-6 font-sans">Send me a message and let's bring your ideas to life</p>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input
-                type="text"
-                name="name"
-                placeholder="Your name"
-                value={formData.name}
-                onChange={handleChange}
-                disabled={isSubmitting}
-                className="bg-white/5 border border-white/10 px-4 py-3 rounded text-sm focus:outline-none focus:border-accent text-white font-sans disabled:opacity-50"
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="your.email@example.com"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                disabled={isSubmitting}
-                className="bg-white/5 border border-white/10 px-4 py-3 rounded text-sm focus:outline-none focus:border-accent text-white font-sans disabled:opacity-50"
-              />
-            </div>
-            <textarea
-              name="message"
-              placeholder="Tell me about your project..."
-              value={formData.message}
-              onChange={handleChange}
-              required
-              disabled={isSubmitting}
-              rows={4}
-              className="w-full bg-white/5 border border-white/10 px-4 py-3 rounded text-sm focus:outline-none focus:border-accent text-white font-sans resize-none disabled:opacity-50"
-            />
-            <div className="flex items-center gap-4">
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="bg-accent text-black px-6 py-3 rounded font-bold text-sm uppercase tracking-wider hover:bg-accent/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+    <footer
+      className="relative overflow-hidden border-t border-zinc-200 bg-[#FAFAFA] text-zinc-900"
+      style={{ colorScheme: "light" }}
+    >
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.035]"
+        aria-hidden
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+          mixBlendMode: "multiply",
+        }}
+      />
+
+      <div className="relative z-10 mx-auto max-w-[1400px] px-8 py-20 md:px-12 md:py-24 lg:px-16 lg:py-28">
+        <div className="flex w-full flex-col gap-6 border-b border-zinc-200 pb-10 md:flex-row md:items-center md:justify-between md:gap-8 md:pb-12">
+          <nav className="flex min-w-0 flex-1 flex-wrap items-center gap-x-6 gap-y-2.5" aria-label="Footer quick links">
+            {topNav.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="font-sans text-[15px] font-medium text-zinc-600 transition-colors hover:text-zinc-900"
               >
-                <iconify-icon icon="solar:plain-2-bold" width="16" height="16" />
-                {isSubmitting ? 'SENDING...' : 'SEND MESSAGE'}
-              </button>
-              {submitStatus === 'success' && (
-                <span className="text-accent text-sm font-sans">Message sent successfully!</span>
-              )}
-              {submitStatus === 'error' && (
-                <span className="text-red-500 text-sm font-sans">Failed to send. Please try again.</span>
-              )}
-            </div>
-          </form>
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+          <a
+            href={`mailto:${SITE_METADATA.email}`}
+            className="shrink-0 self-end font-sans text-[15px] text-zinc-600 transition-colors hover:text-zinc-900 md:self-auto"
+          >
+            {SITE_METADATA.email}
+          </a>
         </div>
 
-        {/* Links Section - Horizontal layout on the right */}
-        <div className="flex justify-end">
-          <div className="flex gap-12 text-sm text-gray-500 font-mono tracking-wider uppercase">
-            <div className="flex flex-col gap-3">
-              <span className="text-white">Socials</span>
-              {SOCIAL_LINKS.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-accent transition-colors flex items-center gap-2"
-                >
-                  <iconify-icon icon={social.icon} width="16" height="16" />
-                  {social.label}
-                </a>
-              ))}
-            </div>
-            <div className="flex flex-col gap-3 relative">
-              <span className="text-white">Navigate</span>
-              {navLinks.map((link) => {
-                const isActive = pathname === link.href;
-                return (
+        <div className="grid grid-cols-1 gap-16 pt-12 lg:grid-cols-12 lg:gap-16 lg:gap-x-20 lg:pt-16">
+          <div className="lg:col-span-4">
+            <p
+              className="font-serif font-light italic leading-[1.05] tracking-tight text-zinc-900"
+              style={{ fontSize: "clamp(1.85rem, 3.8vw, 2.5rem)" }}
+            >
+              Anderson Mwangi
+            </p>
+            <p className="mt-6 max-w-lg font-sans text-base font-normal leading-relaxed text-zinc-600">
+              Full-stack development, cybersecurity, and cloud engineering — building systems that are secure,
+              scalable, and approachable.
+            </p>
+            <p className="mt-12 font-sans text-xs text-zinc-500">
+              © {new Date().getFullYear()} Anderson Mwangi. All rights reserved.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-12 sm:grid-cols-3 lg:col-span-8 lg:gap-14">
+            <FooterColumn title="Legal">
+              {legalLinks.map((l) => (
+                <li key={l.label}>
                   <Link
-                    key={link.href}
-                    href={link.href}
-                    className="hover:text-accent transition-colors relative"
+                    href={l.href}
+                    className="font-sans text-[15px] text-zinc-600 transition-colors hover:text-zinc-900"
+                    onClick={(e) => l.href === "#" && e.preventDefault()}
                   >
-                    {link.label}
-                    {isActive && (
-                      <motion.div
-                        className="absolute -left-3 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-accent rounded-full"
-                        layoutId="footer-indicator"
-                        transition={{
-                          type: "spring",
-                          stiffness: 380,
-                          damping: 30
-                        }}
-                      />
-                    )}
+                    {l.label}
                   </Link>
-                );
-              })}
+                </li>
+              ))}
+            </FooterColumn>
+
+            <FooterColumn title="Pages">
+              {pageLinks.map((l) => (
+                <li key={l.href + l.label}>
+                  <Link href={l.href} className="font-sans text-[15px] text-zinc-600 transition-colors hover:text-zinc-900">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </FooterColumn>
+
+            <div className="flex flex-col gap-5">
+              <h3 className="font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-zinc-500">
+                Socials
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {SOCIAL_LINKS.map((s) => {
+                  const isMail = s.href.startsWith("mailto:");
+                  const label = s.label === "Mail" ? "Email" : s.label;
+                  return (
+                    <a
+                      key={s.label}
+                      href={s.href}
+                      target={isMail ? undefined : "_blank"}
+                      rel={isMail ? undefined : "noopener noreferrer"}
+                      aria-label={label}
+                      className="flex h-11 w-11 items-center justify-center border border-zinc-200 bg-white/60 text-zinc-700 transition-colors hover:border-orange-300 hover:text-zinc-900"
+                    >
+                      <iconify-icon icon={s.icon} width="22" height="22" />
+                    </a>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Bottom Bar */}
-      <div className="max-w-[1400px] mx-auto mt-20 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400 font-mono uppercase">
-        <span>© {new Date().getFullYear()} ANDERSON MWANGI. ALL RIGHTS RESERVED.</span>
       </div>
     </footer>
   );
