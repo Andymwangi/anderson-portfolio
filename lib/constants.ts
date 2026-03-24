@@ -15,7 +15,6 @@ export const SITE_METADATA = {
 export const NAV_LINKS = [
   { label: "Home", path: "/" },
   { label: "About", path: "/about" },
-  { label: "Skills", path: "/skills" },
   { label: "Projects", path: "/projects" },
   { label: "Experience", path: "/experience" },
   { label: "Education & Certifications", path: "/certifications" },

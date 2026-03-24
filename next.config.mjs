@@ -1,5 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async redirects() {
+    return [
+      { source: "/skills", destination: "/about#tech-stack", permanent: true },
+    ];
+  },
   // Ignore TypeScript and ESLint errors during build
   typescript: {
     ignoreBuildErrors: true,
