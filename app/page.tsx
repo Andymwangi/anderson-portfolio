@@ -3,16 +3,11 @@
 import { motion } from "framer-motion";
 import { PageTransition } from "@/components/page-transition";
 import Link from "next/link";
-import Image from "next/image";
 import Footer from "@/components/footer";
 import { LiquidMetalButton } from "@/components/liquid-metal-button";
 import { LogosCarousel } from "@/components/logos-carousel";
-
-const profileImages = [
-  "/profileimage.jpg",
-  "/profileimage2.jpg",
-  "/profileimage3.jpg",
-];
+import { HeroProfileCarousel } from "@/components/hero-profile-carousel";
+import { HomeSelectedWorks } from "@/components/home-selected-works";
 
 const techStack = [
   { name: "React.js",       icon: "simple-icons:react",       color: "#61DAFB" },
@@ -20,13 +15,13 @@ const techStack = [
   { name: "Expo",          icon: "simple-icons:expo",        color: "#000020" },
   { name: "Node.js",      icon: "simple-icons:nodedotjs",   color: "#339933" },
   { name: "TypeScript",  icon: "simple-icons:typescript",  color: "#3178C6" },
-  { name: "Next.js",     icon: "simple-icons:nextdotjs",   color: "#C9A87A" },
+  { name: "Next.js",     icon: "simple-icons:nextdotjs",   color: "#E85D24" },
   { name: "NestJS",      icon: "simple-icons:nestjs",      color: "#E0234E" },
   { name: "Golang",      icon: "simple-icons:go",          color: "#00ADD8" },
   { name: "PostgreSQL",  icon: "simple-icons:postgresql",  color: "#4169E1" },
   { name: "MongoDB",     icon: "simple-icons:mongodb",     color: "#47A248" },
   { name: "MySQL",       icon: "simple-icons:mysql",       color: "#4479A1" },
-  { name: "Prisma",      icon: "simple-icons:prisma",      color: "#C9A87A" },
+  { name: "Prisma",      icon: "simple-icons:prisma",      color: "#E85D24" },
   { name: "Docker",      icon: "simple-icons:docker",      color: "#2496ED" },
 ];
 
@@ -63,103 +58,85 @@ export default function HomePage() {
       <div className="min-h-screen" style={{ background: "var(--bg)", color: "var(--text-primary)" }}>
 
         {/* ── GLOBAL BACKDROP (dark mode) ── */}
-        <div className="fixed inset-0 -z-50 dark:bg-[#0F0D0A] bg-[#F7F4EF]" />
+        <div className="fixed inset-0 -z-50 dark:bg-[#0D0D0D] bg-[#FAFAFA]" />
 
         {/* ═══════════════════════════════════════════════
-            HERO
+            HERO — fluid layout (no ruled grid; unique to home)
         ═══════════════════════════════════════════════ */}
-        <section className="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden">
+        <section className="relative flex min-h-screen w-full flex-col justify-center overflow-hidden px-6 py-24 md:px-10 md:py-28 lg:px-16">
+          <div
+            className="pointer-events-none absolute inset-0 opacity-[0.55] dark:opacity-25"
+            style={{
+              background: `radial-gradient(ellipse 85% 55% at 50% 20%, rgba(var(--accent-rgb) / 0.09), transparent 55%)`,
+            }}
+            aria-hidden
+          />
 
-          {/* Radial glow rings */}
-          <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none">
-            {[300, 500, 700, 900].map((size, i) => (
-              <div
-                key={size}
-                className="absolute rounded-full border"
-                style={{
-                  width: size,
-                  height: size,
-                  borderColor: `rgba(201,168,122,${0.12 - i * 0.025})`,
-                  animation: `ping ${3 + i}s cubic-bezier(0,0,0.2,1) infinite`,
-                  animationDelay: `${i * 0.5}s`,
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Background image */}
-          <div className="absolute inset-0 dark:bg-[#0F0D0A] bg-[#F7F4EF]">
-            <Image
-              src="/background.jpg"
-              alt="Background"
-              fill
-              className="object-cover dark:opacity-[0.06] opacity-[0.04]"
-              priority
-            />
-          </div>
-
-          {/* Dot grid */}
-          <div className="absolute inset-0 dot-grid opacity-60 pointer-events-none" />
-
-          {/* Hero content */}
-          <div className="relative z-20 w-full text-center max-w-5xl px-6">
-
-            {/* Name */}
-            <motion.h1
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="font-serif font-light tracking-tight mb-6 leading-[0.9]"
-              style={{ fontSize: "clamp(4.5rem, 13vw, 10rem)" }}
-            >
-              <span className="dark:text-[#EDE5D8] text-[#1C1410] block italic">Anderson</span>
-              <span
-                className="font-bold not-italic block"
-                style={{
-                  background: "linear-gradient(135deg, var(--accent-bright) 0%, var(--text-primary) 60%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
-                Mwangi
-              </span>
-            </motion.h1>
-
-            {/* Sub */}
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.25 }}
-              className="font-sans font-light text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed mb-12"
-              style={{ color: "var(--text-secondary)" }}
-            >
-              Building secure, scalable web and mobile applications with modern technologies.
-              Specialised in full-stack development, mobile development (React Native & Expo), cybersecurity, and cloud engineering.
-            </motion.p>
-
-            {/* CTAs */}
+          <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center gap-14 lg:flex-row lg:items-center lg:justify-between lg:gap-16 xl:max-w-7xl">
             <motion.div
-              initial={{ opacity: 0, y: 12 }}
+              className="order-2 flex w-full flex-1 flex-col items-center gap-8 text-center lg:order-1 lg:items-start lg:text-left"
+              initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+              transition={{ duration: 0.75, delay: 0.06, ease: [0.22, 1, 0.36, 1] }}
             >
-              <Link href="/projects">
-                <LiquidMetalButton variant="filled" className="px-9 py-4">
-                  View Projects
-                </LiquidMetalButton>
-              </Link>
-              <a href="/Anderson Mwangi Junior Full stack  Resume (1).pdf" download>
-                <LiquidMetalButton variant="outline" className="px-9 py-4">
-                  Download CV
-                </LiquidMetalButton>
-              </a>
+              <p
+                className="font-mono text-[9px] uppercase tracking-[0.22em]"
+                style={{ color: "var(--text-muted)" }}
+              >
+                Full-stack · mobile · security · cloud
+              </p>
+
+              <h1
+                className="font-serif font-light leading-[0.9] tracking-tight"
+                style={{ fontSize: "clamp(3.5rem, 12vw, 8rem)" }}
+              >
+                <span className="block italic text-zinc-950 dark:text-white">Anderson</span>
+                <span
+                  className="block font-bold not-italic"
+                  style={{
+                    background: "linear-gradient(135deg, var(--accent-bright) 0%, var(--text-primary) 62%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  Mwangi
+                </span>
+              </h1>
+
+              <p
+                className="max-w-lg font-sans text-lg font-light leading-relaxed md:text-xl"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                Secure, scalable web and mobile work—React Native &amp; Expo, full-stack APIs, and cloud-ready
+                delivery.
+              </p>
+
+              <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center lg:justify-start">
+                <Link href="/projects">
+                  <LiquidMetalButton variant="filled" className="px-9 py-4">
+                    View projects
+                  </LiquidMetalButton>
+                </Link>
+                <a href="/Anderson Mwangi Junior Full stack  Resume (1).pdf" download>
+                  <LiquidMetalButton variant="outline" className="px-9 py-4">
+                    Download CV
+                  </LiquidMetalButton>
+                </a>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="order-1 shrink-0 lg:order-2"
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.02, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <HeroProfileCarousel />
             </motion.div>
           </div>
 
-          {/* Scroll indicator */}
-          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20 opacity-40">
+          <div className="pointer-events-none absolute bottom-10 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center gap-2 opacity-40">
             <span
               className="font-mono text-[9px] tracking-widest"
               style={{ color: "var(--accent-bright)" }}
@@ -167,7 +144,7 @@ export default function HomePage() {
               SCROLL
             </span>
             <div
-              className="w-px h-12"
+              className="h-12 w-px"
               style={{ background: `linear-gradient(to bottom, var(--accent-bright), transparent)` }}
             />
           </div>
@@ -202,219 +179,20 @@ export default function HomePage() {
         </div>
 
         {/* ═══════════════════════════════════════════════
-            ABOUT — Bento with Editorial Photo Album
-        ═══════════════════════════════════════════════ */}
-        <section
-          id="about"
-          className="py-28 px-6 md:px-12 lg:px-20 relative z-20"
-          style={{ background: "var(--bg)" }}
-        >
-          <div className="max-w-7xl mx-auto">
-
-            {/* Section header */}
-            <div
-              className="flex flex-col md:flex-row justify-between items-end mb-16 pb-8"
-              style={{ borderBottom: "1px solid var(--border-raw)" }}
-            >
-              <div>
-                <div className="section-label">/// About Me</div>
-                <h2
-                  className="font-serif font-light italic"
-                  style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", color: "var(--text-primary)" }}
-                >
-                  Who I Am
-                </h2>
-              </div>
-              <span
-                className="font-mono text-[9px] tracking-widest uppercase hidden md:block"
-                style={{ color: "var(--text-muted)" }}
-              >
-                Nairobi, Kenya · 2026
-              </span>
-            </div>
-
-            {/* Main grid */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-
-              {/* ── Single Portrait ── */}
-              <motion.div
-                className="md:col-span-5"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-              >
-                <div
-                  className="photo-frame"
-                  style={{ height: "600px", position: "relative" }}
-                >
-                  <Image
-                    src={profileImages[0]}
-                    alt="Anderson Mwangi"
-                    fill
-                    className="object-cover transition-transform duration-700 hover:scale-[1.03]"
-                  />
-                  {/* Bottom meta overlay */}
-                  <div className="photo-meta">
-                    <div className="photo-meta-number">01.</div>
-                    <div className="photo-meta-caption">Anderson Mwangi</div>
-                    <div className="photo-meta-date">2025 ——— Nairobi, KE</div>
-                  </div>
-                  {/* Subtle top accent line */}
-                  <div
-                    className="absolute top-0 left-0 right-0 h-[2px]"
-                    style={{ background: "linear-gradient(to right, var(--accent-bright), transparent)" }}
-                  />
-                </div>
-              </motion.div>
-
-              {/* ── About text ── */}
-              <motion.div
-                className="md:col-span-7 space-y-8"
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.15 }}
-              >
-                {/* Title */}
-                <div style={{ borderBottom: "1px solid var(--border-raw)", paddingBottom: "24px" }}>
-                  <div className="flex items-center gap-3 mb-4">
-                    <h3
-                      className="font-serif italic font-light"
-                      style={{ fontSize: "36px", color: "var(--text-primary)" }}
-                    >
-                      Full Stack Developer
-                    </h3>
-                    <span
-                      className="w-2 h-2 rounded-full animate-pulse"
-                      style={{ background: "var(--accent-bright)" }}
-                    />
-                  </div>
-                  <p
-                    className="font-sans font-light text-lg leading-relaxed"
-                    style={{ color: "var(--text-secondary)" }}
-                  >
-                    Passionate about building secure, scalable digital solutions. With over 3 years of
-                    enterprise experience, I've helped organisations across legal, energy, and education
-                    sectors deliver systems that are robust, efficient, and built to last.
-                  </p>
-                </div>
-
-                {/* Motto */}
-                <div className="flex items-start gap-4">
-                  <div
-                    className="w-px self-stretch"
-                    style={{ background: "rgba(201,168,122,0.3)", minHeight: "48px" }}
-                  />
-                  <div>
-                    <p
-                      className="font-serif italic"
-                      style={{ fontSize: "28px", color: "var(--text-primary)", lineHeight: 1.1 }}
-                    >
-                      Invitus Maneo
-                    </p>
-                    <p
-                      className="font-mono mt-1"
-                      style={{ fontSize: "9px", letterSpacing: "0.3em", color: "var(--accent-bright)", textTransform: "uppercase", opacity: 0.8 }}
-                    >
-                      I remain unvanquished
-                    </p>
-                  </div>
-                </div>
-
-                {/* Skills row */}
-                <div
-                  className="grid grid-cols-3 gap-0"
-                  style={{ borderTop: "1px solid var(--border-raw)", borderLeft: "1px solid var(--border-raw)" }}
-                >
-                  {[
-                    { icon: "solar:code-circle-bold", label: "Full Stack" },
-                    { icon: "solar:shield-check-bold", label: "Security" },
-                    { icon: "solar:server-square-bold", label: "Cloud" },
-                  ].map((s) => (
-                    <div
-                      key={s.label}
-                      className="flex flex-col items-center justify-center py-7 gap-3"
-                      style={{
-                        borderRight: "1px solid var(--border-raw)",
-                        borderBottom: "1px solid var(--border-raw)",
-                      }}
-                    >
-                      <iconify-icon icon={s.icon} width="26" style={{ color: "var(--accent-bright)" }} />
-                      <span
-                        className="font-mono text-xs tracking-widest uppercase"
-                        style={{ color: "var(--text-secondary)" }}
-                      >
-                        {s.label}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Stat strip */}
-                <div
-                  className="grid grid-cols-3 gap-0"
-                  style={{ borderTop: "1px solid var(--border-raw)" }}
-                >
-                  {[
-                    { val: "3+", label: "Years exp." },
-                    { val: "15+", label: "Projects" },
-                    { val: "5", label: "Enterprise sys." },
-                  ].map((st) => (
-                    <div
-                      key={st.label}
-                      className="py-6 text-center"
-                      style={{ borderRight: "1px solid var(--border-raw)" }}
-                    >
-                      <div
-                        className="font-serif italic font-light"
-                        style={{ fontSize: "40px", color: "var(--text-primary)", lineHeight: 1 }}
-                      >
-                        {st.val}
-                      </div>
-                      <div
-                        className="font-mono mt-2"
-                        style={{ fontSize: "9px", color: "var(--text-muted)", letterSpacing: "0.15em", textTransform: "uppercase" }}
-                      >
-                        {st.label}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* CTAs */}
-                <div className="flex gap-1 pt-2">
-                  <Link href="/contact" className="flex-1">
-                    <LiquidMetalButton variant="filled" className="w-full py-3.5">
-                      Get in Touch
-                    </LiquidMetalButton>
-                  </Link>
-                  <Link href="/about" className="flex-1">
-                    <LiquidMetalButton variant="outline" className="w-full py-3.5">
-                      Learn More
-                    </LiquidMetalButton>
-                  </Link>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════
             SERVICES — Editorial number grid
         ═══════════════════════════════════════════════ */}
         <section
-          className="py-28 px-6 md:px-12 lg:px-20 relative z-20"
+          className="relative z-20 px-6 py-28 md:px-12 lg:px-20"
           style={{
             background: "var(--bg-subtle)",
             borderTop: "1px solid var(--border-raw)",
             borderBottom: "1px solid var(--border-raw)",
           }}
         >
-          <div className="max-w-7xl mx-auto">
+          <div className="mx-auto max-w-7xl">
             <div className="section-label">/// What I Offer</div>
             <h2
-              className="font-serif font-light italic mb-16"
+              className="mb-16 font-serif font-light italic"
               style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)", color: "var(--text-primary)" }}
             >
               Services
@@ -436,7 +214,7 @@ export default function HomePage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: i * 0.1 }}
-                  className="p-10 flex flex-col gap-5"
+                  className="flex flex-col gap-5 p-10"
                   style={{
                     borderRight: "1px solid var(--border-raw)",
                     borderBottom: "1px solid var(--border-raw)",
@@ -458,7 +236,7 @@ export default function HomePage() {
                     {svc.title}
                   </h3>
                   <p
-                    className="font-sans font-light text-base leading-relaxed flex-1"
+                    className="flex-1 font-sans text-base font-light leading-relaxed"
                     style={{ color: "var(--text-secondary)" }}
                   >
                     {svc.description}
@@ -471,7 +249,7 @@ export default function HomePage() {
                         style={{ color: "var(--text-muted)" }}
                       >
                         <span
-                          className="w-1 h-1 rounded-full flex-shrink-0"
+                          className="h-1 w-1 flex-shrink-0 rounded-full"
                           style={{ background: "var(--accent-bright)" }}
                         />
                         {item}
@@ -483,6 +261,8 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        <HomeSelectedWorks />
 
         {/* ═══════════════════════════════════════════════
             CTA
