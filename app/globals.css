@@ -7,111 +7,118 @@
 
 @layer base {
   :root {
-    /* ── Parchment & Ink · Light Mode ── */
-    --background:          35 30% 96%;   /* #F7F4EF warm parchment */
-    --background-subtle:   32 27% 92%;   /* #F0EBE3 alternating sections */
-    --foreground:          22 14% 9%;    /* #1C1410 near-black warm */
+    /* Brick orange accent — shared (space-separated for rgba(var(--accent-rgb) / a)) */
+    --accent-rgb:        232 93 36;
+    --accent-hover:      #FF6B35;
+    --accent-pressed:    #C94A1C;
 
-    --card:                33 23% 87%;   /* #EDE7DC surface */
-    --card-foreground:     22 14% 9%;
+    /* ── Light · neutral canvas + brick accent ── */
+    --background:          0 0% 98%;       /* #FAFAFA */
+    --background-subtle:   240 5% 96%;    /* zinc-100 */
+    --foreground:          240 10% 4%;    /* near black */
 
-    --popover:             33 23% 87%;
-    --popover-foreground:  22 14% 9%;
+    --card:                0 0% 100%;
+    --card-foreground:     240 10% 4%;
 
-    --primary:             33 22% 40%;   /* #7C6A52 antique bronze */
-    --primary-foreground:  35 30% 96%;
+    --popover:             0 0% 100%;
+    --popover-foreground:  240 10% 4%;
 
-    --secondary:           30 15% 30%;   /* #5A4E43 warm mid-brown */
-    --secondary-foreground:35 30% 96%;
+    --primary:             16 78% 53%;    /* #E85D24 */
+    --primary-foreground:  0 0% 100%;
 
-    --muted:               32 18% 83%;   /* #E4DDD1 muted surface */
-    --muted-foreground:    30 8% 56%;    /* #9A8E82 warm grey */
+    --secondary:           240 5% 96%;
+    --secondary-foreground:240 10% 4%;
 
-    --accent:              36 43% 63%;   /* #C9A87A golden sand */
-    --accent-foreground:   22 14% 9%;
+    --muted:               240 5% 96%;
+    --muted-foreground:    240 4% 46%;    /* zinc-500 labels */
+
+    --accent:              16 78% 53%;
+    --accent-foreground:   0 0% 100%;
 
     --destructive:         0 84% 60%;
-    --destructive-foreground: 35 30% 96%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border:              34 21% 78%;   /* #D4C9B8 warm border */
-    --input:               34 21% 78%;
-    --ring:                33 22% 40%;
-    --radius:              0px;          /* editorial — no rounding */
+    --border:              240 6% 90%;
+    --input:               240 6% 90%;
+    --ring:                16 78% 53%;
+    --radius:              0px;
 
-    /* Raw hex tokens for non-Tailwind use */
-    --bg:              #F7F4EF;
-    --bg-subtle:       #F0EBE3;
-    --surface:         #EDE7DC;
-    --surface-2:       #E4DDD1;
-    --border-raw:      #D4C9B8;
-    --border-faint:    #E8E0D4;
-    --text-primary:    #1C1410;
-    --text-secondary:  #5A4E43;
-    --text-muted:      #9A8E82;
-    --accent-raw:      #7C6A52;
-    --accent-bright:   #C9A87A;
-    --accent-pop:      #3D3328;
-    --highlight:       #B8956A;
+    /* Raw hex / rgba tokens */
+    --bg:              #FAFAFA;
+    --bg-subtle:       #F4F4F5;
+    --surface:         #FFFFFF;
+    --surface-2:       #E4E4E7;
+    --border-raw:      #E4E4E7;
+    --border-faint:    #F4F4F5;
+    --text-primary:    #0A0A0A;
+    --text-secondary:  #52525B;
+    --text-muted:      #71717A;
+    --accent-raw:      #E85D24;
+    --accent-bright:   #E85D24;
+    --accent-pop:      #FF6B35;
+    --highlight:       #C94A1C;
   }
 
   .dark {
-    /* ── Parchment & Ink · Dark Mode ── */
-    --background:          22 17% 6%;    /* #0F0D0A deep warm black */
-    --background-subtle:   22 16% 8%;    /* #161310 lifted */
-    --foreground:          36 30% 88%;   /* #EDE5D8 warm cream */
+    /* ── Dark · matte black + white type + brick accent ── */
+    --background:          0 0% 5%;       /* #0D0D0D */
+    --background-subtle:   0 0% 8%;      /* #141414 */
+    --foreground:          0 0% 100%;
 
-    --card:                24 15% 10%;   /* #1E1A15 card surface */
-    --card-foreground:     36 30% 88%;
+    --card:                0 0% 10%;      /* #1A1A1A */
+    --card-foreground:     0 0% 100%;
 
-    --popover:             24 15% 10%;
-    --popover-foreground:  36 30% 88%;
+    --popover:             0 0% 10%;
+    --popover-foreground:  0 0% 100%;
 
-    --primary:             36 43% 63%;   /* #C9A87A golden sand */
-    --primary-foreground:  22 17% 6%;
+    --primary:             16 78% 53%;
+    --primary-foreground:  0 0% 100%;
 
-    --secondary:           30 14% 60%;   /* #A89880 warm tan */
-    --secondary-foreground:22 17% 6%;
+    --secondary:           0 0% 14%;
+    --secondary-foreground:0 0% 100%;
 
-    --muted:               24 14% 15%;   /* #26211A */
-    --muted-foreground:    24 8% 36%;    /* #665850 */
+    --muted:               0 0% 14%;
+    --muted-foreground:    240 5% 65%;    /* #A1A1AA */
 
-    --accent:              36 43% 63%;   /* #C9A87A */
-    --accent-foreground:   22 17% 6%;
+    --accent:              16 78% 53%;
+    --accent-foreground:   0 0% 100%;
 
-    --destructive:         0 63% 31%;
-    --destructive-foreground: 36 30% 88%;
+    --destructive:         0 62% 45%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border:              24 20% 17%;   /* #332B21 warm dark border */
-    --input:               24 20% 17%;
-    --ring:                36 43% 63%;
+    --border:              0 0% 18%;
+    --input:               0 0% 18%;
+    --ring:                16 78% 53%;
 
-    /* Raw hex tokens */
-    --bg:              #0F0D0A;
-    --bg-subtle:       #161310;
-    --surface:         #1E1A15;
-    --surface-2:       #26211A;
-    --border-raw:      #332B21;
-    --border-faint:    #251F18;
-    --text-primary:    #EDE5D8;
-    --text-secondary:  #A89880;
-    --text-muted:      #665850;
-    --accent-raw:      #C9A87A;
-    --accent-bright:   #E8C898;
-    --accent-pop:      #F0E0C0;
-    --highlight:       #B8956A;
+    --bg:              #0D0D0D;
+    --bg-subtle:       #141414;
+    --surface:         #1A1A1A;
+    --surface-2:       #1F1F1F;
+    --border-raw:      #262626;
+    --border-faint:    #1A1A1A;
+    --text-primary:    #FFFFFF;
+    --text-secondary:  #A1A1AA;
+    --text-muted:      #71717A;
+    --accent-raw:      #E85D24;
+    --accent-bright:   #E85D24;
+    --accent-pop:      #FF6B35;
+    --highlight:       #C94A1C;
   }
 }
 
 @layer base {
+  /* Default document surface is dark; light mode when next-themes adds .light */
   html {
-    background-color: #F7F4EF;
+    background-color: #0D0D0D;
+    color-scheme: dark;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  html.dark {
-    background-color: #0F0D0A;
+  html.light {
+    background-color: #FAFAFA;
+    color-scheme: light;
   }
 
   body {
@@ -151,18 +158,18 @@
 
 /* ─── GLASS / SURFACE PANEL ─────────────────────────── */
 .glass-panel {
-  background: rgba(30, 26, 21, 0.75);
+  background: rgba(20, 20, 20, 0.75);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(201, 168, 122, 0.12);
+  border: 1px solid rgba(var(--accent-rgb) / 0.15);
   position: relative;
   overflow: hidden;
 }
 
 .light .glass-panel,
 :root:not(.dark) .glass-panel {
-  background: rgba(237, 231, 220, 0.8);
-  border: 1px solid rgba(124, 106, 82, 0.15);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(var(--accent-rgb) / 0.2);
 }
 
 /* ─── SPOTLIGHT CARD ────────────────────────────────── */
@@ -177,7 +184,7 @@
   border-radius: inherit;
   background: radial-gradient(
     800px circle at var(--mouse-x) var(--mouse-y),
-    rgba(201, 168, 122, 0.07),
+    rgba(var(--accent-rgb) / 0.08),
     transparent 40%
   );
   z-index: 2;
@@ -196,7 +203,7 @@
   padding: 1px;
   background: radial-gradient(
     600px circle at var(--mouse-x) var(--mouse-y),
-    rgba(201, 168, 122, 0.35),
+    rgba(var(--accent-rgb) / 0.28),
     transparent 40%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -222,7 +229,7 @@
   left: 0;
   width: 100%;
   height: 40px;
-  background: linear-gradient(to bottom, transparent, rgba(201, 168, 122, 0.15), transparent);
+  background: linear-gradient(to bottom, transparent, rgba(var(--accent-rgb) / 0.14), transparent);
   opacity: 0.4;
   animation: scan 4s linear infinite;
   z-index: 10;
@@ -230,13 +237,18 @@
 }
 
 /* ─── NOISE OVERLAY ─────────────────────────────────── */
+/* SVG fractal noise reads as “grain” on dark fills: the same opacity looks harsher on #0D0D0D than on #FAFAFA. */
 .noise-overlay {
   position: fixed;
   inset: 0;
   z-index: 9000;
   pointer-events: none;
-  opacity: 0.025;
+  opacity: 0.032;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+html.dark .noise-overlay {
+  opacity: 0.014;
 }
 
 /* ─── MAGNETIC BUTTON ────────────────────────────────── */
@@ -252,7 +264,7 @@
 
 /* ─── DOT GRID ───────────────────────────────────────── */
 .dot-grid {
-  background-image: radial-gradient(rgba(201, 168, 122, 0.12) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(var(--accent-rgb) / 0.14) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
@@ -321,7 +333,7 @@
   left: 0;
   right: 0;
   padding: 20px;
-  background: linear-gradient(to top, rgba(15, 13, 10, 0.7) 0%, transparent 100%);
+  background: linear-gradient(to top, rgba(13, 13, 13, 0.82) 0%, transparent 100%);
 }
 
 .photo-meta-number {
@@ -330,7 +342,7 @@
   right: 14px;
   font-family: 'DM Mono', monospace;
   font-size: 9px;
-  color: rgba(237, 229, 216, 0.4);
+  color: rgba(255, 255, 255, 0.35);
   letter-spacing: 0.1em;
 }
 
@@ -338,14 +350,14 @@
   font-family: 'Instrument Sans', sans-serif;
   font-size: 11px;
   font-weight: 300;
-  color: rgba(237, 229, 216, 0.75);
+  color: rgba(255, 255, 255, 0.78);
   letter-spacing: 0.06em;
 }
 
 .photo-meta-date {
   font-family: 'DM Mono', monospace;
   font-size: 8px;
-  color: rgba(237, 229, 216, 0.35);
+  color: rgba(255, 255, 255, 0.32);
   margin-top: 3px;
   letter-spacing: 0.12em;
 }

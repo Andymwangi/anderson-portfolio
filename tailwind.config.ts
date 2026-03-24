@@ -71,45 +71,44 @@ const config: Config = {
           foreground: "hsl(var(--card-foreground))",
         },
 
-        /* ── Parchment & Ink raw palette ── */
+        /* ── Neutral surfaces (legacy parchment / ink names) ── */
         parchment: {
-          DEFAULT: "#F7F4EF",   /* page bg light */
-          50:      "#FDFCFA",
-          100:     "#F7F4EF",
-          200:     "#F0EBE3",
-          300:     "#EDE7DC",
-          400:     "#E4DDD1",
-          500:     "#D4C9B8",
-          600:     "#C0B09C",
-          700:     "#A89880",
-          800:     "#9A8E82",
-          900:     "#7A6E62",
+          DEFAULT: "#FAFAFA",
+          50:      "#FFFFFF",
+          100:     "#FAFAFA",
+          200:     "#F4F4F5",
+          300:     "#E4E4E7",
+          400:     "#D4D4D8",
+          500:     "#A1A1AA",
+          600:     "#71717A",
+          700:     "#52525B",
+          800:     "#3F3F46",
+          900:     "#27272A",
         },
 
         ink: {
-          DEFAULT: "#1C1410",
-          50:      "#5A4E43",
-          100:     "#3D3328",
-          200:     "#2A2218",
-          300:     "#1C1410",
-          400:     "#161310",   /* dark bg subtle */
-          500:     "#0F0D0A",   /* dark bg */
-          600:     "#0A0806",
-          700:     "#070504",
+          DEFAULT: "#0A0A0A",
+          50:      "#A1A1AA",
+          100:     "#71717A",
+          200:     "#52525B",
+          300:     "#3F3F46",
+          400:     "#27272A",
+          500:     "#0D0D0D",
+          600:     "#0A0A0A",
+          700:     "#050505",
         },
 
         bronze: {
-          DEFAULT: "#7C6A52",   /* accent light mode */
-          light:   "#C9A87A",   /* golden sand / accent dark mode */
-          bright:  "#E8C898",   /* hover bright */
-          dark:    "#5A4A36",
-          muted:   "#B8956A",   /* highlight */
+          DEFAULT: "#E85D24",
+          light:   "#FF6B35",
+          bright:  "#FF6B35",
+          dark:    "#C94A1C",
+          muted:   "#E85D24",
         },
 
-        /* Keep these for backward compatibility */
         warm: {
-          DEFAULT: "#EDE7DC",
-          dark:    "#1E1A15",
+          DEFAULT: "#F4F4F5",
+          dark:    "#141414",
         },
 
         /* Sidebar (if used) */
@@ -124,17 +123,24 @@ const config: Config = {
           ring:                 "hsl(var(--sidebar-ring, var(--ring)))",
         },
 
-        /* Legacy mappings so existing classnames don't break */
         brown: {
-          DEFAULT: "#C9A87A",
-          dark:    "#7C6A52",
-          light:   "#E8C898",
+          DEFAULT: "#E85D24",
+          dark:    "#C94A1C",
+          light:   "#FF6B35",
         },
         orange: {
-          DEFAULT: "#C9A87A",
-          dark:    "#7C6A52",
-          light:   "#E8C898",
+          DEFAULT: "#E85D24",
+          dark:    "#C94A1C",
+          light:   "#FF6B35",
         },
+
+        /* Legacy home / modal class names → brick + neutrals */
+        "warm-copper": "#E85D24",
+        "warm-gold": "#E85D24",
+        "deep-forest": "#0A0A0A",
+        cream: "#F4F4F5",
+        charcoal: "#18181B",
+        "slate-grey": "#71717A",
 
         /* Slate kept for utility */
         slate: {
