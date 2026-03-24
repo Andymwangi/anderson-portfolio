@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { PageTransition } from "@/components/page-transition"
+import { PageHeroGrid } from "@/components/page-hero-grid"
 
 const education = [
   {
@@ -104,23 +105,51 @@ const certifications = [
 export default function Certifications() {
   return (
     <PageTransition>
-      <div className="min-h-screen cyber-vibrant-gradient p-6 relative">
-        <div className="container mx-auto max-w-6xl relative z-10">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h1 className="text-6xl font-bold mb-6 rainbow-gradient bg-clip-text text-transparent font-bricolage">
-              Education & Certifications
-            </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto font-bricolage">
-              My academic journey and professional certifications that shape my expertise
-            </p>
-          </motion.div>
+      <div className="noise-overlay" />
+      <div className="min-h-screen" style={{ background: "var(--bg)", color: "var(--text-primary)" }}>
+        <div className="fixed inset-0 -z-50 dark:bg-[#0D0D0D] bg-[#FAFAFA]" />
 
+        <PageHeroGrid
+          sectionLabel="/// Credentials"
+          title={
+            <h1
+              className="font-serif font-light italic"
+              style={{
+                fontSize: "clamp(3rem, 8vw, 5.5rem)",
+                color: "var(--text-primary)",
+                lineHeight: 0.98,
+              }}
+            >
+              Education &{" "}
+              <span className="font-bold not-italic" style={{ color: "var(--accent-bright)" }}>
+                Certifications
+              </span>
+            </h1>
+          }
+          leftFooter={
+            <p
+              className="font-mono uppercase"
+              style={{
+                fontSize: "9px",
+                letterSpacing: "0.28em",
+                color: "var(--accent-bright)",
+                opacity: 0.85,
+              }}
+            >
+              JKUAT · Cisco · IBM · ALX
+            </p>
+          }
+        >
+          <p className="font-serif italic leading-relaxed md:text-xl" style={{ color: "var(--text-secondary)" }}>
+            My academic journey and professional certifications that shape my expertise.
+          </p>
+          <p className="font-sans text-base font-light leading-relaxed md:text-lg" style={{ color: "var(--text-secondary)" }}>
+            Degree progress alongside industry credentials in cybersecurity, data, and backend engineering.
+          </p>
+        </PageHeroGrid>
+
+        <div className="relative z-10 px-6 pb-16 pt-4 md:px-12 lg:px-20">
+          <div className="container mx-auto max-w-6xl">
           {/* Education Section */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -307,6 +336,7 @@ export default function Certifications() {
               </CardContent>
             </Card>
           </motion.div>
+          </div>
         </div>
       </div>
     </PageTransition>

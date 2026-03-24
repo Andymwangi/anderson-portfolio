@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { PageTransition } from "@/components/page-transition";
+import { PageHeroGrid } from "@/components/page-hero-grid";
 import Footer from "@/components/footer";
 import { useState } from "react";
 
@@ -180,6 +181,28 @@ const experiences: Experience[] = [
       "Cloud Computing",
     ],
   },
+  {
+    solarIcon: "solar:medal-ribbon-bold",
+    date: "2023 – Present",
+    title: "Professional Certifications",
+    company: "Cisco · IBM · ALX",
+    location: "Online",
+    type: "Certifications",
+    summary:
+      "Industry credentials in cybersecurity and data, with ongoing advanced study in security operations and backend engineering.",
+    achievements: [
+      "Earned Junior Cybersecurity Certificate from Cisco Networking Academy.",
+      "Completed Endpoint Security Certificate from Cisco.",
+      "Earned Python for Data Science Certificate and IBM Data Engineering Certificate.",
+      "Currently pursuing CyberOps Associate Certification (Cisco) and ALX Backend Development Course.",
+    ],
+    technologies: [
+      "Cisco Networking Academy",
+      "Python",
+      "Data engineering",
+      "Security fundamentals",
+    ],
+  },
 ];
 
 export default function ExperiencePage() {
@@ -198,69 +221,47 @@ export default function ExperiencePage() {
 
       <div className="min-h-screen" style={{ background: "var(--bg)", color: "var(--text-primary)" }}>
 
-        {/* Global backdrop */}
-        <div className="fixed inset-0 -z-50 dark:bg-[#0F0D0A] bg-[#F7F4EF]" />
+        <div className="fixed inset-0 -z-50 dark:bg-[#0D0D0D] bg-[#FAFAFA]" />
 
-        {/* Dot grid */}
-        <div className="fixed inset-0 dot-grid opacity-40 pointer-events-none -z-10" />
-
-        {/* ═══════════════════════════════════════════════
-            HERO
-        ═══════════════════════════════════════════════ */}
-        <section
-          className="relative min-h-[70vh] w-full flex items-center justify-center py-32 px-6 overflow-hidden"
-          style={{ borderBottom: "1px solid var(--border-raw)" }}
-        >
-          {/* Radial glow rings */}
-          <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none">
-            {[300, 500, 700].map((size, i) => (
-              <div
-                key={size}
-                className="absolute rounded-full border"
-                style={{
-                  width: size,
-                  height: size,
-                  borderColor: `rgba(201,168,122,${0.10 - i * 0.025})`,
-                  animation: `ping ${4 + i}s cubic-bezier(0,0,0.2,1) infinite`,
-                  animationDelay: `${i * 0.6}s`,
-                }}
-              />
-            ))}
-          </div>
-
-          <div className="max-w-7xl mx-auto w-full relative z-20 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+        <PageHeroGrid
+          sectionLabel="/// Experience"
+          title={
+            <h1
+              className="font-serif font-light italic"
+              style={{
+                fontSize: "clamp(3rem, 8vw, 5.5rem)",
+                color: "var(--text-primary)",
+                lineHeight: 0.98,
+              }}
             >
-              <h1
-                className="font-serif font-light italic mb-6 leading-[0.9]"
-                style={{ fontSize: "clamp(3.5rem, 10vw, 7.5rem)", color: "var(--text-primary)" }}
-              >
-                My{" "}
-                <span
-                  className="font-bold not-italic"
-                  style={{
-                    background: "linear-gradient(135deg, var(--accent-bright) 0%, var(--text-primary) 60%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                  }}
-                >
-                  Experience
-                </span>
-              </h1>
-
-              <p
-                className="font-sans font-light text-xl max-w-2xl mx-auto leading-relaxed"
-                style={{ color: "var(--text-secondary)" }}
-              >
-                Building enterprise solutions that solve real problems and deliver measurable impact.
-              </p>
-            </motion.div>
-          </div>
-        </section>
+              My{" "}
+              <span className="font-bold not-italic" style={{ color: "var(--accent-bright)" }}>
+                Experience
+              </span>
+            </h1>
+          }
+          leftFooter={
+            <p
+              className="font-mono uppercase"
+              style={{
+                fontSize: "9px",
+                letterSpacing: "0.28em",
+                color: "var(--accent-bright)",
+                opacity: 0.85,
+              }}
+            >
+              Enterprise · Product · Freelance
+            </p>
+          }
+        >
+          <p className="font-serif italic leading-relaxed md:text-xl" style={{ color: "var(--text-secondary)" }}>
+            Building enterprise solutions that solve real problems and deliver measurable impact.
+          </p>
+          <p className="font-sans text-base font-light leading-relaxed md:text-lg" style={{ color: "var(--text-secondary)" }}>
+            From legal platforms and government systems to mobile field tools and client delivery — a timeline of roles,
+            outcomes, and tech stacks.
+          </p>
+        </PageHeroGrid>
 
         {/* ═══════════════════════════════════════════════
             TIMELINE — Editorial list
@@ -335,8 +336,8 @@ export default function ExperiencePage() {
                         <div
                           className="p-2.5 relative"
                           style={{
-                            background: "rgba(201,168,122,0.08)",
-                            border: "1px solid rgba(201,168,122,0.18)",
+                            background: "rgba(var(--accent-rgb) / 0.08)",
+                            border: "1px solid rgba(var(--accent-rgb) / 0.18)",
                           }}
                         >
                           <iconify-icon
@@ -392,7 +393,7 @@ export default function ExperiencePage() {
                         className="flex-shrink-0 w-10 h-10 flex items-center justify-center transition-colors mt-1"
                         style={{
                           border: "1px solid var(--border-raw)",
-                          background: isExpanded ? "rgba(201,168,122,0.12)" : "transparent",
+                          background: isExpanded ? "rgba(var(--accent-rgb) / 0.12)" : "transparent",
                           color: "var(--accent-bright)",
                         }}
                         aria-label={isExpanded ? "Collapse" : "Expand"}
@@ -459,7 +460,7 @@ export default function ExperiencePage() {
                                       padding: "5px 10px",
                                       border: "1px solid var(--border-raw)",
                                       color: "var(--text-muted)",
-                                      background: "rgba(201,168,122,0.04)",
+                                      background: "rgba(var(--accent-rgb) / 0.04)",
                                     }}
                                   >
                                     {tech}
