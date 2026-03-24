@@ -9,8 +9,9 @@ import gsap from "gsap";
  */
 export function InteractiveEffects() {
   useEffect(() => {
-    // 2. MAGNETIC BUTTONS
-    const buttons = document.querySelectorAll('.btn-magnetic');
+    const buttons = document.querySelectorAll(".btn-magnetic");
+    const detach: Array<() => void> = [];
+
     buttons.forEach((btn) => {
       const button = btn as HTMLElement;
 
@@ -25,18 +26,17 @@ export function InteractiveEffects() {
         gsap.to(button, { x: 0, y: 0, duration: 0.2 });
       };
 
-      button.addEventListener('mousemove', handleMouseMoveBtn);
-      button.addEventListener('mouseleave', handleMouseLeave);
+      button.addEventListener("mousemove", handleMouseMoveBtn);
+      button.addEventListener("mouseleave", handleMouseLeave);
+
+      detach.push(() => {
+        button.removeEventListener("mousemove", handleMouseMoveBtn);
+        button.removeEventListener("mouseleave", handleMouseLeave);
+      });
     });
 
-    // Cleanup
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      buttons.forEach((btn) => {
-        const button = btn as HTMLElement;
-        button.removeEventListener('mousemove', () => {});
-        button.removeEventListener('mouseleave', () => {});
-      });
+      detach.forEach((fn) => fn());
     };
   }, []);
 

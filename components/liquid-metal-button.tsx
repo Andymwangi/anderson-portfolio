@@ -3,9 +3,9 @@
 import dynamic from "next/dynamic";
 import { cn } from "@/lib/utils";
 
-/* Palette: accent #C9A87A, cream #EDE5D8, dark #1C1410 */
-const ACCENT = "#C9A87A";
-const TINT_LIGHT = "#EDE5D8";
+/* Palette: brick orange + white tint */
+const ACCENT = "#E85D24";
+const TINT_LIGHT = "#FFFFFF";
 
 const LiquidMetal = dynamic(
   () => import("@paper-design/shaders-react").then((m) => m.LiquidMetal),
@@ -91,7 +91,7 @@ export function LiquidMetalButton({
       <span
         className={cn(
           "relative z-10 font-mono text-[10px] tracking-widest uppercase",
-          isFilled ? "text-[#1C1410]" : "text-[var(--accent-bright)]"
+          isFilled ? "text-white" : "text-[var(--accent-bright)]"
         )}
       >
         {children}

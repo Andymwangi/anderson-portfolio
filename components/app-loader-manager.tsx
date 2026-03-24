@@ -1,22 +1,17 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import { SpaceRocketLoader } from './space-rocket-loader';
+import { useState, useCallback } from "react";
+import { GreetingSequenceLoader } from "./greeting-sequence-loader";
 
 export function AppLoaderManager({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    // Hide the loader after 3 seconds
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-
-    return () => clearTimeout(timer);
+  const handleComplete = useCallback(() => {
+    setLoading(false);
   }, []);
 
   if (loading) {
-    return <SpaceRocketLoader />;
+    return <GreetingSequenceLoader variant="intro" onComplete={handleComplete} />;
   }
 
   return <>{children}</>;
