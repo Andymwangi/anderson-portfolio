@@ -6,7 +6,8 @@ import { motion } from "framer-motion";
 
 const SLIDES = [
   { src: "/profileimage.jpg", alt: "Anderson Mwangi" },
-  { src: "/profileimage2.jpg", alt: "Anderson Mwangi" },
+  { src: "/profileimage2.jpg", alt: "Anderson Mwangi — graduation portrait" },
+  { src: "/profileimage3.jpg", alt: "Anderson Mwangi — professional portrait" },
 ] as const;
 
 const INTERVAL_MS = 5500;
