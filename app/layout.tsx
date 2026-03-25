@@ -46,6 +46,10 @@ export const metadata: Metadata = {
     "Portfolio of Anderson Mwangi, a full-stack developer specialising in cybersecurity, cloud engineering, and enterprise systems. Based in Nairobi, Kenya.",
   keywords:
     "anderson mwangi, cybersecurity, cloud engineering, full stack developer, next.js, typescript, nairobi",
+  icons: {
+    icon: [{ url: "/portfolio.ico", type: "image/x-icon" }],
+    shortcut: "/portfolio.ico",
+  },
 };
 
 export const viewport: Viewport = {
@@ -73,7 +77,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           themes={["dark", "light"]}
           enableSystem={false}
           storageKey="theme"
-          disableTransitionOnChange
+          disableTransitionOnChange={false}
         >
           <InteractiveEffects />
           <AppLoaderManager>

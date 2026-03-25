@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -45,17 +44,30 @@ export function MobileNav() {
               <div className="mb-12 flex items-center justify-between">
                 <Link
                   href="/"
-                  className="relative flex items-center"
-                  aria-label="Home"
+                  className="relative flex shrink-0 items-center transition-opacity hover:opacity-80"
+                  aria-label="Anderson Mwangi — Home"
                   onClick={() => setOpen(false)}
                 >
-                  <Image
-                    src="/logo.svg"
-                    alt=""
-                    width={140}
-                    height={64}
-                    className="h-8 w-auto"
-                  />
+                  <span
+                    className="font-serif italic font-light leading-none select-none text-white"
+                    style={{
+                      fontSize: "clamp(1.05rem, 1.5vw, 1.3rem)",
+                      letterSpacing: "-0.02em",
+                    }}
+                  >
+                    Anderson
+                  </span>
+                  <span
+                    className="font-serif font-bold not-italic leading-none select-none"
+                    style={{
+                      fontSize: "clamp(1.35rem, 1.9vw, 1.65rem)",
+                      color: "var(--accent-bright)",
+                      marginLeft: "0.05em",
+                      lineHeight: 1,
+                    }}
+                  >
+                    .
+                  </span>
                 </Link>
                 <button 
                   onClick={() => setOpen(false)}

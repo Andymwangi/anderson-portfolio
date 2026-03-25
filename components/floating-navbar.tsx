@@ -3,7 +3,6 @@
 /// <reference path="../iconify-icon.d.ts" />
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -49,23 +48,34 @@ export function FloatingNavbar() {
         }}
       >
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-9 py-2 md:h-[4.5rem] md:gap-8 md:px-14 md:py-2.5 lg:px-20">
-          {/* Brand */}
           <Link
             href="/"
-            className="relative flex shrink-0 items-center transition-opacity hover:opacity-90"
+            className="relative flex shrink-0 items-center transition-opacity hover:opacity-80"
             aria-label="Anderson Mwangi — Home"
           >
-            <Image
-              src="/logo.svg"
-              alt=""
-              width={160}
-              height={73}
-              className="h-8 w-auto md:h-9 lg:h-10"
-              priority
-            />
+            <span
+              className="font-serif italic font-light leading-none select-none"
+              style={{
+                fontSize: "clamp(1.05rem, 1.5vw, 1.3rem)",
+                color: "var(--text-primary)",
+                letterSpacing: "-0.02em",
+              }}
+            >
+              Anderson
+            </span>
+            <span
+              className="font-serif font-bold not-italic leading-none select-none"
+              style={{
+                fontSize: "clamp(1.35rem, 1.9vw, 1.65rem)",
+                color: "var(--accent-bright)",
+                marginLeft: "0.05em",
+                lineHeight: 1,
+              }}
+            >
+              .
+            </span>
           </Link>
 
-          {/* Desktop nav — flat row, accent rule on active */}
           <nav
             className="hidden items-center gap-1 md:flex md:flex-1 md:justify-center"
             aria-label="Primary"
@@ -78,7 +88,9 @@ export function FloatingNavbar() {
                   href={route.href}
                   className={cn(
                     "relative px-3 py-2 font-mono text-[10px] uppercase tracking-[0.16em] transition-colors",
-                    isActive ? "text-[var(--accent-bright)]" : "text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+                    isActive
+                      ? "text-[var(--accent-bright)]"
+                      : "text-[var(--text-muted)] hover:text-[var(--text-primary)]"
                   )}
                 >
                   {route.label}
@@ -129,7 +141,6 @@ export function FloatingNavbar() {
         </div>
       </motion.header>
 
-      {/* Spacer — matches header height */}
       <div className="h-16 md:h-[4.5rem]" />
     </>
   );
