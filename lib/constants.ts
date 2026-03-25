@@ -1,5 +1,8 @@
 // Iconify icon names (Iconify/Solar/MDI)
 
+/** Public GitHub username — used for contribution graph & profile links */
+export const GITHUB_USERNAME = "Andymwangi";
+
 // Site metadata
 export const SITE_METADATA = {
   title: "Anderson Mitambo - Cybersecurity & Cloud Engineering Portfolio",
@@ -23,7 +26,7 @@ export const NAV_LINKS = [
 
 // Social links (icon = Iconify icon name)
 export const SOCIAL_LINKS = [
-  { icon: "mdi:github", href: "https://github.com/Andymwangi", label: "GitHub", color: "hover:text-sage-500" },
+  { icon: "mdi:github", href: `https://github.com/${GITHUB_USERNAME}`, label: "GitHub", color: "hover:text-sage-500" },
   { icon: "mdi:linkedin", href: "https://linkedin.com/in/anderson-mwangi", label: "LinkedIn", color: "hover:text-orange-500" },
   { icon: "solar:letter-bold", href: "mailto:anderson.mitamboo@gmail.com", label: "Mail", color: "hover:text-pink-500" },
   { icon: "mdi:twitter", href: "https://x.com/andymwangii", label: "Twitter", color: "hover:text-blue-500" },

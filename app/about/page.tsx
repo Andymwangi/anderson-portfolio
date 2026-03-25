@@ -7,6 +7,7 @@ import { PageTransition } from "@/components/page-transition";
 import Footer from "@/components/footer";
 import { cn } from "@/lib/utils";
 import { AboutTechStack } from "@/components/about-tech-stack";
+import { GitHubContributionsCalendar } from "@/components/github-contributions-calendar";
 import { LiquidMetalButton } from "@/components/liquid-metal-button";
 import { PageHeroGrid } from "@/components/page-hero-grid";
 
@@ -212,6 +213,57 @@ export default function AboutPage() {
                   )}
                 </motion.div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
+            GitHub activity
+        ═══════════════════════════════════════════════ */}
+        <section
+          className="border-t px-6 py-20 md:px-12 md:py-24 lg:px-20"
+          style={{ borderColor: "var(--border-raw)", background: "var(--bg)" }}
+        >
+          <div className="mx-auto max-w-7xl">
+            <div
+              className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-0"
+              style={{
+                borderTop: "1px solid var(--border-raw)",
+                borderLeft: "1px solid var(--border-raw)",
+              }}
+            >
+              <div
+                className="flex flex-col justify-center p-8 md:p-10 lg:col-span-4"
+                style={{
+                  borderRight: "1px solid var(--border-raw)",
+                  borderBottom: "1px solid var(--border-raw)",
+                  background: "var(--bg)",
+                }}
+              >
+                <div className="section-label mb-6">/// Open source</div>
+                <h2
+                  className="font-serif font-light italic leading-tight"
+                  style={{ fontSize: "clamp(1.75rem, 3vw, 2.35rem)", color: "var(--text-primary)" }}
+                >
+                  Coding{" "}
+                  <span className="font-bold not-italic" style={{ color: "var(--accent-bright)" }}>
+                    rhythm
+                  </span>
+                </h2>
+                <p className="mt-5 font-sans text-sm font-light leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+                  Public commits on GitHub over the last year — same cadence as shipping client work and side projects.
+                </p>
+              </div>
+              <div
+                className="p-8 md:p-10 lg:col-span-8"
+                style={{
+                  borderRight: "1px solid var(--border-raw)",
+                  borderBottom: "1px solid var(--border-raw)",
+                  background: "rgba(var(--accent-rgb) / 0.04)",
+                }}
+              >
+                <GitHubContributionsCalendar />
+              </div>
             </div>
           </div>
         </section>
