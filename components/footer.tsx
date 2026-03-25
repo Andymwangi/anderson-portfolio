@@ -4,6 +4,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { SITE_METADATA, SOCIAL_LINKS } from "@/lib/constants";
+import { FooterVisitorBadge } from "@/components/footer-visitor-badge";
 
 const topNav = [
   { href: "/projects", label: "Work" },
@@ -14,9 +15,9 @@ const topNav = [
 ];
 
 const legalLinks = [
-  { href: "#", label: "Privacy Policy" },
-  { href: "#", label: "Terms of Service" },
-  { href: "#", label: "Cookies" },
+  { href: "/privacy", label: "Privacy Policy" },
+  { href: "/terms", label: "Terms of Use" },
+  { href: "/cookies", label: "Cookies" },
 ];
 
 const pageLinks = [
@@ -59,8 +60,8 @@ export default function Footer() {
         }}
       />
 
-      <div className="relative z-10 mx-auto max-w-[1400px] px-8 py-20 md:px-12 md:py-24 lg:px-16 lg:py-28">
-        <div className="flex w-full flex-col gap-6 border-b border-zinc-200 pb-10 md:flex-row md:items-center md:justify-between md:gap-8 md:pb-12">
+    <div className="relative z-10 mx-auto max-w-[1400px] px-8 py-10 md:px-12 md:py-12 lg:px-16 lg:py-14">
+    <div className="flex w-full flex-col gap-2 border-b border-zinc-200 pb-4 md:flex-row md:items-center md:justify-between md:gap-3 md:pb-4">
           <nav className="flex min-w-0 flex-1 flex-wrap items-center gap-x-6 gap-y-2.5" aria-label="Footer quick links">
             {topNav.map((item) => (
               <Link
@@ -104,7 +105,6 @@ export default function Footer() {
                   <Link
                     href={l.href}
                     className="font-sans text-[15px] text-zinc-600 transition-colors hover:text-zinc-900"
-                    onClick={(e) => l.href === "#" && e.preventDefault()}
                   >
                     {l.label}
                   </Link>
@@ -146,6 +146,15 @@ export default function Footer() {
               </div>
             </div>
           </div>
+        </div>
+
+        <div
+          className="relative z-10 mx-auto flex max-w-[1400px] flex-col gap-4 border-t border-zinc-200 px-8 py-8 md:flex-row md:items-center md:justify-between md:px-12 lg:px-16"
+        >
+          <FooterVisitorBadge />
+          <p className="font-sans text-xs text-zinc-500 md:text-right">
+            Designed and developed by <span className="font-medium text-zinc-800">Anderson Mwangi</span>
+          </p>
         </div>
       </div>
     </footer>
