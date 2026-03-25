@@ -121,6 +121,21 @@
     color-scheme: light;
   }
 
+  /* View Transitions: theme toggle circular reveal (see theme-toggle.tsx) */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  ::view-transition-old(root) {
+    z-index: 1;
+  }
+
+  ::view-transition-new(root) {
+    z-index: 2;
+  }
+
   body {
     @apply antialiased;
     margin: 0;
@@ -288,6 +303,82 @@ html.dark .noise-overlay {
   height: 1px;
   background: var(--accent-raw);
   opacity: 0.6;
+}
+
+/* ─── LEGAL PAGES (portfolio) ────────────────────────── */
+.legal-prose h2 {
+  font-family: var(--font-cormorant), ui-serif, Georgia, serif;
+  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text-primary);
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+
+.legal-prose h2:first-child {
+  margin-top: 0;
+}
+
+.legal-prose h3 {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent-bright);
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.legal-prose p,
+.legal-prose li {
+  font-family: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+.legal-prose p {
+  margin-bottom: 1rem;
+}
+
+.legal-prose ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.legal-prose li {
+  margin-bottom: 0.35rem;
+}
+
+.legal-prose a {
+  color: var(--accent-bright);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(var(--accent-rgb) / 0.45);
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.legal-prose a:hover {
+  color: var(--text-primary);
+  text-decoration-color: rgba(var(--accent-rgb) / 0.85);
+}
+
+.legal-prose strong {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.legal-prose code {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.82em;
+  padding: 0.12em 0.35em;
+  border-radius: 4px;
+  background: rgba(var(--accent-rgb) / 0.08);
+  color: var(--text-primary);
 }
 
 /* ─── EDITORIAL CARD ─────────────────────────────────── */
