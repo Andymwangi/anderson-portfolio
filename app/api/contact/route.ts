@@ -14,7 +14,6 @@ export async function POST(request: Request) {
     const body = await request.json();
     const name = esc(body.name);
     const email = esc(body.email);
-    const phone = esc(body.phone);
     const service = esc(body.service);
     const budget = esc(body.budget);
     const timeline = esc(body.timeline);
@@ -50,7 +49,6 @@ export async function POST(request: Request) {
         <h1>New contact enquiry</h1>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone || "—"}</p>
         <p><strong>Service:</strong> ${service}</p>
         <p><strong>Budget band:</strong> ${budget}</p>
         <p><strong>Timeline:</strong> ${timeline}</p>

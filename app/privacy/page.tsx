@@ -29,7 +29,7 @@ export default function PrivacyPolicyPage() {
 
       <h2>Information the contact form collects</h2>
       <p>
-        If you use the contact form, you may provide your name, email address, optional phone number, and details about
+        If you use the contact form, you may provide your name, email address, and details about
         your enquiry (service interest, budget range, timeline, and a message). This information is sent to the site
         owner by email so they can respond to you. It is not used for marketing lists, sold, or shared for advertising.
       </p>

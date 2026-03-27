@@ -21,7 +21,6 @@ export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "",
     service: "",
     budget: "",
     timeline: "",
@@ -47,7 +46,6 @@ export default function ContactPage() {
         setFormData({
           name: "",
           email: "",
-          phone: "",
           service: "",
           budget: "",
           timeline: "",
@@ -209,24 +207,20 @@ export default function ContactPage() {
                   href: "mailto:anderson.mitamboo@gmail.com",
                 },
                 {
-                  icon: "solar:phone-calling-bold",
-                  label: "Phone",
-                  value: "+254 700 071 699",
-                  href: "tel:+254700071699",
-                },
-                {
                   icon: "solar:map-point-bold",
                   label: "Location",
                   value: "Nairobi, Kenya",
                   href: "https://www.google.com/maps/search/?api=1&query=Nairobi+Kenya",
+                  openInNewTab: true,
                 },
               ].map((c) => (
                 <a
                   key={c.label}
                   href={c.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="col-span-12 flex items-start gap-4 p-6 transition-colors hover:bg-[rgba(var(--accent-rgb)/0.04)] md:col-span-4 md:flex-col md:gap-3"
+                  {...(c.openInNewTab
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                  className="col-span-12 flex items-start gap-4 p-6 transition-colors hover:bg-[rgba(var(--accent-rgb)/0.04)] md:col-span-6 md:flex-col md:gap-3"
                   style={{
                     borderRight: "1px solid var(--border-raw)",
                     borderBottom: "1px solid var(--border-raw)",
@@ -393,25 +387,6 @@ export default function ContactPage() {
                       onBlur={(e) => (e.target.style.background = "transparent")}
                     />,
                     "col-span-12 md:col-span-6",
-                  )}
-
-                  {fieldShell(
-                    "Phone (optional)",
-                    "phone",
-                    <input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      autoComplete="tel"
-                      placeholder="+254 …"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className={`${controlBase} placeholder:text-[var(--text-muted)] placeholder:opacity-60`}
-                      style={{ color: "var(--text-primary)" }}
-                      onFocus={(e) => (e.target.style.background = "rgba(var(--accent-rgb) / 0.08)")}
-                      onBlur={(e) => (e.target.style.background = "transparent")}
-                    />,
-                    "col-span-12",
                   )}
 
                   <div

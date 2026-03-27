@@ -10,7 +10,6 @@ export const SITE_METADATA = {
   keywords: "cybersecurity, cloud engineering, full stack developer, next.js, typescript",
   author: "Anderson Mitambo",
   email: "anderson.mitamboo@gmail.com",
-  phone: "+254-700-071-699",
   location: "Nairobi, Kenya",
 }
 
@@ -48,14 +47,6 @@ export const CONTACT_INFO = [
     color: "text-sage-500",
     glow: "glow-sage",
     href: `mailto:${SITE_METADATA.email}`,
-  },
-  {
-    icon: "solar:phone-bold",
-    label: "Phone",
-    value: SITE_METADATA.phone,
-    color: "text-orange-500",
-    glow: "glow-orange",
-    href: `tel:${SITE_METADATA.phone}`,
   },
   {
     icon: "solar:map-point-bold",
@@ -163,5 +154,4 @@ export const FORM_VALIDATION = {
   email: "Please enter a valid email address",
   minLength: (min: number) => `Must be at least ${min} characters`,
   maxLength: (max: number) => `Must be at most ${max} characters`,
-  phoneFormat: "Please enter a valid phone number",
 }
