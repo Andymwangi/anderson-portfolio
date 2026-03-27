@@ -295,8 +295,12 @@ export default function HomePage() {
                 ))}
               </motion.div>
 
+              {/* Hero CTAs: keep siblings inside this motion.div so stagger/layout stays consistent.
+                  Internal route → <Link href="…"><LiquidMetalButton>…</LiquidMetalButton></Link>
+                  External URL → <a href="…" target="_blank" rel="noopener noreferrer">…</a>
+                  File in /public → <a href="/filename.pdf" download>…</a> (same button wrapper) */}
               <motion.div
-                className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center lg:justify-start"
+                className="flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center lg:justify-start"
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
@@ -304,9 +308,9 @@ export default function HomePage() {
                 <Link href="/projects">
                   <LiquidMetalButton variant="filled" className="px-9 py-4">View projects</LiquidMetalButton>
                 </Link>
-                <a href="/Anderson Mwangi Junior Full stack  Resume (1).pdf" download>
-                  <LiquidMetalButton variant="outline" className="px-9 py-4">Download CV</LiquidMetalButton>
-                </a>
+                <Link href="/about">
+                  <LiquidMetalButton variant="outline" className="px-9 py-4">View more</LiquidMetalButton>
+                </Link>
               </motion.div>
             </motion.div>
 
