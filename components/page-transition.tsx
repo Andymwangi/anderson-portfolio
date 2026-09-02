@@ -1,44 +1,23 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
-import { usePathname } from "next/navigation";
 
-interface PageTransitionProps {
-  children: ReactNode;
-}
+/** Short fade on route mount. No exit choreography, no external imagery. */
+export function PageTransition({ children }: { children: ReactNode }) {
+  const reduceMotion = useReducedMotion();
 
-const bannerImages: { [key: string]: string } = {
-  '/projects': 'https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?q=80&w=2940&auto=format&fit=crop',
-  '/certifications': 'https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2940&auto=format&fit=crop',
-  '/contact': 'https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=2070&auto=format&fit=crop',
-  '/experience': 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2940&auto=format&fit=crop',
-  '/education': 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=2940&auto=format&fit=crop',
-};
-
-export function PageTransition({ children }: PageTransitionProps) {
-  const pathname = usePathname();
-  const bannerImage = bannerImages[pathname];
+  if (reduceMotion) {
+    return <div className="relative">{children}</div>;
+  }
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.3 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       className="relative"
     >
-      {bannerImage && (
-        <div
-          className="absolute top-0 left-0 w-full h-[400px] -z-10 opacity-20 dark:opacity-5"
-          style={{
-            backgroundImage: `url('${bannerImage}')`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            maskImage: "linear-gradient(to bottom, black 50%, transparent 100%)",
-          }}
-        />
-      )}
       {children}
     </motion.div>
   );

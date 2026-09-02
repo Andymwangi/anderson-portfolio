@@ -1,143 +1,114 @@
 "use client";
 
+import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { Button } from "@/components/ui/button";
+import { Brand, PRIMARY_ROUTES } from "@/components/floating-navbar";
+import { SOCIAL_LINKS } from "@/lib/constants";
 import { useMobileMenu } from "@/hooks/use-mobile-menu";
-const routes = [
-  { href: "/", label: "HOME", icon: "solar:home-2-bold" },
-  { href: "/about", label: "ABOUT", icon: "solar:user-bold" },
-  { href: "/projects", label: "WORK", icon: "solar:case-bold" },
-  { href: "/experience", label: "EXPERIENCE", icon: "solar:history-bold" },
-  { href: "/contact", label: "CONTACT", icon: "solar:letter-bold" },
-];
+
+const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function MobileNav() {
   const { isOpen, setOpen } = useMobileMenu();
   const pathname = usePathname();
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = previous;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [isOpen, setOpen]);
+
+  const close = () => setOpen(false);
+
   return (
     <AnimatePresence>
-      {isOpen && (
-        <>
-          {/* Backdrop */}
-          <motion.div
-            className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-md md:hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setOpen(false)}
-          />
+      {isOpen ? (
+        <motion.div
+          className="fixed inset-0 z-[70] flex flex-col bg-canvas md:hidden"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25, ease: EASE }}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Site navigation"
+        >
+          <div className="container-x hairline-b flex h-16 items-center justify-between">
+            <Brand onClick={close} />
+            <button
+              type="button"
+              onClick={close}
+              className="flex h-10 w-10 items-center justify-center text-ink"
+              aria-label="Close menu"
+            >
+              <iconify-icon icon="solar:close-circle-linear" width="24" />
+            </button>
+          </div>
 
-          {/* Menu Panel */}
-          <motion.div
-            className="fixed right-0 top-0 bottom-0 w-[280px] z-[70] bg-[#0a0806]/95 border-l border-accent/10 md:hidden flex flex-col"
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-          >
-            <div className="p-8 flex flex-col h-full">
-              {/* Header */}
-              <div className="mb-12 flex items-center justify-between">
-                <Link
-                  href="/"
-                  className="relative flex shrink-0 items-center transition-opacity hover:opacity-80"
-                  aria-label="Anderson Mwangi — Home"
-                  onClick={() => setOpen(false)}
+          <nav className="container-x flex flex-1 flex-col justify-center gap-1 py-10" aria-label="Primary">
+            {PRIMARY_ROUTES.map((route, index) => {
+              const isActive = pathname === route.href;
+              return (
+                <motion.div
+                  key={route.href}
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.06 + index * 0.05, duration: 0.45, ease: EASE }}
                 >
-                  <span
-                    className="font-serif italic font-light leading-none select-none text-white"
-                    style={{
-                      fontSize: "clamp(1.05rem, 1.5vw, 1.3rem)",
-                      letterSpacing: "-0.02em",
-                    }}
+                  <Link
+                    href={route.href}
+                    onClick={close}
+                    className={cn(
+                      "display-lg hairline-b flex items-baseline justify-between py-4 transition-colors",
+                      isActive ? "text-brick-bright" : "text-ink hover:text-brick-bright"
+                    )}
                   >
-                    Anderson
-                  </span>
-                  <span
-                    className="font-serif font-bold not-italic leading-none select-none"
-                    style={{
-                      fontSize: "clamp(1.35rem, 1.9vw, 1.65rem)",
-                      color: "var(--accent-bright)",
-                      marginLeft: "0.05em",
-                      lineHeight: 1,
-                    }}
+                    <span>{route.label}</span>
+                    <span className="caption">0{index + 1}</span>
+                  </Link>
+                </motion.div>
+              );
+            })}
+          </nav>
+
+          <div className="container-x flex flex-col gap-6 pb-10">
+            <div className="flex flex-wrap gap-2">
+              {SOCIAL_LINKS.map((social) => {
+                const isMail = social.href.startsWith("mailto:");
+                return (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target={isMail ? undefined : "_blank"}
+                    rel={isMail ? undefined : "noopener noreferrer"}
+                    aria-label={social.label}
+                    className="flex h-11 w-11 items-center justify-center border border-line text-ink-secondary transition-colors hover:border-ink hover:text-ink"
                   >
-                    .
-                  </span>
-                </Link>
-                <button 
-                  onClick={() => setOpen(false)}
-                  className="p-2 text-gray-400 hover:text-white transition-colors"
-                >
-                  <iconify-icon icon="solar:close-circle-bold" width="32"></iconify-icon>
-                </button>
-              </div>
-
-              {/* Navigation Links */}
-              <nav className="flex flex-col gap-2 flex-1 relative">
-                {routes.map((route, index) => {
-                  const isActive = pathname === route.href;
-                  return (
-                    <motion.div
-                      key={route.href}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05 }}
-                    >
-                      <Link
-                        href={route.href}
-                        onClick={() => setOpen(false)}
-                        className={cn(
-                          "flex items-center gap-4 px-4 py-4 transition-all duration-300 group relative",
-                          isActive 
-                            ? "text-accent" 
-                            : "text-gray-400 hover:text-white"
-                        )}
-                      >
-                        <iconify-icon 
-                          icon={route.icon} 
-                          width="24"
-                          class={cn(
-                            "transition-colors",
-                            isActive ? "text-accent" : "text-gray-500 group-hover:text-accent"
-                          )}
-                        ></iconify-icon>
-                        <span className="font-serif italic text-lg tracking-wide">{route.label}</span>
-                        
-                        {isActive && (
-                          <motion.div
-                            layoutId="mobile-nav-indicator"
-                            className="absolute bottom-1 left-4 right-4 h-[2px] bg-accent"
-                            transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                          />
-                        )}
-                      </Link>
-                    </motion.div>
-                  );
-                })}
-              </nav>
-
-              {/* Footer */}
-              <div className="mt-auto space-y-6">
-                <div className="flex items-center justify-between border-t border-accent/10 pt-6">
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-gray-500">Theme</span>
-                  <ThemeToggle />
-                </div>
-
-                <Link href="/contact" onClick={() => setOpen(false)}>
-                  <button className="w-full border border-accent/20 bg-accent/5 py-4 rounded-lg text-xs font-bold uppercase tracking-[0.2em] text-accent hover:bg-accent hover:text-black transition-all duration-300">
-                    Let's Talk
-                  </button>
-                </Link>
-              </div>
+                    <iconify-icon icon={social.icon} width="20" height="20" />
+                  </a>
+                );
+              })}
             </div>
-          </motion.div>
-        </>
-      )}
+            <Button asChild size="lg" className="w-full">
+              <Link href="/contact" onClick={close}>
+                Let&apos;s talk
+              </Link>
+            </Button>
+          </div>
+        </motion.div>
+      ) : null}
     </AnimatePresence>
   );
 }

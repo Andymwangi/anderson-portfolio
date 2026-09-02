@@ -1,147 +1,89 @@
 "use client";
 
-/// <reference path="../iconify-icon.d.ts" />
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { Button } from "@/components/ui/button";
 import { useMobileMenu } from "@/hooks/use-mobile-menu";
 
-const routes = [
+export const PRIMARY_ROUTES = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/projects", label: "Work" },
   { href: "/experience", label: "Experience" },
   { href: "/contact", label: "Contact" },
-];
+] as const;
+
+export function Brand({ className, onClick }: { className?: string; onClick?: () => void }) {
+  return (
+    <Link
+      href="/"
+      onClick={onClick}
+      className={cn("inline-flex items-baseline transition-opacity hover:opacity-80", className)}
+      aria-label="Anderson Mwangi, home"
+    >
+      <span className="font-serif text-[1.35rem] italic leading-none text-ink">Anderson</span>
+      <span className="font-serif text-[1.6rem] font-medium leading-none text-brick-bright">.</span>
+    </Link>
+  );
+}
 
 export function FloatingNavbar() {
   const pathname = usePathname();
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const { toggle, isOpen } = useMobileMenu();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setIsVisible(currentScrollY <= lastScrollY || currentScrollY <= 80);
-      setLastScrollY(currentScrollY);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
 
   return (
     <>
-      <motion.header
-        initial={{ y: -92, opacity: 0 }}
-        animate={{ y: isVisible ? 0 : -92, opacity: isVisible ? 1 : 0 }}
-        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed inset-x-0 top-0 z-50 border-b"
-        style={{
-          borderColor: "var(--border-raw)",
-          background: "color-mix(in srgb, var(--bg) 92%, transparent)",
-          backdropFilter: "blur(14px)",
-          WebkitBackdropFilter: "blur(14px)",
-        }}
-      >
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-9 py-2 md:h-[4.5rem] md:gap-8 md:px-14 md:py-2.5 lg:px-20">
-          <Link
-            href="/"
-            className="relative flex shrink-0 items-center transition-opacity hover:opacity-80"
-            aria-label="Anderson Mwangi — Home"
-          >
-            <span
-              className="font-serif italic font-light leading-none select-none"
-              style={{
-                fontSize: "clamp(1.05rem, 1.5vw, 1.3rem)",
-                color: "var(--text-primary)",
-                letterSpacing: "-0.02em",
-              }}
-            >
-              Anderson
-            </span>
-            <span
-              className="font-serif font-bold not-italic leading-none select-none"
-              style={{
-                fontSize: "clamp(1.35rem, 1.9vw, 1.65rem)",
-                color: "var(--accent-bright)",
-                marginLeft: "0.05em",
-                lineHeight: 1,
-              }}
-            >
-              .
-            </span>
-          </Link>
+      <header className="hairline-b fixed inset-x-0 top-0 z-50 bg-[color-mix(in_srgb,var(--bg)_88%,transparent)] backdrop-blur-md">
+        <div className="container-x flex h-16 items-center justify-between gap-6 md:h-[4.25rem]">
+          <Brand />
 
-          <nav
-            className="hidden items-center gap-1 md:flex md:flex-1 md:justify-center"
-            aria-label="Primary"
-          >
-            {routes.map((route) => {
+          <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
+            {PRIMARY_ROUTES.map((route) => {
               const isActive = pathname === route.href;
               return (
                 <Link
                   key={route.href}
                   href={route.href}
                   className={cn(
-                    "relative px-3 py-2 font-mono text-[10px] uppercase tracking-[0.16em] transition-colors",
-                    isActive
-                      ? "text-[var(--accent-bright)]"
-                      : "text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+                    "mono-label relative px-3 py-2 transition-colors",
+                    isActive ? "text-ink" : "text-ink-muted hover:text-ink"
                   )}
                 >
                   {route.label}
-                  {isActive && (
+                  {isActive ? (
                     <motion.span
-                      layoutId="nav-active-bar"
-                      className="absolute bottom-0 left-3 right-3 h-px"
-                      style={{ background: "var(--accent-bright)" }}
+                      layoutId="nav-active"
+                      className="absolute inset-x-3 -bottom-px h-px bg-brick-bright"
                       transition={{ type: "spring", stiffness: 380, damping: 34 }}
                     />
-                  )}
+                  ) : null}
                 </Link>
               );
             })}
           </nav>
 
-          <div className="flex shrink-0 items-center gap-1 md:gap-3">
-            <div
-              className="hidden h-5 w-px md:block"
-              style={{ background: "var(--border-raw)" }}
-              aria-hidden
-            />
+          <div className="flex items-center gap-2">
             <ThemeToggle />
-            <Link
-              href="/contact"
-              className="hidden border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.16em] transition-colors hover:bg-[rgba(var(--accent-rgb)/0.12)] md:inline-block"
-              style={{
-                borderColor: "rgba(var(--accent-rgb) / 0.45)",
-                color: "var(--accent-bright)",
-              }}
-            >
-              Let&apos;s talk
-            </Link>
-
+            <Button asChild variant="outline" size="sm" className="hidden md:inline-flex">
+              <Link href="/contact">Let&apos;s talk</Link>
+            </Button>
             <button
               type="button"
               onClick={toggle}
-              className="flex h-10 w-10 items-center justify-center md:hidden"
-              style={{ color: "var(--text-primary)" }}
+              className="flex h-10 w-10 items-center justify-center text-ink md:hidden"
               aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
             >
-              <iconify-icon
-                icon={isOpen ? "solar:close-circle-bold" : "solar:hamburger-menu-bold"}
-                width="26"
-              />
+              <iconify-icon icon={isOpen ? "solar:close-circle-linear" : "solar:hamburger-menu-linear"} width="24" />
             </button>
           </div>
         </div>
-      </motion.header>
+      </header>
 
-      <div className="h-16 md:h-[4.5rem]" />
+      <div className="h-16 md:h-[4.25rem]" aria-hidden />
     </>
   );
 }

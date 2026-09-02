@@ -1,127 +1,108 @@
-/* Fonts are loaded via next/font in layout.tsx          */
-/* See the layout.tsx snippet provided separately.       */
+/* Fonts are loaded via next/font in app/layout.tsx and exposed as CSS variables. */
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ─────────────────────────────────────────────────────────────
+   DESIGN TOKENS
+   One accent (brick), two neutral canvases (matte black / off-white).
+   Tailwind semantic tokens (shadcn) map to the same HSL values.
+───────────────────────────────────────────────────────────── */
 @layer base {
   :root {
-    /* Brick orange accent — shared (space-separated for rgba(var(--accent-rgb) / a)) */
-    --accent-rgb:        232 93 36;
-    --accent-hover:      #FF6B35;
-    --accent-pressed:    #C94A1C;
+    --accent-rgb: 232 93 36;
+    --accent-hover: #ff6b35;
+    --accent-pressed: #c94a1c;
 
-    /* ── Light · neutral canvas + brick accent ── */
-    --background:          0 0% 98%;       /* #FAFAFA */
-    --background-subtle:   240 5% 96%;    /* zinc-100 */
-    --foreground:          240 10% 4%;    /* near black */
-
-    --card:                0 0% 100%;
-    --card-foreground:     240 10% 4%;
-
-    --popover:             0 0% 100%;
-    --popover-foreground:  240 10% 4%;
-
-    --primary:             16 78% 53%;    /* #E85D24 */
-    --primary-foreground:  0 0% 100%;
-
-    --secondary:           240 5% 96%;
-    --secondary-foreground:240 10% 4%;
-
-    --muted:               240 5% 96%;
-    --muted-foreground:    240 4% 46%;    /* zinc-500 labels */
-
-    --accent:              16 78% 53%;
-    --accent-foreground:   0 0% 100%;
-
-    --destructive:         0 84% 60%;
+    /* Light: warm off-white canvas so the brick accent sits naturally */
+    --background: 36 20% 96%;
+    --foreground: 24 10% 6%;
+    --card: 0 0% 100%;
+    --card-foreground: 24 10% 6%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 24 10% 6%;
+    --primary: 16 78% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 36 16% 93%;
+    --secondary-foreground: 24 10% 6%;
+    --muted: 36 16% 93%;
+    --muted-foreground: 30 5% 44%;
+    --accent: 16 78% 53%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
+    --border: 34 12% 88%;
+    --input: 34 12% 88%;
+    --ring: 16 78% 53%;
+    --radius: 0px;
 
-    --border:              240 6% 90%;
-    --input:               240 6% 90%;
-    --ring:                16 78% 53%;
-    --radius:              0px;
-
-    /* Raw hex / rgba tokens */
-    --bg:              #FAFAFA;
-    --bg-subtle:       #F4F4F5;
-    --surface:         #FFFFFF;
-    --surface-2:       #E4E4E7;
-    --border-raw:      #E4E4E7;
-    --border-faint:    #F4F4F5;
-    --text-primary:    #0A0A0A;
-    --text-secondary:  #52525B;
-    --text-muted:      #71717A;
-    --accent-raw:      #E85D24;
-    --accent-bright:   #E85D24;
-    --accent-pop:      #FF6B35;
-    --highlight:       #C94A1C;
+    --bg: #f7f5f2;
+    --bg-subtle: #f0ede8;
+    --surface: #ffffff;
+    --surface-2: #e6e2dc;
+    --border-raw: #e4dfd8;
+    --border-faint: #edeae5;
+    --text-primary: #141210;
+    --text-secondary: #57524c;
+    --text-muted: #7a746d;
+    --accent-raw: #e85d24;
+    --accent-bright: #e85d24;
   }
 
   .dark {
-    /* ── Dark · matte black + white type + brick accent ── */
-    --background:          0 0% 5%;       /* #0D0D0D */
-    --background-subtle:   0 0% 8%;      /* #141414 */
-    --foreground:          0 0% 100%;
-
-    --card:                0 0% 10%;      /* #1A1A1A */
-    --card-foreground:     0 0% 100%;
-
-    --popover:             0 0% 10%;
-    --popover-foreground:  0 0% 100%;
-
-    --primary:             16 78% 53%;
-    --primary-foreground:  0 0% 100%;
-
-    --secondary:           0 0% 14%;
-    --secondary-foreground:0 0% 100%;
-
-    --muted:               0 0% 14%;
-    --muted-foreground:    240 5% 65%;    /* #A1A1AA */
-
-    --accent:              16 78% 53%;
-    --accent-foreground:   0 0% 100%;
-
-    --destructive:         0 62% 45%;
+    --background: 0 0% 5%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 16 78% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 14%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 16 78% 53%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62% 45%;
     --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 16 78% 53%;
 
-    --border:              0 0% 18%;
-    --input:               0 0% 18%;
-    --ring:                16 78% 53%;
-
-    --bg:              #0D0D0D;
-    --bg-subtle:       #141414;
-    --surface:         #1A1A1A;
-    --surface-2:       #1F1F1F;
-    --border-raw:      #262626;
-    --border-faint:    #1A1A1A;
-    --text-primary:    #FFFFFF;
-    --text-secondary:  #A1A1AA;
-    --text-muted:      #71717A;
-    --accent-raw:      #E85D24;
-    --accent-bright:   #E85D24;
-    --accent-pop:      #FF6B35;
-    --highlight:       #C94A1C;
+    --bg: #0d0d0d;
+    --bg-subtle: #121212;
+    --surface: #171717;
+    --surface-2: #1f1f1f;
+    --border-raw: #262626;
+    --border-faint: #1c1c1c;
+    --text-primary: #f5f5f5;
+    --text-secondary: #a1a1aa;
+    --text-muted: #71717a;
+    --accent-raw: #e85d24;
+    --accent-bright: #ef6a33;
   }
 }
 
+/* ─────────────────────────────────────────────────────────────
+   DOCUMENT
+───────────────────────────────────────────────────────────── */
 @layer base {
-  /* Default document surface is dark; light mode when next-themes adds .light */
   html {
-    background-color: #0D0D0D;
+    background-color: #0d0d0d;
     color-scheme: dark;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   html.light {
-    background-color: #FAFAFA;
+    background-color: #f7f5f2;
     color-scheme: light;
   }
 
-  /* View Transitions: theme toggle circular reveal (see theme-toggle.tsx) */
   ::view-transition-old(root),
   ::view-transition-new(root) {
     animation: none;
@@ -137,184 +118,321 @@
   }
 
   body {
-    @apply antialiased;
     margin: 0;
     padding: 0;
     background-color: var(--bg);
     color: var(--text-primary);
     overflow-x: hidden;
-    /* var(--font-instrument) injected by next/font in layout.tsx */
-    font-family: var(--font-instrument, 'Instrument Sans', ui-sans-serif, sans-serif);
-    font-weight: 300;
+    font-family: var(--font-instrument, "Instrument Sans", ui-sans-serif, system-ui, sans-serif);
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.6;
   }
 
-  /* Display / editorial headings → Cormorant Garamond italic */
-  h1, h2, h3 {
-    /* var(--font-cormorant) injected by next/font in layout.tsx */
-    font-family: var(--font-cormorant, 'Cormorant Garamond', ui-serif, serif);
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-cormorant, "Cormorant Garamond", ui-serif, Georgia, serif);
     font-style: italic;
-    font-weight: 300;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.02;
+    color: var(--text-primary);
+  }
+
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-instrument, "Instrument Sans", ui-sans-serif, system-ui, sans-serif);
+    font-style: normal;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  ::selection {
+    background: rgba(var(--accent-rgb) / 0.28);
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--accent-raw);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   TYPE SCALE
+   Every heading and label on the site uses one of these classes.
+───────────────────────────────────────────────────────────── */
+@layer components {
+  .eyebrow {
+    font-family: var(--font-dm-mono, "DM Mono", ui-monospace, monospace);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  .eyebrow-accent {
+    color: var(--accent-bright);
+  }
+
+  .display-xl {
+    font-family: var(--font-cormorant, "Cormorant Garamond", ui-serif, Georgia, serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(3.25rem, 9vw, 7rem);
+    line-height: 0.95;
     letter-spacing: -0.02em;
   }
 
-  h4, h5, h6 {
-    font-family: var(--font-instrument, 'Instrument Sans', ui-sans-serif, sans-serif);
+  .display-lg {
+    font-family: var(--font-cormorant, "Cormorant Garamond", ui-serif, Georgia, serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .display-md {
+    font-family: var(--font-cormorant, "Cormorant Garamond", ui-serif, Georgia, serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.9rem, 3.2vw, 2.75rem);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+  }
+
+  .display-sm {
+    font-family: var(--font-cormorant, "Cormorant Garamond", ui-serif, Georgia, serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.4rem, 2.1vw, 1.75rem);
+    line-height: 1.15;
+  }
+
+  /* The single upright, accent-coloured word inside an italic display heading. */
+  .accent-word {
     font-style: normal;
     font-weight: 500;
+    color: var(--accent-bright);
   }
+
+  .lead {
+    font-family: var(--font-instrument, "Instrument Sans", ui-sans-serif, system-ui, sans-serif);
+    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  .prose-copy {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+  }
+
+  .caption {
+    font-family: var(--font-dm-mono, "DM Mono", ui-monospace, monospace);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .mono-label {
+    font-family: var(--font-dm-mono, "DM Mono", ui-monospace, monospace);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  /* Layout */
+  .container-x {
+    width: 100%;
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-x {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+  }
+
+  .hairline {
+    border-top: 1px solid var(--border-raw);
+  }
+
+  .hairline-b {
+    border-bottom: 1px solid var(--border-raw);
+  }
+
+  /* Small tag used for technologies and metadata */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    border: 1px solid var(--border-raw);
+    font-family: var(--font-dm-mono, "DM Mono", ui-monospace, monospace);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+
+  /* Inline text link with an animated underline */
+  .text-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .text-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0.35);
+    transform-origin: left;
+    opacity: 0.4;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease;
+  }
+
+  .text-link:hover {
+    color: var(--accent-bright);
+  }
+
+  .text-link:hover::after {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+
+  /* Underline form field */
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--border-raw);
+    padding-bottom: 0.75rem;
+    transition: border-color 0.2s ease;
+  }
+
+  .field:focus-within {
+    border-color: var(--accent-bright);
+  }
+
+  /* The listbox is portalled out of the field, so focus-within alone drops the accent. */
+  .field:has([data-state="open"]) {
+    border-color: var(--accent-bright);
+  }
+
+  .field-label {
+    font-family: var(--font-dm-mono, "DM Mono", ui-monospace, monospace);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .field-control {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    outline: none;
+    padding: 0.25rem 0;
+    font-family: var(--font-instrument, "Instrument Sans", ui-sans-serif, system-ui, sans-serif);
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text-primary);
+  }
+
+  .field-control::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
+  }
+
+  .field-control:focus-visible {
+    outline: none;
+  }
+
 }
 
-/* ─── EDITORIAL DIVIDER ──────────────────────────────── */
-.divider {
-  width: 100%;
-  height: 1px;
-  background: var(--border-raw);
-}
-
-/* ─── GLASS / SURFACE PANEL ─────────────────────────── */
-.glass-panel {
-  background: rgba(20, 20, 20, 0.75);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(var(--accent-rgb) / 0.15);
-  position: relative;
-  overflow: hidden;
-}
-
-.light .glass-panel,
-:root:not(.dark) .glass-panel {
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(var(--accent-rgb) / 0.2);
-}
-
-/* ─── SPOTLIGHT CARD ────────────────────────────────── */
-.spotlight-card {
-  position: relative;
-}
-
-.spotlight-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(
-    800px circle at var(--mouse-x) var(--mouse-y),
-    rgba(var(--accent-rgb) / 0.08),
-    transparent 40%
-  );
-  z-index: 2;
-  opacity: 0;
-  transition: opacity 0.5s;
-  pointer-events: none;
-}
-
-.spotlight-card:hover::before { opacity: 1; }
-
-.spotlight-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: radial-gradient(
-    600px circle at var(--mouse-x) var(--mouse-y),
-    rgba(var(--accent-rgb) / 0.28),
-    transparent 40%
-  );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  z-index: 3;
-  opacity: 0;
-  transition: opacity 0.5s;
-  pointer-events: none;
-}
-
-.spotlight-card:hover::after { opacity: 1; }
-
-/* ─── MARQUEE ────────────────────────────────────────── */
-.marquee-mask {
-  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-}
-
-/* ─── SCAN LINE ─────────────────────────────────────── */
-.scan-line {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 40px;
-  background: linear-gradient(to bottom, transparent, rgba(var(--accent-rgb) / 0.14), transparent);
-  opacity: 0.4;
-  animation: scan 4s linear infinite;
-  z-index: 10;
-  pointer-events: none;
-}
-
-/* ─── NOISE OVERLAY ─────────────────────────────────── */
-/* SVG fractal noise reads as “grain” on dark fills: the same opacity looks harsher on #0D0D0D than on #FAFAFA. */
+/* ─────────────────────────────────────────────────────────────
+   GRAIN
+   One fixed overlay, mounted once in the root layout.
+───────────────────────────────────────────────────────────── */
 .noise-overlay {
   position: fixed;
   inset: 0;
   z-index: 9000;
   pointer-events: none;
-  opacity: 0.032;
+  opacity: 0.028;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
 html.dark .noise-overlay {
-  opacity: 0.014;
+  opacity: 0.016;
 }
 
-/* ─── MAGNETIC BUTTON ────────────────────────────────── */
-.btn-magnetic {
-  display: inline-block;
-  will-change: transform;
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+/* ─────────────────────────────────────────────────────────────
+   MARQUEE
+───────────────────────────────────────────────────────────── */
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
-/* ─── DOT GRID ───────────────────────────────────────── */
-.dot-grid {
-  background-image: radial-gradient(rgba(var(--accent-rgb) / 0.14) 1px, transparent 1px);
-  background-size: 24px 24px;
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
-/* ─── SECTION LABEL (mono caps) ─────────────────────── */
-.section-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 28px;
+.animate-marquee {
+  animation: marquee 48s linear infinite;
 }
 
-.section-label::before {
-  content: '';
-  display: block;
-  width: 20px;
-  height: 1px;
-  background: var(--accent-raw);
-  opacity: 0.6;
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
 
-/* ─── LEGAL PAGES (portfolio) ────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   LEGAL PROSE
+───────────────────────────────────────────────────────────── */
 .legal-prose h2 {
-  font-family: var(--font-cormorant), ui-serif, Georgia, serif;
-  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
-  font-weight: 300;
-  font-style: italic;
-  color: var(--text-primary);
-  margin-top: 2.5rem;
+  font-size: clamp(1.5rem, 2.2vw, 1.9rem);
+  margin-top: 2.75rem;
   margin-bottom: 0.75rem;
-  line-height: 1.2;
 }
 
 .legal-prose h2:first-child {
@@ -322,9 +440,10 @@ html.dark .noise-overlay {
 }
 
 .legal-prose h3 {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.22em;
+  font-family: var(--font-dm-mono, "DM Mono", ui-monospace, monospace);
+  font-style: normal;
+  font-size: 11px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--accent-bright);
   margin-top: 1.75rem;
@@ -333,10 +452,8 @@ html.dark .noise-overlay {
 
 .legal-prose p,
 .legal-prose li {
-  font-family: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
-  font-size: 0.9375rem;
-  font-weight: 300;
-  line-height: 1.65;
+  font-size: 0.9875rem;
+  line-height: 1.7;
   color: var(--text-secondary);
 }
 
@@ -373,155 +490,9 @@ html.dark .noise-overlay {
 }
 
 .legal-prose code {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-dm-mono, "DM Mono", ui-monospace, monospace);
   font-size: 0.82em;
   padding: 0.12em 0.35em;
-  border-radius: 4px;
   background: rgba(var(--accent-rgb) / 0.08);
   color: var(--text-primary);
-}
-
-/* ─── EDITORIAL CARD ─────────────────────────────────── */
-.editorial-card {
-  border-bottom: 1px solid var(--border-raw);
-  padding: 40px 0;
-  transition: all 0.3s ease;
-}
-
-.editorial-card:first-child { border-top: 1px solid var(--border-raw); }
-
-/* ─── PHOTO ALBUM (Sean-style editorial) ─────────────── */
-.photo-album-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  grid-template-rows: auto auto;
-  gap: 3px;
-}
-
-.photo-album-grid .photo-main {
-  grid-row: span 2;
-}
-
-.photo-frame {
-  position: relative;
-  overflow: hidden;
-  background: var(--surface);
-}
-
-.photo-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  display: block;
-}
-
-.photo-frame:hover img { transform: scale(1.04); }
-
-.photo-meta {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 20px;
-  background: linear-gradient(to top, rgba(13, 13, 13, 0.82) 0%, transparent 100%);
-}
-
-.photo-meta-number {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  color: rgba(255, 255, 255, 0.35);
-  letter-spacing: 0.1em;
-}
-
-.photo-meta-caption {
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 11px;
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.78);
-  letter-spacing: 0.06em;
-}
-
-.photo-meta-date {
-  font-family: 'DM Mono', monospace;
-  font-size: 8px;
-  color: rgba(255, 255, 255, 0.32);
-  margin-top: 3px;
-  letter-spacing: 0.12em;
-}
-
-/* ─── SKEW TARGET ────────────────────────────────────── */
-.skew-target { will-change: transform; }
-
-/* ─── AURA FILTER ────────────────────────────────────── */
-.aura-filter {
-  filter: sepia(0.6) hue-rotate(10deg) saturate(0.5) brightness(0.85);
-}
-
-/* ─── ANIMATIONS ─────────────────────────────────────── */
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
-@keyframes reverse-spin {
-  from { transform: rotate(360deg); }
-  to   { transform: rotate(0deg); }
-}
-
-@keyframes marquee {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-33.333%); }
-}
-
-@keyframes scan {
-  0%   { top: -20%; }
-  100% { top: 120%; }
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.3; }
-}
-
-@keyframes pulse-fast {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.5; }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-8px); }
-}
-
-/* Utility animation classes */
-.animate-spin-slow    { animation: spin-slow 15s linear infinite; }
-.animate-reverse-spin { animation: reverse-spin 20s linear infinite; }
-.animate-marquee      { animation: marquee 32s linear infinite; }
-.animate-scan         { animation: scan 4s linear infinite; }
-.animate-blink        { animation: blink 2s ease-in-out infinite; }
-.animate-pulse-fast   { animation: pulse-fast 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
-.animate-float        { animation: float 4s ease-in-out infinite; }
-
-/* ─── CARD HOVER ─────────────────────────────────────── */
-.card-hover {
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.card-hover:hover { transform: translateY(-6px); }
-
-/* ─── ACCENT LINE ────────────────────────────────────── */
-.accent-line {
-  display: block;
-  width: 40px;
-  height: 1px;
-  background: var(--accent-raw);
-}
-
-/* Dark: parchment bg sections */
-.dark .section-alt {
-  background: var(--bg-subtle);
 }
