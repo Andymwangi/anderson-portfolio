@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Anderson Mwangi — Portfolio
 
-## Getting Started
+Personal site for [Anderson Mwangi](https://github.com/Andymwangi), a full-stack developer focused on cybersecurity, cloud engineering, and enterprise systems. Based in Nairobi, Kenya.
 
-First, run the development server:
+Live routes cover selected work, background, experience, certifications, and a contact form that emails enquiries directly.
+
+## Stack
+
+- [Next.js](https://nextjs.org/) 16 (App Router) and React 19
+- TypeScript
+- Tailwind CSS with shadcn-style primitives (Radix Select, CVA)
+- Framer Motion
+- Nodemailer for contact mail
+- next-themes for light / dark
+
+## Pages
+
+| Path | Purpose |
+| --- | --- |
+| `/` | Home — intro, selected work, tech marquee |
+| `/projects` | Full project list |
+| `/about` | Background, skills, GitHub contributions |
+| `/experience` | Roles and timeline |
+| `/certifications` | Credentials |
+| `/contact` | Enquiry form (service, budget, timeline) |
+| `/privacy`, `/terms`, `/cookies` | Legal |
+
+API routes:
+
+- `POST /api/contact` — sends the enquiry over SMTP
+- `GET /api/github-contributions` — last-year contribution graph
+- `GET /api/visitors` — footer visitor count
+
+## Getting started
+
+Requires Node.js 20+ and npm.
 
 ```bash
+git clone https://github.com/Andymwangi/anderson-portfolio.git
+cd anderson-portfolio
+npm install
+cp .env.example .env.local   # then fill in values
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | |
+| --- | --- |
+| `npm run dev` | Development server |
+| `npm run build` | Production build |
+| `npm start` | Serve the production build |
+| `npm run lint` | ESLint |
 
-## Learn More
+## Environment
 
-To learn more about Next.js, take a look at the following resources:
+Create `.env.local` (gitignored). Contact mail will fail until Gmail credentials are set.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```env
+# Required for /api/contact (Gmail SMTP, app password)
+GMAIL_EMAIL=
+GMAIL_APP_PASSWORD=
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Optional — defaults exist in code
+GITHUB_CONTRIBUTIONS_USER=Andymwangi
+COUNTAPI_NAMESPACE=andymwangi-portfolio
+COUNTAPI_KEY=site-visitors
+```
 
-## Deploy on Vercel
+Use a [Gmail app password](https://support.google.com/accounts/answer/185833), not the account password.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project layout
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+app/            Routes, layout, global styles, API handlers
+components/     Chrome, page sections, ui primitives
+lib/            Site copy, project data, helpers
+public/         Images, resume PDF, static assets
+```
+
+Design tokens live in `app/globals.css` (canvas, ink, brick accent). Type uses Cormorant Garamond, Instrument Sans, and DM Mono via `next/font`.
+
+## Licence
+
+Private portfolio. All rights reserved unless otherwise noted.
