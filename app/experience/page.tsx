@@ -1,13 +1,16 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { PageTransition } from "@/components/page-transition";
-import { PageHeroGrid } from "@/components/page-hero-grid";
-import Footer from "@/components/footer";
 import { useState } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import Footer from "@/components/footer";
+import { PageTransition } from "@/components/page-transition";
+import { PageHeader } from "@/components/page-header";
+import { Section, SectionHeading } from "@/components/section";
+import { Reveal } from "@/components/ui/reveal";
+import { ClosingCta } from "@/components/closing-cta";
+import { cn } from "@/lib/utils";
 
 type Experience = {
-  solarIcon: string;
   date: string;
   title: string;
   company: string;
@@ -20,41 +23,29 @@ type Experience = {
 
 const experiences: Experience[] = [
   {
-    solarIcon: "solar:smartphone-bold",
     date: "Feb 2026 – Present",
     title: "Mobile & Backend Developer",
     company: "Tradecare Africa Limited",
     location: "Nairobi, Kenya",
     type: "Full-time",
     summary:
-      "Building Farm Data Pod (FDP) — a comprehensive offline-first agricultural data management platform covering the full producer value chain.",
+      "Building Farm Data Pod (FDP), an offline-first agricultural data management platform covering the full producer value chain.",
     achievements: [
-      "Developing Farm Data Pod (FDP), a full-featured mobile application built with Expo (React Native) and TypeScript that manages agricultural data across an organisation's entire value chain — from producer registration and field management through crop production, input distribution, scouting, and seasonal planning.",
+      "Developing Farm Data Pod (FDP), a full-featured mobile application built with Expo (React Native) and TypeScript that manages agricultural data across an organisation's entire value chain, from producer registration and field management through crop production, input distribution, scouting, and seasonal planning.",
       "Architecting role-based dashboards and multi-module workflows tailored to each user's responsibilities (field agents, agronomists, supervisors, and organisation admins), enabling contextual data entry and reporting at every stage of production.",
       "Implementing an offline-first data management layer so field agents can continue recording producer and farm data in areas with limited or no connectivity, with seamless sync when back online.",
       "Designing and maintaining RESTful backend APIs to support producer registration, field surveys, input tracking, scouting reports, and seasonal planning modules.",
       "Collaborating with agronomists and product stakeholders to translate complex agricultural workflows into intuitive mobile UX, reducing data entry errors and improving field agent efficiency.",
     ],
-    technologies: [
-      "Expo",
-      "React Native",
-      "TypeScript",
-      "Node.js",
-      "PostgreSQL",
-      "REST APIs",
-      "Offline-first sync",
-      "Role-based access control",
-    ],
+    technologies: ["Expo", "React Native", "TypeScript", "Node.js", "PostgreSQL", "REST APIs", "Offline-first sync", "RBAC"],
   },
   {
-    solarIcon: "solar:code-circle-bold",
     date: "May 2025 – Present",
     title: "Software Engineer",
     company: "Coseke Kenya Limited",
     location: "Nairobi, Kenya",
     type: "Full-time",
-    summary:
-      "Architected legal management systems serving 200+ officers, reducing case processing time by 70%.",
+    summary: "Architected legal management systems serving 200+ officers, reducing case processing time by 70%.",
     achievements: [
       "Architected SRC Legal Management System serving 200+ legal officers managing 5,000+ civil and employment cases, reducing case processing time by 70%.",
       "Integrated Contract Lifecycle Management module processing 300+ annual supplier contracts with 60% reduction in review time and ensuring 100% compliance with Kenyan procurement regulations.",
@@ -63,26 +54,15 @@ const experiences: Experience[] = [
       "Contributed to ICT Authority's EDRMS implementation, improving government document retrieval efficiency by 55%.",
       "Established security protocols including JWT authentication and role-based access controls, preventing 500+ potential security threats while maintaining GDPR compliance.",
     ],
-    technologies: [
-      "React",
-      "TypeScript",
-      "Node.js",
-      "Express.js",
-      "PostgreSQL",
-      "Redis",
-      "Material UI",
-      "Docker",
-    ],
+    technologies: ["React", "TypeScript", "Node.js", "Express", "PostgreSQL", "Redis", "Material UI", "Docker"],
   },
   {
-    solarIcon: "solar:case-round-bold",
     date: "Jan 2023 – Present",
     title: "Freelance Full-Stack Developer",
-    company: "Self-Employed",
+    company: "Self-employed",
     location: "Nairobi, Kenya (Remote)",
     type: "Freelance",
-    summary:
-      "Delivered 15+ custom applications generating KES 300,000+ revenue increases per client.",
+    summary: "Delivered 15+ custom applications generating KES 300,000+ revenue increases per client.",
     achievements: [
       "Delivered 15+ custom web and mobile applications generating average revenue increases of KES 300,000+ per client across e-commerce, education, and healthcare sectors.",
       "Built USIU E-Counselling Platform serving 3,000+ students with real-time appointment booking, reducing scheduling conflicts by 80% and enabling 500+ monthly counselling sessions.",
@@ -91,27 +71,15 @@ const experiences: Experience[] = [
       "Improved average website load speeds by 40% and user experience scores by 35% across all projects through Next.js SSR and performance optimisation.",
       "Achieved 85% client satisfaction rate and 60% client retention through quality delivery and comprehensive technical support.",
     ],
-    technologies: [
-      "React",
-      "Next.js",
-      "React Native",
-      "Node.js",
-      "MongoDB",
-      "PostgreSQL",
-      "Blockchain",
-      "Stripe",
-      "M-Pesa",
-    ],
+    technologies: ["React", "Next.js", "React Native", "Node.js", "MongoDB", "PostgreSQL", "Blockchain", "Stripe", "M-Pesa"],
   },
   {
-    solarIcon: "solar:layers-minimalistic-bold",
     date: "Jan 2024 – Sep 2024",
-    title: "IT Intern – Digital Systems & Database Management",
+    title: "IT Intern, Digital Systems & Database Management",
     company: "Office of the Registrar of Political Parties (ORPP)",
     location: "Nairobi, Kenya",
     type: "Internship",
-    summary:
-      "Digitised 10,000+ political party records, reducing document search time by 60%.",
+    summary: "Digitised 10,000+ political party records, reducing document search time by 60%.",
     achievements: [
       "Spearheaded digitisation initiative for 10,000+ political party records, reducing document search time by 60% from hours to minutes through optimised database indexing.",
       "Developed automated Python scripts for data validation and migration, processing 50,000+ records and reducing manual data entry workload by 30% while improving accuracy by 25%.",
@@ -119,26 +87,15 @@ const experiences: Experience[] = [
       "Implemented advanced search functionality with filters, pagination, and autocomplete reducing document retrieval from days to seconds.",
       "Collaborated with cross-functional teams to establish data quality standards eliminating 95% of data entry errors.",
     ],
-    technologies: [
-      "React",
-      "TypeScript",
-      "Node.js",
-      "Python",
-      "PostgreSQL",
-      "OCR",
-      "Pandas",
-      "Elasticsearch",
-    ],
+    technologies: ["React", "TypeScript", "Node.js", "Python", "PostgreSQL", "OCR", "Pandas", "Elasticsearch"],
   },
   {
-    solarIcon: "solar:shield-check-bold",
     date: "Sep 2023 – Jan 2024",
-    title: "IT Intern – Legal Information Systems",
+    title: "IT Intern, Legal Information Systems",
     company: "Kenya Law",
     location: "Nairobi, Kenya",
     type: "Internship",
-    summary:
-      "Optimised databases for 500+ legal professionals, reducing search time by 40%.",
+    summary: "Optimised databases for 500+ legal professionals, reducing search time by 40%.",
     achievements: [
       "Optimised case law databases serving 500+ legal professionals, implementing advanced search functionality and indexing strategies that reduced average search time by 40%.",
       "Developed automated document archiving solutions processing 8,000+ legal documents with drag-and-drop functionality, reducing manual filing time by 50%.",
@@ -146,43 +103,24 @@ const experiences: Experience[] = [
       "Implemented relevance ranking algorithms improving search result accuracy by 30%.",
       "Created intuitive document management dashboard with real-time progress tracking, enhancing user experience scores by 45%.",
     ],
-    technologies: [
-      "React",
-      "Node.js",
-      "PostgreSQL",
-      "Elasticsearch",
-      "Jest",
-      "Document Management APIs",
-    ],
+    technologies: ["React", "Node.js", "PostgreSQL", "Elasticsearch", "Jest", "Document Management APIs"],
   },
   {
-    solarIcon: "solar:diploma-bold",
     date: "2021 – 2025",
     title: "BSc Information Technology",
     company: "JKUAT",
     location: "Nairobi, Kenya",
     type: "Education",
-    summary:
-      "Graduated with Second Class Honors (Upper Division), specialised in secure system design.",
+    summary: "Graduated with Second Class Honours (Upper Division), specialised in secure system design.",
     achievements: [
-      "Graduated with Second Class Honors (Upper Division) from Jomo Kenyatta University of Agriculture and Technology.",
-      "Built solid foundation in algorithms, data structures, software engineering, database management, network architecture, and cloud computing.",
+      "Graduated with Second Class Honours (Upper Division) from Jomo Kenyatta University of Agriculture and Technology.",
+      "Built a solid foundation in algorithms, data structures, software engineering, database management, network architecture, and cloud computing.",
       "Developed hands-on projects in Python, JavaScript, React, and Node.js demonstrating practical application of theoretical knowledge.",
-      "Specialised in secure system design and database optimisation with focus on enterprise-grade solutions.",
+      "Specialised in secure system design and database optimisation with a focus on enterprise-grade solutions.",
     ],
-    technologies: [
-      "Python",
-      "JavaScript",
-      "React",
-      "Node.js",
-      "Java",
-      "C++",
-      "SQL",
-      "Cloud Computing",
-    ],
+    technologies: ["Python", "JavaScript", "React", "Node.js", "Java", "C++", "SQL", "Cloud Computing"],
   },
   {
-    solarIcon: "solar:medal-ribbon-bold",
     date: "2023 – Present",
     title: "Professional Certifications",
     company: "Cisco · IBM · ALX",
@@ -196,362 +134,171 @@ const experiences: Experience[] = [
       "Earned Python for Data Science Certificate and IBM Data Engineering Certificate.",
       "Currently pursuing CyberOps Associate Certification (Cisco) and ALX Backend Development Course.",
     ],
-    technologies: [
-      "Cisco Networking Academy",
-      "Python",
-      "Data engineering",
-      "Security fundamentals",
-    ],
+    technologies: ["Cisco Networking Academy", "Python", "Data engineering", "Security fundamentals"],
   },
 ];
 
-export default function ExperiencePage() {
-  const [expandedCards, setExpandedCards] = useState<number[]>([]);
+const stats = [
+  { number: "3+", label: "Years experience" },
+  { number: "10,000+", label: "Users served" },
+  { number: "20+", label: "Projects delivered" },
+  { number: "70%", label: "Average efficiency gain" },
+];
 
-  const toggleCard = (index: number) => {
-    setExpandedCards((prev) =>
-      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
-    );
-  };
+function CurrentRoleCard({ experience }: { experience: Experience }) {
+  return (
+    <div className="w-full rounded-2xl bg-canvas-subtle p-6 ring-1 ring-ink/[0.06] dark:ring-white/[0.06] md:p-7 lg:max-w-[380px]">
+      <div className="flex items-center justify-between gap-4">
+        <p className="eyebrow flex items-center gap-2.5">
+          <span className="h-1.5 w-1.5 rounded-full bg-brick-bright" aria-hidden />
+          Now
+        </p>
+        <p className="caption">{experience.date}</p>
+      </div>
+      <h2 className="display-sm mt-5">{experience.title}</h2>
+      <p className="mt-1.5 text-[15px] text-ink-secondary">
+        {experience.company} &middot; {experience.location}
+      </p>
+      <p className="mt-4 text-sm leading-relaxed text-ink-muted">{experience.summary}</p>
+      <ul className="mt-5 flex flex-wrap gap-2">
+        {experience.technologies.slice(0, 4).map((tech) => (
+          <li key={tech} className="tag">
+            {tech}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function ExperienceRow({ experience, index }: { experience: Experience; index: number }) {
+  const [open, setOpen] = useState(false);
+  const reduceMotion = useReducedMotion();
+  const panelId = `experience-panel-${index}`;
 
   return (
-    <PageTransition>
-      {/* Noise overlay */}
-      <div className="noise-overlay" />
+    <Reveal as="article" className="hairline">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        aria-controls={panelId}
+        className="group grid w-full grid-cols-1 gap-4 py-8 text-left md:grid-cols-12 md:gap-8 md:py-10"
+      >
+        <div className="md:col-span-3">
+          <p className="caption text-brick-bright">{experience.date}</p>
+          <p className="caption mt-1.5">{experience.type}</p>
+        </div>
 
-      <div className="min-h-screen" style={{ background: "var(--bg)", color: "var(--text-primary)" }}>
-
-        <div className="fixed inset-0 -z-50 dark:bg-[#0D0D0D] bg-[#FAFAFA]" />
-
-        <PageHeroGrid
-          sectionLabel="/// Experience"
-          title={
-            <h1
-              className="font-serif font-light italic"
-              style={{
-                fontSize: "clamp(3rem, 8vw, 5.5rem)",
-                color: "var(--text-primary)",
-                lineHeight: 0.98,
-              }}
-            >
-              My{" "}
-              <span className="font-bold not-italic" style={{ color: "var(--accent-bright)" }}>
-                Experience
-              </span>
-            </h1>
-          }
-          leftFooter={
-            <p
-              className="font-mono uppercase"
-              style={{
-                fontSize: "9px",
-                letterSpacing: "0.28em",
-                color: "var(--accent-bright)",
-                opacity: 0.85,
-              }}
-            >
-              Enterprise · Product · Freelance
-            </p>
-          }
-        >
-          <p className="font-serif italic leading-relaxed md:text-xl" style={{ color: "var(--text-secondary)" }}>
-            Building enterprise solutions that solve real problems and deliver measurable impact.
+        <div className="md:col-span-8">
+          <h3 className="display-sm transition-colors group-hover:text-brick-bright">{experience.title}</h3>
+          <p className="mt-1.5 text-[15px] text-ink-secondary">
+            {experience.company} &middot; {experience.location}
           </p>
-          <p className="font-sans text-base font-light leading-relaxed md:text-lg" style={{ color: "var(--text-secondary)" }}>
-            From legal platforms and government systems to mobile field tools and client delivery — a timeline of roles,
-            outcomes, and tech stacks.
-          </p>
-        </PageHeroGrid>
+          <p className="prose-copy mt-4 max-w-2xl">{experience.summary}</p>
+        </div>
 
-        {/* ═══════════════════════════════════════════════
-            TIMELINE — Editorial list
-        ═══════════════════════════════════════════════ */}
-        <section
-          className="py-28 px-6 md:px-12 lg:px-20 relative z-20"
-          style={{ background: "var(--bg-subtle)", borderBottom: "1px solid var(--border-raw)" }}
-        >
-          <div className="max-w-7xl mx-auto">
+        <div className="flex md:col-span-1 md:justify-end">
+          <span
+            className={cn(
+              "flex h-9 w-9 items-center justify-center border border-line text-ink transition-colors group-hover:border-ink",
+              open && "bg-ink text-canvas"
+            )}
+            aria-hidden
+          >
+            <iconify-icon icon={open ? "solar:minus-circle-linear" : "solar:add-circle-linear"} width="18" />
+          </span>
+        </div>
+      </button>
 
-            {/* Section header */}
-            <div
-              className="flex flex-col md:flex-row justify-between items-end mb-16 pb-8"
-              style={{ borderBottom: "1px solid var(--border-raw)" }}
-            >
-              <div>
-                <div className="section-label">/// Timeline</div>
-                <h2
-                  className="font-serif font-light italic"
-                  style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", color: "var(--text-primary)" }}
-                >
-                  Career Highlights
-                </h2>
+      <AnimatePresence initial={false}>
+        {open ? (
+          <motion.div
+            id={panelId}
+            key="panel"
+            initial={reduceMotion ? false : { height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={reduceMotion ? undefined : { height: 0, opacity: 0 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden"
+          >
+            <div className="grid grid-cols-1 gap-8 pb-10 md:grid-cols-12 md:pb-12">
+              <div className="md:col-span-8 md:col-start-4">
+                <p className="eyebrow mb-4">Key achievements</p>
+                <ul className="flex flex-col gap-3">
+                  {experience.achievements.map((achievement) => (
+                    <li key={achievement} className="flex items-start gap-3">
+                      <span className="mt-3 h-px w-3 shrink-0 bg-brick-bright" aria-hidden />
+                      <span className="text-[15px] leading-relaxed text-ink-secondary">{achievement}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <p className="eyebrow mb-3 mt-8">Technologies</p>
+                <ul className="flex flex-wrap gap-2">
+                  {experience.technologies.map((tech) => (
+                    <li key={tech} className="tag">
+                      {tech}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <p
-                className="font-sans font-light text-sm hidden md:block max-w-xs text-right"
-                style={{ color: "var(--text-secondary)" }}
-              >
-                From education to enterprise — delivering impact across industries
-              </p>
             </div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    </Reveal>
+  );
+}
 
-            {/* Experience cards — editorial ruled rows */}
-            <div
-              style={{
-                borderTop: "1px solid var(--border-raw)",
-                borderLeft: "1px solid var(--border-raw)",
-              }}
-            >
-              {experiences.map((exp, index) => {
-                const isExpanded = expandedCards.includes(index);
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.08 }}
-                    style={{
-                      borderRight: "1px solid var(--border-raw)",
-                      borderBottom: "1px solid var(--border-raw)",
-                    }}
-                  >
-                    {/* Header row — always visible */}
-                    <div
-                      className="grid p-8 md:p-10 cursor-pointer group/card transition-colors"
-                      style={{
-                        gridTemplateColumns: "auto 1fr auto",
-                        gap: "32px",
-                        alignItems: "start",
-                      }}
-                      onClick={() => toggleCard(index)}
-                    >
-                      {/* Left: number + icon */}
-                      <div className="flex flex-col items-center gap-3 pt-1">
-                        <div
-                          className="font-serif italic font-light"
-                          style={{ fontSize: "28px", color: "var(--border-raw)", lineHeight: 1 }}
-                        >
-                          {String(index + 1).padStart(2, "0")}
-                        </div>
-                        <div
-                          className="p-2.5 relative"
-                          style={{
-                            background: "rgba(var(--accent-rgb) / 0.08)",
-                            border: "1px solid rgba(var(--accent-rgb) / 0.18)",
-                          }}
-                        >
-                          <iconify-icon
-                            icon={exp.solarIcon}
-                            width="20"
-                            style={{ color: "var(--accent-bright)" }}
-                          />
-                          <span
-                            className="absolute -top-1 -right-1 w-1.5 h-1.5 rounded-full animate-pulse"
-                            style={{ background: "var(--accent-bright)" }}
-                          />
-                        </div>
-                      </div>
+export default function ExperiencePage() {
+  return (
+    <PageTransition>
+      <PageHeader
+        eyebrow="Experience"
+        title={
+          <>
+            Where I&apos;ve <span className="accent-word">worked</span>
+          </>
+        }
+        lead="From legal platforms and government systems to mobile field tools and client delivery: a timeline of roles, outcomes, and stacks."
+        meta="Enterprise · Product · Freelance · 2021 – present"
+        aside={<CurrentRoleCard experience={experiences[0]} />}
+      />
 
-                      {/* Centre: info */}
-                      <div>
-                        <p
-                          className="font-mono uppercase tracking-widest mb-2"
-                          style={{ fontSize: "9px", color: "var(--accent-bright)" }}
-                        >
-                          {exp.date}
-                        </p>
-                        <h3
-                          className="font-serif italic font-light mb-1"
-                          style={{ fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "var(--text-primary)" }}
-                        >
-                          {exp.title}
-                        </h3>
-                        <p
-                          className="font-sans font-light mb-1"
-                          style={{ fontSize: "14px", color: "var(--accent-bright)" }}
-                        >
-                          {exp.company}
-                        </p>
-                        <p
-                          className="font-mono"
-                          style={{ fontSize: "10px", color: "var(--text-muted)", letterSpacing: "0.08em" }}
-                        >
-                          {exp.location} · {exp.type}
-                        </p>
+      <Section bordered={false}>
+        <SectionHeading
+          eyebrow="Timeline"
+          title="Career highlights"
+          aside={<p className="prose-copy">Select a role to see the detail behind the outcome.</p>}
+        />
+        <div className="flex flex-col">
+          {experiences.map((experience, index) => (
+            <ExperienceRow key={experience.title + experience.company} experience={experience} index={index} />
+          ))}
+        </div>
+      </Section>
 
-                        {/* Summary — always shown */}
-                        <p
-                          className="font-sans font-light text-sm leading-relaxed mt-4"
-                          style={{ color: "var(--text-secondary)", maxWidth: "640px" }}
-                        >
-                          {exp.summary}
-                        </p>
-                      </div>
+      <Section tone="subtle">
+        <SectionHeading eyebrow="Impact" title="By the numbers" size="md" />
+        <div className="grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-4">
+          {stats.map((stat, index) => (
+            <Reveal key={stat.label} delay={index * 0.06} className="hairline pt-6">
+              <p className="display-lg accent-word">{stat.number}</p>
+              <p className="caption mt-3">{stat.label}</p>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
 
-                      {/* Right: expand toggle */}
-                      <button
-                        className="flex-shrink-0 w-10 h-10 flex items-center justify-center transition-colors mt-1"
-                        style={{
-                          border: "1px solid var(--border-raw)",
-                          background: isExpanded ? "rgba(var(--accent-rgb) / 0.12)" : "transparent",
-                          color: "var(--accent-bright)",
-                        }}
-                        aria-label={isExpanded ? "Collapse" : "Expand"}
-                      >
-                        <iconify-icon
-                          icon={isExpanded ? "solar:minus-circle-bold" : "solar:add-circle-bold"}
-                          width="20"
-                          style={{ color: "var(--accent-bright)" }}
-                        />
-                      </button>
-                    </div>
+      <ClosingCta
+        title="Bring me onto your next build"
+        copy="Whether it is a greenfield product or hardening an existing platform, I bring the same discipline and care."
+        primary={{ href: "/contact", label: "Get in touch" }}
+        secondary={{ href: "/projects", label: "View work" }}
+      />
 
-                    {/* Expanded content */}
-                    <AnimatePresence>
-                      {isExpanded && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.35 }}
-                          className="overflow-hidden"
-                        >
-                          <div
-                            className="px-8 md:px-10 pb-10"
-                            style={{
-                              borderTop: "1px solid var(--border-raw)",
-                              paddingTop: "32px",
-                              marginLeft: "calc(28px + 32px + 52px)", /* align with content column */
-                            }}
-                          >
-                            {/* Achievements */}
-                            <div className="mb-8">
-                              <div className="section-label mb-5">Key Achievements</div>
-                              <ul className="space-y-3">
-                                {exp.achievements.map((achievement, idx) => (
-                                  <li key={idx} className="flex items-start gap-3">
-                                    <span
-                                      className="w-1 h-1 rounded-full flex-shrink-0 mt-2"
-                                      style={{ background: "var(--accent-bright)" }}
-                                    />
-                                    <span
-                                      className="font-sans font-light text-sm leading-relaxed"
-                                      style={{ color: "var(--text-secondary)" }}
-                                    >
-                                      {achievement}
-                                    </span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-
-                            {/* Technologies */}
-                            <div>
-                              <div className="section-label mb-4">Technologies</div>
-                              <div className="flex flex-wrap gap-2">
-                                {exp.technologies.map((tech, idx) => (
-                                  <span
-                                    key={idx}
-                                    className="font-mono"
-                                    style={{
-                                      fontSize: "9px",
-                                      letterSpacing: "0.1em",
-                                      textTransform: "uppercase",
-                                      padding: "5px 10px",
-                                      border: "1px solid var(--border-raw)",
-                                      color: "var(--text-muted)",
-                                      background: "rgba(var(--accent-rgb) / 0.04)",
-                                    }}
-                                  >
-                                    {tech}
-                                  </span>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════
-            SUMMARY STATS
-        ═══════════════════════════════════════════════ */}
-        <section
-          className="py-28 px-6 md:px-12 lg:px-20 relative z-20"
-          style={{ background: "var(--bg)" }}
-        >
-          <div className="max-w-7xl mx-auto">
-
-            <div className="mb-16">
-              <div className="section-label">/// Impact</div>
-              <h2
-                className="font-serif font-light italic"
-                style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", color: "var(--text-primary)" }}
-              >
-                By The Numbers
-              </h2>
-            </div>
-
-            <div
-              style={{
-                borderTop: "1px solid var(--border-raw)",
-                borderLeft: "1px solid var(--border-raw)",
-                display: "grid",
-                gridTemplateColumns: "repeat(4, 1fr)",
-              }}
-            >
-              {[
-                { number: "3+", label: "Years Experience" },
-                { number: "10,000+", label: "Users Served" },
-                { number: "20+", label: "Projects Delivered" },
-                { number: "70%", label: "Avg Efficiency Gain" },
-              ].map((stat, i) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
-                  className="py-12 px-8 text-center relative"
-                  style={{
-                    borderRight: "1px solid var(--border-raw)",
-                    borderBottom: "1px solid var(--border-raw)",
-                  }}
-                >
-                  <div
-                    className="font-serif italic font-light mb-2"
-                    style={{
-                      fontSize: "clamp(2.5rem, 5vw, 4rem)",
-                      color: "var(--accent-bright)",
-                      lineHeight: 1,
-                    }}
-                  >
-                    {stat.number}
-                  </div>
-                  <div
-                    className="font-mono uppercase tracking-widest"
-                    style={{ fontSize: "9px", color: "var(--text-muted)" }}
-                  >
-                    {stat.label}
-                  </div>
-                  <span
-                    className="absolute top-4 right-4 w-1.5 h-1.5 rounded-full animate-pulse"
-                    style={{ background: "var(--accent-bright)" }}
-                  />
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <Footer />
-      </div>
+      <Footer />
     </PageTransition>
   );
 }

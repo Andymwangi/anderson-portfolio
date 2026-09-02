@@ -13,7 +13,7 @@ const lastUpdated = "25 March 2026";
 export default function CookiesPage() {
   return (
     <LegalPageShell
-      sectionLabel="/// Cookies"
+      sectionLabel="Cookies"
       titleLine="Cookie &"
       titleAccent="storage"
       intro="This portfolio keeps things minimal: there are no analytics or ad cookies. Here is what your browser may store when you use the site."
