@@ -1,344 +1,205 @@
-"use client"
+import type { Metadata } from "next";
+import Footer from "@/components/footer";
+import { PageTransition } from "@/components/page-transition";
+import { PageHeader } from "@/components/page-header";
+import { Section, SectionHeading } from "@/components/section";
+import { Reveal } from "@/components/ui/reveal";
+import { ClosingCta } from "@/components/closing-cta";
 
-import { motion } from "framer-motion"
-import { Award, Calendar, ExternalLink, CheckCircle, GraduationCap, MapPin, BookOpen } from "lucide-react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { PageTransition } from "@/components/page-transition"
-import { PageHeroGrid } from "@/components/page-hero-grid"
+export const metadata: Metadata = {
+  title: "Education & certifications - Anderson Mwangi",
+  description: "Degree and industry credentials in cybersecurity, data, and backend engineering.",
+};
 
-const education = [
-  {
-    degree: "Bachelor of Science in Information Technology",
-    institution: "Jomo Kenyatta University of Agriculture and Technology (JKUAT)",
-    location: "Nairobi, Kenya",
-    period: "2021 - 2025",
-    status: "In Progress",
-    description:
-      "Comprehensive program covering software development, cybersecurity, database management, and cloud computing technologies.",
-    highlights: [
-      "Specialized in Cybersecurity and Cloud Computing",
-      "Completed advanced coursework in Network Security",
-      "Participated in multiple tech innovation projects",
-      "Maintained high academic performance throughout",
-    ],
-    color: "bg-sage-500",
-    gradient: "sage-gradient",
-    glow: "glow-sage",
-  },
-]
+const education = {
+  degree: "BSc Information Technology",
+  institution: "Jomo Kenyatta University of Agriculture and Technology (JKUAT)",
+  location: "Nairobi, Kenya",
+  period: "2021 – 2025",
+  status: "Graduated, Second Class Honours (Upper Division)",
+  description:
+    "A comprehensive programme covering software development, cybersecurity, database management, and cloud computing.",
+  highlights: [
+    "Specialised in cybersecurity and cloud computing",
+    "Advanced coursework in network security",
+    "Multiple technology innovation projects",
+    "Secure system design and database optimisation focus",
+  ],
+};
 
-const certifications = [
+type Certification = {
+  title: string;
+  issuer: string;
+  year: string;
+  status: "Completed" | "In progress";
+  description: string;
+  skills: string[];
+  verificationUrl?: string;
+};
+
+const certifications: Certification[] = [
   {
     title: "Junior Cybersecurity Certificate",
     issuer: "Cisco Networking Academy",
     year: "2024",
     status: "Completed",
-    description:
-      "Comprehensive cybersecurity fundamentals covering threat analysis, network security, and incident response.",
-    skills: ["Network Security", "Threat Analysis", "Incident Response", "Security Protocols"],
-    credentialId: "CSC-2024-001",
-    verificationUrl: "#",
-    color: "bg-orange-500",
-    gradient: "orange-gradient",
-    glow: "glow-orange",
+    description: "Cybersecurity fundamentals covering threat analysis, network security, and incident response.",
+    skills: ["Network security", "Threat analysis", "Incident response", "Security protocols"],
   },
   {
-    title: "Cisco CyberOps Certificate",
+    title: "Endpoint Security Certificate",
     issuer: "Cisco Networking Academy",
-    year: "2025",
+    year: "2024",
     status: "Completed",
-    description:
-      "Advanced cybersecurity operations including security monitoring, threat hunting, and digital forensics.",
-    skills: ["Security Monitoring", "Threat Hunting", "Digital Forensics", "SOC Operations"],
-    credentialId: "CCO-2025-001",
-    verificationUrl: "#",
-    color: "bg-pink-500",
-    gradient: "pink-gradient",
-    glow: "glow-pink",
+    description: "Securing endpoints, operating systems, and networks against common attack vectors.",
+    skills: ["Endpoint hardening", "OS security", "Network defence"],
   },
   {
-    title: "Python for Data Science Certificate",
+    title: "Python for Data Science",
     issuer: "IBM",
     year: "2024",
     status: "Completed",
-    description:
-      "Data science fundamentals using Python, including data analysis, visualization, and machine learning basics.",
-    skills: ["Python Programming", "Data Analysis", "Data Visualization", "Machine Learning"],
-    credentialId: "IBM-PDS-2024",
-    verificationUrl: "#",
-    color: "bg-sage-500",
-    gradient: "sage-gradient",
-    glow: "glow-sage",
+    description: "Data science foundations in Python, including analysis, visualisation, and machine learning basics.",
+    skills: ["Python", "Data analysis", "Visualisation", "Machine learning basics"],
   },
   {
     title: "IBM Data Engineering Certificate",
     issuer: "IBM",
     year: "2024",
     status: "Completed",
-    description:
-      "Comprehensive data engineering program covering ETL processes, data warehousing, and big data technologies.",
-    skills: ["ETL Processes", "Data Warehousing", "Big Data", "Database Design"],
-    credentialId: "IBM-DE-2024",
-    verificationUrl: "#",
-    color: "bg-orange-500",
-    gradient: "orange-gradient",
-    glow: "glow-orange",
+    description: "Data engineering programme covering ETL processes, data warehousing, and big data technologies.",
+    skills: ["ETL", "Data warehousing", "Big data", "Database design"],
   },
   {
-    title: "ALX Backend Development Course",
+    title: "CyberOps Associate",
+    issuer: "Cisco Networking Academy",
+    year: "Ongoing",
+    status: "In progress",
+    description: "Security operations: monitoring, threat hunting, digital forensics, and SOC workflows.",
+    skills: ["Security monitoring", "Threat hunting", "Digital forensics", "SOC operations"],
+  },
+  {
+    title: "Backend Development Programme",
     issuer: "ALX",
     year: "Ongoing",
-    status: "In Progress",
-    description:
-      "Intensive backend development program focusing on scalable system design and modern development practices.",
-    skills: ["System Design", "API Development", "Database Optimization", "DevOps"],
-    credentialId: "ALX-BD-2024",
-    verificationUrl: "#",
-    color: "bg-pink-500",
-    gradient: "pink-gradient",
-    glow: "glow-pink",
+    status: "In progress",
+    description: "Intensive backend programme focused on scalable system design and modern engineering practice.",
+    skills: ["System design", "API development", "Database optimisation", "DevOps"],
   },
-]
+];
 
-export default function Certifications() {
+function isRealUrl(url?: string) {
+  return Boolean(url && url !== "#");
+}
+
+export default function CertificationsPage() {
+  const completed = certifications.filter((c) => c.status === "Completed").length;
+
   return (
     <PageTransition>
-      <div className="noise-overlay" />
-      <div className="min-h-screen" style={{ background: "var(--bg)", color: "var(--text-primary)" }}>
-        <div className="fixed inset-0 -z-50 dark:bg-[#0D0D0D] bg-[#FAFAFA]" />
+      <PageHeader
+        eyebrow="Credentials"
+        title={
+          <>
+            Education &amp; <span className="accent-word">certifications</span>
+          </>
+        }
+        lead="A degree in information technology alongside industry credentials in cybersecurity, data, and backend engineering."
+        meta="JKUAT · Cisco · IBM · ALX"
+        aside={
+          <dl className="hairline grid w-full grid-cols-3 lg:max-w-[380px]">
+            {[
+              { value: "1", label: "Degree" },
+              { value: String(completed), label: "Completed" },
+              { value: String(certifications.length - completed), label: "In progress" },
+            ].map((stat, i) => (
+              <div key={stat.label} className={`py-5 ${i > 0 ? "border-l border-line pl-5" : ""}`}>
+                <dd className="display-md accent-word">{stat.value}</dd>
+                <dt className="caption mt-2">{stat.label}</dt>
+              </div>
+            ))}
+          </dl>
+        }
+      />
 
-        <PageHeroGrid
-          sectionLabel="/// Credentials"
-          title={
-            <h1
-              className="font-serif font-light italic"
-              style={{
-                fontSize: "clamp(3rem, 8vw, 5.5rem)",
-                color: "var(--text-primary)",
-                lineHeight: 0.98,
-              }}
-            >
-              Education &{" "}
-              <span className="font-bold not-italic" style={{ color: "var(--accent-bright)" }}>
-                Certifications
-              </span>
-            </h1>
-          }
-          leftFooter={
-            <p
-              className="font-mono uppercase"
-              style={{
-                fontSize: "9px",
-                letterSpacing: "0.28em",
-                color: "var(--accent-bright)",
-                opacity: 0.85,
-              }}
-            >
-              JKUAT · Cisco · IBM · ALX
+      <Section bordered={false}>
+        <SectionHeading eyebrow="Education" title="Degree" size="md" />
+        <Reveal as="article" className="hairline grid grid-cols-1 gap-8 py-10 md:grid-cols-12 md:gap-10">
+          <div className="md:col-span-4">
+            <p className="caption text-brick-bright">{education.period}</p>
+            <p className="caption mt-1.5">{education.location}</p>
+            <p className="mt-6 text-[15px] text-ink">{education.status}</p>
+          </div>
+          <div className="md:col-span-8">
+            <h3 className="display-md">{education.degree}</h3>
+            <p className="mt-2 text-[15px] text-ink-secondary">{education.institution}</p>
+            <p className="prose-copy mt-5 max-w-2xl">{education.description}</p>
+            <ul className="mt-6 flex flex-col gap-2">
+              {education.highlights.map((item) => (
+                <li key={item} className="flex items-start gap-3 text-[15px] text-ink-secondary">
+                  <span className="mt-3 h-px w-3 shrink-0 bg-brick-bright" aria-hidden />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
+      </Section>
+
+      <Section tone="subtle">
+        <SectionHeading
+          eyebrow="Certifications"
+          title="Professional credentials"
+          aside={
+            <p className="caption">
+              {completed} completed &middot; {certifications.length - completed} in progress
             </p>
           }
-        >
-          <p className="font-serif italic leading-relaxed md:text-xl" style={{ color: "var(--text-secondary)" }}>
-            My academic journey and professional certifications that shape my expertise.
-          </p>
-          <p className="font-sans text-base font-light leading-relaxed md:text-lg" style={{ color: "var(--text-secondary)" }}>
-            Degree progress alongside industry credentials in cybersecurity, data, and backend engineering.
-          </p>
-        </PageHeroGrid>
-
-        <div className="relative z-10 px-6 pb-16 pt-4 md:px-12 lg:px-20">
-          <div className="container mx-auto max-w-6xl">
-          {/* Education Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-            className="mb-16"
-          >
-            {education.map((edu, index) => (
-              <Card key={index} className="rounded-none shadow-none border-b border-white/10 bg-transparent">
-                <CardHeader className="p-6 pb-4">
-                  <div className="flex items-center justify-between mb-4">
-                    <Badge variant="secondary" className="bg-sage-500/20 dark:bg-sage-400/20 text-sage-600 dark:text-sage-400 border-sage-500/30 dark:border-sage-400/30">
-                      {edu.status}
-                    </Badge>
-                    <motion.div
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-                    >
-                      <GraduationCap className="h-6 w-6 text-sage-500 dark:text-sage-400" />
-                    </motion.div>
-                  </div>
-                  <CardTitle className="text-2xl mb-2 text-gray-700 dark:text-gray-200 font-bricolage">{edu.degree}</CardTitle>
-                  <p className="text-gray-600 dark:text-gray-400">{edu.institution}</p>
-                </CardHeader>
-                <CardContent className="p-6 pt-0 grid md:grid-cols-2 gap-6">
-                  <div>
-                    <div className="flex items-center text-gray-600 dark:text-gray-400 mb-2">
-                      <MapPin className="h-4 w-4 mr-2" /> {edu.location}
-                    </div>
-                    <div className="flex items-center text-gray-600 dark:text-gray-400">
-                      <Calendar className="h-4 w-4 mr-2" /> {edu.period}
-                    </div>
-                  </div>
-                  <div>
-                    <p className="text-gray-700 dark:text-gray-300 mb-4">{edu.description}</p>
-                    <div>
-                      <h4 className="font-semibold mb-3 flex items-center text-gray-700 dark:text-gray-200 font-bricolage">
-                        <BookOpen className="h-4 w-4 mr-2" />
-                        Key Highlights
-                      </h4>
-                      <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1">
-                        {edu.highlights.map((highlight, i) => (
-                          <li key={i}>{highlight}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </motion.div>
-
-          {/* Certifications Grid */}
-          <h2 className="text-4xl font-bold text-center mb-12 rainbow-gradient bg-clip-text text-transparent font-bricolage">
-            My Certifications
-          </h2>
-          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
-            {certifications.map((cert, index) => (
-              <motion.div
-                key={`${cert.title}-${index}`}
-                initial={{ opacity: 0, y: 50, rotateX: -30 }}
-                animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                transition={{ delay: 0.2 + index * 0.1, duration: 0.8 }}
-                whileHover={{ scale: 1.03, rotateY: 5 }}
-                className="group"
-              >
-                <Card
-                  className={`bg-cream/90 dark:bg-card/90 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-500 ${cert.glow} glow-hover animated-border h-full flex flex-col`}
+        />
+        <div className="grid grid-cols-1 gap-x-10 gap-y-12 md:grid-cols-2">
+          {certifications.map((cert, index) => (
+            <Reveal key={cert.title} as="article" delay={index * 0.05} className="hairline flex flex-col pt-6">
+              <div className="flex items-center justify-between gap-4">
+                <p className="caption">
+                  {cert.issuer} &middot; {cert.year}
+                </p>
+                <span className={cert.status === "Completed" ? "caption text-brick-bright" : "caption"}>
+                  {cert.status}
+                </span>
+              </div>
+              <h3 className="display-sm mt-4">{cert.title}</h3>
+              <p className="prose-copy mt-3 flex-1">{cert.description}</p>
+              <ul className="mt-6 flex flex-wrap gap-2">
+                {cert.skills.map((skill) => (
+                  <li key={skill} className="tag">
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+              {isRealUrl(cert.verificationUrl) ? (
+                <a
+                  href={cert.verificationUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-link mono-label mt-6 w-fit"
                 >
-                  <CardHeader className="p-6 pb-4">
-                    <div className="flex items-center justify-between mb-4">
-                      <Badge
-                        variant="secondary"
-                        className={`${
-                          cert.status === "Completed" 
-                            ? "bg-accent/20 text-accent border-accent/30" 
-                            : "bg-yellow-500/20 dark:bg-yellow-400/20 text-yellow-700 dark:text-yellow-400 border-yellow-500/30 dark:border-yellow-400/30"
-                        }`}
-                      >
-                        <CheckCircle className="h-3 w-3 mr-1" />
-                        {cert.status}
-                      </Badge>
-                      <motion.div whileHover={{ rotate: 360, scale: 1.2 }}>
-                        <Award className={`h-6 w-6 ${
-                          cert.color === 'bg-orange-500' ? 'text-orange-500 dark:text-orange-400' :
-                          cert.color === 'bg-pink-500' ? 'text-deep-forest dark:text-sage-400' :
-                          'text-sage-500 dark:text-sage-400'
-                        }`} />
-                      </motion.div>
-                    </div>
-                    <CardTitle className="text-xl mb-2 text-gray-700 dark:text-gray-200 font-bricolage">{cert.title}</CardTitle>
-                    <p className="text-gray-600 dark:text-gray-400">{cert.issuer}</p>
-                  </CardHeader>
-                  <CardContent className="p-6 pt-0 flex-grow flex flex-col">
-                    <p className="text-gray-700 dark:text-gray-300 mb-4 flex-grow">{cert.description}</p>
-
-                    {/* Skills */}
-                    <div className="mb-6">
-                      <h4 className="font-semibold mb-3 text-gray-700 dark:text-gray-200 font-bricolage">Skills Acquired</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {cert.skills?.map((skill, i) => (
-                          <motion.div
-                            key={`${skill}-${i}`}
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: 0.5 + index * 0.1 + i * 0.05, duration: 0.3 }}
-                            whileHover={{ scale: 1.1, rotate: 5 }}
-                          >
-                            <Badge variant="outline" className={`${
-                              cert.color === 'bg-orange-500' ? 'bg-orange-500/10 dark:bg-orange-400/10 border-orange-500/30 dark:border-orange-400/30 text-orange-600 dark:text-orange-400' :
-                              cert.color === 'bg-pink-500' ? 'bg-deep-forest/10 dark:bg-sage-400/10 border-deep-forest/30 dark:border-sage-400/30 text-deep-forest dark:text-sage-400' :
-                              'bg-sage-500/10 dark:bg-sage-400/10 border-sage-500/30 dark:border-sage-400/30 text-sage-600 dark:text-sage-400'
-                            }`}>
-                              {skill}
-                            </Badge>
-                          </motion.div>
-                        )) || []}
-                      </div>
-                    </div>
-
-                    {/* Verification */}
-                    <div className="flex gap-3 mt-auto">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="flex-1 border-sage-500 dark:border-sage-400 text-sage-500 dark:text-sage-400 hover:bg-sage-500 dark:hover:bg-sage-400 hover:text-white dark:hover:text-gray-900"
-                        asChild
-                      >
-                        <a href={cert.verificationUrl} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-4 w-4 mr-2" />
-                          Verify
-                        </a>
-                      </Button>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="border-orange-500 dark:border-orange-400 text-orange-500 dark:text-orange-400 hover:bg-orange-500 dark:hover:bg-orange-400 hover:text-white dark:hover:text-gray-900"
-                      >
-                        <Calendar className="h-4 w-4 mr-2" />
-                        {cert.year}
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Certification Summary */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 0.6 }}
-            className="mt-16"
-          >
-            <Card className="rounded-none shadow-none border-b border-white/10 bg-transparent">
-              <CardHeader>
-                <CardTitle className="text-center text-2xl font-bold text-gray-700 dark:text-gray-200 font-bricolage">Portfolio Summary</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                  {[
-                    { number: "1", label: "Degree Program", color: "text-sage-500 dark:text-sage-400", glow: "glow-sage" },
-                    { number: "5", label: "Certifications", color: "text-orange-500 dark:text-orange-400", glow: "glow-orange" },
-                    { number: "3", label: "Major Platforms", color: "text-deep-forest dark:text-sage-400", glow: "glow-pink" },
-                    { number: "2025", label: "Expected Graduation", color: "text-sage-500 dark:text-sage-400", glow: "glow-sage" },
-                  ].map((stat, index) => (
-                    <motion.div
-                      key={`${stat.label}-${index}`}
-                      whileHover={{ scale: 1.1, rotateY: 10 }}
-                      className={`p-6 border-b border-white/10 ${stat.glow} glow-hover`}
-                    >
-                      <motion.div
-                        className={`text-3xl font-bold mb-2 ${stat.color}`}
-                        animate={{ scale: [1, 1.1, 1] }}
-                        transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, delay: index * 0.2 }}
-                      >
-                        {stat.number}
-                      </motion.div>
-                      <p className="text-sm text-muted-foreground">{stat.label}</p>
-                    </motion.div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-          </div>
+                  Verify credential
+                  <span aria-hidden>&#8599;</span>
+                </a>
+              ) : null}
+            </Reveal>
+          ))}
         </div>
-      </div>
+      </Section>
+
+      <ClosingCta
+        title="Credentials are the floor, not the ceiling"
+        copy="See how the training shows up in shipped systems, or get in touch about a project."
+        primary={{ href: "/projects", label: "View work" }}
+        secondary={{ href: "/contact", label: "Get in touch" }}
+      />
+
+      <Footer />
     </PageTransition>
-  )
+  );
 }

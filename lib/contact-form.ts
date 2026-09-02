@@ -1,38 +1,67 @@
 /** Display-only; update periodically for client-facing estimates. */
 export const USD_TO_KES = 130;
 
-export function formatKesApprox(usd: number): string {
-  const kes = Math.round(usd * USD_TO_KES);
-  if (kes >= 1_000_000) return `~KES ${(kes / 1_000_000).toFixed(1)}M`;
-  if (kes >= 1_000) return `~KES ${(kes / 1_000).toFixed(0)}k`;
-  return `~KES ${kes.toLocaleString()}`;
+function formatKes(kes: number): string {
+  if (kes >= 1_000_000) {
+    const m = kes / 1_000_000;
+    return `KES ${Number.isInteger(m) ? m : m.toFixed(1)}M`;
+  }
+  if (kes >= 1_000) return `KES ${Math.round(kes / 1_000)}k`;
+  return `KES ${kes.toLocaleString()}`;
+}
+
+function formatUsdApprox(kes: number): string {
+  const usd = Math.round(kes / USD_TO_KES);
+  if (usd >= 1_000) return `~$${(usd / 1_000).toFixed(usd >= 10_000 ? 0 : 1)}k`;
+  return `~$${usd.toLocaleString()}`;
+}
+
+/** Engagement bands in Kenyan Shillings, with an indicative USD equivalent. */
+export const PRICE_BANDS = [
+  { value: "50k_100k", min: 50_000, max: 100_000 },
+  { value: "100k_500k", min: 100_000, max: 500_000 },
+  { value: "500k_1m", min: 500_000, max: 1_000_000 },
+  { value: "1m_plus", min: 1_000_000, max: null },
+] as const;
+
+function bandLabel(band: (typeof PRICE_BANDS)[number]): string {
+  const stripCurrency = (s: string) => s.replace(/^KES /, "");
+  return band.max
+    ? `${formatKes(band.min)} – ${stripCurrency(formatKes(band.max))}`
+    : `${formatKes(band.min)}+`;
+}
+
+function bandUsd(band: (typeof PRICE_BANDS)[number]): string {
+  return band.max
+    ? `${formatUsdApprox(band.min)} – ${formatUsdApprox(band.max)}`
+    : `${formatUsdApprox(band.min)}+`;
 }
 
 /** Guide row for the rates strip (not a quote). */
 export const ENGAGEMENT_RATES = [
   {
-    label: "Discovery / scoping",
-    usd: "From $200",
-    kes: formatKesApprox(200),
-    note: "Workshop or technical discovery",
+    label: "Starter",
+    kes: bandLabel(PRICE_BANDS[0]),
+    usd: bandUsd(PRICE_BANDS[0]),
+    note: "Websites, discovery, small integrations",
   },
   {
     label: "Focused build",
-    usd: "$2.5k – $12k",
-    kes: `${formatKesApprox(2500)} – ${formatKesApprox(12000)}`,
-    note: "MVPs, modules, integrations",
+    kes: bandLabel(PRICE_BANDS[1]),
+    usd: bandUsd(PRICE_BANDS[1]),
+    note: "MVPs, modules, mobile apps",
   },
   {
     label: "Product & platform",
-    usd: "$12k – $50k+",
-    kes: `${formatKesApprox(12000)} – ${formatKesApprox(50000)}+`,
-    note: "Multi-phase delivery",
+    kes: bandLabel(PRICE_BANDS[2]),
+    usd: bandUsd(PRICE_BANDS[2]),
+    note: "Multi-phase delivery, web plus mobile",
   },
   {
-    label: "Advisory / security",
-    usd: "Custom",
-    kes: "Case by case",
-    note: "Retainers & audits",
+    label: "Enterprise",
+    kes: bandLabel(PRICE_BANDS[3]),
+    usd: bandUsd(PRICE_BANDS[3]),
+    note: "Large systems, security programmes, retainers",
   },
 ] as const;
 
@@ -47,10 +76,7 @@ export const SERVICE_OPTIONS = [
 ] as const;
 
 export const BUDGET_OPTIONS = [
-  { value: "under_2500", label: `Under $2,500 (${formatKesApprox(2500)} approx.)` },
-  { value: "2500_10000", label: `$2,500 – $10,000 (${formatKesApprox(2500)} – ${formatKesApprox(10000)})` },
-  { value: "10000_25000", label: `$10,000 – $25,000 (${formatKesApprox(10000)} – ${formatKesApprox(25000)})` },
-  { value: "25000_plus", label: `$25,000+ (${formatKesApprox(25000)}+)` },
+  ...PRICE_BANDS.map((band) => ({ value: band.value, label: bandLabel(band) })),
   { value: "discuss", label: "Prefer to discuss" },
 ] as const;
 

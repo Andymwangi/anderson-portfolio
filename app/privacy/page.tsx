@@ -13,7 +13,7 @@ const lastUpdated = "25 March 2026";
 export default function PrivacyPolicyPage() {
   return (
     <LegalPageShell
-      sectionLabel="/// Privacy"
+      sectionLabel="Privacy"
       titleLine="Privacy"
       titleAccent="policy"
       intro="Plain-language summary of what this portfolio site collects, why, and how you can reach out about your information."

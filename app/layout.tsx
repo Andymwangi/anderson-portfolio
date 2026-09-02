@@ -1,24 +1,16 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Instrument_Sans, DM_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AppLoaderManager } from "@/components/app-loader-manager";
 import { PageWrapper } from "@/components/page-wrapper";
 import { FloatingNavbar } from "@/components/floating-navbar";
 import { MobileNav } from "@/components/mobile-nav";
-import { InteractiveEffects } from "@/components/interactive-effects";
-import Script from "next/script";
-
-/* ── Fonts ─────────────────────────────────────────────────────────────────
-   Valid weights per next/font type definitions in this project's Next version:
-     Cormorant_Garamond → "300" | "400" | "500" | "600" | "700"  (static)
-     Instrument_Sans    → "400" | "500" | "600" | "700"           (static in this version)
-     DM_Mono            → "300" | "400" | "500"                   (static in this version)
-── */
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["300", "400", "600"],
+  weight: ["400", "500"],
   style: ["normal", "italic"],
   variable: "--font-cormorant",
   display: "swap",
@@ -26,7 +18,7 @@ const cormorant = Cormorant_Garamond({
 
 const instrument = Instrument_Sans({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600"],
   style: ["normal", "italic"],
   variable: "--font-instrument",
   display: "swap",
@@ -34,7 +26,7 @@ const instrument = Instrument_Sans({
 
 const dmMono = DM_Mono({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["400", "500"],
   style: ["normal"],
   variable: "--font-dm-mono",
   display: "swap",
@@ -46,10 +38,6 @@ export const metadata: Metadata = {
     "Portfolio of Anderson Mwangi, a full-stack developer specialising in cybersecurity, cloud engineering, and enterprise systems. Based in Nairobi, Kenya.",
   keywords:
     "anderson mwangi, cybersecurity, cloud engineering, full stack developer, next.js, typescript, nairobi",
-  icons: {
-    icon: [{ url: "/portfolio.ico", type: "image/x-icon" }],
-    shortcut: "/portfolio.ico",
-  },
 };
 
 export const viewport: Viewport = {
@@ -64,8 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
       className={`${cormorant.variable} ${instrument.variable} ${dmMono.variable}`}
     >
-      <body className="min-h-screen bg-background font-sans antialiased selection:bg-accent selection:text-black">
-        {/* Iconify for Solar Icons */}
+      <body className="min-h-screen bg-canvas font-sans text-ink antialiased">
         <Script
           src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"
           strategy="afterInteractive"
@@ -79,13 +66,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           storageKey="theme"
           disableTransitionOnChange={false}
         >
-          <InteractiveEffects />
+          <div className="noise-overlay" aria-hidden />
           <AppLoaderManager>
-            <PageWrapper>
-              <FloatingNavbar />
-              <MobileNav />
-              {children}
-            </PageWrapper>
+            <FloatingNavbar />
+            <MobileNav />
+            <PageWrapper>{children}</PageWrapper>
           </AppLoaderManager>
         </ThemeProvider>
       </body>

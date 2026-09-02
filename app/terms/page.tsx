@@ -13,7 +13,7 @@ const lastUpdated = "25 March 2026";
 export default function TermsOfUsePage() {
   return (
     <LegalPageShell
-      sectionLabel="/// Terms"
+      sectionLabel="Terms"
       titleLine="Terms of"
       titleAccent="use"
       intro="Rules and expectations for visiting this portfolio, using its content, and using the contact form. This is a personal site, not a commercial platform."

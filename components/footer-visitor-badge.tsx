@@ -20,7 +20,7 @@ export function FooterVisitorBadge() {
         }
       }
     } catch {
-      /* ignore */
+      /* storage unavailable */
     }
 
     let cancelled = false;
@@ -33,7 +33,7 @@ export function FooterVisitorBadge() {
           try {
             sessionStorage.setItem(STORAGE_KEY, String(data.count));
           } catch {
-            /* ignore */
+            /* storage unavailable */
           }
           setCount(data.count);
         } else {
@@ -53,24 +53,23 @@ export function FooterVisitorBadge() {
 
   if (!ready) {
     return (
-      <p className="font-sans text-xs text-zinc-400" aria-live="polite">
-        Visitor count…
+      <p className="text-xs text-ink-muted" aria-live="polite">
+        Counting visitors&hellip;
       </p>
     );
   }
 
   if (count == null) {
     return (
-      <p className="font-sans text-xs text-zinc-500" aria-live="polite">
+      <p className="text-xs text-ink-muted" aria-live="polite">
         Thanks for visiting.
       </p>
     );
   }
 
   return (
-    <p className="font-sans text-xs text-zinc-600" aria-live="polite">
-      You are visitor{" "}
-      <span className="font-medium tabular-nums text-zinc-900">#{count.toLocaleString()}</span>
+    <p className="text-xs text-ink-muted" aria-live="polite">
+      You are visitor <span className="tabular-nums text-ink">#{count.toLocaleString()}</span>
     </p>
   );
 }
