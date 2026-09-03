@@ -10,6 +10,20 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
+  // Migrated from .eslintignore, which ESLint 9 no longer reads
+  {
+    ignores: [
+      "node_modules/**",
+      ".next/**",
+      "out/**",
+      "dist/**",
+      "coverage/**",
+      "next-env.d.ts",
+      "*.config.js",
+      "replace-font.js",
+      "update-heading-fonts.js",
+    ],
+  },
   ...compat.extends("next/core-web-vitals", "next/typescript"),
 ];
 
