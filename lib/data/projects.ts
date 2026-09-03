@@ -187,7 +187,24 @@ export const projects: Project[] = [
     id: 15,
     title: "Utulivu — Mental Health Platform for Kenya",
     des: "A mental health platform pairing an AI companion with a network of licensed therapists, built for Kenyan users on real Kenyan infrastructure: bilingual English and Swahili, mobile money billing, and full function down to 2G with USSD access on basic handsets.",
-    img: "/utulivu.png",
+    img: "/utulivu-1.png",
+    images: [
+      {
+        src: "/utulivu-1.png",
+        alt: "Utulivu home page reading 'You deserve to feel better. Peace begins here.', with Crisis Support pinned in the navigation and the promise of compassionate, personalised mental health support.",
+        caption: "Hero — peace begins here"
+      },
+      {
+        src: "/utulivu-2.png",
+        alt: "Features overview titled 'Everything You Need for Mental Wellness', spanning AI, therapy, community and growth, with 24/7 AI availability, six or more integrated tools and everything encrypted by default.",
+        caption: "Features — AI, therapy, community, growth"
+      },
+      {
+        src: "/utulivu-3.png",
+        alt: "AI companion section explaining an evidence-based assistant that is always available and never judgmental, adapts to the user's needs, and is grounded in CBT and mindfulness.",
+        caption: "AI companion — grounded in CBT"
+      }
+    ],
     iconLists: ["SiNextdotjs", "FaReact", "SiTypescript", "SiTailwindcss", "SiPostgresql", "SiPrisma"],
     technologies: ["Next.js", "React Native", "TypeScript", "Tailwind CSS", "PostgreSQL", "Prisma", "AI/ML"],
     link: "https://utulivu-app.vercel.app",

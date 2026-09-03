@@ -84,6 +84,17 @@ const config: Config = {
           bright: "var(--accent-bright)",
           hover: "var(--accent-hover)",
           pressed: "var(--accent-pressed)",
+          /**
+           * Alpha-capable accent, for translucent uses such as
+           * `border-brick-alpha/40`.
+           *
+           * The tokens above resolve to opaque hex custom properties with no
+           * `<alpha-value>` placeholder, so Tailwind cannot inject an alpha
+           * channel into them and silently drops any `/opacity` modifier -
+           * `border-brick-bright/40` emits no rule at all. This one is built
+           * from the channel-triplet `--accent-rgb`, so modifiers work.
+           */
+          alpha: "rgb(var(--accent-rgb) / <alpha-value>)",
         },
       },
 

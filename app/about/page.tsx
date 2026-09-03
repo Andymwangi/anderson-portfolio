@@ -136,7 +136,7 @@ export default function AboutPage() {
               <h3 className="display-sm mt-4">{hobby.title}</h3>
               <p className="prose-copy mt-4">{hobby.description}</p>
               {hobby.quote ? (
-                <p className="mt-5 border-l border-brick-bright/40 pl-4 font-serif text-base italic text-ink">
+                <p className="mt-5 border-l border-brick-alpha/40 pl-4 font-serif text-base italic text-ink">
                   &ldquo;{hobby.quote}&rdquo;
                 </p>
               ) : null}
