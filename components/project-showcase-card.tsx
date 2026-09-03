@@ -2,6 +2,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import type { Project } from "@/lib/project-types";
 import { Reveal } from "@/components/ui/reveal";
+import { ProjectCarousel } from "@/components/ui/project-carousel";
 
 function isRealLink(url: string | null | undefined) {
   return Boolean(url && url !== "#");
@@ -11,6 +12,7 @@ export function ProjectShowcaseCard({ project, index }: { project: Project; inde
   const imageLeft = index % 2 === 0;
   const hasLive = isRealLink(project.link);
   const hasSource = isRealLink(project.githubLink);
+  const slides = project.images ?? [];
 
   return (
     <Reveal
@@ -19,19 +21,20 @@ export function ProjectShowcaseCard({ project, index }: { project: Project; inde
     >
       <div id={`project-${project.id}`} className="sr-only" aria-hidden />
 
-      <div
-        className={cn(
-          "relative aspect-[16/11] w-full overflow-hidden border border-line bg-canvas-subtle lg:col-span-6",
-          imageLeft ? "lg:order-1" : "lg:order-2"
+      <div className={cn("lg:col-span-6", imageLeft ? "lg:order-1" : "lg:order-2")}>
+        {slides.length > 0 ? (
+          <ProjectCarousel images={slides} label={project.title} priority={index === 0} />
+        ) : (
+          <div className="relative aspect-[16/11] w-full overflow-hidden border border-line bg-canvas-subtle">
+            <Image
+              src={project.img}
+              alt={project.title}
+              fill
+              className="object-cover object-top"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+          </div>
         )}
-      >
-        <Image
-          src={project.img}
-          alt={project.title}
-          fill
-          className="object-cover object-top"
-          sizes="(max-width: 1024px) 100vw, 50vw"
-        />
       </div>
 
       <div className={cn("flex flex-col lg:col-span-6", imageLeft ? "lg:order-2" : "lg:order-1")}>

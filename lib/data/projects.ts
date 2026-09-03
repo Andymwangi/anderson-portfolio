@@ -8,7 +8,24 @@ export const projects: Project[] = [
     id: 16,
     title: "Wakili360 — Legal Practice Suite for Kenyan Law",
     des: "A complete practice management suite for Kenyan law firms, bringing matters, court diaries, trust accounting, billing, compliance and governance into a single system built around the law actually practised in Kenya.",
-    img: "/wakili360.png",
+    img: "/wakili360-1.png",
+    images: [
+      {
+        src: "/wakili360-1.png",
+        alt: "Wakili360 home page reading 'Run your entire practice from one calm, well-ordered set of chambers', beside a matter file where the AI layer flags a date mismatch and cites the two source documents it read.",
+        caption: "Hero — the practice suite for Kenyan law"
+      },
+      {
+        src: "/wakili360-2.png",
+        alt: "Court diary section titled 'Never miss a court date', showing a week view with a Court of Appeal ruling and the nearest statutory limitation at 214 days.",
+        caption: "Court diary — statutory limitation tracking"
+      },
+      {
+        src: "/wakili360-3.png",
+        alt: "Matters and litigation feature page listing open matters by court, tagged Limitation of Actions Act (Cap 22), ARO fee scale and Advocates Act.",
+        caption: "Matters & litigation — intake to judgment"
+      }
+    ],
     iconLists: ["SiNextdotjs", "FaReact", "SiTypescript", "SiTailwindcss", "SiPostgresql", "SiPrisma"],
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL", "Prisma", "React Native", "AI/ML"],
     link: "https://wakili360.vercel.app",
@@ -81,7 +98,24 @@ export const projects: Project[] = [
     id: 17,
     title: "FarmCred — Agricultural Credit Scoring",
     des: "A credit scoring platform that turns farm records, field sensor readings and crop imagery into a lending score a bank can trust, giving East African farmers a route to credit that does not depend on collateral or paperwork.",
-    img: "/farmcred.png",
+    img: "/farmcred-1.png",
+    images: [
+      {
+        src: "/farmcred-1.png",
+        alt: "FarmCred home page over a wheat field at golden hour, reading 'Credit that starts with the farm, not the paperwork.'",
+        caption: "Hero — credit from the farm, not the paperwork"
+      },
+      {
+        src: "/farmcred-2.png",
+        alt: "Section titled 'What a FarmCred score is made of', listing the four evidence types: farm and crop records, sensor readings, field imagery and yield and risk models.",
+        caption: "Scoring — the four kinds of evidence"
+      },
+      {
+        src: "/farmcred-3.png",
+        alt: "Features page reading 'Everything a season leaves behind, kept', describing how records, sensors and imagery feed a score and the score feeds a lending workflow.",
+        caption: "Features — four connected tools"
+      }
+    ],
     iconLists: ["SiNextdotjs", "FaReact", "SiTypescript", "SiTailwindcss", "SiPostgresql", "SiPython"],
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL", "Python", "AI/ML"],
     link: "https://farmcred.vercel.app",
@@ -225,7 +259,24 @@ export const projects: Project[] = [
     id: 18,
     title: "Jitume Omoka — Dream Big Challenge",
     des: "A national video competition platform for Kenyan youth: entrants film a short vertical video naming their entrepreneurial dream and the one skill they need to reach it, with the top ten paid out directly over M-PESA.",
-    img: "/jitume-omoka.png",
+    img: "/jitume-omoka-1.png",
+    images: [
+      {
+        src: "/jitume-omoka-1.png",
+        alt: "Jitume Omoka home page reading 'Film your dream. Win cash to learn the skill for it', with the three-step Record, Submit and Win cards and a KES 113,500 prize pool paid via M-PESA.",
+        caption: "Hero — record, submit, win"
+      },
+      {
+        src: "/jitume-omoka-2.png",
+        alt: "Section titled 'Your story deserves a national stage', reaching young Kenyans from Nairobi to Kisumu and Mombasa to Eldoret.",
+        caption: "Built for Kenya — Nairobi to Eldoret"
+      },
+      {
+        src: "/jitume-omoka-3.png",
+        alt: "Strong answer examples across agribusiness, tech and e-commerce, creative and fashion, and trade and services, each naming a dream and the one skill needed to reach it.",
+        caption: "What wins — specific beats generic"
+      }
+    ],
     iconLists: ["SiNextdotjs", "FaReact", "SiTypescript", "SiTailwindcss", "SiPostgresql", "SiPrisma"],
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL", "Prisma", "M-Pesa Daraja"],
     link: "https://learnflix-dbc.vercel.app",
