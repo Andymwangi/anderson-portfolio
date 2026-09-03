@@ -11,15 +11,13 @@ export interface ProjectTestimonial {
  * flagship - headline products and enterprise systems, shown first
  * product  - own products still being built out
  * client   - delivered client engagements
- * archive  - early or small-scope work, kept for range but ranked last
  */
-export type ProjectTier = "flagship" | "product" | "client" | "archive";
+export type ProjectTier = "flagship" | "product" | "client";
 
 export const TIER_ORDER: Record<ProjectTier, number> = {
   flagship: 0,
   product: 1,
   client: 2,
-  archive: 3,
 };
 
 /** One slide in a project's screenshot carousel. */
