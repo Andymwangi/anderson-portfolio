@@ -5,6 +5,7 @@ import { projects } from "@/lib/data/projects";
 import { TIER_ORDER, type Project } from "@/lib/project-types";
 import { Section, SectionHeading } from "@/components/section";
 import { Reveal } from "@/components/ui/reveal";
+import { ProjectClientLine } from "@/components/project-client-line";
 
 /** Projects flagged `featured` in the data file, ranked by tier. */
 function getFeatured(): Project[] {
@@ -56,7 +57,7 @@ export function HomeSelectedWorks() {
                 {String(index + 1).padStart(2, "0")} &middot; {project.category}
               </p>
               <h3 className="display-md mt-5">{project.title}</h3>
-              <p className="mt-2 text-sm text-ink-muted">{project.client}</p>
+              <ProjectClientLine client={project.client} />
               <p className="prose-copy mt-5">{project.des}</p>
               <ul className="mt-6 flex flex-wrap gap-2">
                 {project.technologies.slice(0, 5).map((tech) => (

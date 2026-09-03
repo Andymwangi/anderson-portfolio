@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
-import { SITE_METADATA, SOCIAL_LINKS } from "@/lib/constants";
+import { SITE_METADATA, SOCIAL_LINKS, STUDIO_NAME, STUDIO_URL } from "@/lib/constants";
 import { FooterVisitorBadge } from "@/components/footer-visitor-badge";
 
 const pageLinks = [
@@ -48,12 +48,20 @@ export default function Footer() {
               Full-stack, mobile, and security-minded engineering. Building systems that are secure, scalable, and
               approachable.
             </p>
-            <a
-              href={`mailto:${SITE_METADATA.email}`}
-              className="text-link mt-8 inline-flex text-[15px] text-ink"
-            >
-              {SITE_METADATA.email}
-            </a>
+            <div className="mt-8 flex flex-col items-start gap-3">
+              <a href={`mailto:${SITE_METADATA.email}`} className="text-link text-[15px] text-ink">
+                {SITE_METADATA.email}
+              </a>
+              <a
+                href={STUDIO_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-link text-[15px] text-ink"
+              >
+                {STUDIO_NAME}
+                <span aria-hidden>&#8599;</span>
+              </a>
+            </div>
           </div>
 
           <div className="grid grid-cols-2 gap-10 md:col-span-7 md:grid-cols-3 md:gap-8">

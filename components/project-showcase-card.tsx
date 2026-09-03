@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import type { Project } from "@/lib/project-types";
 import { Reveal } from "@/components/ui/reveal";
 import { ProjectCarousel } from "@/components/ui/project-carousel";
+import { ProjectClientLine } from "@/components/project-client-line";
 
 function isRealLink(url: string | null | undefined) {
   return Boolean(url && url !== "#");
@@ -46,7 +47,7 @@ export function ProjectShowcaseCard({ project, index }: { project: Project; inde
         </div>
 
         <h3 className="display-md mt-5">{project.title}</h3>
-        <p className="mt-2 text-sm text-ink-muted">{project.client}</p>
+        <ProjectClientLine client={project.client} />
         <p className="prose-copy mt-5">{project.des}</p>
 
         <dl className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
