@@ -10,12 +10,16 @@ export const SITE_METADATA = {
   location: "Nairobi, Kenya",
 } as const;
 
+/** The software studio behind the Vortex-branded products in the work section */
+export const STUDIO_URL = "https://vortex-digital-labs.vercel.app/";
+
 /** Social links; icon is an Iconify icon name */
 export const SOCIAL_LINKS = [
   { icon: "mdi:github", href: `https://github.com/${GITHUB_USERNAME}`, label: "GitHub" },
   { icon: "mdi:linkedin", href: "https://linkedin.com/in/anderson-mwangi", label: "LinkedIn" },
   { icon: "solar:letter-linear", href: `mailto:${SITE_METADATA.email}`, label: "Mail" },
   { icon: "mdi:twitter", href: "https://x.com/andymwangii", label: "Twitter" },
+  { icon: "solar:atom-linear", href: STUDIO_URL, label: "Vortex Digital Labs" },
 ] as const;
 
 /** Animation durations in seconds, used by the motion variant hooks */
