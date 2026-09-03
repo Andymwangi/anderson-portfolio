@@ -2,16 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { projects } from "@/lib/data/projects";
-import type { Project } from "@/lib/project-types";
+import { TIER_ORDER, type Project } from "@/lib/project-types";
 import { Section, SectionHeading } from "@/components/section";
 import { Reveal } from "@/components/ui/reveal";
 
-const FEATURED_IDS = [10, 11, 12] as const;
-
+/** Projects flagged `featured` in the data file, ranked by tier. */
 function getFeatured(): Project[] {
-  return FEATURED_IDS.map((id) => projects.find((p) => p.id === id)).filter(
-    (p): p is Project => p != null
-  );
+  return projects
+    .filter((project) => project.featured)
+    .sort((a, b) => TIER_ORDER[a.tier] - TIER_ORDER[b.tier]);
 }
 
 export function HomeSelectedWorks() {

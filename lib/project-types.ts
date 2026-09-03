@@ -4,6 +4,24 @@ export interface ProjectTestimonial {
   title: string;
 }
 
+/**
+ * Display priority. Projects are ordered by tier first, then by their position
+ * in the `projects` array, so ranking survives any reordering of the data file.
+ *
+ * flagship - headline products and enterprise systems, shown first
+ * product  - own products still being built out
+ * client   - delivered client engagements
+ * archive  - early or small-scope work, kept for range but ranked last
+ */
+export type ProjectTier = "flagship" | "product" | "client" | "archive";
+
+export const TIER_ORDER: Record<ProjectTier, number> = {
+  flagship: 0,
+  product: 1,
+  client: 2,
+  archive: 3,
+};
+
 export interface Project {
   id: number;
   title: string;
@@ -22,4 +40,8 @@ export interface Project {
   impact: string[];
   testimonial: ProjectTestimonial;
   status: string;
+  /** Display priority band. See ProjectTier. */
+  tier: ProjectTier;
+  /** Surfaced in the homepage "Selected work" section. */
+  featured?: boolean;
 }

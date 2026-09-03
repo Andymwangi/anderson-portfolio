@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo } from 'react'
-import { Project } from '@/lib/project-types'
+import { Project, TIER_ORDER } from '@/lib/project-types'
 
 // Import projects data from a central location
 import { projects as projectsData } from '@/lib/data/projects'
@@ -22,8 +22,12 @@ export function useProjects() {
     search: null,
   })
 
-  // Get all projects
-  const projects = useMemo(() => projectsData, [])
+  // Get all projects, ranked by tier. Array.prototype.sort is stable, so
+  // projects within a tier keep their order in the data file.
+  const projects = useMemo(
+    () => [...projectsData].sort((a, b) => TIER_ORDER[a.tier] - TIER_ORDER[b.tier]),
+    []
+  )
 
   // Get unique categories
   const categories = useMemo(() => {

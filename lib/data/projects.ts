@@ -1,7 +1,45 @@
 import { Project } from "@/lib/project-types";
 
 export const projects: Project[] = [
-  // ─── ENTERPRISE / FLAGSHIP PROJECTS ───────────────────────────────────────
+
+  // --- FLAGSHIP - HEADLINE PRODUCTS & ENTERPRISE SYSTEMS -------------------------
+
+  {
+    id: 16,
+    title: "Wakili360 — Legal Practice Suite for Kenyan Law",
+    des: "A complete practice management suite for Kenyan law firms, bringing matters, court diaries, trust accounting, billing, compliance and governance into a single system built around the law actually practised in Kenya.",
+    img: "/wakili360.png",
+    iconLists: ["SiNextdotjs", "FaReact", "SiTypescript", "SiTailwindcss", "SiPostgresql", "SiPrisma"],
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL", "Prisma", "React Native", "AI/ML"],
+    link: "https://wakili360.vercel.app",
+    githubLink: "#",
+    category: "SaaS Platform",
+    tier: "flagship",
+    featured: true,
+    client: "Product — Vortex Digital Labs",
+    clientLogo: "/vortex-logo.png",
+    fullDescription:
+      "Wakili360 is a practice management suite for Kenyan advocates, positioned as a well-run registry for the legal profession: run an entire practice from one calm, well-ordered set of chambers. Thirteen connected product areas sit on a single matter record. Matter Management holds one living file that connects persons, dates, documents, payments and decisions. The Court Diary tracks hearings, mentions and statutory limitation dates across six limitation bases, with two-way calendar sync to Google and Microsoft. Time and Billing offers five ways to capture time, issues fiscal invoices through KRA eTIMS, and collects over M-Pesa. Trust Accounting runs double-entry client ledgers with overdraw prevention enforced in line with the Advocates Act. Legal Intelligence layers AI assistance over matters and documents while always showing its sources. A mobile client stores locally and queues synchronisation so advocates keep working in court buildings with no signal. The whole financial path is one traceable line: work recorded, invoice drafted, eTIMS issued, M-Pesa received, ledger reconciled.",
+    challenge:
+      "Kenyan law firms run on a stack that was never designed for them. International practice management products assume different limitation rules, different tax machinery and no mobile money, so firms end up bolting spreadsheets and messaging apps onto software that cannot express a Kenyan matter. Trust accounting under the Advocates Act carries personal liability for the advocate, yet client account balances are commonly tracked outside any system able to prevent an overdraw. Limitation dates — the deadlines that end a claim outright — are diarised by hand. Since eTIMS became mandatory, an invoice is no longer merely a document but a fiscal event that must be issued through KRA, and most firm billing has no path to it at all.",
+    solution:
+      "Wakili360 was built jurisdiction-first rather than localised after the fact. The matter is the spine: every hearing, document, ledger entry, invoice and payment resolves back to it, which is what makes a single audit trail possible. Limitation tracking is modelled explicitly across six statutory bases rather than as a generic reminder, so the diary computes deadlines instead of merely storing them. Trust accounting is implemented as a genuine double-entry ledger with the overdraw check enforced at the posting layer, where no UI route can bypass it. KRA eTIMS and the M-Pesa Daraja API are first-class integrations inside the billing flow rather than exports bolted to the end of it. The AI layer is deliberately constrained to answer only from documents already inside the matter and to cite them, because a legal assistant that cannot show its source is a liability rather than a tool. The mobile client is offline-first — local storage is the source of truth and mutations queue for replay on reconnect — because court buildings are exactly where connectivity fails.",
+    impact: [
+      "Consolidates thirteen product areas onto a single matter record, removing the spreadsheet layer that surrounds most firm software",
+      "Computes statutory limitation dates across six bases rather than relying on manual diarisation",
+      "Enforces Advocates Act trust account rules at the ledger, preventing client account overdraws by construction",
+      "Closes the billing loop end to end: work recorded, invoice drafted, eTIMS fiscal invoice issued, M-Pesa payment received, ledger reconciled",
+      "Keeps AI output accountable by restricting it to in-matter sources and showing a citation for every answer",
+      "Keeps advocates working inside court buildings through an offline-first mobile client with queued sync",
+      "Integrates the bodies a Kenyan practice actually answers to — Law Society of Kenya, Kenya Law, KRA eTIMS, POCAMLA/AML and the Data Protection Act"
+    ],
+    testimonial: {
+      quote: "",
+      name: "",
+      title: ""
+    },
+    status: "In Development"
+  },
 
   {
     id: 10,
@@ -13,6 +51,8 @@ export const projects: Project[] = [
     link: "#",
     githubLink: "#",
     category: "Enterprise System",
+    tier: "flagship",
+    featured: true,
     client: "Salaries and Remuneration Commission (SRC), Kenya",
     clientLogo: "/src-logo.png",
     fullDescription:
@@ -38,36 +78,40 @@ export const projects: Project[] = [
   },
 
   {
-    id: 11,
-    title: "USIU E-Counselling Platform",
-    des: "A mental health and wellness application serving students and staff at the United States International University Africa (USIU-Africa), enabling seamless appointment booking with counsellors and end-to-end session management.",
-    img: "/usiu-counselling.png",
-    iconLists: ["SiNextdotjs", "FaReact", "SiTypescript", "SiTailwindcss", "SiPostgresql", "SiPrisma"],
-    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL", "Prisma"],
-    link: "#",
+    id: 17,
+    title: "FarmCred — Agricultural Credit Scoring",
+    des: "A credit scoring platform that turns farm records, field sensor readings and crop imagery into a lending score a bank can trust, giving East African farmers a route to credit that does not depend on collateral or paperwork.",
+    img: "/farmcred.png",
+    iconLists: ["SiNextdotjs", "FaReact", "SiTypescript", "SiTailwindcss", "SiPostgresql", "SiPython"],
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL", "Python", "AI/ML"],
+    link: "https://farmcred.vercel.app",
     githubLink: "#",
-    category: "Enterprise System",
-    client: "United States International University Africa (USIU-Africa)",
-    clientLogo: "/usiu-logo.png",
+    category: "AI & ML Platform",
+    tier: "flagship",
+    featured: true,
+    client: "Product — Vortex Digital Labs",
+    clientLogo: "/vortex-logo.png",
     fullDescription:
-      "The USIU E-Counselling Platform is a secure mental health support application designed exclusively for the USIU-Africa community. The system allows students and staff to book appointments with their assigned or preferred counsellors — choosing between in-person physical sessions and virtual video meetings — and then track the progression of their counselling journey through the application. Contributions to this platform included a comprehensive UI/UX overhaul to modernise the interface, improve accessibility and elevate the overall user experience, as well as the addition of new feature modules that extend the platform's therapeutic capabilities and administrative workflows.",
+      "FarmCred is built on a single premise: credit should start with the farm, not the paperwork. The platform turns farm records, sensor readings and field imagery into a credit score a lender can read and act on. Four data streams feed the model. Farmers register a farm, map its boundaries and record the crops in the ground, then accumulate expenses and harvest history across the season. Field devices log soil moisture, temperature and rainfall over time rather than as a single self-reported snapshot. Photographs of the farm are analysed for crop cover, plant health and visible risk. Yield and risk models predict expected harvest and exposure from those inputs, and are refreshed each season. The output is a score with its reasoning attached, so the farmer sees exactly what the lender sees. On the lending side, a dedicated workspace lets institutions score applicants against verified field data, review and approve applications in one place, disburse to mobile money, and export portfolio reports to PDF or Excel. Repayment schedules follow the crop calendar rather than the calendar month.",
     challenge:
-      "The existing counselling platform had an ageing interface that felt clinical and uninviting, discouraging voluntary uptake among students who needed support. Administrative workflows for counsellors were manual, and the system lacked features to support the evolving needs of a modern university wellness centre.",
+      "Smallholder farming across East Africa is largely uncreditworthy on paper. A farmer with a productive plot, a reliable harvest history and genuine repayment capacity typically has no land title to pledge, no formal financial statements and no transaction record a bank can score. Lenders are not being unreasonable in declining — they have nothing to assess. The result is a well-known deadlock: farmers cannot borrow to expand, so they never generate the formal record that would let them borrow. Where agricultural lending does happen, repayment is usually scheduled as monthly instalments that bear no relationship to when a crop actually pays out, which turns a solvent farmer into a defaulter for reasons of timing alone.",
     solution:
-      "A full design refresh was implemented to create a warm, approachable, and accessible experience. New features were introduced including enhanced appointment scheduling with physical/virtual mode selection, session progression tracking for counsellors, improved counsellor-student communication tools, and streamlined administrative management dashboards. Performance optimisations were applied across the stack to ensure reliable access for the entire USIU community.",
+      "FarmCred replaces the missing paper trail with an observed one. Rather than asking a farmer to prove creditworthiness with documents that do not exist, the platform builds the evidence over a season from sources that are hard to fabricate: sensor readings logged continuously by field devices, geotagged imagery analysed for crop cover and plant health, and farmer-entered records that can be cross-checked against both. Yield and risk models turn that record into a prediction of expected harvest and exposure, refreshed each season so the score tracks the farm rather than a moment in its history. Scoring is deliberately transparent — every score carries the reasons behind it, which is what makes it defensible to a credit committee and legible to the farmer. Repayment is scheduled against the harvest calendar for the crop actually in the ground, so instalments fall due when the farm has money.",
     impact: [
-      "Significantly improved platform adoption and voluntary counselling session bookings",
-      "Reduced appointment scheduling friction with an intuitive, redesigned booking flow",
-      "Enabled counsellors to track client session progression and notes within a single interface",
-      "Introduced virtual meeting integration, extending access to students off-campus",
-      "Improved overall student wellness engagement through a more welcoming digital experience"
+      "Builds a credit history for farmers who have no collateral, no financial statements and no formal transaction record",
+      "Grounds scoring in observed field evidence — continuous sensor readings and analysed crop imagery — rather than self-reported claims",
+      "Publishes the reasoning behind every score, so the farmer sees the same assessment the lender does",
+      "Aligns repayment schedules to the crop calendar, removing the timing mismatch that turns solvent farmers into defaulters",
+      "Gives lenders a single workspace for scoring, review, approval and mobile money disbursement",
+      "Exports portfolio reports to PDF and Excel for credit committee and regulatory reporting",
+      "Refreshes yield and risk models each season so a score follows the farm's trajectory rather than a single snapshot"
     ],
     testimonial: {
-      quote: "The improvements made to our counselling platform have had a noticeable impact. Students are more willing to engage with the system, and our counsellors find the new tools invaluable for managing their caseloads.",
-      name: "Director of Student Services",
-      title: "USIU-Africa"
+      quote: "",
+      name: "",
+      title: ""
     },
-    status: "Live"
+    status: "In Development"
   },
 
   {
@@ -80,6 +124,7 @@ export const projects: Project[] = [
     link: "#",
     githubLink: "#",
     category: "Enterprise System",
+    tier: "flagship",
     client: "TotalEnergies Kenya",
     clientLogo: "/total-logo.png",
     fullDescription:
@@ -105,6 +150,114 @@ export const projects: Project[] = [
   },
 
   {
+    id: 15,
+    title: "Utulivu — Mental Health Platform for Kenya",
+    des: "A mental health platform pairing an AI companion with a network of licensed therapists, built for Kenyan users on real Kenyan infrastructure: bilingual English and Swahili, mobile money billing, and full function down to 2G with USSD access on basic handsets.",
+    img: "/utulivu.png",
+    iconLists: ["SiNextdotjs", "FaReact", "SiTypescript", "SiTailwindcss", "SiPostgresql", "SiPrisma"],
+    technologies: ["Next.js", "React Native", "TypeScript", "Tailwind CSS", "PostgreSQL", "Prisma", "AI/ML"],
+    link: "https://utulivu-app.vercel.app",
+    githubLink: "#",
+    category: "AI & ML Platform",
+    tier: "flagship",
+    featured: true,
+    client: "Product — Vortex Digital Labs",
+    clientLogo: "/vortex-logo.png",
+    fullDescription:
+      "Utulivu — Swahili for calm — is a mental health platform built on the premise that peace begins somewhere reachable. It pairs an AI companion with access to licensed human therapists rather than treating either as sufficient alone. The AI companion adapts to the user, curating cognitive behavioural exercises, meditation and focus work around what that person is actually carrying. Therapist matching connects users to licensed professionals by specialisation and need, over video, audio or chat. Emotional pattern tracking surfaces triggers and progress through analytics rather than leaving users to interpret their own mood history. Guided self-help programmes are authored by clinical psychologists. Mazungumzo — conversational journaling — lets a user write the way they would talk, with AI drawing insight back out of it. A weekly wellness digest handles proactive check-ins and goal coaching, and family plans add a shared calendar and household wellness view. Onboarding is deliberately short: create an account in under two minutes, complete a wellness assessment, receive a personalised plan, begin. Billing runs on M-Pesa and Airtel Money at KES 599 monthly for Premium, KES 999 for Pro, and KES 1,499 for a Family plan covering up to five members.",
+    challenge:
+      "Mental health support in Kenya fails on access long before it fails on clinical quality. Therapy is priced beyond most people who need it, concentrated in a handful of urban centres, and carries enough stigma that many will not walk into a building to seek it. The global apps that fill the gap are built for a different user entirely: they price in dollars against card payments most Kenyans do not hold, assume broadband, and deliver culturally distant content in English only. The practical failure is infrastructural as much as cultural — an app that needs a stable connection to render is unusable on the 2G and 3G networks much of the country actually runs on, and useless on a feature phone. And an AI companion in this domain carries real clinical risk: a system that responds to a user in crisis with generic encouragement is not merely unhelpful.",
+    solution:
+      "Utulivu is designed around the constraints rather than in spite of them. The interface is bilingual English and Swahili, and Mazungumzo journaling works conversationally so users can write in the register they actually think in. The client is built to function on 2G and 3G, with a USSD path that puts core check-ins on basic handsets that will never run an app at all. Billing goes through M-Pesa and Airtel Money at price points set against Kenyan incomes, not converted from dollar tiers. The AI companion is scoped as a bridge between sessions rather than a replacement for a clinician, with a safety layer that watches for risk indicators and escalates to human support instead of continuing to converse. Therapist matching runs on specialisation and stated need, and sessions are offered over video, audio or chat so a user on a poor connection can still be seen. A wellness assessment at signup produces a personalised plan immediately, which is what turns a two-minute onboarding into something a hesitant user will finish.",
+    impact: [
+      "Puts mental health support within reach on cost, distance and privacy — the three barriers that stop Kenyans seeking therapy",
+      "Works down to 2G and 3G, with USSD access extending core check-ins to basic handsets that cannot run an app",
+      "Bills in shillings over M-Pesa and Airtel Money, removing the card requirement that locks users out of global apps",
+      "Runs bilingually in English and Swahili, with conversational Mazungumzo journaling in the user's own register",
+      "Pairs a 24/7 AI companion with licensed human therapists, bridging the gap between sessions rather than replacing the clinician",
+      "Escalates to human support on detected risk indicators instead of continuing an AI conversation",
+      "Turns mood history into legible analytics, so users can see triggers and progress rather than guess at them",
+      "Extends to households through family plans with a shared calendar and joint wellness view"
+    ],
+    testimonial: {
+      quote: "",
+      name: "",
+      title: ""
+    },
+    status: "In Development"
+  },
+
+  {
+    id: 11,
+    title: "USIU E-Counselling Platform",
+    des: "A mental health and wellness application serving students and staff at the United States International University Africa (USIU-Africa), enabling seamless appointment booking with counsellors and end-to-end session management.",
+    img: "/usiu-counselling.png",
+    iconLists: ["SiNextdotjs", "FaReact", "SiTypescript", "SiTailwindcss", "SiPostgresql", "SiPrisma"],
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL", "Prisma"],
+    link: "#",
+    githubLink: "#",
+    category: "Enterprise System",
+    tier: "flagship",
+    client: "United States International University Africa (USIU-Africa)",
+    clientLogo: "/usiu-logo.png",
+    fullDescription:
+      "The USIU E-Counselling Platform is a secure mental health support application designed exclusively for the USIU-Africa community. The system allows students and staff to book appointments with their assigned or preferred counsellors — choosing between in-person physical sessions and virtual video meetings — and then track the progression of their counselling journey through the application. Contributions to this platform included a comprehensive UI/UX overhaul to modernise the interface, improve accessibility and elevate the overall user experience, as well as the addition of new feature modules that extend the platform's therapeutic capabilities and administrative workflows.",
+    challenge:
+      "The existing counselling platform had an ageing interface that felt clinical and uninviting, discouraging voluntary uptake among students who needed support. Administrative workflows for counsellors were manual, and the system lacked features to support the evolving needs of a modern university wellness centre.",
+    solution:
+      "A full design refresh was implemented to create a warm, approachable, and accessible experience. New features were introduced including enhanced appointment scheduling with physical/virtual mode selection, session progression tracking for counsellors, improved counsellor-student communication tools, and streamlined administrative management dashboards. Performance optimisations were applied across the stack to ensure reliable access for the entire USIU community.",
+    impact: [
+      "Significantly improved platform adoption and voluntary counselling session bookings",
+      "Reduced appointment scheduling friction with an intuitive, redesigned booking flow",
+      "Enabled counsellors to track client session progression and notes within a single interface",
+      "Introduced virtual meeting integration, extending access to students off-campus",
+      "Improved overall student wellness engagement through a more welcoming digital experience"
+    ],
+    testimonial: {
+      quote: "The improvements made to our counselling platform have had a noticeable impact. Students are more willing to engage with the system, and our counsellors find the new tools invaluable for managing their caseloads.",
+      name: "Director of Student Services",
+      title: "USIU-Africa"
+    },
+    status: "Live"
+  },
+
+  {
+    id: 18,
+    title: "Jitume Omoka — Dream Big Challenge",
+    des: "A national video competition platform for Kenyan youth: entrants film a short vertical video naming their entrepreneurial dream and the one skill they need to reach it, with the top ten paid out directly over M-PESA.",
+    img: "/jitume-omoka.png",
+    iconLists: ["SiNextdotjs", "FaReact", "SiTypescript", "SiTailwindcss", "SiPostgresql", "SiPrisma"],
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL", "Prisma", "M-Pesa Daraja"],
+    link: "https://learnflix-dbc.vercel.app",
+    githubLink: "#",
+    category: "Full Stack App",
+    tier: "flagship",
+    client: "Product — Vortex Digital Labs",
+    clientLogo: "/vortex-logo.png",
+    fullDescription:
+      "Jitume Omoka — hustle to make it — runs the Dream Big Challenge, a national competition inviting Kenyan youth aged 18 to 35 to film their dream and win cash to learn the skill for it. The brief is deliberately narrow: two questions, one honest answer, a vertical video of 30 seconds to 2 minutes at 480p or better, in Swahili, English or a mix of the two. Entrants create an account, verify their phone with a one-time SMS code, and upload. The platform handles submission intake and media validation, entrant identity verification, judging against published criteria, and payout of a KES 113,500 prize pool to the top ten placed winners straight to their registered M-PESA numbers — KES 25,000 for first, 20,000 for second, 15,000 for third and 5,000 each from fourth to tenth. Winners are announced publicly and the top ten also receive a six-month Pro subscription when the wider learning platform launches. Reach is built around the whole country rather than the capital, with entrants across Nairobi, Kisumu, Mombasa and Eldoret.",
+    challenge:
+      "A youth competition that pays real money out to strangers over mobile money is a trust and integrity problem long before it is a video problem. Entries arrive from phones on constrained networks as large media files, so intake has to be tolerant of slow and interrupted uploads while still enforcing hard format rules on duration, aspect ratio and resolution. Every entrant must be uniquely identifiable, because a single person entering repeatedly under different handles corrupts both the judging and the payout. Payout itself is unforgiving: money moving to a phone number is effectively irreversible, so the number that receives a prize must be the verified number that submitted the entry. And judging has to stay credible in public — a competition where entrants suspect that production budget beats storytelling loses the very people it exists to reach.",
+    solution:
+      "Identity is anchored to a phone number verified by one-time SMS code at submission, and that same verified number is the only destination the M-PESA payout will target, which closes the gap between who entered and who is paid. Media validation runs against the published brief at upload — duration, 9:16 aspect ratio and minimum resolution are checked rather than trusted — with the mobile-first upload path designed to survive the interrupted connections typical of the networks entrants are actually on. Judging criteria are published up front and scored against specificity rather than polish, with the site stating plainly that production quality does not affect scoring, so a video shot on a basic handset competes on equal terms. The whole timeline is fixed and public — entries close, results are announced, payouts are initiated — so entrants can hold the competition to its own schedule.",
+    impact: [
+      "Opens a KES 113,500 prize pool to any Kenyan aged 18 to 35 with a phone, no entry fee and no equipment requirement",
+      "Ties identity, entry and payout to one SMS-verified phone number, closing the main route to duplicate entries and misdirected prizes",
+      "Pays the top ten directly over M-PESA, removing the bank account most young entrants do not have",
+      "Validates video duration, aspect ratio and resolution at upload rather than rejecting entries after the fact",
+      "Accepts Swahili, English or mixed-language entries, so language fluency is not a barrier to entry",
+      "Scores storytelling over production value by published criteria, keeping the competition winnable on a basic handset",
+      "Reaches entrants beyond Nairobi across Kisumu, Mombasa and Eldoret through a mobile-first, low-bandwidth submission flow"
+    ],
+    testimonial: {
+      quote: "",
+      name: "",
+      title: ""
+    },
+    status: "In Development"
+  },
+
+  {
     id: 13,
     title: "ICTA EDRMS — Contract & Asset Modules",
     des: "Contributed the Contract Management and Asset & Inventory modules to the ICTA Electronic Document and Records Management System (EDRMS), enhancing the platform's capability to manage institutional contracts and physical asset registers.",
@@ -114,6 +267,7 @@ export const projects: Project[] = [
     link: "#",
     githubLink: "#",
     category: "Enterprise System",
+    tier: "flagship",
     client: "Information and Communications Technology Authority (ICTA), Kenya",
     clientLogo: "/icta-logo.png",
     fullDescription:
@@ -138,7 +292,7 @@ export const projects: Project[] = [
     status: "Live"
   },
 
-  // ─── UPCOMING / IN DEVELOPMENT ────────────────────────────────────────────
+  // --- OWN PRODUCTS - IN DEVELOPMENT ---------------------------------------------
 
   {
     id: 14,
@@ -150,6 +304,7 @@ export const projects: Project[] = [
     link: "#",
     githubLink: "#",
     category: "SaaS Platform",
+    tier: "product",
     client: "Product — Vortex Digital Labs",
     clientLogo: "/vortex-logo.png",
     fullDescription:
@@ -173,41 +328,7 @@ export const projects: Project[] = [
     status: "In Development"
   },
 
-  {
-    id: 15,
-    title: "SereneMind — Mental Health & Wellness App",
-    des: "A cross-platform mental health and wellness application built for Kenyan youth and anyone navigating mental health challenges, featuring AmanAI — a personalised AI conversational assistant — alongside journaling, mood tracking, community support, therapy matching and guided wellness programmes.",
-    img: "/serenemind.png",
-    iconLists: ["SiNextdotjs", "FaReact", "SiTypescript", "SiTailwindcss", "SiPostgresql", "SiPrisma"],
-    technologies: ["Next.js", "React Native", "TypeScript", "Tailwind CSS", "PostgreSQL", "Prisma", "AI/ML"],
-    link: "#",
-    githubLink: "#",
-    category: "Mobile & Web App",
-    client: "Product — Vortex Digital Labs",
-    clientLogo: "/vortex-logo.png",
-    fullDescription:
-      "SereneMind is a comprehensive mental health and wellness platform available on both web and mobile, designed specifically for the Kenyan youth demographic and extended to anyone facing mental health challenges. At the heart of the application is AmanAI, a deeply personalised AI conversational assistant whose name and persona can be fully customised by each user. AmanAI goes beyond generic chatbot interactions — it learns the user's emotional patterns, preferences and mental health goals to curate a bespoke wellness journey, adapting its tone, approach and recommendations over time. The platform encompasses private journaling with mood-linked entries, a granular mood tracking system with trend visualisations, a Community Center for peer support and shared experiences, a Therapy Module that connects users with vetted professional therapists for virtual or in-person sessions, a guided Exercises Module featuring breathing techniques, mindfulness practices and CBT-based activities, and a clinical Assessments Page offering standardised mental health screening tools. SereneMind is built with privacy as a core design principle — all journal entries and personal data are end-to-end encrypted.",
-    challenge:
-      "Kenya faces a significant mental health crisis, particularly among young people, yet access to professional mental health support remains limited by cost, stigma and geographic barriers. Existing global mental health apps lack cultural contextualisation for the Kenyan and broader East African experience, making them feel distant and ineffective for local users.",
-    solution:
-      "SereneMind was designed from the ground up with the Kenyan user in mind — culturally aware content, local therapist network integration, Swahili language support and pricing models accessible to young Kenyans. AmanAI is built on a fine-tuned conversational model with a mental health safety layer, ensuring responsible AI interactions and escalation pathways to human support when risk indicators are detected. The therapist matching engine considers specialisation, location, availability and user-reported preferences. The app is optimised for low-bandwidth mobile environments common in Kenya.",
-    impact: [
-      "Designed to democratise access to mental health support for Kenyan youth regardless of location or income",
-      "AmanAI provides 24/7 personalised emotional support, bridging the gap between professional therapy sessions",
-      "Community Center fosters peer connection and reduces the isolation that compounds mental health challenges",
-      "Therapy module creates a direct pipeline to professional help for users who need it",
-      "Mood tracking and assessments enable users to understand their mental health trends and progress over time",
-      "Privacy-first architecture builds the trust necessary for users to engage honestly with a sensitive platform"
-    ],
-    testimonial: {
-      quote: "",
-      name: "",
-      title: ""
-    },
-    status: "In Development"
-  },
-
-  // ─── COMPLETED CLIENT PROJECTS ────────────────────────────────────────────
+  // --- CLIENT ENGAGEMENTS - DELIVERED --------------------------------------------
 
   {
     id: 9,
@@ -219,6 +340,7 @@ export const projects: Project[] = [
     link: "https://hotelbook-kenya.vercel.app/",
     githubLink: "https://github.com/Andymwangi/hotel_system",
     category: "Full Stack App",
+    tier: "client",
     client: "Hospitality Sector",
     clientLogo: "/client-placeholder.png",
     fullDescription:
@@ -251,6 +373,7 @@ export const projects: Project[] = [
     link: "https://bookwise-libraryapp.vercel.app/",
     githubLink: "https://github.com/Andymwangi/bookwise",
     category: "Full Stack App",
+    tier: "client",
     client: "Soma Library",
     clientLogo: "/uon-logo.png",
     fullDescription:
@@ -283,6 +406,7 @@ export const projects: Project[] = [
     link: "https://regisvault.vercel.app/",
     githubLink: "https://github.com/Andymwangi/regisvault",
     category: "Full Stack App",
+    tier: "client",
     client: "Office of the Registrar of Political Parties",
     clientLogo: "/orpp-logo.png",
     fullDescription:
@@ -306,6 +430,41 @@ export const projects: Project[] = [
   },
 
   {
+    id: 6,
+    title: "Learn Hub — Online Learning Platform",
+    des: "A comprehensive online learning platform where users can discover, enrol in, and complete various courses with progress tracking and interactive content.",
+    img: "/learnhub.PNG",
+    iconLists: ["SiNextdotjs", "FaReact", "SiTypescript", "SiPostgresql", "SiPrisma", "SiTailwindcss", "SiDocker"],
+    technologies: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Tailwind CSS", "React"],
+    link: "https://learn-hub.vercel.app/",
+    githubLink: "https://github.com/Andymwangi/learn-hub",
+    category: "Full Stack App",
+    tier: "client",
+    client: "EduTech Kenya",
+    clientLogo: "/edutech-logo.png",
+    fullDescription:
+      "Learn Hub was developed for EduTech Kenya to create a comprehensive online learning ecosystem that democratises access to quality education across Kenya, featuring course management, user authentication, and progress tracking.",
+    challenge:
+      "Many Kenyans lack access to quality educational resources and professional development courses, especially in rural areas, leading to skills gaps in the growing digital economy.",
+    solution:
+      "A scalable learning platform was built with secure user authentication, course enrolment system, progress tracking, and mobile-responsive design optimised for low-bandwidth connections.",
+    impact: [
+      "Enrolled over 2,500 students in the first 3 months",
+      "Delivered 50+ courses across technology and business skills",
+      "Achieved 78% course completion rate",
+      "Enabled learning access in 15+ counties across Kenya"
+    ],
+    testimonial: {
+      quote: "Learn Hub has revolutionised how we deliver education to underserved communities. The platform's reliability and user-friendly design have made quality education accessible to thousands of Kenyans.",
+      name: "Dr. Michael Kiprotich",
+      title: "Director, EduTech Kenya"
+    },
+    status: "Completed"
+  },
+
+  // --- EARLY & SMALL-SCOPE WORK --------------------------------------------------
+
+  {
     id: 3,
     title: "Minty — Banking Web Application",
     des: "A secure banking web application that facilitates seamless transactions and user authentication.",
@@ -315,6 +474,7 @@ export const projects: Project[] = [
     link: "https://minty-bank-app.vercel.app/",
     githubLink: "https://github.com/Andymwangi/minty",
     category: "Full Stack App",
+    tier: "archive",
     client: "Jaza",
     clientLogo: "/jaza-logo.png",
     fullDescription:
@@ -347,6 +507,7 @@ export const projects: Project[] = [
     link: "https://laundrybasket-web.vercel.app/",
     githubLink: "https://github.com/Andymwangi/laundrybasket",
     category: "Full Stack App",
+    tier: "archive",
     client: "Cleanex Laundry Services",
     clientLogo: "/cleanex-logo.png",
     fullDescription:
@@ -379,6 +540,7 @@ export const projects: Project[] = [
     link: "https://jadamy-elite.vercel.app/",
     githubLink: "https://github.com/Andymwangi/jadamy-elite",
     category: "Website",
+    tier: "archive",
     client: "Jadamy Elite Academy, Ruai",
     clientLogo: "/jadamy-logo.png",
     fullDescription:
@@ -402,38 +564,6 @@ export const projects: Project[] = [
   },
 
   {
-    id: 6,
-    title: "Learn Hub — Online Learning Platform",
-    des: "A comprehensive online learning platform where users can discover, enrol in, and complete various courses with progress tracking and interactive content.",
-    img: "/learnhub.PNG",
-    iconLists: ["SiNextdotjs", "FaReact", "SiTypescript", "SiPostgresql", "SiPrisma", "SiTailwindcss", "SiDocker"],
-    technologies: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Tailwind CSS", "React"],
-    link: "https://learn-hub.vercel.app/",
-    githubLink: "https://github.com/Andymwangi/learn-hub",
-    category: "Full Stack App",
-    client: "EduTech Kenya",
-    clientLogo: "/edutech-logo.png",
-    fullDescription:
-      "Learn Hub was developed for EduTech Kenya to create a comprehensive online learning ecosystem that democratises access to quality education across Kenya, featuring course management, user authentication, and progress tracking.",
-    challenge:
-      "Many Kenyans lack access to quality educational resources and professional development courses, especially in rural areas, leading to skills gaps in the growing digital economy.",
-    solution:
-      "A scalable learning platform was built with secure user authentication, course enrolment system, progress tracking, and mobile-responsive design optimised for low-bandwidth connections.",
-    impact: [
-      "Enrolled over 2,500 students in the first 3 months",
-      "Delivered 50+ courses across technology and business skills",
-      "Achieved 78% course completion rate",
-      "Enabled learning access in 15+ counties across Kenya"
-    ],
-    testimonial: {
-      quote: "Learn Hub has revolutionised how we deliver education to underserved communities. The platform's reliability and user-friendly design have made quality education accessible to thousands of Kenyans.",
-      name: "Dr. Michael Kiprotich",
-      title: "Director, EduTech Kenya"
-    },
-    status: "Completed"
-  },
-
-  {
     id: 8,
     title: "Resume by Edna — Professional Portfolio",
     des: "A sophisticated portfolio website showcasing professional resume writing, content creation, and LinkedIn optimisation services with an elegant, conversion-focused design.",
@@ -443,6 +573,7 @@ export const projects: Project[] = [
     link: "https://resume-by-edna.vercel.app/",
     githubLink: "https://github.com/Andymwangi/resume-by-edna",
     category: "Website",
+    tier: "archive",
     client: "Edna Wanjiku",
     clientLogo: "/edna-logo.png",
     fullDescription:
@@ -464,4 +595,5 @@ export const projects: Project[] = [
     },
     status: "Completed"
   },
+
 ];
